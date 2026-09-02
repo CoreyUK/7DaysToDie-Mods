@@ -74,7 +74,7 @@ Running it on a server: [`docs/SERVER.md`](docs/SERVER.md).
 
 ## Status
 
-**v0.3.0 — pre-alpha.** Callings are now earned. What exists:
+**v0.3.1 — pre-alpha.** Callings are now earned. What exists:
 
 - ✅ Cycle system (gamestage-driven), Cycles 0–6 populated
 - ✅ All six Calling perk branches, Mark-gated, **every unlock backed by real content**
@@ -85,7 +85,8 @@ Running it on a server: [`docs/SERVER.md`](docs/SERVER.md).
 - ✅ Research loop complete — all six Field Note disciplines reconstruct into something
 - ✅ Six Proving quest chains — Callings are earned, and Writs are no longer sold
 - ⚠️ Turning dawn announcement scaffolded but inert (verification item 1)
-- ❌ No custom art — items borrow vanilla icons, weapons and enemies reuse vanilla meshes.
+- ⚠️ No custom art — items borrow vanilla icons, weapons and enemies reuse vanilla
+  meshes. Enemies now carry size and glow tells so they are at least readable.
   The pipeline is scaffolded and specified in [`docs/ART.md`](docs/ART.md); it needs an
   artist, not a programmer
 - ❌ No play-test data behind any balance value

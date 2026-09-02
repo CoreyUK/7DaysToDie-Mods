@@ -14,7 +14,7 @@ Every horde night you survive, the world Turns at dawn. Turnings are permanent a
 | **1** | **Day 8** | **Husks** — desiccated, fast, fragile, arrive in numbers | The first "oh". Speed you weren't planning for. |
 | **2** | Day 16 | **Bloaters** — swollen, slow, rupture into a lingering toxic cloud | Melee stops being free. Corridors become traps. |
 | **3** | Day 24 | **Carrion Hounds** — pack animals, flank, run down stragglers | Open ground stops being safe. Travel gets expensive. |
-| **4** | Day 32 | **Rotwardens** — armoured heavies, resist small-arms fire | Your ammo economy breaks. Time to industrialise. |
+| **4** | Day 32 | **Rotweavers** — armoured heavies, resist small-arms fire | Your ammo economy breaks. Time to industrialise. |
 | **5** | Day 40 | **The Hollow** — silent, night-only stalkers, no audio tell | Night ends as an option. Not a difficulty spike — a curfew. |
 | **6** | Day 48 | **Choirs** — buff nearby zombies, never attack directly | Hordes gain a shape. You have to prioritise targets. |
 | **7+** | Day 56+ | **Grinders** — Titan-class; the base-ender | Fortification becomes a losing game. Mobility wins. |
@@ -76,39 +76,58 @@ cosmetic is where the risk lives.
 
 ## 3. Enemy archetypes
 
-All six v0.1 archetypes reuse vanilla meshes with original stats, buffs, loot and behaviour.
-Custom models are a v1.0 concern; the design has to prove itself first.
+All archetypes reuse vanilla meshes with original stats, buffs, loot and behaviour. Custom
+models are a v1.0 concern; the design has to prove itself first.
+
+**But every one carries a visual tell**, built from vocabulary the player already reads:
+size, feral glow, radiated glow. An archetype you cannot pick out of a horde is not "hard
+but fair", it is unexplained — and this mod's whole difficulty philosophy is that you should
+be able to name the decision that killed you.
 
 ### Husk — Cycle 1
 Starved-fast, low health, arrives in threes and fours. Teaches the player that Cycle 0
 positioning habits are already obsolete. Low XP, low loot — a tax, not a payday.
+
+**Recognise it by:** feral glow, slightly smaller frame. Glowing eyes already mean *faster than you expect*.
 
 ### Bloater — Cycle 2
 Slow, high health, ruptures on death into a toxic cloud that lingers ~20s and applies
 stacking poison. Punishes melee-in-a-corridor, which is the vanilla player's default answer
 to everything. Rewards ranged, spacing and *not* fighting in your own base hallway.
 
+**Recognise it by:** 20% larger than the fat zombie beside it. Swollen is the concept and size is the cue that survives a dark room.
+
 ### Carrion Hound — Cycle 3
 Pack of 3–6, fast, flanks, targets the isolated player. The anti-travel enemy. Makes
 vehicles a survival tool rather than a convenience.
 
+**Recognise it by:** noticeably bigger than a normal dog, and never alone.
+
 ### Rotweaver — Cycle 4
-*(working name: Rotwarden)* Armoured. Heavy small-arms damage resistance, weak to explosives
+Armoured. Heavy small-arms damage resistance, weak to explosives
 and armour-piercing. The enemy that forces the ammo economy to industrialise — a Cycle 4
 player still on scrap 9mm is a dead player.
+
+**Recognise it by:** feral glow on an armoured body. This tell matters most — without it, 65% bullet resistance reads as *my gun broke* rather than *wrong tool*.
 
 ### The Hollow — Cycle 5
 Night only. No idle audio, no footsteps, no scream. Slow, extremely high damage, low health.
 Turns night from "harder" into "don't". The only enemy in the mod designed around denial
 rather than combat.
 
+**Recognise it by:** nothing. That is the tell — no idle audio, no footsteps, no scream. You notice the absence, and it needs no art at all.
+
 ### Choir — Cycle 6
 Never attacks. Applies an aura buff to nearby zombies (damage, speed, health regeneration).
 Fragile. Introduces target prioritisation to horde nights, which vanilla never asks for.
 
+**Recognise it by:** feral glow, small, hanging back from the fight. The horde has to be readable enough to prioritise or the mechanic is invisible.
+
 ### Grinder — Cycle 7+
 Titan-class. Structural damage on a scale that makes static fortification a losing strategy.
 Rare, slow, unstoppable, telegraphed a long way out. The intended answer is to leave.
+
+**Recognise it by:** nearly twice the size of anything else, and radiated. It is meant to be visible a long way out — a Grinder that surprises you is a design failure.
 
 ---
 

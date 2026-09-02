@@ -14,6 +14,25 @@
 
     Design rule for this whole file: every archetype must be beatable by a player who
     reads the tell. Nothing here is a stat wall - each one invalidates a specific habit.
+
+    WHICH MEANS THE TELL HAS TO BE VISIBLE
+    ======================================
+    Reusing a vanilla mesh is fine. Reusing it with no visual difference is not: an
+    archetype the player cannot pick out of a horde is not "hard but fair", it is just
+    unexplained. Three of these shipped that way and it broke the mod's own stated
+    principle - a Rotweaver that looks like an ordinary soldier zombie does not read as
+    "armoured", it reads as "my gun stopped working".
+
+    So every archetype now carries a tell built from vanilla vocabulary:
+      * SizeScale     - silhouette, which survives darkness and distance
+      * feral glow    - already means "faster and tougher" to any player
+      * radiated glow - already means "this one is a problem"
+      * silence       - the Hollow, and the one tell that needs no art at all
+
+    VERIFY-17 (docs/VERIFICATION.md): confirm SizeScale exists on entity classes in V3.2,
+    and confirm the Feral / FeralRadiated variant names. Each class carries its fallback
+    base in a comment. Note V2.0 added Charged and Infernal traits too - if those have
+    entity variants, they are better tells still.
 -->
 <configs>
 
@@ -25,8 +44,13 @@
              Invalidates: standing still. Cycle 0 spacing habits are now obsolete.
              Deliberately low XP and loot - a tax, not a payday.
              ================================================================== -->
-        <entity_class name="edZombieHusk" extends="zombieArlene">
+        <entity_class name="edZombieHusk" extends="zombieArleneFeral">
             <property name="Tags" value="entity,zombie,edHusk" />
+            <!-- READABILITY: Feral glow plus a smaller frame. Glowing eyes already mean 'faster than
+                 you expect' to any 7 Days player - the Husk borrows that vocabulary
+                 instead of inventing one. -->
+            <!-- Fallback base if the variant name above is wrong: zombieArlene -->
+            <property name="SizeScale" value="0.92" />
             <property name="WalkType" value="5" />
             <property name="MoveSpeed" value="1.05" />
             <property name="MoveSpeedAggro" value="1.75, 2.15" />
@@ -55,6 +79,9 @@
              ================================================================== -->
         <entity_class name="edZombieBloater" extends="zombieFatHawaiian">
             <property name="Tags" value="entity,zombie,edBloater" />
+            <!-- READABILITY: Twenty percent bigger than the fat zombie it sits next to. Swollen is the
+                 whole concept, and size is the only cue that survives a dark room. -->
+            <property name="SizeScale" value="1.20" />
             <property name="WalkType" value="1" />
             <property name="MoveSpeed" value="0.28" />
             <property name="MoveSpeedAggro" value="0.42, 0.55" />
@@ -87,6 +114,9 @@
              ================================================================== -->
         <entity_class name="edZombieCarrionHound" extends="animalZombieDog">
             <property name="Tags" value="entity,zombie,animal,edHound" />
+            <!-- READABILITY: Bigger than a normal dog. Pack animals read as a group first and an
+                 individual second, so the silhouette only has to say 'not a dog'. -->
+            <property name="SizeScale" value="1.12" />
             <property name="MoveSpeed" value="1.15" />
             <property name="MoveSpeedAggro" value="2.35, 2.65" />
             <property name="ExperienceGain" value="420" />
@@ -111,8 +141,12 @@
              scrap 9mm is a dead player - this is the enemy that forces you to
              industrialise, which is the whole point of the Long Craft.
              ================================================================== -->
-        <entity_class name="edZombieRotweaver" extends="zombieSoldier">
+        <entity_class name="edZombieRotweaver" extends="zombieSoldierFeral">
             <property name="Tags" value="entity,zombie,edRotweaver,heavyArmor" />
+            <!-- READABILITY: Feral glow on an already-armoured body. This one matters most: without a
+                 tell, 65% bullet resistance reads to the player as 'my gun broke'. -->
+            <!-- Fallback base if the variant name above is wrong: zombieSoldier -->
+            <property name="SizeScale" value="1.14" />
             <property name="WalkType" value="1" />
             <property name="MoveSpeed" value="0.45" />
             <property name="MoveSpeedAggro" value="0.85, 1.05" />
@@ -145,6 +179,10 @@
              ================================================================== -->
         <entity_class name="edZombieHollow" extends="zombieBoe">
             <property name="Tags" value="entity,zombie,edHollow" />
+            <!-- READABILITY: Deliberately almost unmarked. The Hollow's tell is SILENCE, which is a
+                 real tell and does not need art - you notice the absence. Slightly
+                 taller so something feels wrong without announcing itself. -->
+            <property name="SizeScale" value="1.08" />
             <property name="WalkType" value="1" />
             <property name="MoveSpeed" value="0.38" />
             <property name="MoveSpeedAggro" value="0.62, 0.78" />
@@ -177,8 +215,12 @@
              Fragile. Introduces target prioritisation to horde nights, which
              vanilla never asks the player to do.
              ================================================================== -->
-        <entity_class name="edZombieChoir" extends="zombieNurse">
+        <entity_class name="edZombieChoir" extends="zombieNurseFeral">
             <property name="Tags" value="entity,zombie,edChoir" />
+            <!-- READABILITY: Glowing and small and hanging back from the fight. The horde has to be
+                 readable enough to prioritise, or the mechanic is invisible. -->
+            <!-- Fallback base if the variant name above is wrong: zombieNurse -->
+            <property name="SizeScale" value="0.94" />
             <property name="MoveSpeed" value="0.55" />
             <property name="MoveSpeedAggro" value="0.9, 1.1" />
             <property name="ExperienceGain" value="3200" />
@@ -214,8 +256,17 @@
              which undersells it badly - a Titan should read as a Titan at fifty
              metres. First candidate for a custom model.
              ================================================================== -->
-        <entity_class name="edZombieGrinder" extends="zombieFatCop">
+        <entity_class name="edZombieGrinder" extends="zombieFatCopFeralRadiated">
             <property name="Tags" value="entity,zombie,edGrinder,heavyArmor" />
+            <!-- READABILITY: Nearly double size and radiated. The design brief says 'telegraphed a long
+                 way out' and an 8000 HP base-ender that looked like an ordinary cop
+                 broke that outright. This is the fix.
+
+                 NOTE: the fat cop base carries a death explosion. On a Titan that
+                 reads well, but confirm it does not destroy the loot it just
+                 dropped - see VERIFY-17. -->
+            <!-- Fallback base if the variant name above is wrong: zombieFatCop -->
+            <property name="SizeScale" value="1.95" />
             <property name="WalkType" value="1" />
             <property name="MoveSpeed" value="0.32" />
             <property name="MoveSpeedAggro" value="0.48, 0.60" />

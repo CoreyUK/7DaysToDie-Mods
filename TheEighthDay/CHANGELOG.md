@@ -3,6 +3,23 @@
 All notable changes to The Eighth Day.
 Format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
+## [0.3.1] — 2026-09-02
+
+### Fixed
+- **Enemy archetypes were visually unreadable.** All seven reused vanilla meshes with no
+  visual difference from their base, which broke the mod's own difficulty principle: an
+  8000 HP Grinder looked exactly like an ordinary fat cop, and a Rotweaver with 65% bullet
+  resistance looked like an ordinary soldier zombie — so it read as *my gun stopped working*
+  rather than *wrong tool for this one*.
+
+  Every archetype now carries a tell built from vocabulary players already read: `SizeScale`
+  for silhouette, feral glow for "faster and tougher", radiated glow for "this one is a
+  problem". The Grinder is nearly twice normal size and radiated; the Hollow is deliberately
+  unmarked because its tell is silence, which needs no art at all.
+
+  Still vanilla meshes — this is readability, not custom models. Each class carries its
+  fallback base in a comment, and verification item 17 covers the property and variant names.
+
 ## [0.3.0] — 2026-09-02
 
 Callings are now earned. The last "this is a placeholder" is gone from the design.

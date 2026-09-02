@@ -102,6 +102,24 @@ sold, **Callings would then be unreachable**. If you need to unblock a test serv
 verifying, temporarily restore the `edWrits` trader group (see the comment in
 `traders.xml`) rather than editing the quests.
 
+### 17. `SizeScale`, and the Feral / FeralRadiated variant names
+**Check:** `Data/Config/entityclasses.xml`
+Every archetype now carries a visual tell built from `SizeScale` plus, in four cases, a
+feral or radiated vanilla base. Confirm:
+- `SizeScale` exists as an entity-class property and takes a plain multiplier
+- the variant names — `zombieArleneFeral`, `zombieSoldierFeral`, `zombieNurseFeral`,
+  `zombieFatCopFeralRadiated`. Each class carries its fallback base in a comment, so a
+  wrong name is a one-word revert rather than a redesign.
+- **the Grinder's inherited death explosion.** `zombieFatCop` explodes on death; on a Titan
+  that reads well, but confirm it does not destroy the loot it just dropped.
+
+V2.0 added Charged and Infernal traits. If those have entity variants, they are stronger
+tells than feral and worth switching to.
+
+**If SizeScale does not exist**, the archetypes still work — they just lose their
+silhouette tell, and the Grinder in particular goes back to being unreadable. Treat that as
+blocking for the Grinder specifically.
+
 ## Priority 2 — will load but behave wrong
 
 ### 5. `CustomIcon` names
