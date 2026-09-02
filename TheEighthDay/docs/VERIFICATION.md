@@ -157,10 +157,17 @@ blocking for the Grinder specifically.
 
 ### 19. Biome names and spawn attributes
 **Check:** `Data/Config/spawning.xml`
-`Config/spawning.xml` appends night spawns of The Hollow to `wasteland` and `burnt_forest`.
-Confirm both biome names and the `<spawn maxcount= respawndelay= time= entitygroup=>`
-attribute set. If a name is wrong that biome silently gets no Hollow — the mod still loads
-and the archetype still arrives via the horde pools at Cycle 5.
+`Config/spawning.xml` now touches four biomes: `wasteland`, `burnt_forest`, `desert` and
+`snow`. Confirm all four names and the `<spawn maxcount= respawndelay= time= entitygroup=>`
+attribute set, including that `time="Day"` is spelled that way.
+
+This matters more than it did when this item only covered The Hollow. Biome hostility is now
+the whole of the mod's ambient presence — a wrong biome name means that biome is silently
+vanilla, and the archetype it was meant to teach is not met until a horde night brings it.
+The mod still loads either way.
+
+Also confirm the starter biome names while you are there (`pine_forest`, `plains`), not
+because anything patches them, but because the design depends on knowing which they are.
 
 ### 20. Assumed vanilla item values
 **Check:** `Data/Config/items.xml`

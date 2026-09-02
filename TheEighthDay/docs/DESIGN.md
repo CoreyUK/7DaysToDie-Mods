@@ -4,7 +4,7 @@
 
 **Target build:** 7 Days to Die V3.2 "Henpocalypse"
 **Type:** Full overhaul, pure XML (no compiled assembly)
-**Status:** v0.4.0 pre-alpha
+**Status:** v0.8.0 pre-alpha
 
 ---
 
@@ -32,22 +32,29 @@ long you lasted.
 
 The game's blood moon lands on day 7. **Day 8 is ours.**
 
-Every time you survive a horde night, the world *Turns* at dawn. A Turning is permanent and
-one-way. It is announced, it is visible, and it makes the map worse forever:
+As you climb, the world *Turns*. A Turning is permanent and one-way. It is announced, it is
+visible, and it makes the map worse forever:
 
-- A new enemy archetype enters the global spawn pool and never leaves.
-- Existing archetypes get a stat and behaviour pass.
-- Wandering horde size and frequency step up.
-- Biome hostility spreads outward — the forest stops being the safe biome.
+- A new enemy archetype enters the horde and wandering pools and never leaves.
+- Wandering horde size and frequency step up — and a wandering horde goes anywhere,
+  including the biome you settled in because it was quiet.
 - Trader stock rotates toward things you now need instead of things you wanted.
+
+**Ambient biome population is deliberately not part of that.** Ambient spawning has no
+gamestage gate — that lives only in `gamestages.xml` — so rather than claim an escalation
+the engine cannot express, hostility outside the hordes is gated by **geography**: each
+harsh biome permanently carries one archetype, and the starter biomes carry none. The
+difficulty selector is the map. You can go and find Cycle 4 on day four, and the biome told
+you before you went. Reasoning in full in `Config/entitygroups.xml`.
 
 Cycle 0 is days 1–7: recognisably vanilla, deliberately. Cycle 1 begins on **day 8**.
 By Cycle 6 the surface at night is not survivable in a way that any amount of gear fixes —
 it is survivable by planning, positioning and knowing when not to be outside.
 
-The player-facing framing matters as much as the numbers. Each Turning fires a screen
-message and a journal entry written in-world, so the escalation reads as *the world doing
-something to you*, not as a difficulty slider moving.
+The player-facing framing matters as much as the numbers. Each Turning leaves a journal
+entry written in-world, fired the first time that Cycle's archetype reaches you — so the
+escalation reads as *the world doing something to you*, not as a difficulty slider moving,
+and it cannot name a thing you have not met.
 
 See [`CYCLES.md`](CYCLES.md) for the full cycle table and the implementation mechanism.
 
@@ -170,7 +177,7 @@ line every balance change gets tested against.
 |---|---|
 | **0.1** | Skeleton + first vertical slice: Cycles 0–3, all six Callings' perk trees, tier-1/2 production chain, six enemy archetypes, staged infection |
 | 0.2 | Proving quest chains, Drafting Table research loop, Field Note locations, trader rework |
-| 0.3 | Cycles 4–6, late production tier (carbide/composite), Titan-class enemy, biome hostility spread |
+| 0.3 | Cycles 4–6, late production tier (carbide/composite), Titan-class enemy, biome hostility (shipped as geography, not as a clock — see §2) |
 | 0.4 | Balance pass from CUKServers live data, localisation beyond English |
 | 1.0 | Custom icons and enemy variants, optional C# module for the systems XML genuinely can't reach |
 

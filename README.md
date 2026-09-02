@@ -7,7 +7,7 @@ folder and ships as a self-contained modlet — drop the folder into `Mods/`, do
 
 | Mod | Type | Game build | Status |
 |---|---|---|---|
-| [The Eighth Day](TheEighthDay/) | Overhaul | V3.2 (Henpocalypse) | Pre-alpha (v0.7.0) |
+| [The Eighth Day](TheEighthDay/) | Overhaul | V3.2 (Henpocalypse) | Pre-alpha (v0.8.0) |
 
 ---
 
@@ -18,15 +18,17 @@ folder and ships as a self-contained modlet — drop the folder into `Mods/`, do
 A full overhaul built around one idea: **the world escalates faster than you do.**
 
 Vanilla's power curve peaks and then flattens — by day 50 you are farming the apocalypse.
-The Eighth Day removes that ceiling. Every horde night you survive, the world *Turns*:
-new enemy archetypes enter the spawn pool permanently, loot shifts, and biomes you had
-written off as safe stop being safe. You never finish the game. You only last longer.
+The Eighth Day removes that ceiling. As you climb, the world *Turns*: new enemy archetypes
+enter the spawn pool permanently and never leave, wandering hordes grow and go anywhere, and
+the trader stops selling you a workshop and starts selling you survival. You never finish
+the game. You only last longer.
 
 Core pillars:
 
 - **Callings** — six specialist paths earned through trader proving-work, not bought.
 - **The Long Craft** — a deep, tiered production chain with real intermediate industry.
-- **The Turning** — permanent, one-way world escalation tied to horde nights.
+- **The Turning** — permanent, one-way world escalation, announced by the thing that
+  arrives.
 - **Attrition** — staged infection, harsher durability, meaningful medicine.
 
 Full design docs: [`TheEighthDay/docs/DESIGN.md`](TheEighthDay/docs/DESIGN.md)

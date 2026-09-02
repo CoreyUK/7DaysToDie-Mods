@@ -2,7 +2,8 @@
 <!--
     THE EIGHTH DAY - spawning.xml
     =============================
-    Ambient biome spawning. One job: make The Hollow's night-only identity real.
+    Ambient biome spawning. Two jobs: make The Hollow's night-only identity real,
+    and make the map itself the difficulty selector.
 
     THE CONSTRAINT THAT SHAPED THIS FILE
     ====================================
@@ -41,6 +42,8 @@
 
     <append xpath="/spawning/biome[@name='wasteland']">
         <spawn maxcount="2" respawndelay="2" time="Night" entitygroup="edNightPool" />
+        <spawn maxcount="4" respawndelay="1" time="Day" entitygroup="edBiomeWastePool" />
+        <spawn maxcount="5" respawndelay="1" time="Night" entitygroup="edBiomeWastePool" />
     </append>
 
 
@@ -51,6 +54,35 @@
 
     <append xpath="/spawning/biome[@name='burnt_forest']">
         <spawn maxcount="1" respawndelay="3" time="Night" entitygroup="edNightPool" />
+        <spawn maxcount="3" respawndelay="2" time="Day" entitygroup="edBiomeBurntPool" />
+        <spawn maxcount="3" respawndelay="2" time="Night" entitygroup="edBiomeBurntPool" />
     </append>
+
+
+    <!-- ==========================================================================
+         DESERT - the archetype fits the ground. Open country is where a pack gets
+         to do what a pack is for, and there is nowhere to put your back.
+         ========================================================================== -->
+
+    <append xpath="/spawning/biome[@name='desert']">
+        <spawn maxcount="3" respawndelay="2" time="Day" entitygroup="edBiomeDesertPool" />
+        <spawn maxcount="3" respawndelay="2" time="Night" entitygroup="edBiomeDesertPool" />
+    </append>
+
+
+    <!-- ==========================================================================
+         SNOW - slow, armoured, patient, and you are already burning calories.
+         Lower counts than the desert: the snow's difficulty is the cold and the
+         travel, and stacking a heavy archetype on top of that is a pile-on.
+         ========================================================================== -->
+
+    <append xpath="/spawning/biome[@name='snow']">
+        <spawn maxcount="2" respawndelay="3" time="Day" entitygroup="edBiomeSnowPool" />
+        <spawn maxcount="2" respawndelay="3" time="Night" entitygroup="edBiomeSnowPool" />
+    </append>
+
+    <!-- The starter biomes - pine forest and plains - are deliberately absent.
+         See entitygroups.xml: the safe biome stays safe, and what escalates there
+         is the wandering horde that walks through it, which IS gamestage-gated. -->
 
 </configs>

@@ -87,24 +87,78 @@
 
 
     <!-- ==========================================================================
-         AMBIENT BLEED-THROUGH
+         THE BIOME POOLS - hostility as geography
 
-         The cycle pools above drive horde nights. This section leaks the same
-         archetypes into ordinary biome spawning at low probability, so that the
-         world between horde nights also visibly Turns.
+         WHAT THESE REPLACED, AND WHY
+         ============================
+         This used to be three entries appended straight into vanilla's ZombiesAll:
+         Husks, Bloaters and Carrion Hounds, everywhere, from the first minute of a
+         new save. Two things were wrong with that.
 
-         Kept at low weights deliberately: the Turning should be felt as dread
-         first and encountered second.
+         It contradicted Cycle 0, which the design describes as "vanilla-adjacent,
+         deliberately - you are learning the map". A player who meets a Husk in the
+         pine forest on day one has not been eased into anything, and "day 8 is
+         ours" stops meaning much when the eighth day brings something they have
+         been killing all week.
 
-         VERIFY-2: confirm "ZombiesAll" is still the correct vanilla group name.
-         If it has been renamed or split in V3.2, retarget these three patches -
-         they are the only place this file touches vanilla data.
+         It also broke the announcement layer the moment that layer became real.
+         The Turning fires on first contact, so a blanket ambient pool hands the
+         player the Cycle 1, 2 and 3 journal entries before day two - three
+         one-way, once-ever moments spent on nothing.
+
+         GEOGRAPHY INSTEAD
+         =================
+         Ambient spawning has no gamestage gate; that lives only in gamestages.xml.
+         So the ambient world cannot escalate on a clock, and pretending otherwise
+         is how it ended up escalating on no clock at all.
+
+         What it CAN do is vary by place. Each harsh biome now teaches exactly one
+         archetype before the horde ever does, and the archetype fits the ground:
+
+           burnt forest   Bloaters       things that rupture, where it burned
+           desert         Carrion Hounds open ground is where you get run down
+           snow           Rotweavers     armoured, slow, patient
+           wasteland      most of them   it is the wasteland
+
+         The starter biomes stay clean, and that is the point. The safe biome stays
+         safe; what changes over time is what WALKS THROUGH it, because wandering
+         hordes are gamestage-gated and go anywhere. Dread that arrives and then
+         leaves again is a better mechanic than a forest that quietly gets worse.
+
+         So the difficulty selector is the map. You can go and find Cycle 4 on day
+         four, and the biome told you before you went.
+
+         VERIFY-19 covers the biome names these attach to in spawning.xml. The
+         Grinder is deliberately in none of them: it is an event, not a population.
          ========================================================================== -->
 
-    <append xpath="/entitygroups/entitygroup[@name='ZombiesAll']">
-        <entity name="edZombieHusk" prob="0.12" />
-        <entity name="edZombieBloater" prob="0.05" />
-        <entity name="edZombieCarrionHound" prob="0.06" />
+    <append xpath="/entitygroups">
+
+        <entitygroup name="edBiomeBurntPool">
+            <entity name="edZombieHusk" prob="0.35" />
+            <entity name="edZombieBloater" prob="0.25" />
+        </entitygroup>
+
+        <entitygroup name="edBiomeDesertPool">
+            <entity name="edZombieHusk" prob="0.3" />
+            <entity name="edZombieCarrionHound" prob="0.3" />
+        </entitygroup>
+
+        <entitygroup name="edBiomeSnowPool">
+            <entity name="edZombieHusk" prob="0.3" />
+            <entity name="edZombieRotweaver" prob="0.2" />
+        </entitygroup>
+
+        <!-- The wasteland is the only place a Choir appears outside a horde, and it
+             is rare even there. A pack with a Choir in it is a different fight, and
+             meeting that once in the wasteland is a lesson worth having early. -->
+        <entitygroup name="edBiomeWastePool">
+            <entity name="edZombieHusk" prob="0.4" />
+            <entity name="edZombieBloater" prob="0.3" />
+            <entity name="edZombieRotweaver" prob="0.3" />
+            <entity name="edZombieChoir" prob="0.08" />
+        </entitygroup>
+
     </append>
 
 </configs>

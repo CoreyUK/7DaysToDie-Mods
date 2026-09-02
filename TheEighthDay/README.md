@@ -77,7 +77,7 @@ Running it on a server: [`docs/SERVER.md`](docs/SERVER.md).
 
 ## Status
 
-**v0.7.0 — pre-alpha.** What exists:
+**v0.8.0 — pre-alpha.** What exists:
 
 - ✅ Cycle system (gamestage-driven), Cycles 0–6 populated
 - ✅ All six Calling perk branches, Mark-gated, **every unlock backed by real content**
@@ -85,6 +85,8 @@ Running it on a server: [`docs/SERVER.md`](docs/SERVER.md).
 - ✅ Farming and cooking — four crops that feed the industry, not a side system
 - ✅ Weapons, tools, armour, fortification, traps, stimulants and salvage gear
 - ✅ Seven enemy archetypes, including the Cycle 7+ Grinder
+- ✅ Biome hostility — each harsh biome permanently carries one archetype, so the map
+  is the difficulty selector; the starter biomes stay clean
 - ✅ Four-stage infection
 - ✅ Research loop complete — all six Field Note disciplines reconstruct into something
 - ✅ Six Proving quest chains — Callings are earned, and Writs are no longer sold

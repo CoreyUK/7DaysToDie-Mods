@@ -3,6 +3,54 @@
 All notable changes to The Eighth Day.
 Format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
+## [0.8.0] — 2026-09-02
+
+Biome hostility. The map becomes the difficulty selector.
+
+### Fixed
+- **Three archetypes were in every biome from the first minute of a new save.** The ambient
+  bleed-through appended Husks, Bloaters and Carrion Hounds straight into vanilla's
+  `ZombiesAll`, with no gate of any kind on it.
+
+  That contradicted Cycle 0 — described in the design as *"vanilla-adjacent, deliberately;
+  you are learning the map"* — and it hollowed out the mod's own name. "Day 8 is ours" stops
+  meaning much when the eighth day brings something you have been killing all week.
+
+  It also broke the announcement layer the moment that layer became real, one release ago: a
+  blanket ambient pool hands the player the Cycle 1, 2 and 3 journal entries before day two.
+  Three one-way, once-ever moments, spent on nothing.
+
+### Added
+- **Four biome pools, gated by geography.** Ambient spawning has no gamestage gate — that
+  lives only in `gamestages.xml` — so the ambient world cannot escalate on a clock. Rather
+  than pretend otherwise, hostility outside the hordes is now a property of *place*, and each
+  harsh biome teaches exactly one archetype before the horde ever does:
+
+  | biome | teaches | why there |
+  |---|---|---|
+  | burnt forest | Bloaters | things that rupture, where it burned |
+  | desert | Carrion Hounds | open ground is where you get run down |
+  | snow | Rotweavers | armoured, slow, patient |
+  | wasteland | most of them, plus a rare Choir | it is the wasteland |
+
+  The starter biomes carry nothing, and that is the design rather than an omission: the safe
+  biome stays safe, and what escalates there is what **walks through** it — wandering hordes
+  are gamestage-gated and go anywhere. Dread that arrives and then leaves is a better
+  mechanic than a forest that quietly gets worse.
+
+  So you can go and find Cycle 4 on day four, and the biome told you before you went. The
+  Grinder appears in none of them: it is an event, not a population.
+
+### Changed
+- **Three documents were promising an escalation the engine cannot express.** DESIGN.md said
+  "biome hostility spreads outward — the forest stops being the safe biome", the root README
+  said "biomes you had written off as safe stop being safe", and the roadmap listed biome
+  hostility as unshipped. Ambient spawning has never had a gamestage gate, so the first two
+  were unimplementable as written rather than merely unimplemented. All three now say what
+  actually ships and why.
+- DESIGN.md's status line had been stale at v0.4.0 for four releases, and it still described
+  the Turning as firing "a screen message" at each horde night.
+
 ## [0.7.0] — 2026-09-02
 
 The mod's namesake finally does something the player can see.
