@@ -7,7 +7,7 @@ folder and ships as a self-contained modlet — drop the folder into `Mods/`, do
 
 | Mod | Type | Game build | Status |
 |---|---|---|---|
-| [The Eighth Day](TheEighthDay/) | Overhaul | V3.2 (Henpocalypse) | Pre-alpha (v0.10.0) |
+| [The Eighth Day](TheEighthDay/) | Overhaul | V3.2 (Henpocalypse) | Pre-alpha (v0.11.0) |
 
 ---
 
@@ -57,9 +57,21 @@ balance and mechanics.
 ## Building a release
 
 ```bash
-./tools/build.sh TheEighthDay          # -> dist/TheEighthDay-0.1.0.zip
-./tools/validate.sh                    # XML well-formedness across every modlet
+./tools/build.sh TheEighthDay          # -> dist/TheEighthDay-<version>.zip
+./tools/validate.sh                    # ten checks across every modlet
 ```
+
+`validate.sh` checks the mod against itself, which is all that can be done without the
+game. The other half needs an install:
+
+```bash
+./tools/check-vanilla.py "/path/to/7 Days To Die/Data/Config"
+```
+
+That resolves every XPath patch target and every referenced vanilla identifier against
+the real files. A patch whose target no longer exists is not an error — the game applies
+zero edits and logs nothing, and the feature is silently absent — so this is the check
+that decides whether any of the rest of it actually runs.
 
 Windows equivalent: `tools\build.ps1`.
 

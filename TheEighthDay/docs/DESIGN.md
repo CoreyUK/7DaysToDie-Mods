@@ -4,7 +4,7 @@
 
 **Target build:** 7 Days to Die V3.2 "Henpocalypse"
 **Type:** Full overhaul, pure XML (no compiled assembly)
-**Status:** v0.10.0 pre-alpha
+**Status:** v0.11.0 pre-alpha
 
 ---
 

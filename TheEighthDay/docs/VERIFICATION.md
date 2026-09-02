@@ -274,10 +274,33 @@ trivialises the tech tree.
 
 ## How to test a load
 
+**Do step 0 first. It answers most of this checklist in about a second, before the game is
+even launched.**
+
+```bash
+./tools/check-vanilla.py "/path/to/7 Days To Die/Data/Config"
+```
+
+That resolves every one of this mod's ~70 XPath patch targets and ~90 referenced vanilla
+identifiers against the real files, and prints the ones that are gone. Almost every item on
+this list is that question wearing a different hat — *is the vanilla thing we patch still
+called that* — and a patch whose target no longer exists is not an error: the game applies
+zero edits, logs nothing, and the feature is silently absent.
+
+Work the output top-down, then:
+
 1. Copy `TheEighthDay/` into `Mods/` on a **throwaway** install.
 2. Launch and watch the console for red XML errors — they name the file and line.
 3. `getgamestage` and `spawnentity` in the console let you jump cycles without playing 48 days.
 4. Grep the log for `EIGHTHDAY` — every non-obvious patch is tagged with a comment.
 
+Then work the items `check-vanilla.py` cannot see, because they are about *behaviour* rather
+than *existence*: item 24 (the `ModifyCVar` operation spelling — check this before anything
+else, it gates the entire Calling system), item 1 (the announcement's requirement and target
+names), item 17 (`SizeScale` and the feral variants), item 21 (whether a redefined harvest
+drop replaces the inherited one or stacks with it), and every icon name, which lives in a
+texture atlas rather than in `Data/Config`.
+
 Fix in priority order. Items 1–4 are the difference between "loads" and "doesn't"; items
-11–12 decide whether the Calling payloads exist at all.
+11–12 decide whether the Calling payloads exist at all; item 24 decides whether the Callings
+can be earned at all.

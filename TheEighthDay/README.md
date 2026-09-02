@@ -77,7 +77,7 @@ Running it on a server: [`docs/SERVER.md`](docs/SERVER.md).
 
 ## Status
 
-**v0.10.0 — pre-alpha.** What exists:
+**v0.11.0 — pre-alpha.** What exists:
 
 - ✅ Cycle system (gamestage-driven), Cycles 0–7 populated and still escalating at
   gamestage 3000 — the mod has no plateau

@@ -3,6 +3,40 @@
 All notable changes to The Eighth Day.
 Format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
+## [0.11.0] — 2026-09-02
+
+### Added
+- **`tools/check-vanilla.py` — the other half of the verification pass.** Everything else in
+  `tools/` checks the mod against itself, because that is all that can be done without the
+  game. This takes the game's own `Data/Config` and answers the two questions the whole of
+  `VERIFICATION.md` exists to ask:
+
+  **Do the patches hit anything?** A modlet is a list of XPath edits, and an
+  `<append xpath="...">` that matches nothing is not an error — the game applies zero edits,
+  logs nothing, and the feature is simply absent. All ~70 targets are now resolved against
+  the real files, including `set`/`setattribute` edits that address an *attribute* vanilla
+  may no longer have.
+
+  **Do the names exist?** All ~90 vanilla identifiers already collected into
+  `VANILLA-DEPENDENCIES.md` — ingredients, `Extends` bases, buffs, entity classes, loot
+  groups, perks — resolved against `items.xml`, `blocks.xml` and the rest.
+
+  Written now precisely because the game is not available: the point is that the day it is,
+  verification is one command and a list rather than a day spent reading two sets of XML
+  side by side. Exit code 1 if anything is missing, so it can gate a release.
+
+  Proven against a synthetic `Data/Config` built to satisfy the mod exactly — clean pass at
+  73 targets and 89 identifiers — then by recreating three of the failures this checklist
+  actually fears: vanilla renaming `buffInfection` (verification item 13; caught twice, as a
+  dropped patch *and* a missing identifier), an armour base removed by an armour rework
+  (item 11), and the blood moon spawner renamed (item 2). All three reported by name and
+  exit 1.
+
+- `VERIFICATION.md` now opens its test procedure with that command as step 0, and lists
+  explicitly what it *cannot* see — the behavioural items: the `ModifyCVar` spelling, the
+  announcement's requirement names, `SizeScale`, whether a redefined harvest drop replaces
+  or stacks, and icon names, which live in a texture atlas rather than in `Data/Config`.
+
 ## [0.10.0] — 2026-09-02
 
 ### Fixed
