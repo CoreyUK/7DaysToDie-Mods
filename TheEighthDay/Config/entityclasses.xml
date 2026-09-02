@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+    THE EIGHTH DAY - entityclasses.xml
+    ==================================
+    The six v0.1 enemy archetypes, one per Cycle.
+
+    ART NOTE: v0.1 ships no custom models. Each archetype extends a vanilla entity and
+    differentiates itself on stats, speed, buffs, loot and behaviour. Custom meshes are a
+    v1.0 concern - the design has to prove itself before it earns art.
+
+    VERIFY-3 (docs/VERIFICATION.md): every "Extends" base below must be confirmed to still
+    exist in V3.2's Data/Config/entityclasses.xml. Zombie class names have changed across
+    versions and V3.2 removed at least one entity outright.
+
+    Design rule for this whole file: every archetype must be beatable by a player who
+    reads the tell. Nothing here is a stat wall - each one invalidates a specific habit.
+-->
+<configs>
+
+    <append xpath="/entity_classes">
+
+        <!-- ==================================================================
+             CYCLE 1 - HUSK
+             Starved-fast, fragile, arrives in numbers.
+             Invalidates: standing still. Cycle 0 spacing habits are now obsolete.
+             Deliberately low XP and loot - a tax, not a payday.
+             ================================================================== -->
+        <entity_class name="edZombieHusk" extends="zombieArlene">
+            <property name="Tags" value="entity,zombie,edHusk" />
+            <property name="WalkType" value="5" />
+            <property name="MoveSpeed" value="1.05" />
+            <property name="MoveSpeedAggro" value="1.75, 2.15" />
+            <property name="ExperienceGain" value="180" />
+            <effect_group name="edZombieHuskStats">
+                <passive_effect name="MaxHealth" operation="base_set" value="90" />
+                <passive_effect name="HealthChangeOT" operation="base_set" value="0" />
+                <passive_effect name="EntityDamage" operation="base_set" value="14" />
+            </effect_group>
+        </entity_class>
+
+
+        <!-- ==================================================================
+             CYCLE 2 - BLOATER
+             Slow, tanky, ruptures on death into a lingering toxic cloud.
+             Invalidates: melee in a corridor - the vanilla answer to everything.
+             Rewards: spacing, ranged, and not fighting in your own hallway.
+             ================================================================== -->
+        <entity_class name="edZombieBloater" extends="zombieFatHawaiian">
+            <property name="Tags" value="entity,zombie,edBloater" />
+            <property name="WalkType" value="1" />
+            <property name="MoveSpeed" value="0.28" />
+            <property name="MoveSpeedAggro" value="0.42, 0.55" />
+            <property name="ExperienceGain" value="900" />
+            <effect_group name="edZombieBloaterStats">
+                <passive_effect name="MaxHealth" operation="base_set" value="520" />
+                <passive_effect name="EntityDamage" operation="base_set" value="22" />
+            </effect_group>
+            <!-- Rupture on death. Applies the toxic cloud buff to anything close. -->
+            <effect_group name="edZombieBloaterRupture">
+                <triggered_effect trigger="onSelfDied" action="AddBuff" buff="edBuffToxicCloud"
+                                  target="selfAOE" range="4.5" />
+            </effect_group>
+        </entity_class>
+
+
+        <!-- ==================================================================
+             CYCLE 3 - CARRION HOUND
+             Pack of 3-6, fast, flanks, hunts the isolated player.
+             Invalidates: crossing open ground on foot.
+             Makes vehicles a survival tool instead of a convenience.
+             ================================================================== -->
+        <entity_class name="edZombieCarrionHound" extends="animalZombieDog">
+            <property name="Tags" value="entity,zombie,animal,edHound" />
+            <property name="MoveSpeed" value="1.15" />
+            <property name="MoveSpeedAggro" value="2.35, 2.65" />
+            <property name="ExperienceGain" value="420" />
+            <effect_group name="edZombieCarrionHoundStats">
+                <passive_effect name="MaxHealth" operation="base_set" value="145" />
+                <passive_effect name="EntityDamage" operation="base_set" value="26" />
+            </effect_group>
+        </entity_class>
+
+
+        <!-- ==================================================================
+             CYCLE 4 - ROTWEAVER
+             Armoured heavy. Resists small-arms fire, weak to explosives and AP.
+             Invalidates: the scrap-ammo economy. A Cycle 4 player still on
+             scrap 9mm is a dead player - this is the enemy that forces you to
+             industrialise, which is the whole point of the Long Craft.
+             ================================================================== -->
+        <entity_class name="edZombieRotweaver" extends="zombieSoldier">
+            <property name="Tags" value="entity,zombie,edRotweaver,heavyArmor" />
+            <property name="WalkType" value="1" />
+            <property name="MoveSpeed" value="0.45" />
+            <property name="MoveSpeedAggro" value="0.85, 1.05" />
+            <property name="ExperienceGain" value="1800" />
+            <effect_group name="edZombieRotweaverStats">
+                <passive_effect name="MaxHealth" operation="base_set" value="1100" />
+                <passive_effect name="EntityDamage" operation="base_set" value="42" />
+                <!-- Small-arms resistance. Explosives and AP rounds bypass this. -->
+                <passive_effect name="DamageModifier" operation="perc_set" value="0.35"
+                                tags="bullet" />
+                <passive_effect name="DamageModifier" operation="perc_set" value="1.35"
+                                tags="explosive" />
+            </effect_group>
+        </entity_class>
+
+
+        <!-- ==================================================================
+             CYCLE 5 - THE HOLLOW
+             Night only. No idle audio, no footsteps, no scream. Slow, fragile,
+             enormous damage. The only enemy in the mod designed around denial
+             rather than combat: it turns night from "harder" into "don't".
+             ================================================================== -->
+        <entity_class name="edZombieHollow" extends="zombieBoe">
+            <property name="Tags" value="entity,zombie,edHollow" />
+            <property name="WalkType" value="1" />
+            <property name="MoveSpeed" value="0.38" />
+            <property name="MoveSpeedAggro" value="0.62, 0.78" />
+            <property name="ExperienceGain" value="2400" />
+            <!-- Silence. VERIFY-3: confirm these sound properties accept empty values
+                 in V3.2 rather than needing removal via a separate xpath. -->
+            <property name="SoundRandom" value="" />
+            <property name="SoundAlert" value="" />
+            <property name="SoundAttack" value="" />
+            <property name="SoundPain" value="" />
+            <property name="SoundDeath" value="" />
+            <effect_group name="edZombieHollowStats">
+                <passive_effect name="MaxHealth" operation="base_set" value="260" />
+                <passive_effect name="EntityDamage" operation="base_set" value="95" />
+            </effect_group>
+        </entity_class>
+
+
+        <!-- ==================================================================
+             CYCLE 6 - CHOIR
+             Never attacks. Buffs every zombie around it and runs from you.
+             Fragile. Introduces target prioritisation to horde nights, which
+             vanilla never asks the player to do.
+             ================================================================== -->
+        <entity_class name="edZombieChoir" extends="zombieNurse">
+            <property name="Tags" value="entity,zombie,edChoir" />
+            <property name="MoveSpeed" value="0.55" />
+            <property name="MoveSpeedAggro" value="0.9, 1.1" />
+            <property name="ExperienceGain" value="3200" />
+            <effect_group name="edZombieChoirStats">
+                <passive_effect name="MaxHealth" operation="base_set" value="200" />
+                <passive_effect name="EntityDamage" operation="base_set" value="4" />
+            </effect_group>
+            <!-- The aura. Refreshes on tick so killing the Choir drops the buff
+                 from the whole pack - that is the intended counterplay. -->
+            <effect_group name="edZombieChoirAura">
+                <triggered_effect trigger="onSelfBuffUpdate" action="AddBuff" buff="edBuffChoirSong"
+                                  target="selfAOE" range="12" />
+            </effect_group>
+        </entity_class>
+
+    </append>
+
+</configs>

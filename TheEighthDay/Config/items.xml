@@ -1,0 +1,690 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+    THE EIGHTH DAY - items.xml
+    ==========================
+    New resources, research documents and Calling Writs.
+
+    Naming convention: every identifier added by this mod is prefixed "ed".
+    Every non-obvious patch carries an EIGHTHDAY comment so it can be grepped in logs.
+
+    ART NOTE: v0.1 ships no custom art. Every item borrows a vanilla icon via CustomIcon
+    and separates itself visually with CustomIconTint. Icon names are VERIFY-5 in
+    docs/VERIFICATION.md - a wrong name is a missing-icon square, not a load failure.
+-->
+<configs>
+
+    <!-- ==========================================================================
+         THE LONG CRAFT - production intermediates
+
+         These are the chokepoints the mid-game economy runs through. Each is cheap
+         to make and awkward to source, which is what keeps players outside.
+         ========================================================================== -->
+
+    <append xpath="/items">
+
+        <!-- Bloomery output. The first metal tier, deliberately worse than vanilla
+             forged iron so that building the real forge chain still matters. -->
+        <item name="edResourceCrudeIron">
+            <property name="Extends" value="resourceForgedIron" />
+            <property name="CustomIcon" value="resourceForgedIron" />
+            <property name="CustomIconTint" value="6b5a4a" />
+            <property name="DescriptionKey" value="edResourceCrudeIronDesc" />
+            <property name="EconomicValue" value="14" />
+            <property name="Stacknumber" value="500" />
+        </item>
+
+        <!-- Smelting agent. Burned off in the blast furnace; the reason limestone
+             and bone have a reason to exist past day 10. -->
+        <item name="edResourceFlux">
+            <property name="Extends" value="resourceCoal" />
+            <property name="CustomIcon" value="resourceCoal" />
+            <property name="CustomIconTint" value="d8d0b8" />
+            <property name="DescriptionKey" value="edResourceFluxDesc" />
+            <property name="EconomicValue" value="8" />
+            <property name="Stacknumber" value="500" />
+        </item>
+
+        <!-- Ironmonger-exclusive. Gate material for tier-3 tools and armour. -->
+        <item name="edResourceHardenedSteel">
+            <property name="Extends" value="resourceForgedSteel" />
+            <property name="CustomIcon" value="resourceForgedSteel" />
+            <property name="CustomIconTint" value="8fa0b0" />
+            <property name="DescriptionKey" value="edResourceHardenedSteelDesc" />
+            <property name="EconomicValue" value="70" />
+            <property name="Stacknumber" value="500" />
+        </item>
+
+        <!-- Top of the metal chain. Blast furnace + Ironmonger capstone only. -->
+        <item name="edResourceCarbide">
+            <property name="Extends" value="resourceForgedSteel" />
+            <property name="CustomIcon" value="resourceForgedSteel" />
+            <property name="CustomIconTint" value="4c5a66" />
+            <property name="DescriptionKey" value="edResourceCarbideDesc" />
+            <property name="EconomicValue" value="180" />
+            <property name="Stacknumber" value="250" />
+        </item>
+
+        <!-- Machine shop output. Every powered device in the mod wants these. -->
+        <item name="edResourcePrecisionParts">
+            <property name="Extends" value="resourceMechanicalParts" />
+            <property name="CustomIcon" value="resourceMechanicalParts" />
+            <property name="CustomIconTint" value="c8b070" />
+            <property name="DescriptionKey" value="edResourcePrecisionPartsDesc" />
+            <property name="EconomicValue" value="120" />
+            <property name="Stacknumber" value="250" />
+        </item>
+
+        <!-- Chemistry-side intermediate. Composite armour and sealed containers. -->
+        <item name="edResourcePolymer">
+            <property name="Extends" value="resourceOil" />
+            <property name="CustomIcon" value="resourceOil" />
+            <property name="CustomIconTint" value="e0e0e0" />
+            <property name="DescriptionKey" value="edResourcePolymerDesc" />
+            <property name="EconomicValue" value="45" />
+            <property name="Stacknumber" value="500" />
+        </item>
+
+        <!-- Marshal armour tier. Polymer + hardened steel. -->
+        <item name="edResourceCompositePlate">
+            <property name="Extends" value="resourceForgedSteel" />
+            <property name="CustomIcon" value="resourceForgedSteel" />
+            <property name="CustomIconTint" value="6e7a58" />
+            <property name="DescriptionKey" value="edResourceCompositePlateDesc" />
+            <property name="EconomicValue" value="150" />
+            <property name="Stacknumber" value="250" />
+        </item>
+
+        <!-- Apothecary base stock. Everything medical starts here. -->
+        <item name="edResourceReagentBase">
+            <property name="Extends" value="resourceAcid" />
+            <property name="CustomIcon" value="resourceAcid" />
+            <property name="CustomIconTint" value="9fd8a0" />
+            <property name="DescriptionKey" value="edResourceReagentBaseDesc" />
+            <property name="EconomicValue" value="55" />
+            <property name="Stacknumber" value="250" />
+        </item>
+
+    </append>
+
+
+    <!-- ==========================================================================
+         RESEARCH - Field Notes
+
+         High-tier recipes are NOT in the perk tree and NOT in schematic loot. They
+         are reconstructed at the Drafting Table from several Field Notes of the
+         matching discipline. You cannot buy or perk past this - you have to go to
+         the places the notes are.
+
+         Drop tables: see loot.xml. Reconstruction recipes: see recipes.xml.
+         ========================================================================== -->
+
+    <append xpath="/items">
+
+        <item name="edNoteMetallurgy">
+            <property name="Extends" value="resourcePaper" />
+            <property name="CustomIcon" value="resourcePaper" />
+            <property name="CustomIconTint" value="c07040" />
+            <property name="DescriptionKey" value="edNoteMetallurgyDesc" />
+            <property name="EconomicValue" value="200" />
+            <property name="Stacknumber" value="50" />
+            <property name="Group" value="Books" />
+        </item>
+
+        <item name="edNoteChemistry">
+            <property name="Extends" value="resourcePaper" />
+            <property name="CustomIcon" value="resourcePaper" />
+            <property name="CustomIconTint" value="70c080" />
+            <property name="DescriptionKey" value="edNoteChemistryDesc" />
+            <property name="EconomicValue" value="200" />
+            <property name="Stacknumber" value="50" />
+            <property name="Group" value="Books" />
+        </item>
+
+        <item name="edNoteOrdnance">
+            <property name="Extends" value="resourcePaper" />
+            <property name="CustomIcon" value="resourcePaper" />
+            <property name="CustomIconTint" value="b0603c" />
+            <property name="DescriptionKey" value="edNoteOrdnanceDesc" />
+            <property name="EconomicValue" value="200" />
+            <property name="Stacknumber" value="50" />
+            <property name="Group" value="Books" />
+        </item>
+
+        <item name="edNoteStructural">
+            <property name="Extends" value="resourcePaper" />
+            <property name="CustomIcon" value="resourcePaper" />
+            <property name="CustomIconTint" value="8890a0" />
+            <property name="DescriptionKey" value="edNoteStructuralDesc" />
+            <property name="EconomicValue" value="200" />
+            <property name="Stacknumber" value="50" />
+            <property name="Group" value="Books" />
+        </item>
+
+        <item name="edNoteSalvage">
+            <property name="Extends" value="resourcePaper" />
+            <property name="CustomIcon" value="resourcePaper" />
+            <property name="CustomIconTint" value="c0a840" />
+            <property name="DescriptionKey" value="edNoteSalvageDesc" />
+            <property name="EconomicValue" value="200" />
+            <property name="Stacknumber" value="50" />
+            <property name="Group" value="Books" />
+        </item>
+
+        <item name="edNoteWilderness">
+            <property name="Extends" value="resourcePaper" />
+            <property name="CustomIcon" value="resourcePaper" />
+            <property name="CustomIconTint" value="6f9a5a" />
+            <property name="DescriptionKey" value="edNoteWildernessDesc" />
+            <property name="EconomicValue" value="200" />
+            <property name="Stacknumber" value="50" />
+            <property name="Group" value="Books" />
+        </item>
+
+    </append>
+
+
+    <!-- ==========================================================================
+         CALLINGS - Writs
+
+         PLACEHOLDER (0.1 only). In 0.2 a Calling is earned by completing its
+         Proving quest chain, and these items disappear. For now they are the
+         mechanism that sets the Mark CVar so the perk branches can be tested.
+
+         Consuming a Writ sets edMark<Calling> = 1 permanently. Every perk in that
+         branch requires it (see progression.xml).
+         ========================================================================== -->
+
+    <append xpath="/items">
+
+        <item name="edWritIronmonger">
+            <property name="Extends" value="casinoCoin" />
+            <property name="CustomIcon" value="resourcePaper" />
+            <property name="CustomIconTint" value="c07040" />
+            <property name="DescriptionKey" value="edWritIronmongerDesc" />
+            <property name="EconomicValue" value="3500" />
+            <property name="Stacknumber" value="1" />
+            <property name="Group" value="Books" />
+            <property class="Action1">
+                <property name="Class" value="Eat" />
+                <property name="Delay" value="1.5" />
+                <property name="Use_time" value="2.0" />
+            </property>
+            <effect_group name="edWritIronmongerGrant">
+                <triggered_effect trigger="onSelfPrimaryActionEnd" action="ModifyCVar"
+                                  cvar="edMarkIronmonger" operation="set" value="1" />
+            </effect_group>
+        </item>
+
+        <item name="edWritTrapper">
+            <property name="Extends" value="edWritIronmonger" />
+            <property name="CustomIconTint" value="6f9a5a" />
+            <property name="DescriptionKey" value="edWritTrapperDesc" />
+            <effect_group name="edWritTrapperGrant">
+                <triggered_effect trigger="onSelfPrimaryActionEnd" action="ModifyCVar"
+                                  cvar="edMarkTrapper" operation="set" value="1" />
+            </effect_group>
+        </item>
+
+        <item name="edWritApothecary">
+            <property name="Extends" value="edWritIronmonger" />
+            <property name="CustomIconTint" value="70c080" />
+            <property name="DescriptionKey" value="edWritApothecaryDesc" />
+            <effect_group name="edWritApothecaryGrant">
+                <triggered_effect trigger="onSelfPrimaryActionEnd" action="ModifyCVar"
+                                  cvar="edMarkApothecary" operation="set" value="1" />
+            </effect_group>
+        </item>
+
+        <item name="edWritSapper">
+            <property name="Extends" value="edWritIronmonger" />
+            <property name="CustomIconTint" value="8890a0" />
+            <property name="DescriptionKey" value="edWritSapperDesc" />
+            <effect_group name="edWritSapperGrant">
+                <triggered_effect trigger="onSelfPrimaryActionEnd" action="ModifyCVar"
+                                  cvar="edMarkSapper" operation="set" value="1" />
+            </effect_group>
+        </item>
+
+        <item name="edWritMarshal">
+            <property name="Extends" value="edWritIronmonger" />
+            <property name="CustomIconTint" value="b0603c" />
+            <property name="DescriptionKey" value="edWritMarshalDesc" />
+            <effect_group name="edWritMarshalGrant">
+                <triggered_effect trigger="onSelfPrimaryActionEnd" action="ModifyCVar"
+                                  cvar="edMarkMarshal" operation="set" value="1" />
+            </effect_group>
+        </item>
+
+        <item name="edWritScavenger">
+            <property name="Extends" value="edWritIronmonger" />
+            <property name="CustomIconTint" value="c0a840" />
+            <property name="DescriptionKey" value="edWritScavengerDesc" />
+            <effect_group name="edWritScavengerGrant">
+                <triggered_effect trigger="onSelfPrimaryActionEnd" action="ModifyCVar"
+                                  cvar="edMarkScavenger" operation="set" value="1" />
+            </effect_group>
+        </item>
+
+    </append>
+
+
+    <!-- ==========================================================================
+         ATTRITION - tiered infection cures
+
+         Vanilla honey/antibiotics handle stage 1-2 only. Stage 3+ needs an
+         Apothecary. See buffs.xml for the infection staging itself.
+         ========================================================================== -->
+
+    <append xpath="/items">
+
+        <!-- Stage 1-2. Craftable by anyone with a reagent bench. -->
+        <item name="edMedTincture">
+            <property name="Extends" value="drugAntibiotics" />
+            <property name="CustomIcon" value="drugAntibiotics" />
+            <property name="CustomIconTint" value="d8c070" />
+            <property name="DescriptionKey" value="edMedTinctureDesc" />
+            <property name="EconomicValue" value="240" />
+            <property name="Stacknumber" value="10" />
+        </item>
+
+        <!-- Stage 3. Apothecary "Antisepsis" perk required to craft. -->
+        <item name="edMedAntibiotic">
+            <property name="Extends" value="drugAntibiotics" />
+            <property name="CustomIcon" value="drugAntibiotics" />
+            <property name="CustomIconTint" value="70b0d8" />
+            <property name="DescriptionKey" value="edMedAntibioticDesc" />
+            <property name="EconomicValue" value="900" />
+            <property name="Stacknumber" value="10" />
+        </item>
+
+        <!-- Stage 4. Apothecary capstone only. The reason the Calling exists. -->
+        <item name="edMedSerum">
+            <property name="Extends" value="drugAntibiotics" />
+            <property name="CustomIcon" value="drugAntibiotics" />
+            <property name="CustomIconTint" value="c070d8" />
+            <property name="DescriptionKey" value="edMedSerumDesc" />
+            <property name="EconomicValue" value="2600" />
+            <property name="Stacknumber" value="5" />
+        </item>
+
+    </append>
+
+
+    <!-- ==========================================================================
+         GEAR - what the Calling trees actually pay out
+
+         Every item below is the payload of a RecipeUnlock tag in progression.xml.
+         A perk that unlocks nothing is a perk nobody spends a point on, so this
+         section exists to make the trees worth climbing.
+
+         WEAPON ART NOTE: these are mechanically new weapons that reuse vanilla
+         meshes and animations. That is a v0.2 constraint, not a design position -
+         see docs/ART.md for the icon and model pipeline and what it would take to
+         give them their own art.
+
+         VERIFY-11 (docs/VERIFICATION.md): every Extends base in this section is a
+         vanilla weapon, tool, armour or explosive name that must be confirmed
+         against V3.2. These change between versions more often than resources do.
+         ========================================================================== -->
+
+
+    <!-- ==========================================================================
+         IRONMONGER - carbide tier  (edRecipeCarbideExclusive)
+
+         The capstone payoff. Nobody else on the server can make these, and the
+         Ironmonger cannot use all three at once - which is the trade the Calling
+         system is built on.
+         ========================================================================== -->
+
+    <append xpath="/items">
+
+        <item name="edToolCarbidePickaxe">
+            <property name="Extends" value="meleeToolPickT3SteelPickaxe" />
+            <property name="CustomIcon" value="meleeToolPickT3SteelPickaxe" />
+            <property name="CustomIconTint" value="4c5a66" />
+            <property name="DescriptionKey" value="edToolCarbidePickaxeDesc" />
+            <property name="EconomicValue" value="4200" />
+            <effect_group name="edToolCarbidePickaxeStats">
+                <passive_effect name="BlockDamage" operation="perc_add" value="0.45" />
+                <passive_effect name="DegradationMax" operation="perc_add" value="0.5" />
+                <passive_effect name="StaminaLoss" operation="perc_add" value="-0.15" />
+            </effect_group>
+        </item>
+
+        <item name="edToolCarbideAxe">
+            <property name="Extends" value="meleeToolAxeT3SteelAxe" />
+            <property name="CustomIcon" value="meleeToolAxeT3SteelAxe" />
+            <property name="CustomIconTint" value="4c5a66" />
+            <property name="DescriptionKey" value="edToolCarbideAxeDesc" />
+            <property name="EconomicValue" value="4200" />
+            <effect_group name="edToolCarbideAxeStats">
+                <passive_effect name="BlockDamage" operation="perc_add" value="0.45" />
+                <passive_effect name="DegradationMax" operation="perc_add" value="0.5" />
+                <passive_effect name="StaminaLoss" operation="perc_add" value="-0.15" />
+            </effect_group>
+        </item>
+
+        <!-- Slow, enormous, and the one melee answer to a Rotweaver that does not
+             involve spending explosives you would rather keep. -->
+        <item name="edMeleeCarbideMaul">
+            <property name="Extends" value="meleeWpnSledgeT3SteelSledgehammer" />
+            <property name="CustomIcon" value="meleeWpnSledgeT3SteelSledgehammer" />
+            <property name="CustomIconTint" value="4c5a66" />
+            <property name="DescriptionKey" value="edMeleeCarbideMaulDesc" />
+            <property name="EconomicValue" value="5600" />
+            <effect_group name="edMeleeCarbideMaulStats">
+                <passive_effect name="EntityDamage" operation="perc_add" value="0.4" />
+                <passive_effect name="BlockDamage" operation="perc_add" value="0.6" />
+                <passive_effect name="DegradationMax" operation="perc_add" value="0.5" />
+                <passive_effect name="StaminaLoss" operation="perc_add" value="0.2" />
+            </effect_group>
+        </item>
+
+    </append>
+
+
+    <!-- ==========================================================================
+         MARSHAL - armour, heavy weapons, capstone  (edRecipeCompositeArmor,
+         edRecipeHeavyWeapons, edRecipeMarshalExclusive)
+         ========================================================================== -->
+
+    <append xpath="/items">
+
+        <!-- Composite armour. Stops what plate steel does not at half the weight,
+             which is the whole reason polymer is a bottleneck. -->
+        <item name="edArmorCompositeHelmet">
+            <property name="Extends" value="armorMilitaryHelmet" />
+            <property name="CustomIcon" value="armorMilitaryHelmet" />
+            <property name="CustomIconTint" value="6e7a58" />
+            <property name="DescriptionKey" value="edArmorCompositeHelmetDesc" />
+            <property name="EconomicValue" value="3800" />
+            <effect_group name="edArmorCompositeHelmetStats">
+                <passive_effect name="PhysicalDamageResist" operation="base_add" value="3" />
+            </effect_group>
+        </item>
+
+        <item name="edArmorCompositeVest">
+            <property name="Extends" value="armorMilitaryVest" />
+            <property name="CustomIcon" value="armorMilitaryVest" />
+            <property name="CustomIconTint" value="6e7a58" />
+            <property name="DescriptionKey" value="edArmorCompositeVestDesc" />
+            <property name="EconomicValue" value="5200" />
+            <effect_group name="edArmorCompositeVestStats">
+                <passive_effect name="PhysicalDamageResist" operation="base_add" value="6" />
+            </effect_group>
+        </item>
+
+        <item name="edArmorCompositeLegs">
+            <property name="Extends" value="armorMilitaryLegArmor" />
+            <property name="CustomIcon" value="armorMilitaryLegArmor" />
+            <property name="CustomIconTint" value="6e7a58" />
+            <property name="DescriptionKey" value="edArmorCompositeLegsDesc" />
+            <property name="EconomicValue" value="4200" />
+            <effect_group name="edArmorCompositeLegsStats">
+                <passive_effect name="PhysicalDamageResist" operation="base_add" value="4" />
+            </effect_group>
+        </item>
+
+        <!-- Belt-fed support gun. Enormous sustained output, appalling to feed.
+             This is the weapon that makes the Marshal need an Ironmonger. -->
+        <item name="edWeaponSupportMG">
+            <property name="Extends" value="gunMGT3M60" />
+            <property name="CustomIcon" value="gunMGT3M60" />
+            <property name="CustomIconTint" value="6e7a58" />
+            <property name="DescriptionKey" value="edWeaponSupportMGDesc" />
+            <property name="EconomicValue" value="9500" />
+            <effect_group name="edWeaponSupportMGStats">
+                <passive_effect name="EntityDamage" operation="perc_add" value="0.18" />
+                <passive_effect name="MagazineSize" operation="perc_add" value="1.0" />
+                <passive_effect name="ReloadSpeedMultiplier" operation="perc_add" value="0.35" />
+            </effect_group>
+        </item>
+
+        <!-- The Rotweaver answer at range. Slow, precise, armour-piercing. -->
+        <item name="edWeaponMarksmanRifle">
+            <property name="Extends" value="gunRifleT3SniperRifle" />
+            <property name="CustomIcon" value="gunRifleT3SniperRifle" />
+            <property name="CustomIconTint" value="6e7a58" />
+            <property name="DescriptionKey" value="edWeaponMarksmanRifleDesc" />
+            <property name="EconomicValue" value="8800" />
+            <effect_group name="edWeaponMarksmanRifleStats">
+                <passive_effect name="EntityDamage" operation="perc_add" value="0.3" />
+                <passive_effect name="DamageModifier" operation="perc_add" value="0.5"
+                                tags="heavyArmor" />
+            </effect_group>
+        </item>
+
+        <!-- Capstone. One per Marshal, and everyone knows who has it. -->
+        <item name="edWeaponMarshalCarbine">
+            <property name="Extends" value="gunMGT2TacticalAR" />
+            <property name="CustomIcon" value="gunMGT2TacticalAR" />
+            <property name="CustomIconTint" value="c8b070" />
+            <property name="DescriptionKey" value="edWeaponMarshalCarbineDesc" />
+            <property name="EconomicValue" value="14000" />
+            <effect_group name="edWeaponMarshalCarbineStats">
+                <passive_effect name="EntityDamage" operation="perc_add" value="0.35" />
+                <passive_effect name="MagazineSize" operation="perc_add" value="0.5" />
+                <passive_effect name="DegradationMax" operation="perc_add" value="0.6" />
+            </effect_group>
+        </item>
+
+    </append>
+
+
+    <!-- ==========================================================================
+         SAPPER - shaped charges  (edRecipeShapedCharge)
+         ========================================================================== -->
+
+    <append xpath="/items">
+
+        <!-- Directional. Opens a wall without opening your own floor. -->
+        <item name="edExpShapedCharge">
+            <property name="Extends" value="explosiveTimedCharge" />
+            <property name="CustomIcon" value="explosiveTimedCharge" />
+            <property name="CustomIconTint" value="8890a0" />
+            <property name="DescriptionKey" value="edExpShapedChargeDesc" />
+            <property name="EconomicValue" value="1800" />
+            <property name="Stacknumber" value="10" />
+            <effect_group name="edExpShapedChargeStats">
+                <passive_effect name="BlockDamage" operation="perc_add" value="1.5" />
+                <passive_effect name="EntityDamage" operation="perc_add" value="-0.4" />
+            </effect_group>
+        </item>
+
+        <!-- Digs. Does almost nothing to anything alive, which is the point -
+             it is a tool with a fuse, not a weapon. -->
+        <item name="edExpMiningCharge">
+            <property name="Extends" value="explosiveTimedCharge" />
+            <property name="CustomIcon" value="explosiveTimedCharge" />
+            <property name="CustomIconTint" value="c0a840" />
+            <property name="DescriptionKey" value="edExpMiningChargeDesc" />
+            <property name="EconomicValue" value="900" />
+            <property name="Stacknumber" value="20" />
+            <effect_group name="edExpMiningChargeStats">
+                <passive_effect name="BlockDamage" operation="perc_add" value="2.0"
+                                tags="earth" />
+                <passive_effect name="EntityDamage" operation="perc_add" value="-0.75" />
+            </effect_group>
+        </item>
+
+    </append>
+
+
+    <!-- ==========================================================================
+         TRAPPER - preservation and arrows  (edRecipePreservation,
+         edRecipeAdvancedArrows)
+         ========================================================================== -->
+
+    <append xpath="/items">
+
+        <item name="edFoodCuredMeat">
+            <property name="Extends" value="foodCharredMeat" />
+            <property name="CustomIcon" value="foodCharredMeat" />
+            <property name="CustomIconTint" value="a06040" />
+            <property name="DescriptionKey" value="edFoodCuredMeatDesc" />
+            <property name="EconomicValue" value="120" />
+            <property name="Stacknumber" value="50" />
+        </item>
+
+        <!-- Dense, keeps forever, tastes like a punishment. The travel food. -->
+        <item name="edFoodPemmican">
+            <property name="Extends" value="foodCharredMeat" />
+            <property name="CustomIcon" value="foodCharredMeat" />
+            <property name="CustomIconTint" value="6f5a3a" />
+            <property name="DescriptionKey" value="edFoodPemmicanDesc" />
+            <property name="EconomicValue" value="320" />
+            <property name="Stacknumber" value="30" />
+        </item>
+
+        <!-- Narrow head, punches armour. The Trapper's answer to Cycle 4. -->
+        <item name="edAmmoBodkinArrow">
+            <property name="Extends" value="ammoArrowSteel" />
+            <property name="CustomIcon" value="ammoArrowSteel" />
+            <property name="CustomIconTint" value="8fa0b0" />
+            <property name="DescriptionKey" value="edAmmoBodkinArrowDesc" />
+            <property name="EconomicValue" value="45" />
+            <effect_group name="edAmmoBodkinArrowStats">
+                <passive_effect name="DamageModifier" operation="perc_add" value="0.6"
+                                tags="heavyArmor" />
+            </effect_group>
+        </item>
+
+        <!-- Cross-Calling by design: the Trapper makes the arrow, the Apothecary
+             makes the coating. Neither is much use to the other's absence. -->
+        <item name="edAmmoToxinArrow">
+            <property name="Extends" value="ammoArrowSteel" />
+            <property name="CustomIcon" value="ammoArrowSteel" />
+            <property name="CustomIconTint" value="9fd8a0" />
+            <property name="DescriptionKey" value="edAmmoToxinArrowDesc" />
+            <property name="EconomicValue" value="80" />
+            <effect_group name="edAmmoToxinArrowEffects">
+                <triggered_effect trigger="onSelfAttackedOther" action="AddBuff"
+                                  buff="edBuffToxicCloud" target="other" />
+            </effect_group>
+        </item>
+
+    </append>
+
+
+    <!-- ==========================================================================
+         APOTHECARY - stimulants and gas  (edRecipeStimulants, edRecipeGasOrdnance)
+         ========================================================================== -->
+
+    <append xpath="/items">
+
+        <item name="edDrugCombatStim">
+            <property name="Extends" value="drugSteroids" />
+            <property name="CustomIcon" value="drugSteroids" />
+            <property name="CustomIconTint" value="d86060" />
+            <property name="DescriptionKey" value="edDrugCombatStimDesc" />
+            <property name="EconomicValue" value="1100" />
+            <property name="Stacknumber" value="10" />
+            <effect_group name="edDrugCombatStimUse">
+                <triggered_effect trigger="onSelfPrimaryActionEnd" action="AddBuff"
+                                  buff="edBuffCombatStim" />
+            </effect_group>
+        </item>
+
+        <item name="edDrugSteadyHand">
+            <property name="Extends" value="drugSteroids" />
+            <property name="CustomIcon" value="drugSteroids" />
+            <property name="CustomIconTint" value="70b0d8" />
+            <property name="DescriptionKey" value="edDrugSteadyHandDesc" />
+            <property name="EconomicValue" value="1100" />
+            <property name="Stacknumber" value="10" />
+            <effect_group name="edDrugSteadyHandUse">
+                <triggered_effect trigger="onSelfPrimaryActionEnd" action="AddBuff"
+                                  buff="edBuffSteadyHand" />
+            </effect_group>
+        </item>
+
+        <!-- Area denial. Reuses the Bloater's own cloud, which is a small piece of
+             horror the mod is quietly pleased with. -->
+        <item name="edExpGasGrenade">
+            <property name="Extends" value="grenadeContact" />
+            <property name="CustomIcon" value="grenadeContact" />
+            <property name="CustomIconTint" value="9fd8a0" />
+            <property name="DescriptionKey" value="edExpGasGrenadeDesc" />
+            <property name="EconomicValue" value="1400" />
+            <property name="Stacknumber" value="10" />
+            <effect_group name="edExpGasGrenadeEffects">
+                <triggered_effect trigger="onSelfExplode" action="AddBuff"
+                                  buff="edBuffToxicCloud" target="selfAOE" range="6" />
+            </effect_group>
+        </item>
+
+        <item name="edToxinCoating">
+            <property name="Extends" value="resourceAcid" />
+            <property name="CustomIcon" value="resourceAcid" />
+            <property name="CustomIconTint" value="70c080" />
+            <property name="DescriptionKey" value="edToxinCoatingDesc" />
+            <property name="EconomicValue" value="260" />
+            <property name="Stacknumber" value="100" />
+        </item>
+
+    </append>
+
+
+    <!-- ==========================================================================
+         SCAVENGER - electronics, vehicles, capstone  (edRecipeElectronics,
+         edRecipeVehicles, edRecipeSalvageExclusive)
+         ========================================================================== -->
+
+    <append xpath="/items">
+
+        <item name="edResourceCircuitBoard">
+            <property name="Extends" value="resourceElectricParts" />
+            <property name="CustomIcon" value="resourceElectricParts" />
+            <property name="CustomIconTint" value="70c080" />
+            <property name="DescriptionKey" value="edResourceCircuitBoardDesc" />
+            <property name="EconomicValue" value="180" />
+            <property name="Stacknumber" value="250" />
+        </item>
+
+        <item name="edResourceSensorModule">
+            <property name="Extends" value="resourceElectricParts" />
+            <property name="CustomIcon" value="resourceElectricParts" />
+            <property name="CustomIconTint" value="c070d8" />
+            <property name="DescriptionKey" value="edResourceSensorModuleDesc" />
+            <property name="EconomicValue" value="420" />
+            <property name="Stacknumber" value="100" />
+        </item>
+
+        <item name="edVehiclePartsKit">
+            <property name="Extends" value="resourceMechanicalParts" />
+            <property name="CustomIcon" value="resourceMechanicalParts" />
+            <property name="CustomIconTint" value="c0a840" />
+            <property name="DescriptionKey" value="edVehiclePartsKitDesc" />
+            <property name="EconomicValue" value="1600" />
+            <property name="Stacknumber" value="50" />
+        </item>
+
+        <item name="edVehicleFuelCell">
+            <property name="Extends" value="resourceGasCan" />
+            <property name="CustomIcon" value="resourceGasCan" />
+            <property name="CustomIconTint" value="70b0d8" />
+            <property name="DescriptionKey" value="edVehicleFuelCellDesc" />
+            <property name="EconomicValue" value="90" />
+            <property name="Stacknumber" value="500" />
+        </item>
+
+        <!-- Capstone. Strips a wreck in a fraction of the time and gets more out
+             of it. Boring on paper and the most-used item in the mod. -->
+        <item name="edToolSalvageRig">
+            <property name="Extends" value="meleeToolRatchet" />
+            <property name="CustomIcon" value="meleeToolRatchet" />
+            <property name="CustomIconTint" value="c0a840" />
+            <property name="DescriptionKey" value="edToolSalvageRigDesc" />
+            <property name="EconomicValue" value="6400" />
+            <effect_group name="edToolSalvageRigStats">
+                <passive_effect name="BlockDamage" operation="perc_add" value="0.8"
+                                tags="salvaging" />
+                <passive_effect name="HarvestCount" operation="perc_add" value="0.5"
+                                tags="salvageHarvest" />
+                <passive_effect name="DegradationMax" operation="perc_add" value="0.5" />
+            </effect_group>
+        </item>
+
+    </append>
+
+</configs>

@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+    THE EIGHTH DAY - loot.xml
+    =========================
+    Field Note distribution, and the loot retune that makes the Long Craft matter.
+
+    DESIGN RULE: Field Notes are LOCATION-GATED, not rarity-gated. Metallurgy notes are
+    in industrial locations. Chemistry notes are in medical ones. You do not find them by
+    opening enough boxes - you find them by going to the right kind of place, which is the
+    entire point of the research loop.
+
+    VERIFY-10 (docs/VERIFICATION.md): every probability here is a first estimate with no
+    play-test data behind it. Too low and the research loop stalls; too high and it
+    trivialises the tech tree. Log note acquisition rates on a live server and retune.
+
+    VERIFY-2: confirm these vanilla loot group names still exist in V3.2.
+-->
+<configs>
+
+    <!-- ==========================================================================
+         FIELD NOTES - by location type
+         ========================================================================== -->
+
+    <append xpath="/lootcontainers/lootgroup[@name='groupToolsHardware']">
+        <item name="edNoteMetallurgy" count="1" prob="0.08" loot_prob_template="medHigh" />
+    </append>
+
+    <append xpath="/lootcontainers/lootgroup[@name='groupMedical']">
+        <item name="edNoteChemistry" count="1" prob="0.08" loot_prob_template="medHigh" />
+    </append>
+
+    <append xpath="/lootcontainers/lootgroup[@name='groupAmmo']">
+        <item name="edNoteOrdnance" count="1" prob="0.06" loot_prob_template="medHigh" />
+    </append>
+
+    <append xpath="/lootcontainers/lootgroup[@name='groupBooks']">
+        <item name="edNoteStructural" count="1" prob="0.05" loot_prob_template="medHigh" />
+        <item name="edNoteWilderness" count="1" prob="0.05" loot_prob_template="medHigh" />
+    </append>
+
+    <append xpath="/lootcontainers/lootgroup[@name='groupCarParts']">
+        <item name="edNoteSalvage" count="1" prob="0.08" loot_prob_template="medHigh" />
+    </append>
+
+
+    <!-- ==========================================================================
+         INTERMEDIATES IN THE WORLD
+
+         Small quantities of flux and precision parts appear in the right places.
+         Enough to unblock a stalled player - never enough to skip the chain.
+         ========================================================================== -->
+
+    <append xpath="/lootcontainers/lootgroup[@name='groupToolsHardware']">
+        <item name="edResourceFlux" count="2,6" prob="0.12" />
+        <item name="edResourcePrecisionParts" count="1,2" prob="0.04" />
+    </append>
+
+    <append xpath="/lootcontainers/lootgroup[@name='groupMedical']">
+        <item name="edResourceReagentBase" count="1,3" prob="0.10" />
+    </append>
+
+
+    <!-- ==========================================================================
+         ARCHETYPE DROPS
+
+         Cycle enemies pay out in the materials their cycle demands. Killing the
+         thing that broke your ammo economy should help you fix your ammo economy.
+
+         The Husk is the exception and drops almost nothing on purpose - it is a
+         tax, not a payday.
+         ========================================================================== -->
+
+    <append xpath="/lootcontainers">
+
+        <lootgroup name="edLootHusk">
+            <item name="resourceRottingFlesh" count="1,2" prob="0.5" />
+        </lootgroup>
+
+        <lootgroup name="edLootBloater">
+            <item name="edResourceReagentBase" count="1,2" prob="0.35" />
+            <item name="resourceAcid" count="1" prob="0.15" />
+        </lootgroup>
+
+        <lootgroup name="edLootRotweaver">
+            <item name="edResourceHardenedSteel" count="1,3" prob="0.3" />
+            <item name="edNoteOrdnance" count="1" prob="0.1" />
+        </lootgroup>
+
+        <lootgroup name="edLootHollow">
+            <item name="edNoteWilderness" count="1" prob="0.25" />
+            <item name="edResourcePolymer" count="1,2" prob="0.2" />
+        </lootgroup>
+
+        <lootgroup name="edLootChoir">
+            <item name="edResourcePrecisionParts" count="1,2" prob="0.4" />
+            <item name="edNoteChemistry" count="1" prob="0.2" />
+        </lootgroup>
+
+    </append>
+
+</configs>

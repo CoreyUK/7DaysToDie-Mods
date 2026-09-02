@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+    THE EIGHTH DAY - gamestages.xml
+    ===============================
+    THE TUNING SURFACE FOR THE WHOLE MOD. If you change one file, change this one.
+
+    Why gamestage and not the day counter
+    =====================================
+    The Turning is themed on day 8, but it is DRIVEN by gamestage bands. That is a
+    deliberate engineering choice, not a compromise:
+
+      * gamestage is vanilla plumbing - guaranteed to work, no custom detection needed
+      * it is already multiplayer-aware and already averages across a party
+      * it already folds in days survived, player level and deaths
+
+    The result is that the world escalates in response to YOU. A player who levels hard
+    meets Husks before day 8; a player who turtles meets them after. The cycle table in
+    docs/CYCLES.md is the expected schedule at typical pace, not a calendar guarantee.
+
+    THE BANDS
+    =========
+      Cycle 0    gamestage    0 -  22     vanilla-adjacent, learning the map
+      Cycle 1    gamestage   23 -  52     Husks
+      Cycle 2    gamestage   53 -  90     Bloaters
+      Cycle 3    gamestage   91 - 135     Carrion Hounds
+      Cycle 4    gamestage  136 - 190     Rotweavers
+      Cycle 5    gamestage  191 - 255     The Hollow
+      Cycle 6    gamestage  256 - 340     Choirs
+      Cycle 7+   gamestage  341+          density scaling, no new archetypes
+
+    PRESETS - swap the stage numbers below wholesale
+      "slow burn"  x1.5 :  34 /  80 / 137 / 203 / 287 / 383 / 510
+      "gauntlet"   x0.6 :  14 /  32 /  55 /  82 / 115 / 154 / 204
+
+    VERIFY-2: confirm the vanilla spawner name below is still "BloodMoonHordes" in V3.2.
+-->
+<configs>
+
+    <!-- ==========================================================================
+         BLOOD MOON - the Turning made visible
+
+         Each band swaps the horde night pool for the next Cycle's. num/maxAlive climb
+         gently: the mod escalates horde QUALITY, not quantity. Stacking both is
+         unplayable by Cycle 4, which is why docs/SERVER.md tells operators to leave
+         the blood moon count at default.
+         ========================================================================== -->
+
+    <append xpath="/gamestages/spawner[@name='BloodMoonHordes']">
+
+        <!-- CYCLE 1 - Husks. Fast, fragile, many. -->
+        <gamestage stage="23">
+            <spawn group="edCycle1Pool" num="10" maxAlive="10" duration="2" />
+        </gamestage>
+
+        <!-- CYCLE 2 - Bloaters. Corridors become traps. -->
+        <gamestage stage="53">
+            <spawn group="edCycle2Pool" num="14" maxAlive="12" duration="2" />
+        </gamestage>
+
+        <!-- CYCLE 3 - Carrion Hounds. Flanking enters the horde. -->
+        <gamestage stage="91">
+            <spawn group="edCycle3Pool" num="18" maxAlive="14" duration="2" />
+        </gamestage>
+
+        <!-- CYCLE 4 - Rotweavers. The ammo economy breaks here by design. -->
+        <gamestage stage="136">
+            <spawn group="edCycle4Pool" num="22" maxAlive="16" duration="2" />
+        </gamestage>
+
+        <!-- CYCLE 5 - The Hollow joins the wave. Silent, in the dark, mid-horde. -->
+        <gamestage stage="191">
+            <spawn group="edCycle5Pool" num="26" maxAlive="18" duration="2" />
+        </gamestage>
+
+        <!-- CYCLE 6 - Choirs. The horde gains a shape and a priority target. -->
+        <gamestage stage="256">
+            <spawn group="edCycle6Pool" num="30" maxAlive="20" duration="2" />
+        </gamestage>
+
+        <!-- CYCLE 7+ - no new archetypes, just more of everything. The mod has no
+             win state; past this point the game is about how long you last. -->
+        <gamestage stage="341">
+            <spawn group="edCycle6Pool" num="36" maxAlive="24" duration="2" />
+        </gamestage>
+
+        <gamestage stage="450">
+            <spawn group="edCycle6Pool" num="42" maxAlive="28" duration="2" />
+        </gamestage>
+
+    </append>
+
+
+    <!-- ==========================================================================
+         WANDERING HORDES - the world between horde nights
+
+         Cycle escalation should be felt on ordinary days too, otherwise the mod is
+         only a horde-night mod. Wandering hordes pick up the cycle pools one band
+         later than blood moons, so the first time you meet a new archetype it is
+         on your terms, at night, behind a wall.
+         ========================================================================== -->
+
+    <append xpath="/gamestages/spawner[@name='WanderingHordeStageGS']">
+
+        <gamestage stage="53">
+            <spawn group="edCycle1Pool" num="6" maxAlive="6" duration="1" />
+        </gamestage>
+
+        <gamestage stage="91">
+            <spawn group="edCycle2Pool" num="8" maxAlive="8" duration="1" />
+        </gamestage>
+
+        <gamestage stage="136">
+            <spawn group="edCycle3Pool" num="10" maxAlive="10" duration="1" />
+        </gamestage>
+
+        <gamestage stage="191">
+            <spawn group="edCycle4Pool" num="12" maxAlive="12" duration="1" />
+        </gamestage>
+
+        <gamestage stage="256">
+            <spawn group="edCycle5Pool" num="14" maxAlive="14" duration="1" />
+        </gamestage>
+
+        <gamestage stage="341">
+            <spawn group="edCycle6Pool" num="16" maxAlive="16" duration="1" />
+        </gamestage>
+
+    </append>
+
+</configs>

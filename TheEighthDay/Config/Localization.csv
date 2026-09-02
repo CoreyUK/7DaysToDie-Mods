@@ -1,0 +1,211 @@
+Key,File,Type,UsedInMainMenu,NoTranslate,english
+edResourceCrudeIron,items,Item,,,Crude Iron
+edResourceCrudeIronDesc,items,Item,,,A rough bloom of iron beaten out of a clay furnace. Full of slag and bad temper. It is not good metal. It is metal you made on day two.
+edResourceFlux,items,Item,,,Flux
+edResourceFluxDesc,items,Item,,,Ground limestone and bone. Pulls the filth out of a melt and takes it to the surface. The blast furnace will not run without it.
+edResourceHardenedSteel,items,Item,,,Hardened Steel
+edResourceHardenedSteelDesc,items,Item,,,Steel taken through a second heat and quenched properly. Holds an edge past the point where ordinary steel folds. Ironmonger work.
+edResourceCarbide,items,Item,,,Tungsten Carbide
+edResourceCarbideDesc,items,Item,,,The end of the metal chain. Cuts stone like wet clay and shrugs off heat that would slump anything else. Weeks of furnace time in every ingot.
+edResourcePrecisionParts,items,Item,,,Precision Parts
+edResourcePrecisionPartsDesc,items,Item,,,Machined to a tolerance nothing in this world can casually replace. Every powered thing worth owning wants a handful of these.
+edResourcePolymer,items,Item,,,Polymer Stock
+edResourcePolymerDesc,items,Item,,,Cracked out of oil at a reagent bench. Light and stubborn and it does not rot - which puts it well ahead of most things left alive.
+edResourceCompositePlate,items,Item,,,Composite Plate
+edResourceCompositePlateDesc,items,Item,,,Hardened steel laminated into polymer backing. Stops what plate steel does not and weighs half as much doing it.
+edResourceReagentBase,items,Item,,,Reagent Base
+edResourceReagentBaseDesc,items,Item,,,The neutral stock every medicine in the world now starts from. Unremarkable on its own. Nothing works without it.
+edNoteMetallurgy,items,Item,,,Field Notes - Metallurgy
+edNoteMetallurgyDesc,items,Item,,,Water-stained pages from somebody who understood furnaces. Half of it is missing. Gather enough and a drafting table can reconstruct what they knew.
+edNoteChemistry,items,Item,,,Field Notes - Chemistry
+edNoteChemistryDesc,items,Item,,,A dispensary log kept long past the point it was any use to the person keeping it. The last entries are worth reading twice.
+edNoteOrdnance,items,Item,,,Field Notes - Ordnance
+edNoteOrdnanceDesc,items,Item,,,Load data and failure notes in three different hands. Whoever finished this document did not write the first half of it.
+edNoteStructural,items,Item,,,Field Notes - Structural
+edNoteStructuralDesc,items,Item,,,Pour schedules and load calculations. Somebody was building something to last. The pages stop before you find out whether it did.
+edNoteSalvage,items,Item,,,Field Notes - Salvage
+edNoteSalvageDesc,items,Item,,,A running inventory of what is worth stripping and what will kill you while you strip it. Practical to the last legible line.
+edNoteWilderness,items,Item,,,Field Notes - Wilderness
+edNoteWildernessDesc,items,Item,,,Tracking notes and preservation methods from somebody who stayed out of towns on purpose. They lasted a long time.
+edWritIronmonger,items,Item,,,Writ of the Ironmonger
+edWritIronmongerDesc,items,Item,,,Placeholder. Grants the Mark of the Ironmonger and opens that Calling. In a future version this is earned by completing the Ironmonger's Proving instead of bought.
+edWritTrapper,items,Item,,,Writ of the Trapper
+edWritTrapperDesc,items,Item,,,Placeholder. Grants the Mark of the Trapper and opens that Calling. In a future version this is earned by completing the Trapper's Proving instead of bought.
+edWritApothecary,items,Item,,,Writ of the Apothecary
+edWritApothecaryDesc,items,Item,,,Placeholder. Grants the Mark of the Apothecary and opens that Calling. In a future version this is earned by completing the Apothecary's Proving instead of bought.
+edWritSapper,items,Item,,,Writ of the Sapper
+edWritSapperDesc,items,Item,,,Placeholder. Grants the Mark of the Sapper and opens that Calling. In a future version this is earned by completing the Sapper's Proving instead of bought.
+edWritMarshal,items,Item,,,Writ of the Marshal
+edWritMarshalDesc,items,Item,,,Placeholder. Grants the Mark of the Marshal and opens that Calling. In a future version this is earned by completing the Marshal's Proving instead of bought.
+edWritScavenger,items,Item,,,Writ of the Scavenger
+edWritScavengerDesc,items,Item,,,Placeholder. Grants the Mark of the Scavenger and opens that Calling. In a future version this is earned by completing the Scavenger's Proving instead of bought.
+edMedTincture,items,Item,,,Antiseptic Tincture
+edMedTinctureDesc,items,Item,,,Clears an early infection if you catch it early. Past the second stage you are carrying a bottle of expensive brown water.
+edMedAntibiotic,items,Item,,,Broad Spectrum Antibiotic
+edMedAntibioticDesc,items,Item,,,Real medicine made by somebody who knew what they were doing. Reverses a third stage infection. Ask the Apothecary nicely.
+edMedSerum,items,Item,,,Apothecary's Serum
+edMedSerumDesc,items,Item,,,The only thing that brings a body back from a fourth stage infection. One person on this server can make it. Be good to them.
+edBlockBloomery,blocks,Block,,,Bloomery
+edBlockBloomeryDesc,blocks,Block,,,Clay and stone and patience. Smelts raw ore into crude iron. It is the worst furnace you will ever build and you will build it on day two.
+edBlockBlastFurnace,blocks,Block,,,Blast Furnace
+edBlockBlastFurnaceDesc,blocks,Block,,,Burns hot enough to make steel behave. Eats flux and coal in quantities that will define your week.
+edBlockMachineShop,blocks,Block,,,Machine Shop
+edBlockMachineShopDesc,blocks,Block,,,Turns stock metal into parts made to a tolerance. Everything with a motor in it starts here.
+edBlockReagentBench,blocks,Block,,,Reagent Bench
+edBlockReagentBenchDesc,blocks,Block,,,Glassware and a steady hand. The whole medical chain runs off this bench and so does everyone standing near it.
+edBlockDraftingTable,blocks,Block,,,Drafting Table
+edBlockDraftingTableDesc,blocks,Block,,,Reconstructs a working recipe out of enough damaged Field Notes. You cannot buy what comes off this table and you cannot perk your way to it.
+edZombieHusk,entityclasses,Entity,,,Husk
+edZombieBloater,entityclasses,Entity,,,Bloater
+edZombieCarrionHound,entityclasses,Entity,,,Carrion Hound
+edZombieRotweaver,entityclasses,Entity,,,Rotweaver
+edZombieHollow,entityclasses,Entity,,,The Hollow
+edZombieChoir,entityclasses,Entity,,,Choir
+edBuffToxicCloudName,buffs,Buff,,,Exposed
+edBuffToxicCloudDesc,buffs,Buff,,,You are standing in what came out of it. Health and stamina draining. Move.
+edBuffChoirSongName,buffs,Buff,,,The Song
+edBuffChoirSongDesc,buffs,Buff,,,Something nearby is making them stronger. Find it. It is not fighting back.
+edBuffInfection1Name,buffs,Buff,,,Infection - Onset
+edBuffInfection1Desc,buffs,Buff,,,A cough and a tightness you can work through. Treat it now and it costs you a tincture. Leave it and it costs you more.
+edBuffInfection2Name,buffs,Buff,,,Infection - Established
+edBuffInfection2Desc,buffs,Buff,,,It is in you properly now. Stamina is going and it is not coming back on its own. A tincture will still hold it. Barely.
+edBuffInfection3Name,buffs,Buff,,,Infection - Systemic
+edBuffInfection3Desc,buffs,Buff,,,You are a liability to whoever you are standing next to. Nothing short of a real antibiotic turns this around.
+edBuffInfection4Name,buffs,Buff,,,Infection - Terminal
+edBuffInfection4Desc,buffs,Buff,,,You are dying and you can feel the schedule. One thing in the world reverses this and an Apothecary has to make it.
+edBuffTurningName,buffs,Buff,,,The Turning
+edBuffTurningDesc,buffs,Buff,,,Something changed out there at dawn. It will not change back.
+edPerkBloomBilletName,progression,Perk,,,Bloom and Billet
+edPerkBloomBilletDesc,progression,Perk,,,Smelt faster and pull more metal out of the same ore. The foundation every other Ironmonger perk sits on.
+edPerkAlloyingName,progression,Perk,,,Alloying
+edPerkAlloyingDesc,progression,Perk,,,Hardened steel at rank 2. Carbide at rank 4. Nobody else on the server can make either of them.
+edPerkTemperingName,progression,Perk,,,Tempering
+edPerkTemperingDesc,progression,Perk,,,Everything you forge comes off the anvil at a higher quality than it had any right to.
+edPerkCasingsName,progression,Perk,,,Casings
+edPerkCasingsDesc,progression,Perk,,,More rounds per batch and bulk casing recipes. The perk that keeps the Marshal in the fight.
+edPerkMasterForgeName,progression,Perk,,,Master of the Forge
+edPerkMasterForgeDesc,progression,Perk,,,Capstone. Blast furnace efficiency and the carbide recipes nobody else will ever see.
+edPerkEarthworksName,progression,Perk,,,Earthworks
+edPerkEarthworksDesc,progression,Perk,,,Dig faster and for longer. The ground stops being an obstacle and starts being a material.
+edPerkFormworkName,progression,Perk,,,Formwork
+edPerkFormworkDesc,progression,Perk,,,Reinforced concrete tiers and faster cheaper building. What the base is actually made of.
+edPerkDemolitionsName,progression,Perk,,,Demolitions
+edPerkDemolitionsDesc,progression,Perk,,,More explosive damage and shaped charges. Also the only reliable answer to a Rotweaver.
+edPerkEmplacementsName,progression,Perk,,,Emplacements
+edPerkEmplacementsDesc,progression,Perk,,,Spikes and barricades and killbox blocks that actually have health worth counting.
+edPerkSiegeEngineerName,progression,Perk,,,Siege Engineer
+edPerkSiegeEngineerDesc,progression,Perk,,,Capstone. Repair structures mid-fight and unlock the fortification tier nobody else can build.
+edPerkQuietFootName,progression,Perk,,,Quiet Foot
+edPerkQuietFootDesc,progression,Perk,,,Make less noise and less light. Everything in the wilderness notices you later.
+edPerkFieldDressingName,progression,Perk,,,Field Dressing
+edPerkFieldDressingDesc,progression,Perk,,,More meat and hide off every animal and the preservation recipes to stop it spoiling.
+edPerkSnaresName,progression,Perk,,,Snares and Deadfalls
+edPerkSnaresDesc,progression,Perk,,,Trap blocks that hit harder and reset faster. The wilderness starts working for you.
+edPerkBowyerName,progression,Perk,,,Bowyer
+edPerkBowyerDesc,progression,Perk,,,Bow damage and draw speed and the advanced arrow tiers. Kills without telling the street.
+edPerkGhostName,progression,Perk,,,Ghost
+edPerkGhostDesc,progression,Perk,,,Capstone. Crouched you are very nearly not there at all.
+edPerkMarksmanshipName,progression,Perk,,,Marksmanship
+edPerkMarksmanshipDesc,progression,Perk,,,Firearm damage and handling and reload speed. The direct answer to most problems.
+edPerkPlateWeaveName,progression,Perk,,,Plate and Weave
+edPerkPlateWeaveDesc,progression,Perk,,,Composite armour tiers and better protection out of everything you wear.
+edPerkOrdnanceName,progression,Perk,,,Ordnance
+edPerkOrdnanceDesc,progression,Perk,,,Heavy weapon tiers and belt-fed conversions. Expensive to feed. Worth it.
+edPerkEmplacedGunsName,progression,Perk,,,Emplaced Guns
+edPerkEmplacedGunsDesc,progression,Perk,,,Turret tiers and turrets that actually hit what they are aiming at.
+edPerkCommandName,progression,Perk,,,Marshal's Command
+edPerkCommandDesc,progression,Perk,,,Capstone. Everyone fighting near you fights better and you unlock what nobody else carries.
+edPerkReagentsName,progression,Perk,,,Reagents
+edPerkReagentsDesc,progression,Perk,,,More output from every batch and the second reagent bench tier.
+edPerkAntisepsisName,progression,Perk,,,Antisepsis
+edPerkAntisepsisDesc,progression,Perk,,,Tinctures at rank 1 and real antibiotics at rank 4. This is the perk that keeps people alive.
+edPerkFieldMedicName,progression,Perk,,,Field Medic
+edPerkFieldMedicDesc,progression,Perk,,,Everything medical heals more and applies faster including on other people.
+edPerkCompoundsName,progression,Perk,,,Compounds
+edPerkCompoundsDesc,progression,Perk,,,Stimulants and gas ordnance and toxin coatings. Chemistry pointed outward for once.
+edPerkPhysicianName,progression,Perk,,,Physician
+edPerkPhysicianDesc,progression,Perk,,,Capstone. The serum. The only cure for a terminal infection anywhere in this world.
+edPerkWreckerName,progression,Perk,,,Wrecker
+edPerkWreckerDesc,progression,Perk,,,Strip vehicles and machinery faster and get considerably more out of them.
+edPerkSortingName,progression,Perk,,,Sorting
+edPerkSortingDesc,progression,Perk,,,Better loot from every container you open. Quietly the strongest economy perk in the mod.
+edPerkCircuitsName,progression,Perk,,,Circuits
+edPerkCircuitsDesc,progression,Perk,,,Electronics tiers and faster crafting of anything with wiring in it.
+edPerkMotorPoolName,progression,Perk,,,Motor Pool
+edPerkMotorPoolDesc,progression,Perk,,,Vehicle tiers and fuel that lasts. Mobility is a survival stat from Cycle 3 onward.
+edPerkRagAndBoneName,progression,Perk,,,Rag and Bone
+edPerkRagAndBoneDesc,progression,Perk,,,Capstone. Field Notes turn up far more often and the salvage-only recipes open up.
+edToolCarbidePickaxe,items,Item,,,Carbide Pickaxe
+edToolCarbidePickaxeDesc,items,Item,,,A carbide head on a hardened steel haft. Goes through stone at a rate that makes the steel one feel like a joke. Only an Ironmonger will ever make you one.
+edToolCarbideAxe,items,Item,,,Carbide Axe
+edToolCarbideAxeDesc,items,Item,,,Holds an edge through a working week. Expensive enough that you will notice when somebody borrows it.
+edMeleeCarbideMaul,items,Item,,,Carbide Maul
+edMeleeCarbideMaulDesc,items,Item,,,Slow and enormous and it does not care what the thing in front of it is wearing. The melee answer to a Rotweaver if you are out of explosives.
+edArmorCompositeHelmet,items,Item,,,Composite Helmet
+edArmorCompositeHelmetDesc,items,Item,,,Hardened steel laminated into polymer. Stops what plate steel does not and does not break your neck doing it.
+edArmorCompositeVest,items,Item,,,Composite Vest
+edArmorCompositeVestDesc,items,Item,,,The centrepiece of the Marshal's kit. Heavy enough to matter and light enough to run in.
+edArmorCompositeLegs,items,Item,,,Composite Leg Armour
+edArmorCompositeLegsDesc,items,Item,,,Plated where it counts and articulated where it has to be. You will still feel every drop.
+edWeaponSupportMG,items,Item,,,Support Machine Gun
+edWeaponSupportMGDesc,items,Item,,,Belt-fed and appalling to feed. Enormous sustained output for as long as somebody keeps making you ammunition. Find an Ironmonger. Be nice to them.
+edWeaponMarksmanRifle,items,Item,,,Marksman Rifle
+edWeaponMarksmanRifleDesc,items,Item,,,Slow and precise and it does not care about armour. This is what a Rotweaver looks like from four hundred metres away.
+edWeaponMarshalCarbine,items,Item,,,Marshal's Carbine
+edWeaponMarshalCarbineDesc,items,Item,,,Capstone. There is one of these per Marshal and everybody on the server knows who is carrying it.
+edExpShapedCharge,items,Item,,,Shaped Charge
+edExpShapedChargeDesc,items,Item,,,Directional. Opens somebody else's wall without opening your own floor. Sapper work.
+edExpMiningCharge,items,Item,,,Mining Charge
+edExpMiningChargeDesc,items,Item,,,Moves an enormous amount of ground and barely bruises anything alive. It is a tool with a fuse. Do not bring it to a fight.
+edFoodCuredMeat,items,Item,,,Cured Meat
+edFoodCuredMeatDesc,items,Item,,,Salted and dried and it will still be food next week. The difference between a Trapper and a hungry group.
+edFoodPemmican,items,Item,,,Pemmican
+edFoodPemmicanDesc,items,Item,,,Dense and keeps forever and tastes like a punishment. What you carry when you are not coming back tonight.
+edAmmoBodkinArrow,items,Item,,,Bodkin Arrow
+edAmmoBodkinArrowDesc,items,Item,,,A narrow hardened head made for punching plate. The Trapper's answer to Cycle 4 without touching a firearm.
+edAmmoToxinArrow,items,Item,,,Toxin Arrow
+edAmmoToxinArrowDesc,items,Item,,,A steel arrow dipped in something an Apothecary made. Neither of you can produce this alone. That is the point.
+edDrugCombatStim,items,Item,,,Combat Stimulant
+edDrugCombatStimDesc,items,Item,,,Two minutes of being considerably better at this followed by two minutes of being worse than you started. Choose the two minutes carefully.
+edDrugSteadyHand,items,Item,,,Steady Hand
+edDrugSteadyHandDesc,items,Item,,,Slows everything down including you. Handling and reloads improve sharply. Running does not.
+edExpGasGrenade,items,Item,,,Gas Grenade
+edExpGasGrenadeDesc,items,Item,,,Area denial in a tin. It leaves behind exactly what a Bloater leaves behind - which should tell you where the Apothecary got the idea.
+edToxinCoating,items,Item,,,Toxin Coating
+edToxinCoatingDesc,items,Item,,,Concentrated and unpleasant and it goes on anything with a point. The Apothecary's contribution to other people's weapons.
+edResourceCircuitBoard,items,Item,,,Salvaged Circuit Board
+edResourceCircuitBoardDesc,items,Item,,,Pulled out of something dead and coaxed back into working. Everything with a thought in it needs one.
+edResourceSensorModule,items,Item,,,Sensor Module
+edResourceSensorModuleDesc,items,Item,,,Optics and a circuit board and a great deal of patience. Goes into anything that has to notice something before you do.
+edVehiclePartsKit,items,Item,,,Vehicle Parts Kit
+edVehiclePartsKitDesc,items,Item,,,Everything awkward about building a vehicle - boxed. The Scavenger makes these and the rest of the group stops walking.
+edVehicleFuelCell,items,Item,,,Sealed Fuel Cell
+edVehicleFuelCellDesc,items,Item,,,Fuel that does not evaporate out of a rusted tank over a week. Goes considerably further than what you poured in.
+edToolSalvageRig,items,Item,,,Salvage Rig
+edToolSalvageRigDesc,items,Item,,,Capstone. Strips a wreck in a fraction of the time and gets more out of it. Boring on paper and the most-used thing in the mod.
+edBlockRebarConcrete,blocks,Block,,,Rebar Concrete
+edBlockRebarConcreteDesc,blocks,Block,,,Concrete with iron running through it. Roughly twice the wall for not quite twice the work.
+edBlockHighDensityConcrete,blocks,Block,,,High Density Concrete
+edBlockHighDensityConcreteDesc,blocks,Block,,,Poured properly with flux in the mix. This is what a Sapper builds when they intend to still be here in eight days.
+edBlockIronSpikes,blocks,Block,,,Iron Spikes
+edBlockIronSpikesDesc,blocks,Block,,,They last. Wooden ones do not.
+edBlockBarricade,blocks,Block,,,Barricade
+edBlockBarricadeDesc,blocks,Block,,,Stops movement without stopping line of sight. The Sapper's job is deciding where the horde walks and this is how you say it.
+edBlockCompositeBulwark,blocks,Block,,,Composite Bulwark
+edBlockCompositeBulwarkDesc,blocks,Block,,,Capstone fortification. The only thing in this world that slows a Grinder down. It does not stop one.
+edBlockHeavyDartTrap,blocks,Block,,,Heavy Dart Emplacement
+edBlockHeavyDartTrapDesc,blocks,Block,,,A fixed gun that holds a corridor while you hold something else. The Marshal does not automate a position. They emplace it.
+edBlockAutoBladeTrap,blocks,Block,,,Powered Blade Emplacement
+edBlockAutoBladeTrapDesc,blocks,Block,,,Loud and hungry for power and extremely effective in a doorway you chose on purpose.
+edBlockSnare,blocks,Block,,,Snare
+edBlockSnareDesc,blocks,Block,,,Cheap and quiet and it resets. The wilderness starts working for you instead of at you.
+edBlockDeadfall,blocks,Block,,,Deadfall
+edBlockDeadfallDesc,blocks,Block,,,Weight and timing and nothing else. Kills large things without telling the street about it.
+edBlockSynthesisLab,blocks,Block,,,Synthesis Lab
+edBlockSynthesisLabDesc,blocks,Block,,,The Apothecary's second tier. Everything the reagent bench cannot hold and everything the group cannot do without.
+edBuffCombatStimName,buffs,Buff,,,Combat Stimulant
+edBuffCombatStimDesc,buffs,Buff,,,Damage and stamina and speed all up. There is a bill at the end of this and it is due in two minutes.
+edBuffSteadyHandName,buffs,Buff,,,Steady Hand
+edBuffSteadyHandDesc,buffs,Buff,,,Handling and reloads sharply improved. Everything about moving is worse.
+edBuffStimCrashName,buffs,Buff,,,Comedown
+edBuffStimCrashDesc,buffs,Buff,,,The bill. Stamina draining and everything harder than it was. Do not take another one.

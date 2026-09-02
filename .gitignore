@@ -1,0 +1,16 @@
+# build output
+dist/
+*.zip
+
+# editor / OS noise
+.vscode/
+.idea/
+*.swp
+.DS_Store
+Thumbs.db
+
+# game-side artefacts that should never be committed
+*.log
+output_log*.txt
+Player.log
+serverconfig.local.xml

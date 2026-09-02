@@ -1,0 +1,504 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+    THE EIGHTH DAY - recipes.xml
+    ============================
+    The Long Craft, expressed as recipes.
+
+    Two rules govern this whole file:
+
+      1. INTERMEDIATES BOTTLENECK. Flux, precision parts and polymer are cheap to make
+         and awkward to source. That keeps mid-game players going outside rather than
+         sitting in a base perking up.
+
+      2. RESEARCH BEATS LOOTBOXES. The highest tier of every discipline is reconstructed
+         at the Drafting Table from Field Notes. It cannot be bought, perked, or looted
+         directly - you have to go to the places the notes are.
+
+    The "tags" on each recipe are what progression.xml's RecipeUnlock effects key off.
+-->
+<configs>
+
+    <append xpath="/recipes">
+
+        <!-- ==================================================================
+             WORKSTATIONS
+             ================================================================== -->
+
+        <recipe name="edBlockBloomery" count="1" craft_area="workbench" craft_time="30">
+            <ingredient name="resourceStone" count="120" />
+            <ingredient name="resourceClayLump" count="80" />
+            <ingredient name="resourceWood" count="40" />
+        </recipe>
+
+        <recipe name="edBlockBlastFurnace" count="1" craft_area="workbench" craft_time="180"
+                tags="edStructural">
+            <ingredient name="resourceForgedIron" count="250" />
+            <ingredient name="resourceCement" count="200" />
+            <ingredient name="edResourceFlux" count="60" />
+            <ingredient name="resourceMechanicalParts" count="30" />
+        </recipe>
+
+        <recipe name="edBlockMachineShop" count="1" craft_area="workbench" craft_time="180">
+            <ingredient name="resourceForgedSteel" count="150" />
+            <ingredient name="resourceMechanicalParts" count="60" />
+            <ingredient name="resourceElectricParts" count="30" />
+        </recipe>
+
+        <recipe name="edBlockReagentBench" count="1" craft_area="workbench" craft_time="120">
+            <ingredient name="resourceForgedIron" count="80" />
+            <ingredient name="resourceGlue" count="40" />
+            <ingredient name="resourceElectricParts" count="15" />
+        </recipe>
+
+        <recipe name="edBlockDraftingTable" count="1" craft_area="workbench" craft_time="90">
+            <ingredient name="resourceWood" count="150" />
+            <ingredient name="resourcePaper" count="100" />
+            <ingredient name="resourceForgedIron" count="25" />
+        </recipe>
+
+
+        <!-- ==================================================================
+             TIER 0.5 - BLOOMERY
+             Day-2 metal. Bad metal, but yours.
+             ================================================================== -->
+
+        <recipe name="edResourceCrudeIron" count="1" craft_area="edBloomery" craft_time="12"
+                tags="edSmelting">
+            <ingredient name="resourceIronFragment" count="8" />
+            <ingredient name="resourceCoal" count="2" />
+        </recipe>
+
+        <!-- Flux. Limestone and bone finally have a job. -->
+        <recipe name="edResourceFlux" count="4" craft_area="edBloomery" craft_time="8"
+                tags="edSmelting">
+            <ingredient name="resourceCrushedSand" count="6" />
+            <ingredient name="resourceBone" count="4" />
+        </recipe>
+
+
+        <!-- ==================================================================
+             TIER 2 - BLAST FURNACE
+             Ironmonger territory. Hardened steel and carbide are perk-gated:
+             see progression.xml, edPerkAlloying.
+             ================================================================== -->
+
+        <recipe name="edResourceHardenedSteel" count="1" craft_area="edBlastFurnace"
+                craft_time="45" tags="edSmelting,edRecipeHardenedSteel" unlocked_by_recipe="false">
+            <ingredient name="resourceForgedSteel" count="4" />
+            <ingredient name="edResourceFlux" count="2" />
+            <ingredient name="resourceCoal" count="6" />
+        </recipe>
+
+        <recipe name="edResourceCarbide" count="1" craft_area="edBlastFurnace"
+                craft_time="120" tags="edSmelting,edRecipeCarbide" unlocked_by_recipe="false">
+            <ingredient name="edResourceHardenedSteel" count="3" />
+            <ingredient name="edResourceFlux" count="6" />
+            <ingredient name="resourceCoal" count="20" />
+        </recipe>
+
+
+        <!-- ==================================================================
+             TIER 2 - MACHINE SHOP
+             The chokepoint every powered thing runs through.
+             ================================================================== -->
+
+        <recipe name="edResourcePrecisionParts" count="1" craft_area="edMachineShop"
+                craft_time="35" tags="edMetalwork">
+            <ingredient name="resourceForgedSteel" count="3" />
+            <ingredient name="resourceMechanicalParts" count="2" />
+            <ingredient name="resourceOil" count="1" />
+        </recipe>
+
+        <recipe name="edResourceCompositePlate" count="1" craft_area="edMachineShop"
+                craft_time="60" tags="edMetalwork,edRecipeCompositeArmor" unlocked_by_recipe="false">
+            <ingredient name="edResourceHardenedSteel" count="2" />
+            <ingredient name="edResourcePolymer" count="4" />
+        </recipe>
+
+
+        <!-- ==================================================================
+             TIER 1.5 - REAGENT BENCH
+             The Apothecary's chain. Tiered cures for tiered infection.
+             ================================================================== -->
+
+        <recipe name="edResourceReagentBase" count="2" craft_area="edReagentBench"
+                craft_time="30" tags="edChemistry">
+            <ingredient name="resourceAcid" count="1" />
+            <ingredient name="resourceNitratePowder" count="4" />
+            <ingredient name="resourceWaterBottle" count="1" />
+        </recipe>
+
+        <recipe name="edResourcePolymer" count="2" craft_area="edReagentBench"
+                craft_time="40" tags="edChemistry">
+            <ingredient name="resourceOil" count="4" />
+            <ingredient name="edResourceReagentBase" count="1" />
+        </recipe>
+
+        <!-- Stage 1-2 cure. Anyone with a bench. -->
+        <recipe name="edMedTincture" count="1" craft_area="edReagentBench" craft_time="45"
+                tags="edChemistry,edMedical,edRecipeTincture" unlocked_by_recipe="false">
+            <ingredient name="edResourceReagentBase" count="2" />
+            <ingredient name="resourceHerbalAntibiotics" count="1" />
+        </recipe>
+
+        <!-- Stage 3 cure. Apothecary, Antisepsis 4. -->
+        <recipe name="edMedAntibiotic" count="1" craft_area="edReagentBench" craft_time="90"
+                tags="edChemistry,edMedical,edRecipeAntibiotic" unlocked_by_recipe="false">
+            <ingredient name="edResourceReagentBase" count="5" />
+            <ingredient name="drugAntibiotics" count="2" />
+            <ingredient name="edResourcePolymer" count="1" />
+        </recipe>
+
+        <!-- Stage 4 cure. Apothecary capstone only. The reason the Calling exists. -->
+        <recipe name="edMedSerum" count="1" craft_area="edReagentBench" craft_time="180"
+                tags="edChemistry,edMedical,edRecipeSerum" unlocked_by_recipe="false">
+            <ingredient name="edMedAntibiotic" count="2" />
+            <ingredient name="edResourceReagentBase" count="10" />
+            <ingredient name="edResourcePrecisionParts" count="1" />
+        </recipe>
+
+
+        <!-- ==================================================================
+             THE DRAFTING TABLE - research
+
+             Field Notes are partial and damaged. Several of the same discipline
+             reconstruct into one usable recipe. The counts are deliberately
+             uncomfortable: research should be an expedition, not an errand.
+
+             VERIFY-10: these drop rates and counts are guesses. Too few and the
+             tech tree trivialises; too many and the research loop stalls.
+             ================================================================== -->
+
+        <recipe name="edResourcePrecisionParts" count="4" craft_area="edDrafting"
+                craft_time="60" tags="edResearch">
+            <ingredient name="edNoteMetallurgy" count="5" />
+            <ingredient name="resourcePaper" count="20" />
+        </recipe>
+
+        <recipe name="edMedAntibiotic" count="2" craft_area="edDrafting" craft_time="60"
+                tags="edResearch">
+            <ingredient name="edNoteChemistry" count="5" />
+            <ingredient name="resourcePaper" count="20" />
+        </recipe>
+
+    </append>
+
+
+    <!-- ==========================================================================
+         THE LONG CRAFT, APPLIED TO VANILLA
+
+         Reroute vanilla's two-step chain through the new intermediates so the
+         production tier actually gates the gear tier. Without this the mod adds
+         workstations nobody needs.
+
+         EIGHTHDAY: steel now demands crude iron and flux rather than falling out
+         of a forge, which is what puts the Ironmonger on the critical path.
+         ========================================================================== -->
+
+    <set xpath="/recipes/recipe[@name='resourceForgedSteel']/@craft_area">edBlastFurnace</set>
+
+    <append xpath="/recipes/recipe[@name='resourceForgedSteel']">
+        <ingredient name="edResourceFlux" count="1" />
+    </append>
+
+
+    <!-- ==========================================================================
+         CALLING PAYLOADS
+
+         Every recipe below is tagged to match a RecipeUnlock in progression.xml.
+         All of them carry unlocked_by_recipe="false" so the perk is the only way
+         in - none of these appear in schematic loot or trader stock.
+
+         Costs are deliberately steep. A Calling capstone should read as an
+         industrial project, not a crafting queue.
+         ========================================================================== -->
+
+    <append xpath="/recipes">
+
+        <!-- ==============================================================
+             IRONMONGER - carbide tier
+             ============================================================== -->
+
+        <recipe name="edToolCarbidePickaxe" count="1" craft_area="edMachineShop" craft_time="240"
+                tags="edMetalwork,edRecipeCarbideExclusive" unlocked_by_recipe="false">
+            <ingredient name="edResourceCarbide" count="4" />
+            <ingredient name="edResourceHardenedSteel" count="8" />
+            <ingredient name="edResourcePrecisionParts" count="2" />
+        </recipe>
+
+        <recipe name="edToolCarbideAxe" count="1" craft_area="edMachineShop" craft_time="240"
+                tags="edMetalwork,edRecipeCarbideExclusive" unlocked_by_recipe="false">
+            <ingredient name="edResourceCarbide" count="4" />
+            <ingredient name="edResourceHardenedSteel" count="8" />
+            <ingredient name="edResourcePrecisionParts" count="2" />
+        </recipe>
+
+        <recipe name="edMeleeCarbideMaul" count="1" craft_area="edMachineShop" craft_time="300"
+                tags="edMetalwork,edRecipeCarbideExclusive" unlocked_by_recipe="false">
+            <ingredient name="edResourceCarbide" count="6" />
+            <ingredient name="edResourceHardenedSteel" count="12" />
+            <ingredient name="edResourcePrecisionParts" count="3" />
+        </recipe>
+
+
+        <!-- ==============================================================
+             MARSHAL - armour, heavy weapons, capstone
+             ============================================================== -->
+
+        <recipe name="edArmorCompositeHelmet" count="1" craft_area="edMachineShop" craft_time="180"
+                tags="edMetalwork,edRecipeCompositeArmor" unlocked_by_recipe="false">
+            <ingredient name="edResourceCompositePlate" count="3" />
+            <ingredient name="edResourcePolymer" count="6" />
+        </recipe>
+
+        <recipe name="edArmorCompositeVest" count="1" craft_area="edMachineShop" craft_time="240"
+                tags="edMetalwork,edRecipeCompositeArmor" unlocked_by_recipe="false">
+            <ingredient name="edResourceCompositePlate" count="6" />
+            <ingredient name="edResourcePolymer" count="10" />
+        </recipe>
+
+        <recipe name="edArmorCompositeLegs" count="1" craft_area="edMachineShop" craft_time="200"
+                tags="edMetalwork,edRecipeCompositeArmor" unlocked_by_recipe="false">
+            <ingredient name="edResourceCompositePlate" count="4" />
+            <ingredient name="edResourcePolymer" count="8" />
+        </recipe>
+
+        <recipe name="edWeaponSupportMG" count="1" craft_area="edMachineShop" craft_time="420"
+                tags="edRecipeHeavyWeapons" unlocked_by_recipe="false">
+            <ingredient name="edResourceHardenedSteel" count="14" />
+            <ingredient name="edResourcePrecisionParts" count="8" />
+            <ingredient name="resourceMechanicalParts" count="20" />
+        </recipe>
+
+        <recipe name="edWeaponMarksmanRifle" count="1" craft_area="edMachineShop" craft_time="360"
+                tags="edRecipeHeavyWeapons" unlocked_by_recipe="false">
+            <ingredient name="edResourceHardenedSteel" count="10" />
+            <ingredient name="edResourcePrecisionParts" count="6" />
+            <ingredient name="edResourceSensorModule" count="1" />
+        </recipe>
+
+        <recipe name="edWeaponMarshalCarbine" count="1" craft_area="edMachineShop" craft_time="600"
+                tags="edRecipeMarshalExclusive" unlocked_by_recipe="false">
+            <ingredient name="edResourceCarbide" count="3" />
+            <ingredient name="edResourceHardenedSteel" count="16" />
+            <ingredient name="edResourcePrecisionParts" count="10" />
+            <ingredient name="edResourceSensorModule" count="2" />
+        </recipe>
+
+        <recipe name="edBlockHeavyDartTrap" count="1" craft_area="edMachineShop" craft_time="150"
+                tags="edRecipeTurrets" unlocked_by_recipe="false">
+            <ingredient name="resourceForgedSteel" count="30" />
+            <ingredient name="edResourcePrecisionParts" count="4" />
+            <ingredient name="edResourceCircuitBoard" count="2" />
+        </recipe>
+
+        <recipe name="edBlockAutoBladeTrap" count="1" craft_area="edMachineShop" craft_time="180"
+                tags="edRecipeTurrets" unlocked_by_recipe="false">
+            <ingredient name="edResourceHardenedSteel" count="12" />
+            <ingredient name="edResourcePrecisionParts" count="5" />
+            <ingredient name="edResourceCircuitBoard" count="2" />
+        </recipe>
+
+
+        <!-- ==============================================================
+             SAPPER - concrete, charges, emplacements, capstone
+             ============================================================== -->
+
+        <recipe name="edBlockRebarConcrete" count="4" craft_area="workbench" craft_time="20"
+                tags="edStructural,edRecipeReinforcedConcrete" unlocked_by_recipe="false">
+            <ingredient name="resourceCement" count="12" />
+            <ingredient name="resourceForgedIron" count="6" />
+        </recipe>
+
+        <recipe name="edBlockHighDensityConcrete" count="4" craft_area="workbench" craft_time="35"
+                tags="edStructural,edRecipeReinforcedConcrete" unlocked_by_recipe="false">
+            <ingredient name="resourceCement" count="20" />
+            <ingredient name="edResourceFlux" count="4" />
+            <ingredient name="resourceForgedSteel" count="4" />
+        </recipe>
+
+        <recipe name="edExpShapedCharge" count="1" craft_area="edMachineShop" craft_time="60"
+                tags="edRecipeShapedCharge" unlocked_by_recipe="false">
+            <ingredient name="resourceGunPowder" count="30" />
+            <ingredient name="edResourceHardenedSteel" count="2" />
+            <ingredient name="edResourcePrecisionParts" count="1" />
+        </recipe>
+
+        <recipe name="edExpMiningCharge" count="2" craft_area="edMachineShop" craft_time="40"
+                tags="edRecipeShapedCharge" unlocked_by_recipe="false">
+            <ingredient name="resourceGunPowder" count="20" />
+            <ingredient name="resourceForgedIron" count="6" />
+        </recipe>
+
+        <recipe name="edBlockIronSpikes" count="2" craft_area="workbench" craft_time="25"
+                tags="edStructural,edRecipeEmplacements" unlocked_by_recipe="false">
+            <ingredient name="resourceForgedIron" count="20" />
+            <ingredient name="resourceWood" count="20" />
+        </recipe>
+
+        <recipe name="edBlockBarricade" count="2" craft_area="workbench" craft_time="35"
+                tags="edStructural,edRecipeEmplacements" unlocked_by_recipe="false">
+            <ingredient name="resourceForgedIron" count="32" />
+            <ingredient name="resourceCement" count="15" />
+        </recipe>
+
+        <recipe name="edBlockCompositeBulwark" count="1" craft_area="edMachineShop" craft_time="120"
+                tags="edStructural,edRecipeFortificationTier3" unlocked_by_recipe="false">
+            <ingredient name="edResourceCompositePlate" count="4" />
+            <ingredient name="edResourceHardenedSteel" count="6" />
+            <ingredient name="resourceCement" count="30" />
+        </recipe>
+
+
+        <!-- ==============================================================
+             TRAPPER - preservation, snares, arrows
+             ============================================================== -->
+
+        <recipe name="edFoodCuredMeat" count="4" craft_area="campfire" craft_time="60"
+                tags="edRecipePreservation" unlocked_by_recipe="false">
+            <ingredient name="foodRawMeat" count="6" />
+            <ingredient name="resourceCrushedSand" count="2" />
+        </recipe>
+
+        <recipe name="edFoodPemmican" count="2" craft_area="campfire" craft_time="90"
+                tags="edRecipePreservation" unlocked_by_recipe="false">
+            <ingredient name="edFoodCuredMeat" count="3" />
+            <ingredient name="foodAnimalFat" count="4" />
+        </recipe>
+
+        <recipe name="edBlockSnare" count="2" craft_area="workbench" craft_time="15"
+                tags="edRecipeSnares" unlocked_by_recipe="false">
+            <ingredient name="resourceWood" count="15" />
+            <ingredient name="resourceCloth" count="8" />
+        </recipe>
+
+        <recipe name="edBlockDeadfall" count="1" craft_area="workbench" craft_time="25"
+                tags="edRecipeSnares" unlocked_by_recipe="false">
+            <ingredient name="resourceWood" count="30" />
+            <ingredient name="resourceStone" count="25" />
+        </recipe>
+
+        <recipe name="edAmmoBodkinArrow" count="10" craft_area="workbench" craft_time="20"
+                tags="edRecipeAdvancedArrows" unlocked_by_recipe="false">
+            <ingredient name="edResourceHardenedSteel" count="1" />
+            <ingredient name="resourceWood" count="10" />
+            <ingredient name="resourceFeather" count="10" />
+        </recipe>
+
+        <!-- Cross-Calling: needs the Apothecary's coating. Neither of them can
+             make this alone, which is exactly the intent. -->
+        <recipe name="edAmmoToxinArrow" count="10" craft_area="workbench" craft_time="25"
+                tags="edRecipeAdvancedArrows" unlocked_by_recipe="false">
+            <ingredient name="ammoArrowSteel" count="10" />
+            <ingredient name="edToxinCoating" count="2" />
+        </recipe>
+
+
+        <!-- ==============================================================
+             APOTHECARY - lab, stimulants, gas
+             ============================================================== -->
+
+        <recipe name="edBlockSynthesisLab" count="1" craft_area="workbench" craft_time="300"
+                tags="edRecipeReagentBenchT2" unlocked_by_recipe="false">
+            <ingredient name="edResourcePrecisionParts" count="12" />
+            <ingredient name="edResourcePolymer" count="40" />
+            <ingredient name="resourceElectricParts" count="20" />
+        </recipe>
+
+        <recipe name="edDrugCombatStim" count="2" craft_area="edReagentBench" craft_time="60"
+                tags="edChemistry,edRecipeStimulants" unlocked_by_recipe="false">
+            <ingredient name="edResourceReagentBase" count="3" />
+            <ingredient name="resourceHerbalAntibiotics" count="1" />
+        </recipe>
+
+        <recipe name="edDrugSteadyHand" count="2" craft_area="edReagentBench" craft_time="60"
+                tags="edChemistry,edRecipeStimulants" unlocked_by_recipe="false">
+            <ingredient name="edResourceReagentBase" count="3" />
+            <ingredient name="resourceOil" count="2" />
+        </recipe>
+
+        <recipe name="edToxinCoating" count="4" craft_area="edReagentBench" craft_time="45"
+                tags="edChemistry,edRecipeGasOrdnance" unlocked_by_recipe="false">
+            <ingredient name="edResourceReagentBase" count="2" />
+            <ingredient name="resourceAcid" count="1" />
+        </recipe>
+
+        <recipe name="edExpGasGrenade" count="2" craft_area="edReagentBench" craft_time="75"
+                tags="edChemistry,edRecipeGasOrdnance" unlocked_by_recipe="false">
+            <ingredient name="edToxinCoating" count="3" />
+            <ingredient name="resourceForgedIron" count="4" />
+            <ingredient name="resourceGunPowder" count="10" />
+        </recipe>
+
+
+        <!-- ==============================================================
+             SCAVENGER - electronics, vehicles, capstone
+             ============================================================== -->
+
+        <recipe name="edResourceCircuitBoard" count="1" craft_area="workbench" craft_time="30"
+                tags="edElectronics,edRecipeElectronics" unlocked_by_recipe="false">
+            <ingredient name="resourceElectricParts" count="4" />
+            <ingredient name="edResourcePolymer" count="1" />
+        </recipe>
+
+        <recipe name="edResourceSensorModule" count="1" craft_area="edMachineShop" craft_time="90"
+                tags="edElectronics,edRecipeElectronics" unlocked_by_recipe="false">
+            <ingredient name="edResourceCircuitBoard" count="3" />
+            <ingredient name="edResourcePrecisionParts" count="1" />
+        </recipe>
+
+        <recipe name="edVehiclePartsKit" count="1" craft_area="edMachineShop" craft_time="180"
+                tags="edRecipeVehicles" unlocked_by_recipe="false">
+            <ingredient name="resourceMechanicalParts" count="25" />
+            <ingredient name="edResourcePrecisionParts" count="4" />
+            <ingredient name="resourceForgedSteel" count="20" />
+        </recipe>
+
+        <recipe name="edVehicleFuelCell" count="10" craft_area="edReagentBench" craft_time="30"
+                tags="edRecipeVehicles" unlocked_by_recipe="false">
+            <ingredient name="resourceGasCan" count="20" />
+            <ingredient name="edResourcePolymer" count="1" />
+        </recipe>
+
+        <recipe name="edToolSalvageRig" count="1" craft_area="edMachineShop" craft_time="300"
+                tags="edRecipeSalvageExclusive" unlocked_by_recipe="false">
+            <ingredient name="edResourceHardenedSteel" count="8" />
+            <ingredient name="edResourcePrecisionParts" count="6" />
+            <ingredient name="edResourceCircuitBoard" count="4" />
+        </recipe>
+
+
+        <!-- ==============================================================
+             RESEARCH - the remaining four Field Note disciplines
+
+             Completes the research loop. Every note type now reconstructs into
+             something, so no note is dead weight in a backpack.
+             ============================================================== -->
+
+        <recipe name="edExpShapedCharge" count="2" craft_area="edDrafting" craft_time="60"
+                tags="edResearch">
+            <ingredient name="edNoteOrdnance" count="5" />
+            <ingredient name="resourcePaper" count="20" />
+        </recipe>
+
+        <recipe name="edBlockHighDensityConcrete" count="10" craft_area="edDrafting" craft_time="60"
+                tags="edResearch">
+            <ingredient name="edNoteStructural" count="5" />
+            <ingredient name="resourcePaper" count="20" />
+        </recipe>
+
+        <recipe name="edResourceSensorModule" count="2" craft_area="edDrafting" craft_time="60"
+                tags="edResearch">
+            <ingredient name="edNoteSalvage" count="5" />
+            <ingredient name="resourcePaper" count="20" />
+        </recipe>
+
+        <recipe name="edFoodPemmican" count="6" craft_area="edDrafting" craft_time="60"
+                tags="edResearch">
+            <ingredient name="edNoteWilderness" count="5" />
+            <ingredient name="resourcePaper" count="20" />
+        </recipe>
+
+    </append>
+
+</configs>

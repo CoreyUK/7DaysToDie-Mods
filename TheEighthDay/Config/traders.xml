@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+    THE EIGHTH DAY - traders.xml
+    ============================
+    Trader stock for the new production chain.
+
+    *** THE WRIT STOCK BELOW IS A 0.1 PLACEHOLDER. ***
+
+    A Calling is meant to be EARNED through its Proving quest chain - trader-issued work
+    that makes you actually do the discipline before it opens up. Those chains land in
+    0.2 and the Writs disappear with them.
+
+    Until then the Writs are sold at a deliberately punishing price so the Calling system
+    can be tested without becoming a shopping trip. They are the one part of this mod that
+    is not the design - do not balance around them.
+
+    VERIFY-2: confirm these vanilla trader group names still exist in V3.2.
+-->
+<configs>
+
+    <!-- ==========================================================================
+         CALLING WRITS - PLACEHOLDER, REMOVED IN 0.2
+         ========================================================================== -->
+
+    <append xpath="/traders/trader_items">
+
+        <trader_item_group name="edWrits">
+            <item name="edWritIronmonger" quality_template="none" />
+            <item name="edWritTrapper" quality_template="none" />
+            <item name="edWritApothecary" quality_template="none" />
+            <item name="edWritSapper" quality_template="none" />
+            <item name="edWritMarshal" quality_template="none" />
+            <item name="edWritScavenger" quality_template="none" />
+        </trader_item_group>
+
+    </append>
+
+
+    <!-- ==========================================================================
+         PRODUCTION STOCK
+
+         Traders sell the intermediates in small quantities at bad prices. This is
+         the pressure valve for a player whose chain has stalled on one missing
+         input - never a substitute for building the chain.
+         ========================================================================== -->
+
+    <append xpath="/traders/trader_items">
+
+        <trader_item_group name="edProductionStock">
+            <item name="edResourceFlux" count="10,30" />
+            <item name="edResourceReagentBase" count="2,6" />
+            <item name="edResourcePrecisionParts" count="1,3" />
+        </trader_item_group>
+
+    </append>
+
+</configs>

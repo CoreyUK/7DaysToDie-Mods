@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+    THE EIGHTH DAY - entitygroups.xml
+    =================================
+    One spawn pool per Cycle. These are the pools gamestages.xml maps the Cycle bands onto.
+
+    A Turning is PERMANENT and ONE-WAY. Pool N contains everything from pools 1..N, so
+    once an archetype enters the world it never leaves it - that property is the entire
+    mechanic and must survive any retuning.
+
+    VERIFY-2 (docs/VERIFICATION.md): V3.0 converted entity groups back to standard XML
+    elements and V3.2 edited this file again. Confirm the child element and attribute
+    names below, and confirm every vanilla group name this file appends to still exists.
+-->
+<configs>
+
+    <!-- ==========================================================================
+         THE CYCLE POOLS
+         ========================================================================== -->
+
+    <append xpath="/entitygroups">
+
+        <!-- CYCLE 1 - the first "oh". Speed you were not planning for. -->
+        <entitygroup name="edCycle1Pool">
+            <entity name="edZombieHusk" prob="1.0" />
+        </entitygroup>
+
+        <!-- CYCLE 2 - melee stops being free. -->
+        <entitygroup name="edCycle2Pool">
+            <entity name="edZombieHusk" prob="1.0" />
+            <entity name="edZombieBloater" prob="0.45" />
+        </entitygroup>
+
+        <!-- CYCLE 3 - open ground stops being safe. -->
+        <entitygroup name="edCycle3Pool">
+            <entity name="edZombieHusk" prob="1.0" />
+            <entity name="edZombieBloater" prob="0.5" />
+            <entity name="edZombieCarrionHound" prob="0.6" />
+        </entitygroup>
+
+        <!-- CYCLE 4 - the ammo economy breaks. -->
+        <entitygroup name="edCycle4Pool">
+            <entity name="edZombieHusk" prob="1.0" />
+            <entity name="edZombieBloater" prob="0.5" />
+            <entity name="edZombieCarrionHound" prob="0.6" />
+            <entity name="edZombieRotweaver" prob="0.35" />
+        </entitygroup>
+
+        <!-- CYCLE 5 - night ends as an option. -->
+        <entitygroup name="edCycle5Pool">
+            <entity name="edZombieHusk" prob="1.0" />
+            <entity name="edZombieBloater" prob="0.5" />
+            <entity name="edZombieCarrionHound" prob="0.6" />
+            <entity name="edZombieRotweaver" prob="0.45" />
+            <entity name="edZombieHollow" prob="0.25" />
+        </entitygroup>
+
+        <!-- CYCLE 6+ - hordes gain a shape. -->
+        <entitygroup name="edCycle6Pool">
+            <entity name="edZombieHusk" prob="1.0" />
+            <entity name="edZombieBloater" prob="0.5" />
+            <entity name="edZombieCarrionHound" prob="0.6" />
+            <entity name="edZombieRotweaver" prob="0.55" />
+            <entity name="edZombieHollow" prob="0.35" />
+            <entity name="edZombieChoir" prob="0.2" />
+        </entitygroup>
+
+        <!-- Night-only pool. The Hollow is a curfew, not a horde enemy - it belongs
+             in ambient night spawning rather than in blood moon waves. -->
+        <entitygroup name="edNightPool">
+            <entity name="edZombieHollow" prob="1.0" />
+        </entitygroup>
+
+    </append>
+
+
+    <!-- ==========================================================================
+         AMBIENT BLEED-THROUGH
+
+         The cycle pools above drive horde nights. This section leaks the same
+         archetypes into ordinary biome spawning at low probability, so that the
+         world between horde nights also visibly Turns.
+
+         Kept at low weights deliberately: the Turning should be felt as dread
+         first and encountered second.
+
+         VERIFY-2: confirm "ZombiesAll" is still the correct vanilla group name.
+         If it has been renamed or split in V3.2, retarget these three patches -
+         they are the only place this file touches vanilla data.
+         ========================================================================== -->
+
+    <append xpath="/entitygroups/entitygroup[@name='ZombiesAll']">
+        <entity name="edZombieHusk" prob="0.12" />
+        <entity name="edZombieBloater" prob="0.05" />
+        <entity name="edZombieCarrionHound" prob="0.06" />
+    </append>
+
+</configs>

@@ -1,0 +1,303 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+    THE EIGHTH DAY - blocks.xml
+    ===========================
+    The Long Craft's workstations.
+
+    Vanilla's production chain is two steps deep: ore in the forge, item out of the
+    workbench. This file makes industry something you BUILD, with real intermediates
+    that have their own supply problems.
+
+        ore ===> Bloomery ===> crude iron ===+
+                                             +==> Forge ===> stock metal
+        scrap ===============================+                     |
+                                                                   v
+        coal + flux ===> Blast Furnace ===> steel ===> hardened ===> carbide
+                                                                   |
+        Machine Shop <=== precision parts <========================+
+             |
+             v
+        Drafting Table ===> consumes Field Notes ===> recipes the perk tree cannot give
+
+    ART NOTE: v0.1 ships no custom models. Every workstation extends a vanilla block and
+    reuses its mesh and crafting window.
+
+    VERIFY-4 (docs/VERIFICATION.md): confirm the workstation window names below still
+    exist. V3.0 split XUi into XUi_Common / XUi_InGame / XUi_Menu and renamed
+    controls.xml to templates.xml, so anything UI-adjacent is higher-risk than usual.
+-->
+<configs>
+
+    <append xpath="/blocks">
+
+        <!-- ==================================================================
+             BLOOMERY - tier 0.5
+             Cheap, early, iron only. Exists so the metal chain starts on day 2
+             with a clay-and-stone build instead of waiting on a forge.
+             Output is crude iron: deliberately worse than vanilla forged iron,
+             so building the real forge still matters.
+             ================================================================== -->
+        <block name="edBlockBloomery">
+            <property name="Extends" value="forge" />
+            <property name="CreativeMode" value="Player" />
+            <property name="CustomIcon" value="forge" />
+            <property name="DescriptionKey" value="edBlockBloomeryDesc" />
+            <property name="CraftingAreaRecipes" value="edBloomery" />
+            <property name="EconomicValue" value="300" />
+            <property class="RepairItems">
+                <property name="resourceStone" value="30" />
+                <property name="resourceClayLump" value="20" />
+            </property>
+        </block>
+
+        <!-- ==================================================================
+             BLAST FURNACE - tier 2
+             Steel, hardened steel and carbide. Consumes flux, which is the whole
+             reason limestone and bone have a purpose past day 10.
+             Ironmonger-gated by recipe, not by block - anyone can build one,
+             only an Ironmonger can use it for anything worthwhile.
+             ================================================================== -->
+        <block name="edBlockBlastFurnace">
+            <property name="Extends" value="forge" />
+            <property name="CreativeMode" value="Player" />
+            <property name="CustomIcon" value="forge" />
+            <property name="DescriptionKey" value="edBlockBlastFurnaceDesc" />
+            <property name="CraftingAreaRecipes" value="edBlastFurnace" />
+            <property name="EconomicValue" value="4500" />
+            <property class="RepairItems">
+                <property name="resourceForgedIron" value="60" />
+                <property name="resourceCement" value="80" />
+            </property>
+        </block>
+
+        <!-- ==================================================================
+             MACHINE SHOP - tier 2
+             Turns stock metal into precision parts. Every powered device in the
+             mod wants them, which makes this the block that gates the electrical
+             and vehicle tiers behind the metal tier.
+             ================================================================== -->
+        <block name="edBlockMachineShop">
+            <property name="Extends" value="workbench" />
+            <property name="CreativeMode" value="Player" />
+            <property name="CustomIcon" value="workbench" />
+            <property name="DescriptionKey" value="edBlockMachineShopDesc" />
+            <property name="CraftingAreaRecipes" value="edMachineShop" />
+            <property name="EconomicValue" value="5200" />
+            <property class="RepairItems">
+                <property name="resourceForgedSteel" value="40" />
+                <property name="resourceMechanicalParts" value="25" />
+            </property>
+        </block>
+
+        <!-- ==================================================================
+             REAGENT BENCH - tier 1.5
+             The Apothecary's workspace. Everything medical starts here, including
+             the tiered infection cures that make the Calling a group lifeline.
+             ================================================================== -->
+        <block name="edBlockReagentBench">
+            <property name="Extends" value="chemistryStation" />
+            <property name="CreativeMode" value="Player" />
+            <property name="CustomIcon" value="chemistryStation" />
+            <property name="DescriptionKey" value="edBlockReagentBenchDesc" />
+            <property name="CraftingAreaRecipes" value="edReagentBench" />
+            <property name="EconomicValue" value="2800" />
+            <property class="RepairItems">
+                <property name="resourceForgedIron" value="30" />
+                <property name="resourceGlue" value="20" />
+            </property>
+        </block>
+
+        <!-- ==================================================================
+             DRAFTING TABLE - the research loop
+             Consumes Field Notes in batches to reconstruct a recipe. This is the
+             one production step you cannot buy or perk past: high-tier recipes
+             are NOT in the perk tree and NOT in schematic loot, so you have to go
+             to the places the notes are.
+             ================================================================== -->
+        <block name="edBlockDraftingTable">
+            <property name="Extends" value="workbench" />
+            <property name="CreativeMode" value="Player" />
+            <property name="CustomIcon" value="workbench" />
+            <property name="DescriptionKey" value="edBlockDraftingTableDesc" />
+            <property name="CraftingAreaRecipes" value="edDrafting" />
+            <property name="EconomicValue" value="3600" />
+            <property class="RepairItems">
+                <property name="resourceWood" value="50" />
+                <property name="resourcePaper" value="40" />
+            </property>
+        </block>
+
+    </append>
+
+
+    <!-- ==========================================================================
+         FORTIFICATION AND EMPLACEMENTS
+
+         The payload of the Sapper, Marshal and Trapper block unlocks. A perk that
+         unlocks nothing is a perk nobody spends a point on.
+
+         VERIFY-12 (docs/VERIFICATION.md): every Extends base below is a vanilla
+         block name. Block naming shifted when shape variants landed, so these are
+         higher-risk than the item bases and must be confirmed against V3.2.
+         ========================================================================== -->
+
+
+    <!-- SAPPER - reinforced concrete tiers  (edRecipeReinforcedConcrete) -->
+    <append xpath="/blocks">
+
+        <block name="edBlockRebarConcrete">
+            <property name="Extends" value="concreteBlock" />
+            <property name="CustomIcon" value="concreteBlock" />
+            <property name="DescriptionKey" value="edBlockRebarConcreteDesc" />
+            <property name="MaxDamage" value="8000" />
+            <property name="EconomicValue" value="90" />
+            <property class="RepairItems">
+                <property name="resourceCement" value="12" />
+                <property name="resourceForgedIron" value="6" />
+            </property>
+        </block>
+
+        <block name="edBlockHighDensityConcrete">
+            <property name="Extends" value="concreteBlock" />
+            <property name="CustomIcon" value="concreteBlock" />
+            <property name="DescriptionKey" value="edBlockHighDensityConcreteDesc" />
+            <property name="MaxDamage" value="14000" />
+            <property name="EconomicValue" value="180" />
+            <property class="RepairItems">
+                <property name="resourceCement" value="20" />
+                <property name="edResourceFlux" value="4" />
+            </property>
+        </block>
+
+    </append>
+
+
+    <!-- SAPPER - emplacements and capstone  (edRecipeEmplacements,
+         edRecipeFortificationTier3) -->
+    <append xpath="/blocks">
+
+        <block name="edBlockIronSpikes">
+            <property name="Extends" value="spikesWoodBlock" />
+            <property name="CustomIcon" value="spikesWoodBlock" />
+            <property name="DescriptionKey" value="edBlockIronSpikesDesc" />
+            <property name="MaxDamage" value="1200" />
+            <property name="EconomicValue" value="140" />
+            <property class="RepairItems">
+                <property name="resourceForgedIron" value="10" />
+            </property>
+        </block>
+
+        <!-- Blocks movement without blocking line of sight. The Sapper's job is
+             deciding where the horde walks, and this is how you say it. -->
+        <block name="edBlockBarricade">
+            <property name="Extends" value="spikesWoodBlock" />
+            <property name="CustomIcon" value="spikesWoodBlock" />
+            <property name="DescriptionKey" value="edBlockBarricadeDesc" />
+            <property name="MaxDamage" value="2400" />
+            <property name="EconomicValue" value="220" />
+            <property class="RepairItems">
+                <property name="resourceForgedIron" value="16" />
+            </property>
+        </block>
+
+        <!-- Capstone fortification. The only thing in the mod that meaningfully
+             slows a Grinder down, and even then only slows it. -->
+        <block name="edBlockCompositeBulwark">
+            <property name="Extends" value="steelBlock" />
+            <property name="CustomIcon" value="steelBlock" />
+            <property name="DescriptionKey" value="edBlockCompositeBulwarkDesc" />
+            <property name="MaxDamage" value="26000" />
+            <property name="EconomicValue" value="900" />
+            <property class="RepairItems">
+                <property name="edResourceCompositePlate" value="4" />
+                <property name="edResourceHardenedSteel" value="6" />
+            </property>
+        </block>
+
+    </append>
+
+
+    <!-- MARSHAL - emplaced guns  (edRecipeTurrets)
+
+         NOTE: V3.2 removed the vanilla auto-turret, so "Emplaced Guns" is built on
+         fixed trap emplacements rather than robotic turrets. That is a better fit
+         for the Calling anyway - the Marshal holds a position, they do not automate
+         it - but it is worth knowing the reason it went this way. -->
+    <append xpath="/blocks">
+
+        <block name="edBlockHeavyDartTrap">
+            <property name="Extends" value="dartTrap" />
+            <property name="CustomIcon" value="dartTrap" />
+            <property name="DescriptionKey" value="edBlockHeavyDartTrapDesc" />
+            <property name="MaxDamage" value="1800" />
+            <property name="EconomicValue" value="1200" />
+            <property class="RepairItems">
+                <property name="edResourcePrecisionParts" value="2" />
+                <property name="resourceForgedSteel" value="10" />
+            </property>
+        </block>
+
+        <block name="edBlockAutoBladeTrap">
+            <property name="Extends" value="bladeTrap" />
+            <property name="CustomIcon" value="bladeTrap" />
+            <property name="DescriptionKey" value="edBlockAutoBladeTrapDesc" />
+            <property name="MaxDamage" value="2200" />
+            <property name="EconomicValue" value="1600" />
+            <property class="RepairItems">
+                <property name="edResourcePrecisionParts" value="3" />
+                <property name="edResourceHardenedSteel" value="4" />
+            </property>
+        </block>
+
+    </append>
+
+
+    <!-- TRAPPER - snares  (edRecipeSnares) -->
+    <append xpath="/blocks">
+
+        <block name="edBlockSnare">
+            <property name="Extends" value="spikesWoodBlock" />
+            <property name="CustomIcon" value="spikesWoodBlock" />
+            <property name="DescriptionKey" value="edBlockSnareDesc" />
+            <property name="MaxDamage" value="400" />
+            <property name="EconomicValue" value="60" />
+            <property class="RepairItems">
+                <property name="resourceWood" value="8" />
+                <property name="resourceCloth" value="4" />
+            </property>
+        </block>
+
+        <block name="edBlockDeadfall">
+            <property name="Extends" value="spikesWoodBlock" />
+            <property name="CustomIcon" value="spikesWoodBlock" />
+            <property name="DescriptionKey" value="edBlockDeadfallDesc" />
+            <property name="MaxDamage" value="900" />
+            <property name="EconomicValue" value="130" />
+            <property class="RepairItems">
+                <property name="resourceWood" value="16" />
+                <property name="resourceStone" value="12" />
+            </property>
+        </block>
+
+    </append>
+
+
+    <!-- APOTHECARY - synthesis lab  (edRecipeReagentBenchT2) -->
+    <append xpath="/blocks">
+
+        <block name="edBlockSynthesisLab">
+            <property name="Extends" value="chemistryStation" />
+            <property name="CreativeMode" value="Player" />
+            <property name="CustomIcon" value="chemistryStation" />
+            <property name="DescriptionKey" value="edBlockSynthesisLabDesc" />
+            <property name="CraftingAreaRecipes" value="edSynthesisLab" />
+            <property name="EconomicValue" value="9000" />
+            <property class="RepairItems">
+                <property name="edResourcePrecisionParts" value="6" />
+                <property name="edResourcePolymer" value="20" />
+            </property>
+        </block>
+
+    </append>
+
+</configs>

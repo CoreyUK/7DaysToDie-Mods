@@ -1,0 +1,122 @@
+The Eighth Day and all other mods in this repository
+Copyright (c) 2026 Corey Jenkins ("CoreyUK" / CUKServers). All rights reserved.
+
+================================================================================
+PROPRIETARY LICENCE — ALL RIGHTS RESERVED
+================================================================================
+
+This software and its accompanying files, documentation, configuration, text and
+design materials (collectively, "the Work") are the exclusive property of the
+copyright holder. The Work is made publicly viewable for the convenience of
+players and server operators. It is NOT open source, and public visibility does
+not place it in the public domain or grant any licence beyond the limited
+permissions set out below.
+
+
+1. PERMITTED USE
+
+   You are granted a personal, non-exclusive, non-transferable, revocable
+   licence to:
+
+   a) Download and install the Work for personal use with a legally obtained
+      copy of 7 Days to Die.
+
+   b) Install and run the Work on a game server you own or administer,
+      including a server that accepts public players, and including a server
+      operated on a paid or donation-supported basis, provided the Work itself
+      is not sold, licensed, paywalled or offered as a paid product or
+      subscription benefit.
+
+   c) Make private modifications to your own installed copy for your own use
+      or for use on a server you administer. Such modifications may not be
+      distributed to any third party.
+
+   d) Quote short excerpts of the Work for the purpose of commentary, review,
+      tutorials, bug reports or technical discussion, with attribution.
+
+
+2. PROHIBITED WITHOUT PRIOR WRITTEN CONSENT
+
+   All rights not expressly granted above are reserved. In particular, you may
+   NOT, without the prior written consent of the copyright holder:
+
+   a) Redistribute, republish, mirror, reupload or otherwise make the Work, or
+      any part of it, available for download by any third party. This includes
+      mod sites, file hosts, launchers, repositories, Discord servers and
+      hosting-provider one-click mod catalogues.
+
+   b) Create, publish or distribute derivative works, forks, ports, reskins,
+      translations, patches, add-ons or compatibility layers derived from the
+      Work.
+
+   c) Include the Work, in whole or in part, in any compilation, modpack,
+      overhaul, server package or bundle.
+
+   d) Sell, licence, rent, or otherwise commercially exploit the Work, or make
+      access to the Work a paid or reward-gated benefit of any kind.
+
+   e) Copy, extract or reuse any portion of the Work — including XML, code,
+      configuration values, balance data, item and enemy definitions, names or
+      written text — in any other project.
+
+   f) Remove, obscure or alter any copyright notice, authorship attribution or
+      this licence.
+
+   Consent under this section must be given in writing by the copyright holder
+   and is specific to the request granted. Consent given once does not imply
+   consent for any other use, party or occasion, and may be withdrawn.
+
+
+3. CONTRIBUTIONS
+
+   Contributions submitted to this repository (by pull request or otherwise)
+   are offered voluntarily. By submitting a contribution you grant the
+   copyright holder a perpetual, irrevocable, worldwide, royalty-free licence
+   to use, modify, relicense and distribute that contribution as part of the
+   Work. You confirm the contribution is your own original work and that you
+   have the right to grant this licence.
+
+
+4. GITHUB PLATFORM NOTICE
+
+   This repository is hosted publicly on GitHub. GitHub's Terms of Service
+   grant all GitHub users the ability to view and fork public repositories
+   through GitHub's own interface, and that platform-level permission operates
+   independently of this licence. Such a fork is permitted only as a function
+   of the GitHub platform. It does not grant any right under this licence to
+   redistribute the Work outside GitHub, to publish a derivative work, or to
+   use the Work in any manner prohibited by section 2.
+
+   To remove even that platform permission, the repository must be made
+   private.
+
+
+5. TERMINATION
+
+   This licence terminates automatically and immediately if you breach any of
+   its terms. On termination you must cease all use of the Work and destroy all
+   copies in your possession or control.
+
+
+6. NO WARRANTY
+
+   THE WORK IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+   IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+   FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+   COPYRIGHT HOLDER BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY,
+   WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR
+   IN CONNECTION WITH THE WORK OR THE USE OR OTHER DEALINGS IN THE WORK.
+
+
+7. RELATIONSHIP TO THE BASE GAME
+
+   7 Days to Die is the property of The Fun Pimps Entertainment LLC. This Work
+   is an unofficial, unaffiliated modification. No claim is made to any
+   intellectual property of The Fun Pimps, and this licence applies solely to
+   the original material authored by the copyright holder.
+
+
+8. PERMISSION REQUESTS
+
+   Requests for permission under section 2 should be directed to the copyright
+   holder via https://discord.cukservers.net or https://cukservers.net.

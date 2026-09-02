@@ -1,0 +1,252 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+    THE EIGHTH DAY - buffs.xml
+    ==========================
+    Three systems live here:
+      1. Enemy-applied effects (toxic cloud, Choir aura)
+      2. The Attrition pillar - four-stage infection
+      3. The Turning announcement layer (SCAFFOLDED, INERT - see VERIFY-1)
+
+    VERIFY-8 (docs/VERIFICATION.md): confirm every passive_effect / CVarName referenced
+    below against V3.2's Data/Config/buffs.xml.
+-->
+<configs>
+
+    <!-- ==========================================================================
+         1. ENEMY-APPLIED EFFECTS
+         ========================================================================== -->
+
+    <append xpath="/buffs">
+
+        <!-- Bloater rupture. Lingers ~20s, stacks, punishes fighting in your own
+             hallway. The counterplay is spacing, not gear. -->
+        <buff name="edBuffToxicCloud" name_key="edBuffToxicCloudName"
+              description_key="edBuffToxicCloudDesc" icon="ui_game_symbol_zombie_infection"
+              icon_color="150,220,120">
+            <stack_type value="duration" />
+            <duration value="20" />
+            <effect_group name="edToxicCloudEffects">
+                <passive_effect name="HealthChangeOT" operation="base_add" value="-2.5" />
+                <passive_effect name="StaminaChangeOT" operation="base_add" value="-1.5" />
+                <passive_effect name="RunSpeed" operation="perc_add" value="-0.15" />
+            </effect_group>
+        </buff>
+
+        <!-- Choir aura. Short duration so it drops the moment the Choir dies -
+             that IS the counterplay, and it must stay short for the mechanic to read. -->
+        <buff name="edBuffChoirSong" name_key="edBuffChoirSongName"
+              description_key="edBuffChoirSongDesc" icon="ui_game_symbol_fist"
+              icon_color="200,120,220" hidden="false">
+            <stack_type value="replace" />
+            <duration value="4" />
+            <effect_group name="edChoirSongEffects">
+                <passive_effect name="EntityDamage" operation="perc_add" value="0.35" />
+                <passive_effect name="RunSpeed" operation="perc_add" value="0.2" />
+                <passive_effect name="HealthChangeOT" operation="base_add" value="3" />
+            </effect_group>
+        </buff>
+
+    </append>
+
+
+    <!-- ==========================================================================
+         2. ATTRITION - staged infection
+
+         Damage should have a memory. Four stages, each with its own symptom set
+         and its own cure tier. Stage 1 is a cough. Stage 4 is not survivable with
+         honey and a nap - it needs an Apothecary, which is how one player's
+         Calling becomes the group's lifeline.
+
+         Progression is one-way without treatment: 1 -> 2 -> 3 -> 4 -> death.
+         Each stage advances after its duration expires untreated.
+         ========================================================================== -->
+
+    <append xpath="/buffs">
+
+        <!-- STAGE 1 - a cough and a stamina tax. Curable with anything. -->
+        <buff name="edBuffInfection1" name_key="edBuffInfection1Name"
+              description_key="edBuffInfection1Desc" icon="ui_game_symbol_zombie_infection"
+              icon_color="220,220,120" remove_on_death="true">
+            <stack_type value="ignore" />
+            <duration value="1800" />
+            <effect_group name="edInfection1Effects">
+                <passive_effect name="StaminaChangeOT" operation="base_add" value="-0.4" />
+                <passive_effect name="StaminaLoss" operation="perc_add" value="0.1" />
+            </effect_group>
+            <effect_group name="edInfection1Advance">
+                <triggered_effect trigger="onSelfBuffFinish" action="AddBuff" buff="edBuffInfection2" />
+            </effect_group>
+        </buff>
+
+        <!-- STAGE 2 - it is now costing you fights. Tincture or better. -->
+        <buff name="edBuffInfection2" name_key="edBuffInfection2Name"
+              description_key="edBuffInfection2Desc" icon="ui_game_symbol_zombie_infection"
+              icon_color="230,170,90" remove_on_death="true">
+            <stack_type value="ignore" />
+            <duration value="1800" />
+            <effect_group name="edInfection2Effects">
+                <passive_effect name="StaminaChangeOT" operation="base_add" value="-1.0" />
+                <passive_effect name="StaminaLoss" operation="perc_add" value="0.25" />
+                <passive_effect name="MaxStamina" operation="perc_add" value="-0.15" />
+            </effect_group>
+            <effect_group name="edInfection2Advance">
+                <triggered_effect trigger="onSelfBuffFinish" action="AddBuff" buff="edBuffInfection3" />
+            </effect_group>
+        </buff>
+
+        <!-- STAGE 3 - you are now a liability to your group. Antibiotic or worse. -->
+        <buff name="edBuffInfection3" name_key="edBuffInfection3Name"
+              description_key="edBuffInfection3Desc" icon="ui_game_symbol_zombie_infection"
+              icon_color="230,110,60" remove_on_death="true">
+            <stack_type value="ignore" />
+            <duration value="1800" />
+            <effect_group name="edInfection3Effects">
+                <passive_effect name="StaminaChangeOT" operation="base_add" value="-2.0" />
+                <passive_effect name="MaxStamina" operation="perc_add" value="-0.3" />
+                <passive_effect name="MaxHealth" operation="perc_add" value="-0.2" />
+                <passive_effect name="RunSpeed" operation="perc_add" value="-0.12" />
+            </effect_group>
+            <effect_group name="edInfection3Advance">
+                <triggered_effect trigger="onSelfBuffFinish" action="AddBuff" buff="edBuffInfection4" />
+            </effect_group>
+        </buff>
+
+        <!-- STAGE 4 - terminal without an Apothecary serum. This is the stage the
+             whole Calling exists to answer. -->
+        <buff name="edBuffInfection4" name_key="edBuffInfection4Name"
+              description_key="edBuffInfection4Desc" icon="ui_game_symbol_zombie_infection"
+              icon_color="220,60,60" remove_on_death="true">
+            <stack_type value="ignore" />
+            <duration value="1200" />
+            <effect_group name="edInfection4Effects">
+                <passive_effect name="HealthChangeOT" operation="base_add" value="-1.0" />
+                <passive_effect name="StaminaChangeOT" operation="base_add" value="-3.0" />
+                <passive_effect name="MaxStamina" operation="perc_add" value="-0.5" />
+                <passive_effect name="MaxHealth" operation="perc_add" value="-0.4" />
+                <passive_effect name="RunSpeed" operation="perc_add" value="-0.25" />
+            </effect_group>
+        </buff>
+
+    </append>
+
+
+    <!-- ==========================================================================
+         3. THE TURNING - announcement layer
+
+         *** SCAFFOLDED AND INERT. THIS IS VERIFY-1. ***
+
+         The MECHANIC of the Turning is carried entirely by gamestages.xml and does
+         not depend on anything below. What is missing is the FELT moment: the dawn
+         message that makes escalation read as the world doing something to you
+         rather than a slider moving.
+
+         To finish it, confirm against V3.2's Data/Config/buffs.xml how to express
+         "it is dawn AND last night was a horde night", then uncomment the trigger
+         block and wire it to the cycle read below.
+
+         Deliberate design split: the part that must not break is on vanilla rails,
+         and the risk lives in the part that is cosmetic.
+         ========================================================================== -->
+
+    <append xpath="/buffs">
+
+        <!-- Cycle bookkeeping. Holds the player's current Cycle for display and for
+             journal-entry selection. Written by the announcement trigger once
+             VERIFY-1 is resolved; harmless and inert until then. -->
+        <buff name="edBuffCycleTracker" hidden="true" remove_on_death="false"
+              icon="ui_game_symbol_campfire">
+            <stack_type value="ignore" />
+            <duration value="0" />
+            <effect_group name="edCycleInit">
+                <triggered_effect trigger="onSelfBuffStart" action="ModifyCVar"
+                                  cvar="edCycle" operation="setvalue" value="0" />
+            </effect_group>
+
+            <!-- EIGHTHDAY VERIFY-1 - enable once the dawn/blood-moon requirement name
+                 is confirmed. Until then the mod is fully playable without it; you
+                 lose the drama, not the escalation.
+
+            <effect_group name="edTurningDetect">
+                <requirement name="REPLACE_WITH_VERIFIED_BLOODMOON_DAWN_REQUIREMENT" />
+                <triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar"
+                                  cvar="edCycle" operation="add" value="1" />
+                <triggered_effect trigger="onSelfBuffUpdate" action="AddBuff"
+                                  buff="edBuffTurningAnnounce" />
+            </effect_group>
+            -->
+        </buff>
+
+        <!-- The dawn message itself. Fires once per Turning, shows the journal entry
+             for the cycle just entered. -->
+        <buff name="edBuffTurningAnnounce" name_key="edBuffTurningName"
+              description_key="edBuffTurningDesc" icon="ui_game_symbol_campfire"
+              icon_color="220,140,80">
+            <stack_type value="replace" />
+            <duration value="12" />
+            <effect_group name="edTurningAnnounceEffects">
+                <display_value name="edCycleDisplay" value="edCycle" />
+            </effect_group>
+        </buff>
+
+    </append>
+
+
+    <!-- ==========================================================================
+         4. APOTHECARY STIMULANTS
+
+         Both carry a real cost on the way down. A stimulant that is strictly good
+         is just a stat you forgot to build in, so these are decisions rather than
+         buttons - you take one knowing what the next two minutes look like.
+         ========================================================================== -->
+
+    <append xpath="/buffs">
+
+        <buff name="edBuffCombatStim" name_key="edBuffCombatStimName"
+              description_key="edBuffCombatStimDesc" icon="ui_game_symbol_fist"
+              icon_color="220,90,90">
+            <stack_type value="replace" />
+            <duration value="120" />
+            <effect_group name="edCombatStimEffects">
+                <passive_effect name="EntityDamage" operation="perc_add" value="0.25" />
+                <passive_effect name="StaminaLoss" operation="perc_add" value="-0.3" />
+                <passive_effect name="RunSpeed" operation="perc_add" value="0.12" />
+            </effect_group>
+            <!-- The comedown. Two minutes of being very good followed by two
+                 minutes of being worse than you started. -->
+            <effect_group name="edCombatStimCrash">
+                <triggered_effect trigger="onSelfBuffFinish" action="AddBuff"
+                                  buff="edBuffStimCrash" />
+            </effect_group>
+        </buff>
+
+        <buff name="edBuffSteadyHand" name_key="edBuffSteadyHandName"
+              description_key="edBuffSteadyHandDesc" icon="ui_game_symbol_assault_rifle"
+              icon_color="110,180,220">
+            <stack_type value="replace" />
+            <duration value="120" />
+            <effect_group name="edSteadyHandEffects">
+                <passive_effect name="WeaponHandling" operation="perc_add" value="0.35" />
+                <passive_effect name="ReloadSpeedMultiplier" operation="perc_add" value="-0.2" />
+                <passive_effect name="RunSpeed" operation="perc_add" value="-0.1" />
+            </effect_group>
+            <effect_group name="edSteadyHandCrash">
+                <triggered_effect trigger="onSelfBuffFinish" action="AddBuff"
+                                  buff="edBuffStimCrash" />
+            </effect_group>
+        </buff>
+
+        <buff name="edBuffStimCrash" name_key="edBuffStimCrashName"
+              description_key="edBuffStimCrashDesc" icon="ui_game_symbol_zombie_infection"
+              icon_color="150,150,150">
+            <stack_type value="replace" />
+            <duration value="120" />
+            <effect_group name="edStimCrashEffects">
+                <passive_effect name="StaminaChangeOT" operation="base_add" value="-1.5" />
+                <passive_effect name="EntityDamage" operation="perc_add" value="-0.1" />
+                <passive_effect name="RunSpeed" operation="perc_add" value="-0.1" />
+            </effect_group>
+        </buff>
+
+    </append>
+
+</configs>

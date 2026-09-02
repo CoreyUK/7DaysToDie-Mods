@@ -1,0 +1,482 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+    THE EIGHTH DAY - progression.xml
+    ================================
+    The six Callings, plus the stretched progression curve.
+
+    HOW THE GATE WORKS
+    ==================
+    Every perk in a Calling branch carries a CVarCompare requirement on that Calling's
+    Mark (edMarkIronmonger, edMarkTrapper, ...). The branch is therefore VISIBLE but
+    UNSPENDABLE until the Mark is earned. That keeps the whole Calling system inside
+    vanilla progression plumbing - no custom UI, no assembly.
+
+    Marks are set by completing a Proving quest chain (0.2). In 0.1 they are set by
+    consuming a Writ item - see items.xml.
+
+    VERIFY-6 (docs/VERIFICATION.md): confirm the CVarCompare requirement element and
+    every passive_effect name below against V3.2's Data/Config/progression.xml.
+
+    BALANCE INTENT
+    ==============
+    Perk points are scarce by design. Filling two branches is a full playthrough's
+    worth of points; filling all six is not intended to be reachable. Every capstone
+    benefits people OTHER than the holder, which makes the last point in a branch a
+    social decision rather than a stat bump.
+-->
+<configs>
+
+    <!-- ==========================================================================
+         THE STRETCHED CURVE
+
+         Vanilla's curve tops out and then flattens. Raising the cap and flattening
+         the XP rate means you are never "done" perking, so you are always choosing.
+         ========================================================================== -->
+
+    <set xpath="/progression/@max_level">300</set>
+    <set xpath="/progression/@exp_to_level">12000</set>
+    <set xpath="/progression/@experience_multiplier">1.075</set>
+
+
+    <!-- ==========================================================================
+         IRONMONGER - attStrength
+         "The one who makes the things that make things."
+
+         Owns the metal chain end to end. Nobody else can produce hardened steel or
+         carbide, which makes the Ironmonger the bottleneck on every other Calling's
+         late-game gear. Deliberately powerful, deliberately dependent.
+         ========================================================================== -->
+
+    <append xpath="/progression/perks">
+
+        <perk name="edPerkBloomBillet" parent="attStrength" max_level="5" base_skill_point_cost="1"
+              name_key="edPerkBloomBilletName" desc_key="edPerkBloomBilletDesc"
+              icon="ui_game_symbol_forge">
+            <requirement name="CVarCompare" cvar="edMarkIronmonger" operation="Equals" value="1" />
+            <effect_group>
+                <passive_effect name="CraftingTime" operation="perc_add" level="1,5"
+                                value="-0.1,-0.4" tags="edSmelting" />
+                <passive_effect name="HarvestCount" operation="perc_add" level="1,5"
+                                value="0.15,0.6" tags="oreHarvest" />
+            </effect_group>
+        </perk>
+
+        <perk name="edPerkAlloying" parent="attStrength" max_level="5" base_skill_point_cost="1"
+              name_key="edPerkAlloyingName" desc_key="edPerkAlloyingDesc"
+              icon="ui_game_symbol_forge">
+            <requirement name="CVarCompare" cvar="edMarkIronmonger" operation="Equals" value="1" />
+            <effect_group>
+                <passive_effect name="RecipeUnlock" operation="base_set" level="2" value="1"
+                                tags="edRecipeHardenedSteel" />
+                <passive_effect name="RecipeUnlock" operation="base_set" level="4" value="1"
+                                tags="edRecipeCarbide" />
+            </effect_group>
+        </perk>
+
+        <perk name="edPerkTempering" parent="attStrength" max_level="4" base_skill_point_cost="1"
+              name_key="edPerkTemperingName" desc_key="edPerkTemperingDesc"
+              icon="ui_game_symbol_smithing">
+            <requirement name="CVarCompare" cvar="edMarkIronmonger" operation="Equals" value="1" />
+            <effect_group>
+                <passive_effect name="CraftingQualityBonus" operation="base_add" level="1,4"
+                                value="1,4" tags="edMetalwork" />
+            </effect_group>
+        </perk>
+
+        <perk name="edPerkCasings" parent="attStrength" max_level="4" base_skill_point_cost="1"
+              name_key="edPerkCasingsName" desc_key="edPerkCasingsDesc"
+              icon="ui_game_symbol_bullets">
+            <requirement name="CVarCompare" cvar="edMarkIronmonger" operation="Equals" value="1" />
+            <effect_group>
+                <passive_effect name="CraftingOutputCount" operation="perc_add" level="1,4"
+                                value="0.2,0.9" tags="edAmmoCrafting" />
+            </effect_group>
+        </perk>
+
+        <perk name="edPerkMasterForge" parent="attStrength" max_level="1" base_skill_point_cost="5"
+              name_key="edPerkMasterForgeName" desc_key="edPerkMasterForgeDesc"
+              icon="ui_game_symbol_forge">
+            <requirement name="CVarCompare" cvar="edMarkIronmonger" operation="Equals" value="1" />
+            <requirement name="ProgressionLevel" progression_name="edPerkAlloying"
+                         operation="GTE" value="5" />
+            <effect_group>
+                <passive_effect name="CraftingTime" operation="perc_add" level="1"
+                                value="-0.35" tags="edSmelting" />
+                <passive_effect name="RecipeUnlock" operation="base_set" level="1" value="1"
+                                tags="edRecipeCarbideExclusive" />
+            </effect_group>
+        </perk>
+
+    </append>
+
+
+    <!-- ==========================================================================
+         SAPPER - attStrength
+         "Shapes the ground the fight happens on."
+
+         Decides where the horde goes and what it walks into. Owns the entire
+         structural tier. Slow, material-hungry, and enormously powerful in the
+         hands of someone who plans a week ahead.
+         ========================================================================== -->
+
+    <append xpath="/progression/perks">
+
+        <perk name="edPerkEarthworks" parent="attStrength" max_level="5" base_skill_point_cost="1"
+              name_key="edPerkEarthworksName" desc_key="edPerkEarthworksDesc"
+              icon="ui_game_symbol_shovel">
+            <requirement name="CVarCompare" cvar="edMarkSapper" operation="Equals" value="1" />
+            <effect_group>
+                <passive_effect name="BlockDamage" operation="perc_add" level="1,5"
+                                value="0.15,0.75" tags="earth" />
+                <passive_effect name="StaminaLoss" operation="perc_add" level="1,5"
+                                value="-0.1,-0.4" tags="digging" />
+            </effect_group>
+        </perk>
+
+        <perk name="edPerkFormwork" parent="attStrength" max_level="5" base_skill_point_cost="1"
+              name_key="edPerkFormworkName" desc_key="edPerkFormworkDesc"
+              icon="ui_game_symbol_concrete">
+            <requirement name="CVarCompare" cvar="edMarkSapper" operation="Equals" value="1" />
+            <effect_group>
+                <passive_effect name="RecipeUnlock" operation="base_set" level="2" value="1"
+                                tags="edRecipeReinforcedConcrete" />
+                <passive_effect name="CraftingTime" operation="perc_add" level="1,5"
+                                value="-0.1,-0.45" tags="edStructural" />
+            </effect_group>
+        </perk>
+
+        <perk name="edPerkDemolitions" parent="attStrength" max_level="4" base_skill_point_cost="1"
+              name_key="edPerkDemolitionsName" desc_key="edPerkDemolitionsDesc"
+              icon="ui_game_symbol_dynamite">
+            <requirement name="CVarCompare" cvar="edMarkSapper" operation="Equals" value="1" />
+            <effect_group>
+                <passive_effect name="EntityDamage" operation="perc_add" level="1,4"
+                                value="0.15,0.6" tags="explosive" />
+                <passive_effect name="RecipeUnlock" operation="base_set" level="3" value="1"
+                                tags="edRecipeShapedCharge" />
+            </effect_group>
+        </perk>
+
+        <perk name="edPerkEmplacements" parent="attStrength" max_level="4" base_skill_point_cost="1"
+              name_key="edPerkEmplacementsName" desc_key="edPerkEmplacementsDesc"
+              icon="ui_game_symbol_spike">
+            <requirement name="CVarCompare" cvar="edMarkSapper" operation="Equals" value="1" />
+            <effect_group>
+                <passive_effect name="RecipeUnlock" operation="base_set" level="1" value="1"
+                                tags="edRecipeEmplacements" />
+                <passive_effect name="BlockDamage" operation="perc_add" level="1,4"
+                                value="0.2,0.8" tags="edTrapBlock" />
+            </effect_group>
+        </perk>
+
+        <perk name="edPerkSiegeEngineer" parent="attStrength" max_level="1" base_skill_point_cost="5"
+              name_key="edPerkSiegeEngineerName" desc_key="edPerkSiegeEngineerDesc"
+              icon="ui_game_symbol_concrete">
+            <requirement name="CVarCompare" cvar="edMarkSapper" operation="Equals" value="1" />
+            <requirement name="ProgressionLevel" progression_name="edPerkFormwork"
+                         operation="GTE" value="5" />
+            <effect_group>
+                <passive_effect name="RepairAmount" operation="perc_add" level="1" value="1.0" />
+                <passive_effect name="RecipeUnlock" operation="base_set" level="1" value="1"
+                                tags="edRecipeFortificationTier3" />
+            </effect_group>
+        </perk>
+
+    </append>
+
+
+    <!-- ==========================================================================
+         TRAPPER - attAgility
+         "Feeds the group, works alone, hates noise."
+
+         The only Calling that makes the wilderness a resource rather than a commute.
+         The reason nobody is eating rotten meat on day 30.
+         ========================================================================== -->
+
+    <append xpath="/progression/perks">
+
+        <perk name="edPerkQuietFoot" parent="attAgility" max_level="5" base_skill_point_cost="1"
+              name_key="edPerkQuietFootName" desc_key="edPerkQuietFootDesc"
+              icon="ui_game_symbol_stealth">
+            <requirement name="CVarCompare" cvar="edMarkTrapper" operation="Equals" value="1" />
+            <effect_group>
+                <passive_effect name="NoiseVolume" operation="perc_add" level="1,5"
+                                value="-0.12,-0.5" />
+                <passive_effect name="LightMultiplier" operation="perc_add" level="1,5"
+                                value="-0.1,-0.4" />
+            </effect_group>
+        </perk>
+
+        <perk name="edPerkFieldDressing" parent="attAgility" max_level="5" base_skill_point_cost="1"
+              name_key="edPerkFieldDressingName" desc_key="edPerkFieldDressingDesc"
+              icon="ui_game_symbol_meat">
+            <requirement name="CVarCompare" cvar="edMarkTrapper" operation="Equals" value="1" />
+            <effect_group>
+                <passive_effect name="HarvestCount" operation="perc_add" level="1,5"
+                                value="0.2,0.9" tags="butcherHarvest" />
+                <passive_effect name="RecipeUnlock" operation="base_set" level="3" value="1"
+                                tags="edRecipePreservation" />
+            </effect_group>
+        </perk>
+
+        <perk name="edPerkSnares" parent="attAgility" max_level="4" base_skill_point_cost="1"
+              name_key="edPerkSnaresName" desc_key="edPerkSnaresDesc"
+              icon="ui_game_symbol_spike">
+            <requirement name="CVarCompare" cvar="edMarkTrapper" operation="Equals" value="1" />
+            <effect_group>
+                <passive_effect name="RecipeUnlock" operation="base_set" level="1" value="1"
+                                tags="edRecipeSnares" />
+                <passive_effect name="BlockDamage" operation="perc_add" level="1,4"
+                                value="0.2,0.8" tags="edSnare" />
+            </effect_group>
+        </perk>
+
+        <perk name="edPerkBowyer" parent="attAgility" max_level="4" base_skill_point_cost="1"
+              name_key="edPerkBowyerName" desc_key="edPerkBowyerDesc"
+              icon="ui_game_symbol_bow">
+            <requirement name="CVarCompare" cvar="edMarkTrapper" operation="Equals" value="1" />
+            <effect_group>
+                <passive_effect name="EntityDamage" operation="perc_add" level="1,4"
+                                value="0.12,0.5" tags="archery" />
+                <passive_effect name="RecipeUnlock" operation="base_set" level="3" value="1"
+                                tags="edRecipeAdvancedArrows" />
+            </effect_group>
+        </perk>
+
+        <perk name="edPerkGhost" parent="attAgility" max_level="1" base_skill_point_cost="5"
+              name_key="edPerkGhostName" desc_key="edPerkGhostDesc"
+              icon="ui_game_symbol_stealth">
+            <requirement name="CVarCompare" cvar="edMarkTrapper" operation="Equals" value="1" />
+            <requirement name="ProgressionLevel" progression_name="edPerkQuietFoot"
+                         operation="GTE" value="5" />
+            <effect_group>
+                <passive_effect name="NoiseVolume" operation="perc_add" level="1" value="-0.85" />
+            </effect_group>
+        </perk>
+
+    </append>
+
+
+    <!-- ==========================================================================
+         MARSHAL - attPerception
+         "Wins the fight the Sapper set up."
+
+         The most direct Calling, and deliberately the weakest alone. A Marshal
+         without an Ironmonger runs out of ammunition; a Marshal without a Sapper
+         fights in the open.
+         ========================================================================== -->
+
+    <append xpath="/progression/perks">
+
+        <perk name="edPerkMarksmanship" parent="attPerception" max_level="5" base_skill_point_cost="1"
+              name_key="edPerkMarksmanshipName" desc_key="edPerkMarksmanshipDesc"
+              icon="ui_game_symbol_assault_rifle">
+            <requirement name="CVarCompare" cvar="edMarkMarshal" operation="Equals" value="1" />
+            <effect_group>
+                <passive_effect name="EntityDamage" operation="perc_add" level="1,5"
+                                value="0.08,0.4" tags="gun" />
+                <passive_effect name="ReloadSpeedMultiplier" operation="perc_add" level="1,5"
+                                value="-0.08,-0.35" tags="gun" />
+            </effect_group>
+        </perk>
+
+        <perk name="edPerkPlateWeave" parent="attPerception" max_level="5" base_skill_point_cost="1"
+              name_key="edPerkPlateWeaveName" desc_key="edPerkPlateWeaveDesc"
+              icon="ui_game_symbol_armor">
+            <requirement name="CVarCompare" cvar="edMarkMarshal" operation="Equals" value="1" />
+            <effect_group>
+                <passive_effect name="RecipeUnlock" operation="base_set" level="2" value="1"
+                                tags="edRecipeCompositeArmor" />
+                <passive_effect name="PhysicalDamageResist" operation="base_add" level="1,5"
+                                value="1,5" />
+            </effect_group>
+        </perk>
+
+        <perk name="edPerkOrdnance" parent="attPerception" max_level="4" base_skill_point_cost="1"
+              name_key="edPerkOrdnanceName" desc_key="edPerkOrdnanceDesc"
+              icon="ui_game_symbol_rocket_launcher">
+            <requirement name="CVarCompare" cvar="edMarkMarshal" operation="Equals" value="1" />
+            <effect_group>
+                <passive_effect name="RecipeUnlock" operation="base_set" level="2" value="1"
+                                tags="edRecipeHeavyWeapons" />
+                <passive_effect name="EntityDamage" operation="perc_add" level="1,4"
+                                value="0.1,0.45" tags="edHeavyWeapon" />
+            </effect_group>
+        </perk>
+
+        <perk name="edPerkEmplacedGuns" parent="attPerception" max_level="4" base_skill_point_cost="1"
+              name_key="edPerkEmplacedGunsName" desc_key="edPerkEmplacedGunsDesc"
+              icon="ui_game_symbol_turret">
+            <requirement name="CVarCompare" cvar="edMarkMarshal" operation="Equals" value="1" />
+            <effect_group>
+                <passive_effect name="RecipeUnlock" operation="base_set" level="1" value="1"
+                                tags="edRecipeTurrets" />
+                <passive_effect name="EntityDamage" operation="perc_add" level="1,4"
+                                value="0.15,0.6" tags="edTurret" />
+            </effect_group>
+        </perk>
+
+        <perk name="edPerkCommand" parent="attPerception" max_level="1" base_skill_point_cost="5"
+              name_key="edPerkCommandName" desc_key="edPerkCommandDesc"
+              icon="ui_game_symbol_assault_rifle">
+            <requirement name="CVarCompare" cvar="edMarkMarshal" operation="Equals" value="1" />
+            <requirement name="ProgressionLevel" progression_name="edPerkMarksmanship"
+                         operation="GTE" value="5" />
+            <effect_group>
+                <passive_effect name="RecipeUnlock" operation="base_set" level="1" value="1"
+                                tags="edRecipeMarshalExclusive" />
+            </effect_group>
+        </perk>
+
+    </append>
+
+
+    <!-- ==========================================================================
+         APOTHECARY - attIntellect
+         "The reason anyone survives an infection."
+
+         In a mod where infection has four stages and stage 3+ needs real
+         antibiotics, this Calling is not optional on a server. It is the group's
+         lifeline, and the capstone is the only cure for stage 4.
+         ========================================================================== -->
+
+    <append xpath="/progression/perks">
+
+        <perk name="edPerkReagents" parent="attIntellect" max_level="5" base_skill_point_cost="1"
+              name_key="edPerkReagentsName" desc_key="edPerkReagentsDesc"
+              icon="ui_game_symbol_chemistry_set">
+            <requirement name="CVarCompare" cvar="edMarkApothecary" operation="Equals" value="1" />
+            <effect_group>
+                <passive_effect name="CraftingOutputCount" operation="perc_add" level="1,5"
+                                value="0.15,0.7" tags="edChemistry" />
+                <passive_effect name="RecipeUnlock" operation="base_set" level="3" value="1"
+                                tags="edRecipeReagentBenchT2" />
+            </effect_group>
+        </perk>
+
+        <perk name="edPerkAntisepsis" parent="attIntellect" max_level="5" base_skill_point_cost="1"
+              name_key="edPerkAntisepsisName" desc_key="edPerkAntisepsisDesc"
+              icon="ui_game_symbol_medical">
+            <requirement name="CVarCompare" cvar="edMarkApothecary" operation="Equals" value="1" />
+            <effect_group>
+                <passive_effect name="RecipeUnlock" operation="base_set" level="1" value="1"
+                                tags="edRecipeTincture" />
+                <passive_effect name="RecipeUnlock" operation="base_set" level="4" value="1"
+                                tags="edRecipeAntibiotic" />
+            </effect_group>
+        </perk>
+
+        <perk name="edPerkFieldMedic" parent="attIntellect" max_level="4" base_skill_point_cost="1"
+              name_key="edPerkFieldMedicName" desc_key="edPerkFieldMedicDesc"
+              icon="ui_game_symbol_medical">
+            <requirement name="CVarCompare" cvar="edMarkApothecary" operation="Equals" value="1" />
+            <effect_group>
+                <passive_effect name="HealthChangeOT" operation="perc_add" level="1,4"
+                                value="0.2,0.8" tags="edMedical" />
+                <passive_effect name="UseTime" operation="perc_add" level="1,4"
+                                value="-0.15,-0.6" tags="edMedical" />
+            </effect_group>
+        </perk>
+
+        <perk name="edPerkCompounds" parent="attIntellect" max_level="4" base_skill_point_cost="1"
+              name_key="edPerkCompoundsName" desc_key="edPerkCompoundsDesc"
+              icon="ui_game_symbol_chemistry_set">
+            <requirement name="CVarCompare" cvar="edMarkApothecary" operation="Equals" value="1" />
+            <effect_group>
+                <passive_effect name="RecipeUnlock" operation="base_set" level="1" value="1"
+                                tags="edRecipeStimulants" />
+                <passive_effect name="RecipeUnlock" operation="base_set" level="3" value="1"
+                                tags="edRecipeGasOrdnance" />
+            </effect_group>
+        </perk>
+
+        <perk name="edPerkPhysician" parent="attIntellect" max_level="1" base_skill_point_cost="5"
+              name_key="edPerkPhysicianName" desc_key="edPerkPhysicianDesc"
+              icon="ui_game_symbol_medical">
+            <requirement name="CVarCompare" cvar="edMarkApothecary" operation="Equals" value="1" />
+            <requirement name="ProgressionLevel" progression_name="edPerkAntisepsis"
+                         operation="GTE" value="5" />
+            <effect_group>
+                <passive_effect name="RecipeUnlock" operation="base_set" level="1" value="1"
+                                tags="edRecipeSerum" />
+            </effect_group>
+        </perk>
+
+    </append>
+
+
+    <!-- ==========================================================================
+         SCAVENGER - attIntellect
+         "Turns other people's ruins into your industry."
+
+         Produces nothing new; makes everything already out there worth more. Keeps
+         the server economy moving, and finds the Field Notes every other Calling's
+         late recipes depend on.
+         ========================================================================== -->
+
+    <append xpath="/progression/perks">
+
+        <perk name="edPerkWrecker" parent="attIntellect" max_level="5" base_skill_point_cost="1"
+              name_key="edPerkWreckerName" desc_key="edPerkWreckerDesc"
+              icon="ui_game_symbol_wrench">
+            <requirement name="CVarCompare" cvar="edMarkScavenger" operation="Equals" value="1" />
+            <effect_group>
+                <passive_effect name="HarvestCount" operation="perc_add" level="1,5"
+                                value="0.2,1.0" tags="salvageHarvest" />
+                <passive_effect name="BlockDamage" operation="perc_add" level="1,5"
+                                value="0.15,0.7" tags="salvaging" />
+            </effect_group>
+        </perk>
+
+        <perk name="edPerkSorting" parent="attIntellect" max_level="5" base_skill_point_cost="1"
+              name_key="edPerkSortingName" desc_key="edPerkSortingDesc"
+              icon="ui_game_symbol_loot">
+            <requirement name="CVarCompare" cvar="edMarkScavenger" operation="Equals" value="1" />
+            <effect_group>
+                <passive_effect name="LootStageBonus" operation="base_add" level="1,5"
+                                value="8,40" />
+                <passive_effect name="LootQuantity" operation="perc_add" level="1,5"
+                                value="0.05,0.25" />
+            </effect_group>
+        </perk>
+
+        <perk name="edPerkCircuits" parent="attIntellect" max_level="4" base_skill_point_cost="1"
+              name_key="edPerkCircuitsName" desc_key="edPerkCircuitsDesc"
+              icon="ui_game_symbol_electricity">
+            <requirement name="CVarCompare" cvar="edMarkScavenger" operation="Equals" value="1" />
+            <effect_group>
+                <passive_effect name="RecipeUnlock" operation="base_set" level="1" value="1"
+                                tags="edRecipeElectronics" />
+                <passive_effect name="CraftingTime" operation="perc_add" level="1,4"
+                                value="-0.12,-0.5" tags="edElectronics" />
+            </effect_group>
+        </perk>
+
+        <perk name="edPerkMotorPool" parent="attIntellect" max_level="4" base_skill_point_cost="1"
+              name_key="edPerkMotorPoolName" desc_key="edPerkMotorPoolDesc"
+              icon="ui_game_symbol_vehicle">
+            <requirement name="CVarCompare" cvar="edMarkScavenger" operation="Equals" value="1" />
+            <effect_group>
+                <passive_effect name="RecipeUnlock" operation="base_set" level="2" value="1"
+                                tags="edRecipeVehicles" />
+                <passive_effect name="VehicleFuelUse" operation="perc_add" level="1,4"
+                                value="-0.1,-0.4" />
+            </effect_group>
+        </perk>
+
+        <perk name="edPerkRagAndBone" parent="attIntellect" max_level="1" base_skill_point_cost="5"
+              name_key="edPerkRagAndBoneName" desc_key="edPerkRagAndBoneDesc"
+              icon="ui_game_symbol_loot">
+            <requirement name="CVarCompare" cvar="edMarkScavenger" operation="Equals" value="1" />
+            <requirement name="ProgressionLevel" progression_name="edPerkSorting"
+                         operation="GTE" value="5" />
+            <effect_group>
+                <passive_effect name="LootStageBonus" operation="base_add" level="1" value="30" />
+                <passive_effect name="RecipeUnlock" operation="base_set" level="1" value="1"
+                                tags="edRecipeSalvageExclusive" />
+            </effect_group>
+        </perk>
+
+    </append>
+
+</configs>
