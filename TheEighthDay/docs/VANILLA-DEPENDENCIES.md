@@ -23,7 +23,7 @@ which of these are load-breaking and which merely misbehave.
 | `resourceBone` | recipes.xml |
 | `resourceCement` | recipes.xml |
 | `resourceClayLump` | recipes.xml |
-| `resourceCloth` | recipes.xml |
+| `resourceCloth` | recipes.xml, traders.xml |
 | `resourceCoal` | recipes.xml |
 | `resourceCrushedSand` | recipes.xml |
 | `resourceElectricParts` | recipes.xml |
@@ -32,7 +32,7 @@ which of these are load-breaking and which merely misbehave.
 | `resourceForgedSteel` | recipes.xml |
 | `resourceGasCan` | recipes.xml |
 | `resourceGlue` | recipes.xml |
-| `resourceGunPowder` | recipes.xml |
+| `resourceGunPowder` | recipes.xml, traders.xml |
 | `resourceHerbalAntibiotics` | recipes.xml |
 | `resourceIronFragment` | recipes.xml |
 | `resourceMechanicalParts` | recipes.xml |

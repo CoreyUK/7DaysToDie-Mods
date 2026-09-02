@@ -3,6 +3,33 @@
 All notable changes to The Eighth Day.
 Format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
+## [0.6.0] — 2026-09-02
+
+Trader overhaul.
+
+### Fixed
+- **Nothing the mod added was ever purchasable.** Both trader groups were defined and
+  referenced by nothing — defining a `trader_item_group` does not put it on a shelf,
+  something has to stock it. Flux, reagent base, precision parts, compost and all four seeds
+  were unbuyable, which also meant **the farm could not be bootstrapped**: a seed recipe
+  needs a crop and a crop needs a seed, and the trader was the only thing breaking that
+  circle. `check-refs.py` had been treating trader groups as entry points; it now requires
+  a trader to stock them, so this cannot recur.
+
+### Added
+- **Stock follows the Turning**, delivering a `DESIGN.md` promise that was never
+  implemented. Three tiers, and the shift is the point: *Foundation* (seeds, compost, first
+  metal — you are building), *Industry* (parts, polymer, reagents, oil — you are scaling),
+  *Attrition* (medical stock, alcohol, powder, rations — you are not building any more, you
+  are staying alive). By Cycle 5 the shelf should stop offering you a workshop.
+- **The trader rule, enforced by the build.** The trader sells inputs and never a Calling's
+  output — a Calling whose product sits on a shelf is a Calling nobody needs.
+  `check-unlocks.py` now fails if any perk-gated item appears in trader stock. Verified by
+  deliberately injecting carbide into stock and confirming the build fails, then reverting.
+  41 perk-gated items, none purchasable. Field Notes are excluded on the same principle:
+  the research loop's premise is that you cannot buy past it.
+- Verification item 23 for the stocking path and tier gating.
+
 ## [0.5.1] — 2026-09-02
 
 ### Added

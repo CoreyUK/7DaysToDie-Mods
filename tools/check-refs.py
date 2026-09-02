@@ -149,6 +149,9 @@ class Modlet:
             # an <item> carrying a count is loot/trader stock, not a definition
             self.refs.append(("item", attr["name"], where, "loot/trader stock"))
 
+        if tag == "item_group" and "name" in attr:
+            self.refs.append(("tradergroup", attr["name"], where, "trader stock list"))
+
         if tag == "reward" and attr.get("id"):
             rtype = attr.get("type", "")
             if rtype == "Quest":
@@ -238,7 +241,6 @@ class Modlet:
             "block": "placeable by the player",
             "perk": "spendable in the skill tree",
             "quest": "offered by a trader",
-            "tradergroup": "trader stock",
         }
         for kind, names in sorted(self.defined.items()):
             if kind in ENTRY_POINTS:

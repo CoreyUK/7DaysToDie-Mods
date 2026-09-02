@@ -176,6 +176,17 @@ loud rather than silent.
   a **separate optional modlet** rather than folding it into the overhaul, so a server can
   drop it without touching anything else.
 
+### 23. Trader stocking and tier gating
+**Check:** `Data/Config/traders.xml`
+`Config/traders.xml` appends three stock groups to `/traders/trader_info/items`. Confirm:
+- that path reaches every trader, and `<item_group name= count= tier=>` is the right shape
+- **how vanilla tiers its own stock.** The `tier` attribute is the intended gate for making
+  stock follow the Turning. If V3.2 gates differently, all three tiers are simply available
+  from the start — more stock than intended, which is a balance problem, not a break.
+
+Note the previous failure this replaced: the groups existed and nothing stocked them, so
+every one was unbuyable. `check-refs.py` now treats an unstocked trader group as an orphan.
+
 ## Priority 2 — will load but behave wrong
 
 ### 5. `CustomIcon` names
