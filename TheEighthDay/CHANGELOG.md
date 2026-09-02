@@ -3,6 +3,25 @@
 All notable changes to The Eighth Day.
 Format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
+## [0.3.3] — 2026-09-02
+
+All six workstations modelled. Export-ready.
+
+### Added
+- **Machine shop, drafting table, reagent bench and synthesis lab models**, completing the
+  set. Each pair that previously shared a vanilla mesh now has a deliberately opposed
+  silhouette: heavy flat steel bench with a lathe and drill column vs a tilted drawing board
+  on a trestle; open wooden lab bench with a retort stand and glassware vs an enclosed steel
+  fume cabinet with a dark window, exhaust duct and gas bottles. Same pipeline, same 9k
+  budget, same 1 m footprint, icons rendered from the models.
+
+### Changed
+- `blocks.xml`: all six blocks drop `CustomIcon` for their atlas icons and carry a
+  commented `Meshfile` line awaiting the bundle.
+- Lab glass is modelled as opaque grimy glass. Transmission does not survive a diffuse bake
+  — it comes out near-black — and a year into the apocalypse that is what glass looks like
+  anyway.
+
 ## [0.3.2] — 2026-09-02
 
 First custom 3D assets.

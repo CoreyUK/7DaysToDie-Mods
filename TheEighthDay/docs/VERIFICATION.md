@@ -122,9 +122,10 @@ blocking for the Grinder specifically.
 
 ### 18. Custom mesh bundle and icon atlas pickup
 **Check:** in-game, after the Unity step in `docs/ART.md`
-- The two atlas icons (`UIAtlases/ItemIconAtlas/edBlockBloomery.png`, `…BlastFurnace.png`)
-  ship now, with those blocks' `CustomIcon` removed. Confirm the game picks them up from a
-  modlet atlas folder in V3.2 — if not, restore `CustomIcon value="forge"` on both.
+- All six workstation icons ship in `UIAtlases/ItemIconAtlas/`, with those blocks'
+  `CustomIcon` removed. Confirm the game picks them up from a modlet atlas folder in V3.2 —
+  if not, restore `CustomIcon` on each (`forge`, `workbench` or `chemistryStation` to match
+  its `Extends`).
 - Once `eighthday.unity3d` is built, uncomment the `Meshfile` lines in `blocks.xml` and
   confirm: the bundle was built on the **exact** Unity version the game runs (a mismatch
   fails silently), the prefab names inside match the `?name` suffix, the block sits on the

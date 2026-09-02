@@ -134,15 +134,26 @@ Per asset it writes:
 Every asset is normalised to a 1 m footprint with its origin at the base centre, which is
 where the game expects a block pivot.
 
-### Built so far
+### Built — all six workstations
 
-| Asset | Tris | Why it was first |
-|---|---|---|
-| `edBlockBloomery` | 9,000 | Both it and the blast furnace extended `forge` — identical in-world *and* in inventory |
-| `edBlockBlastFurnace` | 8,999 | Same. Deliberately nothing like the bloomery: square, brick, steel-framed |
+| Asset | Tris | Height | Silhouette rule |
+|---|---|---|---|
+| `edBlockBloomery` | 9,000 | 0.97 m | Round tapered clay on a fieldstone skirt |
+| `edBlockBlastFurnace` | 8,999 | 1.23 m | Square brick stack in a riveted steel frame |
+| `edBlockMachineShop` | 8,452 | 1.25 m | Long low steel bench, one tall drill column at the back |
+| `edBlockDraftingTable` | 1,640 | 1.36 m | One big tilted plane — the only non-flat top in the set |
+| `edBlockReagentBench` | 6,398 | 1.22 m | Open bench, a forest of small verticals, low backboard |
+| `edBlockSynthesisLab` | 9,000 | 1.18 m | One tall closed cabinet with hard industrial attachments |
 
-Remaining workstations — machine shop, reagent bench, drafting table, synthesis lab — are
-the same problem (two pairs sharing `workbench` and `chemistryStation`) and the same fix.
+Each pair that previously shared a vanilla mesh — bloomery/blast furnace on `forge`,
+machine shop/drafting table on `workbench`, reagent bench/synthesis lab on
+`chemistryStation` — now has deliberately opposed silhouettes, so they read apart at a
+glance in the dark. All six are export-ready: FBX plus four baked maps each, waiting only on
+the Unity bundle step below.
+
+Every asset was reviewed as a render before it was committed. That caught a floating
+bloomery, an egg-shaped furnace, a lamp in three disconnected pieces and a window glow that
+rendered white-hot — none of which a triangle count or a validator would ever surface.
 
 ### The desktop step
 

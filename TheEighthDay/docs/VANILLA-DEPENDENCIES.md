@@ -109,7 +109,6 @@ which of these are load-breaking and which merely misbehave.
 | `armorMilitaryLegArmor` | items.xml |
 | `armorMilitaryVest` | items.xml |
 | `bladeTrap` | blocks.xml |
-| `chemistryStation` | blocks.xml |
 | `concreteBlock` | blocks.xml |
 | `dartTrap` | blocks.xml |
 | `drugAntibiotics` | items.xml |
@@ -135,8 +134,7 @@ which of these are load-breaking and which merely misbehave.
 | `resourcePaper` | items.xml |
 | `spikesWoodBlock` | blocks.xml |
 | `steelBlock` | blocks.xml |
-| `workbench` | blocks.xml |
 
 ---
 
-**101 unique vanilla identifiers.**
+**99 unique vanilla identifiers.**

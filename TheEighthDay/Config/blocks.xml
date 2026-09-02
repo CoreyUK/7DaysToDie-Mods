@@ -19,10 +19,10 @@
              v
         Drafting Table ===> consumes Field Notes ===> recipes the perk tree cannot give
 
-    ART NOTE: every workstation extends a vanilla block and reuses its crafting window.
-    The bloomery and blast furnace have their own models (Resources/src/, built by
-    tools/gen_models.py) waiting on the Unity bundle step - their Meshfile lines are
-    commented out below until then. The other four still reuse vanilla meshes.
+    ART NOTE: every workstation extends a vanilla block and reuses its crafting window,
+    and every one of the six has its own model and icon (Resources/src/, built by
+    tools/gen_models.py). The models are waiting on the Unity bundle step - each
+    block's Meshfile line is commented out below until eighthday.unity3d exists.
 
     VERIFY-4 (docs/VERIFICATION.md): confirm the workstation window names below still
     exist. V3.0 split XUi into XUi_Common / XUi_InGame / XUi_Menu and renamed
@@ -95,7 +95,14 @@
         <block name="edBlockMachineShop">
             <property name="Extends" value="workbench" />
             <property name="CreativeMode" value="Player" />
-            <property name="CustomIcon" value="workbench" />
+            <!-- Icon comes from UIAtlases/ItemIconAtlas/edBlockMachineShop.png, rendered from
+                 this block's own model by tools/gen_models.py - no CustomIcon needed.
+
+                 MESH: the custom model exists (Resources/src/edBlockMachineShop/) but has not
+                 yet been through Unity. Once eighthday.unity3d is built and copied
+                 into Resources/, uncomment the line below - VERIFY-18.
+            <property name="Meshfile" value="#@modfolder:Resources/eighthday.unity3d?edBlockMachineShop" />
+            -->
             <property name="DescriptionKey" value="edBlockMachineShopDesc" />
             <property name="CraftingAreaRecipes" value="edMachineShop" />
             <property name="EconomicValue" value="5200" />
@@ -113,7 +120,14 @@
         <block name="edBlockReagentBench">
             <property name="Extends" value="chemistryStation" />
             <property name="CreativeMode" value="Player" />
-            <property name="CustomIcon" value="chemistryStation" />
+            <!-- Icon comes from UIAtlases/ItemIconAtlas/edBlockReagentBench.png, rendered from
+                 this block's own model by tools/gen_models.py - no CustomIcon needed.
+
+                 MESH: the custom model exists (Resources/src/edBlockReagentBench/) but has not
+                 yet been through Unity. Once eighthday.unity3d is built and copied
+                 into Resources/, uncomment the line below - VERIFY-18.
+            <property name="Meshfile" value="#@modfolder:Resources/eighthday.unity3d?edBlockReagentBench" />
+            -->
             <property name="DescriptionKey" value="edBlockReagentBenchDesc" />
             <property name="CraftingAreaRecipes" value="edReagentBench" />
             <property name="EconomicValue" value="2800" />
@@ -133,7 +147,14 @@
         <block name="edBlockDraftingTable">
             <property name="Extends" value="workbench" />
             <property name="CreativeMode" value="Player" />
-            <property name="CustomIcon" value="workbench" />
+            <!-- Icon comes from UIAtlases/ItemIconAtlas/edBlockDraftingTable.png, rendered from
+                 this block's own model by tools/gen_models.py - no CustomIcon needed.
+
+                 MESH: the custom model exists (Resources/src/edBlockDraftingTable/) but has not
+                 yet been through Unity. Once eighthday.unity3d is built and copied
+                 into Resources/, uncomment the line below - VERIFY-18.
+            <property name="Meshfile" value="#@modfolder:Resources/eighthday.unity3d?edBlockDraftingTable" />
+            -->
             <property name="DescriptionKey" value="edBlockDraftingTableDesc" />
             <property name="CraftingAreaRecipes" value="edDrafting" />
             <property name="EconomicValue" value="3600" />
@@ -304,7 +325,14 @@
         <block name="edBlockSynthesisLab">
             <property name="Extends" value="chemistryStation" />
             <property name="CreativeMode" value="Player" />
-            <property name="CustomIcon" value="chemistryStation" />
+            <!-- Icon comes from UIAtlases/ItemIconAtlas/edBlockSynthesisLab.png, rendered from
+                 this block's own model by tools/gen_models.py - no CustomIcon needed.
+
+                 MESH: the custom model exists (Resources/src/edBlockSynthesisLab/) but has not
+                 yet been through Unity. Once eighthday.unity3d is built and copied
+                 into Resources/, uncomment the line below - VERIFY-18.
+            <property name="Meshfile" value="#@modfolder:Resources/eighthday.unity3d?edBlockSynthesisLab" />
+            -->
             <property name="DescriptionKey" value="edBlockSynthesisLabDesc" />
             <property name="CraftingAreaRecipes" value="edSynthesisLab" />
             <property name="EconomicValue" value="9000" />
