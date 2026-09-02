@@ -54,6 +54,8 @@ foreach ($modlet in $Modlets) {
     Copy-Item -Path (Join-Path $modlet '*') -Destination $stagedModlet -Recurse -Force
     Remove-Item -Path (Join-Path $stagedModlet 'docs') -Recurse -Force -ErrorAction SilentlyContinue
     Remove-Item -Path (Join-Path $stagedModlet 'CHANGELOG.md') -Force -ErrorAction SilentlyContinue
+    # Source FBX/maps feed Unity; players only need the built bundle in Resources/
+    Remove-Item -Path (Join-Path $stagedModlet 'Resources\src') -Recurse -Force -ErrorAction SilentlyContinue
 
     $out = Join-Path $dist "$modlet-$version.zip"
     if (Test-Path $out) { Remove-Item $out -Force }

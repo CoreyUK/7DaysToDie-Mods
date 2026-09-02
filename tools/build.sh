@@ -50,9 +50,13 @@ for modlet in "${modlets[@]}"; do
     out="dist/${modlet}-${version}.zip"
     rm -f "$out"
 
+    # Resources/src/ holds the FBX and baked maps that feed Unity. Players only
+    # need the built .unity3d bundle that lands in Resources/ itself, so the
+    # sources stay in the repo and out of the download.
     zip -r -q "$out" "$modlet" \
         -x "$modlet/docs/*" \
         -x "$modlet/CHANGELOG.md" \
+        -x "$modlet/Resources/src/*" \
         -x "*/.DS_Store"
 
     # Assert the nesting is right before anyone downloads it.
