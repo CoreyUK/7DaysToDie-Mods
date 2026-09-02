@@ -338,3 +338,7 @@ edBuffWellFedName,buffs,Buff,,,Well Fed
 edBuffWellFedDesc,buffs,Buff,,,"A proper meal, for once. Stamina and recovery both up for a good while."
 edBuffHerbalReliefName,buffs,Buff,,,Herbal Relief
 edBuffHerbalReliefDesc,buffs,Buff,,,The shakes have stopped and you can work. You are still infected - this only bought you time.
+edBlockFootlocker,blocks,Block,,,Footlocker
+edBlockFootlockerDesc,blocks,Block,,,Iron-bound and heavy enough that nothing drags it off. Holds considerably more than the crate you nailed together on day one.
+edBlockSupplyLocker,blocks,Block,,,Supply Locker
+edBlockSupplyLockerDesc,blocks,Block,,,Steel shelving on a machined frame. The warehouse the workshop paid for - and by the time you can build one you will need it.

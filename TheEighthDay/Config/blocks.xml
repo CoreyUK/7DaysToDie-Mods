@@ -496,4 +496,63 @@
 
     </append>
 
+
+    <!-- ==========================================================================
+         STORAGE
+
+         WHY THERE IS NO BIGGER BACKPACK HERE
+         ====================================
+         A larger player backpack is the single most-felt quality-of-life change
+         in this genre, and it is deliberately NOT in this mod yet.
+
+         Backpack size lives in XUi. V3.0 did not merely rename those files - it
+         changed the binding model, so a UI mod written for V2.x is a porting job
+         rather than a recompile. Writing that blind, against a structure that
+         cannot be inspected from here, risks the one failure mode nothing else
+         in this mod has: every other patch either loads or silently no-ops,
+         whereas a malformed XUi window can leave the game unusable.
+
+         So it waits for the game files. See docs/VERIFICATION.md item 22.
+
+         What is here instead costs nothing in risk: container capacity is plain
+         block config, no XUi involved. Two tiers, priced against the production
+         chain so storage is something the Long Craft pays for.
+
+         VERIFY-22: confirm the LootSize attribute name and its cols,rows order,
+         and that these container bases still exist.
+         ========================================================================== -->
+
+    <append xpath="/blocks">
+
+        <!-- Early. A real upgrade over a wooden crate, affordable on day three. -->
+        <block name="edBlockFootlocker">
+            <property name="Extends" value="cntStorageChest" />
+            <property name="CreativeMode" value="Player" />
+            <property name="CustomIcon" value="cntStorageChest" />
+            <property name="DescriptionKey" value="edBlockFootlockerDesc" />
+            <property name="LootSize" value="9,5" />
+            <property name="EconomicValue" value="220" />
+            <property class="RepairItems">
+                <property name="resourceWood" value="30" />
+                <property name="resourceForgedIron" value="10" />
+            </property>
+        </block>
+
+        <!-- Late. Steel and precision parts, so the machine shop pays for the
+             warehouse. Storage becomes something the industry earns. -->
+        <block name="edBlockSupplyLocker">
+            <property name="Extends" value="cntStorageChest" />
+            <property name="CreativeMode" value="Player" />
+            <property name="CustomIcon" value="cntStorageChest" />
+            <property name="DescriptionKey" value="edBlockSupplyLockerDesc" />
+            <property name="LootSize" value="12,8" />
+            <property name="EconomicValue" value="1400" />
+            <property class="RepairItems">
+                <property name="resourceForgedSteel" value="25" />
+                <property name="edResourcePrecisionParts" value="2" />
+            </property>
+        </block>
+
+    </append>
+
 </configs>

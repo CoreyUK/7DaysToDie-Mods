@@ -3,6 +3,22 @@
 All notable changes to The Eighth Day.
 Format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
+## [0.5.1] — 2026-09-02
+
+### Added
+- **Two storage tiers.** Footlocker (early, 9x5) and Supply Locker (late, 12x8, built at the
+  machine shop from steel, precision parts and polymer) — so the warehouse is something the
+  Long Craft pays for rather than free shelving.
+
+### Not added, on purpose
+- **A bigger player backpack.** It is the most-felt QoL change in this genre and it is being
+  deferred rather than guessed at. Backpack size lives in XUi, and V3.0 changed the binding
+  model rather than just renaming files, so a UI mod is a porting job against a structure
+  that cannot be inspected from here. Every other patch in this mod either loads or silently
+  no-ops; a malformed XUi window can leave the game unusable. That is a different class of
+  risk and it is not worth taking blind. Container capacity, which delivers much of the same
+  relief, is plain block config and carries none of it. See verification item 22.
+
 ## [0.5.0] — 2026-09-02
 
 Farming and cooking. The largest content addition since the Callings.

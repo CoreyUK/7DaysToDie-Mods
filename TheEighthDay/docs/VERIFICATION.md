@@ -162,6 +162,20 @@ stages by extending a vanilla crop (`plantedHops`, `plantedCorn`, `plantedGolden
 A wrong crop base is a crop that will not plant. This is the one farming failure that is
 loud rather than silent.
 
+### 22. Container sizes, and the deferred backpack
+**Check:** `Data/Config/blocks.xml`, and `Config/XUi_*/` for the backpack
+- Confirm `cntStorageChest` exists and that `LootSize` takes `cols,rows` in that order.
+  A wrong order gives a container the right capacity in the wrong shape — cosmetic, not fatal.
+- **The bigger backpack is deliberately not implemented.** It is the most-felt QoL change in
+  the genre and it lives in XUi, which V3.0 restructured with a new binding model rather
+  than a rename. Every other patch in this mod either loads or silently no-ops; a malformed
+  XUi window can leave the game unusable, so this one waits for the real files.
+
+  When you have them, the work is: find the backpack window's grid definition, widen rows
+  and columns, and check the container-scaling behaviour at several resolutions. Ship it as
+  a **separate optional modlet** rather than folding it into the overhaul, so a server can
+  drop it without touching anything else.
+
 ## Priority 2 — will load but behave wrong
 
 ### 5. `CustomIcon` names

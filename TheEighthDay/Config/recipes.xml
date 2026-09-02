@@ -638,4 +638,25 @@
 
     </append>
 
+
+    <!-- ==========================================================================
+         STORAGE
+         ========================================================================== -->
+
+    <append xpath="/recipes">
+
+        <recipe name="edBlockFootlocker" count="1" craft_area="workbench" craft_time="35">
+            <ingredient name="resourceWood" count="60" />
+            <ingredient name="resourceForgedIron" count="20" />
+            <ingredient name="resourceCloth" count="10" />
+        </recipe>
+
+        <recipe name="edBlockSupplyLocker" count="1" craft_area="edMachineShop" craft_time="120">
+            <ingredient name="resourceForgedSteel" count="50" />
+            <ingredient name="edResourcePrecisionParts" count="4" />
+            <ingredient name="edResourcePolymer" count="10" />
+        </recipe>
+
+    </append>
+
 </configs>

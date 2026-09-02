@@ -75,6 +75,7 @@ which of these are load-breaking and which merely misbehave.
 | `casinoCoin` | items.xml |
 | `chemistryStation` | blocks.xml |
 | `cntGarbage` | blocks.xml |
+| `cntStorageChest` | blocks.xml |
 | `concreteBlock` | blocks.xml |
 | `dartTrap` | blocks.xml |
 | `drugAntibiotics` | items.xml |
@@ -130,6 +131,7 @@ which of these are load-breaking and which merely misbehave.
 | `bladeTrap` | blocks.xml |
 | `campfire` | blocks.xml |
 | `cntGarbage` | blocks.xml |
+| `cntStorageChest` | blocks.xml |
 | `concreteBlock` | blocks.xml |
 | `dartTrap` | blocks.xml |
 | `drugAntibiotics` | items.xml |
@@ -166,4 +168,4 @@ which of these are load-breaking and which merely misbehave.
 
 ---
 
-**128 unique vanilla identifiers.**
+**130 unique vanilla identifiers.**

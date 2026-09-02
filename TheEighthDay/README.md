@@ -75,7 +75,7 @@ Running it on a server: [`docs/SERVER.md`](docs/SERVER.md).
 
 ## Status
 
-**v0.5.0 — pre-alpha.** What exists:
+**v0.5.1 — pre-alpha.** What exists:
 
 - ✅ Cycle system (gamestage-driven), Cycles 0–6 populated
 - ✅ All six Calling perk branches, Mark-gated, **every unlock backed by real content**
@@ -92,6 +92,8 @@ Running it on a server: [`docs/SERVER.md`](docs/SERVER.md).
 - ⚠️ Other items borrow vanilla icons; weapons and enemies reuse vanilla meshes with size
   and glow tells. Enemy models still need an artist
 - ✅ Prices derived from recipes, so nothing is craftable below its own input cost
+- ✅ Two storage tiers; **bigger backpack deferred** — XUi changed in V3.0 and guessing at
+  it risks an unusable UI (verification item 22)
 - ❌ No play-test data behind any balance value
 
 Roadmap in [`docs/DESIGN.md`](DESIGN.md#5-roadmap), release history in
