@@ -26,7 +26,7 @@
       Cycle 4    gamestage  136 - 190     Rotweavers
       Cycle 5    gamestage  191 - 255     The Hollow
       Cycle 6    gamestage  256 - 340     Choirs
-      Cycle 7+   gamestage  341+          density scaling, no new archetypes
+      Cycle 7+   gamestage  341+          Grinders, then density scaling
 
     PRESETS - swap the stage numbers below wholesale
       "slow burn"  x1.5 :  34 /  80 / 137 / 203 / 287 / 383 / 510
@@ -77,14 +77,19 @@
             <spawn group="edCycle6Pool" num="30" maxAlive="20" duration="2" />
         </gamestage>
 
-        <!-- CYCLE 7+ - no new archetypes, just more of everything. The mod has no
-             win state; past this point the game is about how long you last. -->
+        <!-- CYCLE 7+ - the Grinder enters and never leaves. Past this point
+             there are no new archetypes, only more of everything. The mod has
+             no win state; from here the game is about how long you last. -->
         <gamestage stage="341">
-            <spawn group="edCycle6Pool" num="36" maxAlive="24" duration="2" />
+            <spawn group="edCycle7Pool" num="36" maxAlive="24" duration="2" />
         </gamestage>
 
         <gamestage stage="450">
-            <spawn group="edCycle6Pool" num="42" maxAlive="28" duration="2" />
+            <spawn group="edCycle7Pool" num="42" maxAlive="28" duration="2" />
+        </gamestage>
+
+        <gamestage stage="600">
+            <spawn group="edCycle7Pool" num="48" maxAlive="32" duration="2" />
         </gamestage>
 
     </append>
@@ -122,7 +127,7 @@
         </gamestage>
 
         <gamestage stage="341">
-            <spawn group="edCycle6Pool" num="16" maxAlive="16" duration="1" />
+            <spawn group="edCycle7Pool" num="16" maxAlive="16" duration="1" />
         </gamestage>
 
     </append>

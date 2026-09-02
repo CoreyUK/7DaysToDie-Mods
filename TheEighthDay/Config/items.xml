@@ -186,12 +186,15 @@
     <!-- ==========================================================================
          CALLINGS - Writs
 
-         PLACEHOLDER (0.1 only). In 0.2 a Calling is earned by completing its
-         Proving quest chain, and these items disappear. For now they are the
-         mechanism that sets the Mark CVar so the perk branches can be tested.
+         A Writ is the reward for completing a Calling's Proving chain (see
+         quests.xml). Consuming it sets edMark<Calling> = 1 permanently, which
+         opens that Calling's perk branch - every perk in the branch requires it
+         (see progression.xml).
 
-         Consuming a Writ sets edMark<Calling> = 1 permanently. Every perk in that
-         branch requires it (see progression.xml).
+         As of 0.2 these are NOT sold, NOT in loot and NOT craftable. Finishing
+         a Proving is the only way to get one, and that is the whole point: a
+         Calling you can buy is a purchase, not a discipline. Do not add another
+         source without deciding to change that pillar deliberately.
          ========================================================================== -->
 
     <append xpath="/items">

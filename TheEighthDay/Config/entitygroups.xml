@@ -65,6 +65,18 @@
             <entity name="edZombieChoir" prob="0.2" />
         </entitygroup>
 
+        <!-- CYCLE 7+ - fortification stops being an answer. -->
+        <entitygroup name="edCycle7Pool">
+            <entity name="edZombieHusk" prob="1.0" />
+            <entity name="edZombieBloater" prob="0.5" />
+            <entity name="edZombieCarrionHound" prob="0.6" />
+            <entity name="edZombieRotweaver" prob="0.6" />
+            <entity name="edZombieHollow" prob="0.4" />
+            <entity name="edZombieChoir" prob="0.25" />
+            <!-- Rare on purpose. A Grinder should be an event, not a spawn. -->
+            <entity name="edZombieGrinder" prob="0.08" />
+        </entitygroup>
+
         <!-- Night-only pool. The Hollow is a curfew, not a horde enemy - it belongs
              in ambient night spawning rather than in blood moon waves. -->
         <entitygroup name="edNightPool">

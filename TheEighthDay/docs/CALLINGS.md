@@ -13,17 +13,27 @@ outperforms one that doesn't — that's the point.
 
 1. **Discovery.** Any trader offers the *Proving* for any Calling you haven't taken, from
    day 1. There is no gate on which you can attempt.
+   *(How a quest reaches a trader's offer list is verification item 16 — unconfirmed.)*
 2. **The Proving.** A 3-stage quest chain that requires doing the work, not paying for it.
-3. **The Mark.** Completing it grants the Calling's Mark — a permanent, non-transferable
-   status that unlocks that Calling's perk branch for spending skill points in.
+3. **The Mark.** Completing the final stage rewards that Calling's **Writ**. Consuming it
+   sets the Mark — a permanent status that unlocks the Calling's perk branch.
+
+   Writs are **not sold, not looted and not craftable.** Finishing a Proving is the only
+   way to get one. A Calling you can buy is a purchase, not a discipline.
 4. **Multiple Callings.** You can hold more than one, but each subsequent Proving costs
    progressively more (time, materials and skill points), so specialising early is
    genuinely stronger than dabbling.
 
-Mechanically, a Mark is a CVar (`edMarkIronmonger` etc.) set on quest completion. Every
-perk in that branch carries a requirement on its Mark, so the branch is visible but
-unspendable until you've earned it. That keeps the whole system inside vanilla progression
-plumbing — no custom UI needed.
+Mechanically, a Mark is a CVar (`edMarkIronmonger` etc.). Every perk in that branch carries
+a requirement on its Mark, so the branch is visible but unspendable until you've earned it.
+That keeps the whole system inside vanilla progression plumbing — no custom UI needed.
+
+**The rule the Provings must never break:** no objective may require anything gated behind
+a Calling. The Proving is how you earn the Calling, so requiring its own output is a
+deadlock the player cannot see coming and cannot escape. That is why the Trapper's chain
+asks for raw meat rather than cured, and the Sapper's for plain cement rather than the
+reinforced concrete they will later own — the good material is on the far side of the door
+being opened. Re-check this every time `quests.xml` is touched.
 
 ---
 
@@ -36,8 +46,8 @@ Owns the metal chain end to end: bloomery, forge, blast furnace, alloys, tool he
 casings. Nobody else can produce hardened steel or carbide, which makes the Ironmonger the
 bottleneck on every other Calling's late-game gear.
 
-**Proving:** smelt crude iron from raw ore, forge a set of tool heads to spec, deliver to
-the trader inside a deadline. Tests that you've built the early chain, not looted it.
+**Proving:** smelt 20 crude iron → prepare 12 flux → deliver 25 crude iron.
+Tests that you've built the early chain rather than looted it.
 
 | Perk | Levels | Effect |
 |---|---|---|
@@ -56,8 +66,9 @@ Hunting, animal handling, traps, bows, and food that survives being carried. The
 the reason the group isn't eating rotten meat on day 30, and the only Calling that makes the
 wilderness a resource rather than a commute.
 
-**Proving:** take large game with a bow only — no firearms, no explosives — and return the
-meat unspoiled. Tests patience and stealth, which is the whole fantasy.
+**Proving:** take 6 animals → bring back 40 raw meat → take 12 more animals.
+*Design intent was bow-only, which quest objectives cannot express — the objective types
+have no weapon filter. The flavour text carries the intent; the mechanics do not enforce it.*
 
 | Perk | Levels | Effect |
 |---|---|---|
@@ -76,8 +87,9 @@ Chemistry, medicine, infection treatment, gas and stimulants. In a mod where inf
 four stages and stage 3+ needs real antibiotics, this Calling is not optional on a server —
 it is the group's lifeline.
 
-**Proving:** brew a course of antibiotics from base reagents and cure an infection —
-yours or someone else's. Tests that you've built the chemistry chain.
+**Proving:** prepare 8 reagent base → crack 6 polymer → deliver 12 reagent base.
+*Design intent was "cure an infection", which needs an objective type that fires on curing
+another player. Not available, so the chain tests the chemistry chain instead.*
 
 | Perk | Levels | Effect |
 |---|---|---|
@@ -95,8 +107,8 @@ yours or someone else's. Tests that you've built the chemistry chain.
 Explosives, fortification, excavation, concrete. The Sapper decides where the horde goes and
 what it walks into. Owns the entire structural tier of the build tree.
 
-**Proving:** excavate to bedrock depth and pour a reinforced structure to spec. Slow,
-material-hungry, and exactly what the Calling feels like to play.
+**Proving:** produce 100 cement → produce 150 more → deliver 120.
+Slow, heavy and deliberately boring, which is exactly what the Calling feels like to play.
 
 | Perk | Levels | Effect |
 |---|---|---|
@@ -115,8 +127,10 @@ Firearms, armour, turrets, squad logistics. The most direct Calling, and deliber
 that is weakest alone — a Marshal without an Ironmonger runs out of ammunition, and a Marshal
 without a Sapper fights in the open.
 
-**Proving:** hold a marked position against a wave with a trader-supplied loadout. No base,
-no prep. Tests the fantasy directly.
+**Proving:** kill 60 → kill 120 more → deliver 150 gunpowder.
+*Design intent was "hold a marked position", which needs a defend-location objective. The
+final stage carries the real lesson instead: every Marshal who died out there died with an
+empty gun.*
 
 | Perk | Levels | Effect |
 |---|---|---|
@@ -135,8 +149,9 @@ Salvage, vehicles, electronics, loot yield. Doesn't produce anything new — mak
 already out there worth more. The Calling that keeps a server's economy moving, and the one
 that finds the Field Notes everyone else's recipes depend on.
 
-**Proving:** recover a specific set of salvaged components from named location types and
-deliver them intact. Tests that you've actually gone out and looked.
+**Proving:** recover 40 mechanical parts → 30 electrical parts → 60 paper.
+*Design intent was location-typed recovery. Objectives cannot require that an item came from
+a particular POI type, so the quantities do the work instead.*
 
 | Perk | Levels | Effect |
 |---|---|---|

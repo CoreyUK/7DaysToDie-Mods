@@ -1,0 +1,364 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+    THE EIGHTH DAY - quests.xml
+    ===========================
+    The Provings. Six chains of three, one per Calling.
+
+    A Calling is EARNED, not bought. Each Proving makes you do the discipline's
+    actual work before it opens up, so the Ironmonger has run a bloomery before
+    they can perk into alloying, and the Marshal has run out of ammunition at
+    least once before anybody hands them a belt-fed gun.
+
+    THE ONE RULE THIS FILE MUST NEVER BREAK
+    =======================================
+    No objective may require anything gated behind a Calling. The Proving is how
+    you earn the Calling, so requiring its own output is a deadlock that a player
+    cannot see coming and cannot escape. Every id below is either vanilla or
+    craftable with no perk requirement - check this again every time you touch it.
+
+    That is why the Trapper's chain asks for raw meat rather than cured, and the
+    Sapper's for plain cement rather than the reinforced concrete they will later
+    own: the good stuff is on the far side of the door you are opening.
+
+    Completing the final stage of a chain rewards that Calling's Writ, which sets
+    the Mark CVar when consumed and opens the perk branch. With the Writs removed
+    from trader stock, this file is now the ONLY route into a Calling.
+
+    VERIFY-16 (docs/VERIFICATION.md): quest XML is the most structurally complex
+    config in the game and the least verifiable without an install. Confirm the
+    objective type names (Craft, FetchKeep, AnimalKill, ZombieKill), the reward
+    type names (Exp, Quest, Item), and above all HOW A TRADER OFFERS THESE. Quest
+    offering has changed across versions; these may need a quest tier or group
+    entry, or a traders.xml hook, before they appear at a trader at all.
+-->
+<configs>
+
+    <append xpath="/quests">
+
+    <!-- Ironmonger 1/3 - Smelt twenty crude iron -->
+    <quest id="edProvingIronmonger1">
+        <property name="name_key" value="edQuestIronmonger1Name" />
+        <property name="subtitle_key" value="edQuestIronmonger1Subtitle" />
+        <property name="description_key" value="edQuestIronmonger1Desc" />
+        <property name="offer_key" value="edQuestIronmonger1Offer" />
+        <property name="icon" value="ui_game_symbol_forge" />
+        <property name="category_key" value="quest" />
+        <property name="difficulty" value="medium" />
+        <property name="shareable" value="false" />
+        <property name="repeatable" value="false" />
+        <property name="statement_key" value="edQuestIronmonger1Offer" />
+        <objective type="Craft" id="edResourceCrudeIron" value="20" />
+        <reward type="Exp" value="1500" />
+        <reward type="Quest" id="edProvingIronmonger2" />
+    </quest>
+
+    <!-- Ironmonger 2/3 - Prepare twelve flux -->
+    <quest id="edProvingIronmonger2">
+        <property name="name_key" value="edQuestIronmonger2Name" />
+        <property name="subtitle_key" value="edQuestIronmonger2Subtitle" />
+        <property name="description_key" value="edQuestIronmonger2Desc" />
+        <property name="offer_key" value="edQuestIronmonger2Offer" />
+        <property name="icon" value="ui_game_symbol_forge" />
+        <property name="category_key" value="quest" />
+        <property name="difficulty" value="medium" />
+        <property name="shareable" value="false" />
+        <property name="repeatable" value="false" />
+        <property name="statement_key" value="edQuestIronmonger2Offer" />
+        <objective type="Craft" id="edResourceFlux" value="12" />
+        <reward type="Exp" value="3000" />
+        <reward type="Quest" id="edProvingIronmonger3" />
+    </quest>
+
+    <!-- Ironmonger 3/3 - Deliver twenty-five crude iron -->
+    <quest id="edProvingIronmonger3">
+        <property name="name_key" value="edQuestIronmonger3Name" />
+        <property name="subtitle_key" value="edQuestIronmonger3Subtitle" />
+        <property name="description_key" value="edQuestIronmonger3Desc" />
+        <property name="offer_key" value="edQuestIronmonger3Offer" />
+        <property name="icon" value="ui_game_symbol_forge" />
+        <property name="category_key" value="quest" />
+        <property name="difficulty" value="medium" />
+        <property name="shareable" value="false" />
+        <property name="repeatable" value="false" />
+        <property name="statement_key" value="edQuestIronmonger3Offer" />
+        <objective type="FetchKeep" id="edResourceCrudeIron" value="25" />
+        <reward type="Exp" value="4500" />
+        <!-- The Mark itself. This is the ONLY source of a Writ once
+             the trader stock is removed - a Calling is earned here or
+             not at all. -->
+        <reward type="Item" id="edWritIronmonger" value="1" />
+    </quest>
+
+    <!-- Trapper 1/3 - Take six animals -->
+    <quest id="edProvingTrapper1">
+        <property name="name_key" value="edQuestTrapper1Name" />
+        <property name="subtitle_key" value="edQuestTrapper1Subtitle" />
+        <property name="description_key" value="edQuestTrapper1Desc" />
+        <property name="offer_key" value="edQuestTrapper1Offer" />
+        <property name="icon" value="ui_game_symbol_animal" />
+        <property name="category_key" value="quest" />
+        <property name="difficulty" value="medium" />
+        <property name="shareable" value="false" />
+        <property name="repeatable" value="false" />
+        <property name="statement_key" value="edQuestTrapper1Offer" />
+        <objective type="AnimalKill" value="6" />
+        <reward type="Exp" value="1500" />
+        <reward type="Quest" id="edProvingTrapper2" />
+    </quest>
+
+    <!-- Trapper 2/3 - Bring forty raw meat -->
+    <quest id="edProvingTrapper2">
+        <property name="name_key" value="edQuestTrapper2Name" />
+        <property name="subtitle_key" value="edQuestTrapper2Subtitle" />
+        <property name="description_key" value="edQuestTrapper2Desc" />
+        <property name="offer_key" value="edQuestTrapper2Offer" />
+        <property name="icon" value="ui_game_symbol_animal" />
+        <property name="category_key" value="quest" />
+        <property name="difficulty" value="medium" />
+        <property name="shareable" value="false" />
+        <property name="repeatable" value="false" />
+        <property name="statement_key" value="edQuestTrapper2Offer" />
+        <objective type="FetchKeep" id="foodRawMeat" value="40" />
+        <reward type="Exp" value="3000" />
+        <reward type="Quest" id="edProvingTrapper3" />
+    </quest>
+
+    <!-- Trapper 3/3 - Take twelve more animals -->
+    <quest id="edProvingTrapper3">
+        <property name="name_key" value="edQuestTrapper3Name" />
+        <property name="subtitle_key" value="edQuestTrapper3Subtitle" />
+        <property name="description_key" value="edQuestTrapper3Desc" />
+        <property name="offer_key" value="edQuestTrapper3Offer" />
+        <property name="icon" value="ui_game_symbol_animal" />
+        <property name="category_key" value="quest" />
+        <property name="difficulty" value="medium" />
+        <property name="shareable" value="false" />
+        <property name="repeatable" value="false" />
+        <property name="statement_key" value="edQuestTrapper3Offer" />
+        <objective type="AnimalKill" value="12" />
+        <reward type="Exp" value="4500" />
+        <!-- The Mark itself. This is the ONLY source of a Writ once
+             the trader stock is removed - a Calling is earned here or
+             not at all. -->
+        <reward type="Item" id="edWritTrapper" value="1" />
+    </quest>
+
+    <!-- Apothecary 1/3 - Prepare eight reagent base -->
+    <quest id="edProvingApothecary1">
+        <property name="name_key" value="edQuestApothecary1Name" />
+        <property name="subtitle_key" value="edQuestApothecary1Subtitle" />
+        <property name="description_key" value="edQuestApothecary1Desc" />
+        <property name="offer_key" value="edQuestApothecary1Offer" />
+        <property name="icon" value="ui_game_symbol_medical" />
+        <property name="category_key" value="quest" />
+        <property name="difficulty" value="medium" />
+        <property name="shareable" value="false" />
+        <property name="repeatable" value="false" />
+        <property name="statement_key" value="edQuestApothecary1Offer" />
+        <objective type="Craft" id="edResourceReagentBase" value="8" />
+        <reward type="Exp" value="1500" />
+        <reward type="Quest" id="edProvingApothecary2" />
+    </quest>
+
+    <!-- Apothecary 2/3 - Crack six polymer stock -->
+    <quest id="edProvingApothecary2">
+        <property name="name_key" value="edQuestApothecary2Name" />
+        <property name="subtitle_key" value="edQuestApothecary2Subtitle" />
+        <property name="description_key" value="edQuestApothecary2Desc" />
+        <property name="offer_key" value="edQuestApothecary2Offer" />
+        <property name="icon" value="ui_game_symbol_medical" />
+        <property name="category_key" value="quest" />
+        <property name="difficulty" value="medium" />
+        <property name="shareable" value="false" />
+        <property name="repeatable" value="false" />
+        <property name="statement_key" value="edQuestApothecary2Offer" />
+        <objective type="Craft" id="edResourcePolymer" value="6" />
+        <reward type="Exp" value="3000" />
+        <reward type="Quest" id="edProvingApothecary3" />
+    </quest>
+
+    <!-- Apothecary 3/3 - Deliver twelve reagent base -->
+    <quest id="edProvingApothecary3">
+        <property name="name_key" value="edQuestApothecary3Name" />
+        <property name="subtitle_key" value="edQuestApothecary3Subtitle" />
+        <property name="description_key" value="edQuestApothecary3Desc" />
+        <property name="offer_key" value="edQuestApothecary3Offer" />
+        <property name="icon" value="ui_game_symbol_medical" />
+        <property name="category_key" value="quest" />
+        <property name="difficulty" value="medium" />
+        <property name="shareable" value="false" />
+        <property name="repeatable" value="false" />
+        <property name="statement_key" value="edQuestApothecary3Offer" />
+        <objective type="FetchKeep" id="edResourceReagentBase" value="12" />
+        <reward type="Exp" value="4500" />
+        <!-- The Mark itself. This is the ONLY source of a Writ once
+             the trader stock is removed - a Calling is earned here or
+             not at all. -->
+        <reward type="Item" id="edWritApothecary" value="1" />
+    </quest>
+
+    <!-- Sapper 1/3 - Produce one hundred cement -->
+    <quest id="edProvingSapper1">
+        <property name="name_key" value="edQuestSapper1Name" />
+        <property name="subtitle_key" value="edQuestSapper1Subtitle" />
+        <property name="description_key" value="edQuestSapper1Desc" />
+        <property name="offer_key" value="edQuestSapper1Offer" />
+        <property name="icon" value="ui_game_symbol_shovel" />
+        <property name="category_key" value="quest" />
+        <property name="difficulty" value="medium" />
+        <property name="shareable" value="false" />
+        <property name="repeatable" value="false" />
+        <property name="statement_key" value="edQuestSapper1Offer" />
+        <objective type="Craft" id="resourceCement" value="100" />
+        <reward type="Exp" value="1500" />
+        <reward type="Quest" id="edProvingSapper2" />
+    </quest>
+
+    <!-- Sapper 2/3 - Produce one hundred and fifty more -->
+    <quest id="edProvingSapper2">
+        <property name="name_key" value="edQuestSapper2Name" />
+        <property name="subtitle_key" value="edQuestSapper2Subtitle" />
+        <property name="description_key" value="edQuestSapper2Desc" />
+        <property name="offer_key" value="edQuestSapper2Offer" />
+        <property name="icon" value="ui_game_symbol_shovel" />
+        <property name="category_key" value="quest" />
+        <property name="difficulty" value="medium" />
+        <property name="shareable" value="false" />
+        <property name="repeatable" value="false" />
+        <property name="statement_key" value="edQuestSapper2Offer" />
+        <objective type="Craft" id="resourceCement" value="150" />
+        <reward type="Exp" value="3000" />
+        <reward type="Quest" id="edProvingSapper3" />
+    </quest>
+
+    <!-- Sapper 3/3 - Deliver one hundred and twenty cement -->
+    <quest id="edProvingSapper3">
+        <property name="name_key" value="edQuestSapper3Name" />
+        <property name="subtitle_key" value="edQuestSapper3Subtitle" />
+        <property name="description_key" value="edQuestSapper3Desc" />
+        <property name="offer_key" value="edQuestSapper3Offer" />
+        <property name="icon" value="ui_game_symbol_shovel" />
+        <property name="category_key" value="quest" />
+        <property name="difficulty" value="medium" />
+        <property name="shareable" value="false" />
+        <property name="repeatable" value="false" />
+        <property name="statement_key" value="edQuestSapper3Offer" />
+        <objective type="FetchKeep" id="resourceCement" value="120" />
+        <reward type="Exp" value="4500" />
+        <!-- The Mark itself. This is the ONLY source of a Writ once
+             the trader stock is removed - a Calling is earned here or
+             not at all. -->
+        <reward type="Item" id="edWritSapper" value="1" />
+    </quest>
+
+    <!-- Marshal 1/3 - Put down sixty -->
+    <quest id="edProvingMarshal1">
+        <property name="name_key" value="edQuestMarshal1Name" />
+        <property name="subtitle_key" value="edQuestMarshal1Subtitle" />
+        <property name="description_key" value="edQuestMarshal1Desc" />
+        <property name="offer_key" value="edQuestMarshal1Offer" />
+        <property name="icon" value="ui_game_symbol_assault_rifle" />
+        <property name="category_key" value="quest" />
+        <property name="difficulty" value="medium" />
+        <property name="shareable" value="false" />
+        <property name="repeatable" value="false" />
+        <property name="statement_key" value="edQuestMarshal1Offer" />
+        <objective type="ZombieKill" value="60" />
+        <reward type="Exp" value="1500" />
+        <reward type="Quest" id="edProvingMarshal2" />
+    </quest>
+
+    <!-- Marshal 2/3 - Put down one hundred and twenty more -->
+    <quest id="edProvingMarshal2">
+        <property name="name_key" value="edQuestMarshal2Name" />
+        <property name="subtitle_key" value="edQuestMarshal2Subtitle" />
+        <property name="description_key" value="edQuestMarshal2Desc" />
+        <property name="offer_key" value="edQuestMarshal2Offer" />
+        <property name="icon" value="ui_game_symbol_assault_rifle" />
+        <property name="category_key" value="quest" />
+        <property name="difficulty" value="medium" />
+        <property name="shareable" value="false" />
+        <property name="repeatable" value="false" />
+        <property name="statement_key" value="edQuestMarshal2Offer" />
+        <objective type="ZombieKill" value="120" />
+        <reward type="Exp" value="3000" />
+        <reward type="Quest" id="edProvingMarshal3" />
+    </quest>
+
+    <!-- Marshal 3/3 - Deliver one hundred and fifty gunpowder -->
+    <quest id="edProvingMarshal3">
+        <property name="name_key" value="edQuestMarshal3Name" />
+        <property name="subtitle_key" value="edQuestMarshal3Subtitle" />
+        <property name="description_key" value="edQuestMarshal3Desc" />
+        <property name="offer_key" value="edQuestMarshal3Offer" />
+        <property name="icon" value="ui_game_symbol_assault_rifle" />
+        <property name="category_key" value="quest" />
+        <property name="difficulty" value="medium" />
+        <property name="shareable" value="false" />
+        <property name="repeatable" value="false" />
+        <property name="statement_key" value="edQuestMarshal3Offer" />
+        <objective type="FetchKeep" id="resourceGunPowder" value="150" />
+        <reward type="Exp" value="4500" />
+        <!-- The Mark itself. This is the ONLY source of a Writ once
+             the trader stock is removed - a Calling is earned here or
+             not at all. -->
+        <reward type="Item" id="edWritMarshal" value="1" />
+    </quest>
+
+    <!-- Scavenger 1/3 - Recover forty mechanical parts -->
+    <quest id="edProvingScavenger1">
+        <property name="name_key" value="edQuestScavenger1Name" />
+        <property name="subtitle_key" value="edQuestScavenger1Subtitle" />
+        <property name="description_key" value="edQuestScavenger1Desc" />
+        <property name="offer_key" value="edQuestScavenger1Offer" />
+        <property name="icon" value="ui_game_symbol_wrench" />
+        <property name="category_key" value="quest" />
+        <property name="difficulty" value="medium" />
+        <property name="shareable" value="false" />
+        <property name="repeatable" value="false" />
+        <property name="statement_key" value="edQuestScavenger1Offer" />
+        <objective type="FetchKeep" id="resourceMechanicalParts" value="40" />
+        <reward type="Exp" value="1500" />
+        <reward type="Quest" id="edProvingScavenger2" />
+    </quest>
+
+    <!-- Scavenger 2/3 - Recover thirty electrical parts -->
+    <quest id="edProvingScavenger2">
+        <property name="name_key" value="edQuestScavenger2Name" />
+        <property name="subtitle_key" value="edQuestScavenger2Subtitle" />
+        <property name="description_key" value="edQuestScavenger2Desc" />
+        <property name="offer_key" value="edQuestScavenger2Offer" />
+        <property name="icon" value="ui_game_symbol_wrench" />
+        <property name="category_key" value="quest" />
+        <property name="difficulty" value="medium" />
+        <property name="shareable" value="false" />
+        <property name="repeatable" value="false" />
+        <property name="statement_key" value="edQuestScavenger2Offer" />
+        <objective type="FetchKeep" id="resourceElectricParts" value="30" />
+        <reward type="Exp" value="3000" />
+        <reward type="Quest" id="edProvingScavenger3" />
+    </quest>
+
+    <!-- Scavenger 3/3 - Recover sixty paper -->
+    <quest id="edProvingScavenger3">
+        <property name="name_key" value="edQuestScavenger3Name" />
+        <property name="subtitle_key" value="edQuestScavenger3Subtitle" />
+        <property name="description_key" value="edQuestScavenger3Desc" />
+        <property name="offer_key" value="edQuestScavenger3Offer" />
+        <property name="icon" value="ui_game_symbol_wrench" />
+        <property name="category_key" value="quest" />
+        <property name="difficulty" value="medium" />
+        <property name="shareable" value="false" />
+        <property name="repeatable" value="false" />
+        <property name="statement_key" value="edQuestScavenger3Offer" />
+        <objective type="FetchKeep" id="resourcePaper" value="60" />
+        <reward type="Exp" value="4500" />
+        <!-- The Mark itself. This is the ONLY source of a Writ once
+             the trader stock is removed - a Calling is earned here or
+             not at all. -->
+        <reward type="Item" id="edWritScavenger" value="1" />
+    </quest>
+
+    </append>
+
+</configs>

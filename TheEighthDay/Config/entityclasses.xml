@@ -195,6 +195,49 @@
             <property name="LootListOnDeath" value="edLootChoir" />
         </entity_class>
 
+
+        <!-- ==================================================================
+             CYCLE 7+ - GRINDER
+             Titan-class. The base-ender.
+
+             Structural damage on a scale that makes static fortification a
+             losing strategy. That is the entire design brief: by Cycle 7 the
+             mod stops rewarding the player who built the best box and starts
+             rewarding the one who knows when to leave.
+
+             Deliberately: rare, very slow, enormously loud, and visible a long
+             way out. It must never be a surprise - a Grinder that ambushes you
+             is unfair, a Grinder you saw coming and misjudged is the game
+             working. Everything about it is telegraphed.
+
+             ART NOTE: reuses a vanilla mesh at v0.2 like every other archetype,
+             which undersells it badly - a Titan should read as a Titan at fifty
+             metres. First candidate for a custom model.
+             ================================================================== -->
+        <entity_class name="edZombieGrinder" extends="zombieFatCop">
+            <property name="Tags" value="entity,zombie,edGrinder,heavyArmor" />
+            <property name="WalkType" value="1" />
+            <property name="MoveSpeed" value="0.32" />
+            <property name="MoveSpeedAggro" value="0.48, 0.60" />
+            <property name="ExperienceGain" value="9000" />
+            <property name="LootListOnDeath" value="edLootGrinder" />
+            <effect_group name="edZombieGrinderStats">
+                <passive_effect name="MaxHealth" operation="base_set" value="8000" />
+                <passive_effect name="EntityDamage" operation="base_set" value="130" />
+                <!-- The point of the thing. Walls are a delay, not an answer. -->
+                <passive_effect name="BlockDamage" operation="base_set" value="900" />
+                <passive_effect name="DamageModifier" operation="perc_set" value="0.45"
+                                tags="bullet" />
+                <passive_effect name="DamageModifier" operation="perc_set" value="1.25"
+                                tags="explosive" />
+            </effect_group>
+            <effect_group name="edZombieGrinderInfect">
+                <requirement name="RandomRoll" min="0" max="1" value="0.35" />
+                <triggered_effect trigger="onSelfAttackedOther" action="AddBuff"
+                                  buff="edBuffInfection1" target="other" />
+            </effect_group>
+        </entity_class>
+
     </append>
 
     <!-- ==================================================================

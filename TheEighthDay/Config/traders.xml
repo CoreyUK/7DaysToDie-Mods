@@ -19,21 +19,17 @@
 <configs>
 
     <!-- ==========================================================================
-         CALLING WRITS - PLACEHOLDER, REMOVED IN 0.2
+         CALLING WRITS - NO LONGER SOLD
+
+         0.1 sold Writs here as a placeholder so the Calling system could be
+         tested before the Proving chains existed. The Provings landed in 0.2
+         (see quests.xml), so the stock is gone and a Writ is now obtainable
+         only by completing a Proving.
+
+         This is deliberate and load-bearing: a Calling that can be bought is a
+         purchase, and the entire pillar rests on it being work. Do not add
+         Writs back to trader stock, to loot, or to any recipe.
          ========================================================================== -->
-
-    <append xpath="/traders/trader_items">
-
-        <trader_item_group name="edWrits">
-            <item name="edWritIronmonger" quality_template="none" />
-            <item name="edWritTrapper" quality_template="none" />
-            <item name="edWritApothecary" quality_template="none" />
-            <item name="edWritSapper" quality_template="none" />
-            <item name="edWritMarshal" quality_template="none" />
-            <item name="edWritScavenger" quality_template="none" />
-        </trader_item_group>
-
-    </append>
 
 
     <!-- ==========================================================================

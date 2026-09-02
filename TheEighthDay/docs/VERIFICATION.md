@@ -86,6 +86,22 @@ The archetype infection chances use a `RandomRoll` requirement. Confirm the elem
 and its `min`/`max`/`value` attribute shape. If it does not exist under that name, the
 effect groups either never fire or always fire — check both.
 
+### 16. Quest structure, and how a trader offers a Proving
+**Check:** `Data/Config/quests.xml`
+`Config/quests.xml` is the least verifiable file in this mod. Confirm:
+- objective type names — `Craft`, `FetchKeep`, `AnimalKill`, `ZombieKill`
+- reward type names — `Exp`, `Quest`, `Item`
+- the property names carrying strings (`name_key`, `subtitle_key`, `description_key`,
+  `offer_key`, `statement_key`)
+- **most importantly, how a quest reaches a trader's offer list.** Quest offering has
+  changed across versions and these may need a quest tier or group entry, or a hook in
+  `traders.xml`, before they appear at all.
+
+Until 16 is resolved the Provings may be uncompletable, and because Writs are no longer
+sold, **Callings would then be unreachable**. If you need to unblock a test server before
+verifying, temporarily restore the `edWrits` trader group (see the comment in
+`traders.xml`) rather than editing the quests.
+
 ## Priority 2 — will load but behave wrong
 
 ### 5. `CustomIcon` names

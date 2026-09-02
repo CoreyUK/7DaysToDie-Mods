@@ -91,6 +91,15 @@
             <item name="edResourcePolymer" count="1,2" prob="0.2" />
         </lootgroup>
 
+        <!-- Titan-class payout. Killing one should fund the next fortification
+             you build, even though the lesson is that you should have left. -->
+        <lootgroup name="edLootGrinder">
+            <item name="edResourceCarbide" count="1,3" prob="0.45" />
+            <item name="edResourceCompositePlate" count="2,4" prob="0.5" />
+            <item name="edNoteStructural" count="1,2" prob="0.4" />
+            <item name="edResourcePrecisionParts" count="2,5" prob="0.6" />
+        </lootgroup>
+
         <lootgroup name="edLootChoir">
             <item name="edResourcePrecisionParts" count="1,2" prob="0.4" />
             <item name="edNoteChemistry" count="1" prob="0.2" />

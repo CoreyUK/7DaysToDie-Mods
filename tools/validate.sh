@@ -88,16 +88,29 @@ for modlet in "${modlets[@]}"; do
     csv="$modlet/Config/Localization.csv"
     if [ -f "$csv" ]; then
         checked=$((checked + 1))
-        expected=$(head -1 "$csv" | awk -F',' '{print NF}')
-        # NB: "exp" is a reserved function name in awk - do not use it as a variable.
-        bad=$(awk -F',' -v want="$expected" 'NR>1 && NF>0 && NF!=want {print NR": "NF" cols"}' "$csv")
-        if [ -n "$bad" ]; then
-            # A quoted field containing a comma is legal and will trip the naive count,
-            # so this is a warning rather than a hard failure.
-            warn "$csv rows whose column count differs from the header ($expected):"
-            echo "$bad" | sed 's/^/        /'
+        # Parsed as real CSV, not by counting commas: localisation prose contains
+        # commas and is legitimately quoted, which a naive count mis-reports.
+        if command -v python3 >/dev/null 2>&1; then
+            if out=$(python3 - "$csv" <<'PY'
+import csv, sys
+path = sys.argv[1]
+with open(path, newline="", encoding="utf-8") as fh:
+    rows = [r for r in csv.reader(fh) if r]
+want = len(rows[0])
+bad = [(i + 1, len(r)) for i, r in enumerate(rows) if len(r) != want]
+if bad:
+    print(f"expected {want} columns; offending rows: "
+          + ", ".join(f"line {n} has {c}" for n, c in bad[:10]))
+    sys.exit(1)
+print(f"{len(rows) - 1} entries, {want} columns")
+PY
+            ); then
+                pass "$csv ($out)"
+            else
+                fail "$csv: $out"
+            fi
         else
-            pass "$csv ($expected columns)"
+            warn "python3 not found - skipping $csv structure check"
         fi
     fi
 done
@@ -110,8 +123,16 @@ if command -v python3 >/dev/null 2>&1; then
     if ! python3 "$REPO_ROOT/tools/check-unlocks.py" "${modlets[@]}"; then
         errors=$((errors + 1))
     fi
+
+    # --- 6. Every internal cross-reference must resolve ---------------------
+    # Recipes consuming items that do not exist, buffs applied but never
+    # defined, entities spawned with no class. All load silently.
+    echo
+    if ! python3 "$REPO_ROOT/tools/check-refs.py" "${modlets[@]}" --quiet; then
+        errors=$((errors + 1))
+    fi
 else
-    warn "python3 not found - skipping perk unlock coverage check"
+    warn "python3 not found - skipping perk unlock and reference checks"
 fi
 
 echo

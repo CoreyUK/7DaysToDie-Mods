@@ -28,17 +28,17 @@ edNoteSalvageDesc,items,Item,,,A running inventory of what is worth stripping an
 edNoteWilderness,items,Item,,,Field Notes - Wilderness
 edNoteWildernessDesc,items,Item,,,Tracking notes and preservation methods from somebody who stayed out of towns on purpose. They lasted a long time.
 edWritIronmonger,items,Item,,,Writ of the Ironmonger
-edWritIronmongerDesc,items,Item,,,Placeholder. Grants the Mark of the Ironmonger and opens that Calling. In a future version this is earned by completing the Ironmonger's Proving instead of bought.
+edWritIronmongerDesc,items,Item,,,Signed off by somebody who watched you make metal out of dirt. The forge is yours now. Consume it to take the Mark.
 edWritTrapper,items,Item,,,Writ of the Trapper
-edWritTrapperDesc,items,Item,,,Placeholder. Grants the Mark of the Trapper and opens that Calling. In a future version this is earned by completing the Trapper's Proving instead of bought.
+edWritTrapperDesc,items,Item,,,Signed off by somebody who never once heard you coming. The wilderness is yours now. Consume it to take the Mark.
 edWritApothecary,items,Item,,,Writ of the Apothecary
-edWritApothecaryDesc,items,Item,,,Placeholder. Grants the Mark of the Apothecary and opens that Calling. In a future version this is earned by completing the Apothecary's Proving instead of bought.
+edWritApothecaryDesc,items,Item,,,Signed off by somebody who checked your stock and found it clean. People will owe you their lives. Consume it to take the Mark.
 edWritSapper,items,Item,,,Writ of the Sapper
-edWritSapperDesc,items,Item,,,Placeholder. Grants the Mark of the Sapper and opens that Calling. In a future version this is earned by completing the Sapper's Proving instead of bought.
+edWritSapperDesc,items,Item,,,Signed off by somebody who watched you carry it all yourself. The ground is yours now. Consume it to take the Mark.
 edWritMarshal,items,Item,,,Writ of the Marshal
-edWritMarshalDesc,items,Item,,,Placeholder. Grants the Mark of the Marshal and opens that Calling. In a future version this is earned by completing the Marshal's Proving instead of bought.
+edWritMarshalDesc,items,Item,,,Signed off by somebody who counted. You did not freeze and you did not run dry. Consume it to take the Mark.
 edWritScavenger,items,Item,,,Writ of the Scavenger
-edWritScavengerDesc,items,Item,,,Placeholder. Grants the Mark of the Scavenger and opens that Calling. In a future version this is earned by completing the Scavenger's Proving instead of bought.
+edWritScavengerDesc,items,Item,,,Signed off by somebody who could tell the difference between pulled and purchased. Consume it to take the Mark.
 edMedTincture,items,Item,,,Antiseptic Tincture
 edMedTinctureDesc,items,Item,,,Clears an early infection if you catch it early. Past the second stage you are carrying a bottle of expensive brown water.
 edMedAntibiotic,items,Item,,,Broad Spectrum Antibiotic
@@ -209,3 +209,76 @@ edBuffSteadyHandName,buffs,Buff,,,Steady Hand
 edBuffSteadyHandDesc,buffs,Buff,,,Handling and reloads sharply improved. Everything about moving is worse.
 edBuffStimCrashName,buffs,Buff,,,Comedown
 edBuffStimCrashDesc,buffs,Buff,,,The bill. Stamina draining and everything harder than it was. Do not take another one.
+edZombieGrinder,entityclasses,Entity,,,Grinder
+edQuestIronmonger1Name,quests,Quest,,,Proving of the Ironmonger: Bloom
+edQuestIronmonger1Subtitle,quests,Quest,,,Smelt twenty crude iron
+edQuestIronmonger1Desc,quests,Quest,,,"Anyone can loot a forge. Build a bloomery and make metal out of dirt, then we will talk. Twenty blooms. I will know if you bought them."
+edQuestIronmonger1Offer,quests,Quest,,,You want the Ironmonger's mark. Everybody does. Go and make me twenty crude iron blooms out of ore you dug yourself.
+edQuestIronmonger2Name,quests,Quest,,,Proving of the Ironmonger: Flux
+edQuestIronmonger2Subtitle,quests,Quest,,,Prepare twelve flux
+edQuestIronmonger2Desc,quests,Quest,,,"Anyone can melt iron. Knowing what to put in with it is the trade. Limestone and bone, ground fine. Twelve."
+edQuestIronmonger2Offer,quests,Quest,,,Good. Now the part nobody bothers to learn. Twelve flux.
+edQuestIronmonger3Name,quests,Quest,,,Proving of the Ironmonger: Delivery
+edQuestIronmonger3Subtitle,quests,Quest,,,Deliver twenty-five crude iron
+edQuestIronmonger3Desc,quests,Quest,,,"Last part. Twenty-five blooms delivered, and I do not care how tired you are. A smith who cannot make a delivery is a hobbyist. The forge is yours. Nobody else on this server makes hardened steel."
+edQuestIronmonger3Offer,quests,Quest,,,"One more. Twenty-five blooms, delivered. On time."
+edQuestTrapper1Name,quests,Quest,,,Proving of the Trapper: Quiet
+edQuestTrapper1Subtitle,quests,Quest,,,Take six animals
+edQuestTrapper1Desc,quests,Quest,,,"Six animals. I am not going to tell you how - but if the whole street heard you do it, you are not a Trapper, you are a noise."
+edQuestTrapper1Offer,quests,Quest,,,Everyone can shoot a deer. Take six animals and do it quietly.
+edQuestTrapper2Name,quests,Quest,,,Proving of the Trapper: Harvest
+edQuestTrapper2Subtitle,quests,Quest,,,Bring forty raw meat
+edQuestTrapper2Desc,quests,Quest,,,"Forty meat, and it had better not be crawling by the time it gets here. Knowing how to carry it is half the job."
+edQuestTrapper2Offer,quests,Quest,,,Now bring it back. Forty meat. Unspoiled.
+edQuestTrapper3Name,quests,Quest,,,Proving of the Trapper: Provider
+edQuestTrapper3Subtitle,quests,Quest,,,Take twelve more animals
+edQuestTrapper3Desc,quests,Quest,,,Twelve more. One good week is luck. Two is a Trapper. The wilderness is yours. Go and be quiet in it.
+edQuestTrapper3Offer,quests,Quest,,,Last part. Twelve more. Then the wilderness is yours.
+edQuestApothecary1Name,quests,Quest,,,Proving of the Apothecary: Reagents
+edQuestApothecary1Subtitle,quests,Quest,,,Prepare eight reagent base
+edQuestApothecary1Desc,quests,Quest,,,"Build the bench. Make the base. Eight of them, clean, no shortcuts - if the stock is dirty then everything you make from it is a lie."
+edQuestApothecary1Offer,quests,Quest,,,Medicine starts a long way before medicine. Eight reagent base.
+edQuestApothecary2Name,quests,Quest,,,Proving of the Apothecary: Synthesis
+edQuestApothecary2Subtitle,quests,Quest,,,Crack six polymer stock
+edQuestApothecary2Desc,quests,Quest,,,Six polymer. It is not medicine and that is the point - a chemist who can only make one thing is not a chemist.
+edQuestApothecary2Offer,quests,Quest,,,Now something that is not a cure. Six polymer stock.
+edQuestApothecary3Name,quests,Quest,,,Proving of the Apothecary: Supply
+edQuestApothecary3Subtitle,quests,Quest,,,Deliver twelve reagent base
+edQuestApothecary3Desc,quests,Quest,,,Twelve delivered. There will come a night when somebody's life is the difference between you having stock and not. Get used to holding it. The bench is yours. People are going to owe you their lives. Be decent about it.
+edQuestApothecary3Offer,quests,Quest,,,"Twelve reagent base, delivered. Then people start depending on you."
+edQuestSapper1Name,quests,Quest,,,Proving of the Sapper: Mix
+edQuestSapper1Subtitle,quests,Quest,,,Produce one hundred cement
+edQuestSapper1Desc,quests,Quest,,,"A hundred cement. It is boring and it is heavy and that is the entire discipline. If this puts you off, good - better now than later."
+edQuestSapper1Offer,quests,Quest,,,Nothing about this trade is exciting. A hundred cement.
+edQuestSapper2Name,quests,Quest,,,Proving of the Sapper: Pour
+edQuestSapper2Subtitle,quests,Quest,,,Produce one hundred and fifty more
+edQuestSapper2Desc,quests,Quest,,,"Another hundred and fifty. Yes, really. Whatever you are planning to build, it needs more than you think and it needs it before dark."
+edQuestSapper2Offer,quests,Quest,,,Again. A hundred and fifty. You are learning what a wall costs.
+edQuestSapper3Name,quests,Quest,,,Proving of the Sapper: Delivery
+edQuestSapper3Subtitle,quests,Quest,,,Deliver one hundred and twenty cement
+edQuestSapper3Desc,quests,Quest,,,Carry it here. All of it. A Sapper who cannot move material is somebody who draws nice plans. The ground is yours. Decide where they walk.
+edQuestSapper3Offer,quests,Quest,,,"Bring me a hundred and twenty. Carried, not traded."
+edQuestMarshal1Name,quests,Quest,,,Proving of the Marshal: Contact
+edQuestMarshal1Subtitle,quests,Quest,,,Put down sixty
+edQuestMarshal1Desc,quests,Quest,,,"Sixty. Not clever, not subtle. I need to know you do not freeze, and there is only one way to find that out."
+edQuestMarshal1Offer,quests,Quest,,,Sixty of them. That is the whole instruction.
+edQuestMarshal2Name,quests,Quest,,,Proving of the Marshal: Sustained
+edQuestMarshal2Subtitle,quests,Quest,,,Put down one hundred and twenty more
+edQuestMarshal2Desc,quests,Quest,,,Another hundred and twenty. Anybody can win one fight. I am looking for somebody who is still standing on the twentieth.
+edQuestMarshal2Offer,quests,Quest,,,"Again, and double. Winning once proves nothing."
+edQuestMarshal3Name,quests,Quest,,,Proving of the Marshal: Logistics
+edQuestMarshal3Subtitle,quests,Quest,,,Deliver one hundred and fifty gunpowder
+edQuestMarshal3Desc,quests,Quest,,,"Now the part that actually kills people: supply. A hundred and fifty powder. Every Marshal who died out there died with an empty gun. The line is yours. Hold it, and keep somebody making your ammunition."
+edQuestMarshal3Offer,quests,Quest,,,"Last part, and the one that matters. A hundred and fifty powder."
+edQuestScavenger1Name,quests,Quest,,,Proving of the Scavenger: Strip
+edQuestScavenger1Subtitle,quests,Quest,,,Recover forty mechanical parts
+edQuestScavenger1Desc,quests,Quest,,,"Forty mechanical parts, out of things other people gave up on. Do not buy them. I will be able to tell."
+edQuestScavenger1Offer,quests,Quest,,,"Forty mechanical parts. Pulled, not purchased."
+edQuestScavenger2Name,quests,Quest,,,Proving of the Scavenger: Circuits
+edQuestScavenger2Subtitle,quests,Quest,,,Recover thirty electrical parts
+edQuestScavenger2Desc,quests,Quest,,,"Thirty electrical. Harder, and in worse places. That is where the trade actually lives."
+edQuestScavenger2Offer,quests,Quest,,,Now thirty electrical. They are not lying in the road.
+edQuestScavenger3Name,quests,Quest,,,Proving of the Scavenger: Records
+edQuestScavenger3Subtitle,quests,Quest,,,Recover sixty paper
+edQuestScavenger3Desc,quests,Quest,,,"Sixty paper. Laugh if you want. Everything anybody knew is written down somewhere, and the person who brings it back decides who learns it. The ruins are yours. Everything out there is worth more in your hands."
+edQuestScavenger3Offer,quests,Quest,,,Sixty paper. You will understand why later.

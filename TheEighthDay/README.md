@@ -74,16 +74,16 @@ Running it on a server: [`docs/SERVER.md`](docs/SERVER.md).
 
 ## Status
 
-**v0.2.0 — pre-alpha.** Vertical slice with the Calling trees backfilled. What exists:
+**v0.3.0 — pre-alpha.** Callings are now earned. What exists:
 
 - ✅ Cycle system (gamestage-driven), Cycles 0–6 populated
 - ✅ All six Calling perk branches, Mark-gated, **every unlock backed by real content**
 - ✅ Tier-1/2 production chain and six workstations
 - ✅ Weapons, tools, armour, fortification, traps, stimulants and salvage gear
-- ✅ Six enemy archetypes
+- ✅ Seven enemy archetypes, including the Cycle 7+ Grinder
 - ✅ Four-stage infection
 - ✅ Research loop complete — all six Field Note disciplines reconstruct into something
-- ⚠️ Proving quest chains stubbed — Marks currently granted by a placeholder Writ item
+- ✅ Six Proving quest chains — Callings are earned, and Writs are no longer sold
 - ⚠️ Turning dawn announcement scaffolded but inert (verification item 1)
 - ❌ No custom art — items borrow vanilla icons, weapons and enemies reuse vanilla meshes.
   The pipeline is scaffolded and specified in [`docs/ART.md`](docs/ART.md); it needs an

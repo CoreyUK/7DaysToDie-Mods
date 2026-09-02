@@ -3,6 +3,38 @@
 All notable changes to The Eighth Day.
 Format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
+## [0.3.0] — 2026-09-02
+
+Callings are now earned. The last "this is a placeholder" is gone from the design.
+
+### Added
+- **Six Proving quest chains** (`quests.xml`), three stages each. Completing a chain rewards
+  that Calling's Writ, which grants the Mark. **Writs are no longer sold** — a Proving is
+  now the only route into a Calling, because a Calling you can buy is a purchase rather than
+  a discipline.
+- **The Grinder** — Cycle 7+ Titan-class. 8000 HP and structural damage on a scale that
+  makes static fortification a losing strategy, which is the point: past Cycle 7 the mod
+  stops rewarding the best box and starts rewarding knowing when to leave. Rare, slow, loud
+  and visible a long way out — never a surprise.
+- `tools/check-refs.py` — resolves every cross-reference in the modlet: recipe ingredients,
+  craft areas, `Extends` bases, buffs applied, entities spawned, loot groups, quest reward
+  chains and every localisation key. All of these load silently when broken, which without
+  a game install means they never surface at all. Now runs in CI.
+- `docs/VANILLA-DEPENDENCIES.md` — auto-generated manifest of every vanilla identifier the
+  mod depends on and where it is used, so verification against a real install is a
+  mechanical pass rather than a hunt.
+
+### Changed
+- Localisation is now properly quoted CSV, and the validator parses it as CSV rather than
+  counting commas. Prose no longer has to avoid commas to survive the check.
+- `docs/CALLINGS.md` reconciled with what the quest objectives can actually express. Three
+  Provings had design intent — bow-only, cure-an-infection, hold-a-position — that objective
+  types do not support; those are now marked as flavour rather than mechanics instead of
+  quietly reading as implemented.
+- New verification item 16 covering quest structure and, critically, how a trader offers
+  these at all. Until that is confirmed, Callings could be unreachable — the mitigation is
+  documented in `traders.xml`.
+
 ## [0.2.0] — 2026-09-02
 
 Backfills the Calling trees. In 0.1 two thirds of the perk unlocks pointed at recipes that
