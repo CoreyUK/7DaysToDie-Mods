@@ -242,15 +242,27 @@ def bevel(obj, width=0.02, segments=3, angle=50):
 
 
 def smooth(obj, angle=40):
+    """Smooth shading with sharp edges preserved above `angle`.
+
+    Blender <4.1 used mesh.use_auto_smooth; 4.1+ replaced it with a geometry
+    nodes modifier that is only reachable via an operator. Handle both, and
+    fall back to plain smooth shading rather than fail."""
     for p in obj.data.polygons:
         p.use_smooth = True
     if hasattr(obj.data, "use_auto_smooth"):
         obj.data.use_auto_smooth = True
         obj.data.auto_smooth_angle = R(angle)
-    else:
-        m = obj.modifiers.new("smoothbyangle", "SMOOTH_BY_ANGLE")
-        if hasattr(m, "angle"):
-            m.angle = R(angle)
+        return obj
+    try:
+        bpy.ops.object.select_all(action="DESELECT")
+        obj.select_set(True)
+        bpy.context.view_layer.objects.active = obj
+        if hasattr(bpy.ops.object, "shade_smooth_by_angle"):
+            bpy.ops.object.shade_smooth_by_angle(angle=R(angle))
+        elif hasattr(bpy.ops.object, "shade_auto_smooth"):
+            bpy.ops.object.shade_auto_smooth(angle=R(angle))
+    except Exception:
+        pass
     return obj
 
 
