@@ -62,6 +62,40 @@ badly if it vanishes without warning.
 - The staged infection system adds per-player buff ticks. Negligible for under 20 players;
   worth watching above that.
 
+### The escalation tail, and the one number to trim
+
+Blood moon bands run out to gamestage 3000 and climb the whole way. That is the mod's central
+promise — there is no plateau — and on a long-running server it is also the thing most likely
+to hurt you.
+
+Two numbers per band, and they cost very differently:
+
+| | what it is | cost |
+|---|---|---|
+| `num` | total zombies the wave will send | cheap — they arrive over time |
+| `maxAlive` | how many exist **at once** | this is the one that kills a server |
+
+**Trim `maxAlive` and leave `num` alone.** Fewer at once for longer is the same fight for the
+players at a fraction of the cost for the host. It tops out at 45 in the shipped table;
+dropping the last few bands to 30 costs the fight almost nothing.
+
+Both live in `Config/gamestages.xml`, which is the only file you should need to touch for
+pacing or performance.
+
+### Biome hostility, and what to tell your players
+
+Every biome except the starter ones carries mod archetypes in its ordinary ambient spawning,
+permanently, from day one — Bloaters in the burnt forest, Carrion Hounds in the desert,
+Rotweavers in the snow, most of them in the wasteland.
+
+That is deliberate: the map is the difficulty selector, and a player who crosses into the
+desert on day four is meant to find out. It is worth putting in your server rules, because it
+is the one thing here that will kill someone who did nothing wrong except walk in a straight
+line.
+
+Counts are small — an encounter, not a population — and the starter biomes are untouched, so
+anyone who stays in the pine forest gets a normal first week.
+
 ---
 
 ## Updating a live server

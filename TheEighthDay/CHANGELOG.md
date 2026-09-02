@@ -3,6 +3,26 @@
 All notable changes to The Eighth Day.
 Format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
+## [0.11.1] — 2026-09-02
+
+Documentation, but the kind that was describing mechanics that do not exist.
+
+### Changed
+- **`CALLINGS.md` claimed each subsequent Proving costs progressively more** in time,
+  materials and skill points, and rested a balance argument on it — *"specialising early is
+  genuinely stronger than dabbling"*. Nothing implemented it: quest objectives are fixed per
+  chain, perk costs are a uniform 1/1/1/1/5, and `quests.xml` does not reference a Mark
+  anywhere. The conclusion happens to be true, but for a different reason — opportunity cost
+  against a stretched XP curve, where spreading points across three Callings means reaching
+  no capstone in any of them. That is what it says now, including the part that used to be
+  glossed over: very late, a survivor can hold everything, and in a mod with no win state
+  that is fine.
+- **`SERVER.md` gained the two things this week's changes ask an operator to know.** Which
+  number to trim when the escalation tail hurts — `maxAlive` is concurrent entities and is
+  the one that kills a host, `num` is cheap because they arrive over time — and that biome
+  hostility will kill a new player who walks into the desert on day four, which belongs in a
+  server's rules rather than in a surprise.
+
 ## [0.11.0] — 2026-09-02
 
 ### Added

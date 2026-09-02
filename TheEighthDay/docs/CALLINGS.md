@@ -20,9 +20,24 @@ outperforms one that doesn't — that's the point.
 
    Writs are **not sold, not looted and not craftable.** Finishing a Proving is the only
    way to get one. A Calling you can buy is a purchase, not a discipline.
-4. **Multiple Callings.** You can hold more than one, but each subsequent Proving costs
-   progressively more (time, materials and skill points), so specialising early is
-   genuinely stronger than dabbling.
+4. **Multiple Callings.** You can hold as many as you earn. Nothing charges you extra for the
+   second or the fifth, and nothing needs to — the cost of dabbling is **opportunity cost**,
+   and it is real.
+
+   Every branch is four cheap perks and one capstone at five points, against a deliberately
+   stretched XP curve. Points are the binding constraint for the whole of the early and mid
+   game, so spreading them across three Callings means reaching no capstone in any of them
+   while the world Turns on its own schedule. Specialising early is stronger because the
+   capstone is where each Calling's identity actually lives.
+
+   Very late, a survivor with enough levels can hold everything. That is fine, and it is the
+   mod working: there is no win state, so "you eventually mastered all six" is not a finish —
+   the world is at Cycle 7+ by then and does not care.
+
+   *This used to say each subsequent Proving cost progressively more in time, materials and
+   skill points. Nothing implemented it — quest objectives are fixed per chain, perk costs are
+   uniform, and no Mark is referenced anywhere in `quests.xml` — so the claim is gone rather
+   than left reading as a mechanic.*
 
 Mechanically, a Mark is a CVar (`edMarkIronmonger` etc.). Every perk in that branch carries
 a requirement on its Mark, so the branch is visible but unspendable until you've earned it.
