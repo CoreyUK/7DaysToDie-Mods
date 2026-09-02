@@ -1,12 +1,13 @@
 # Art Pipeline — Icons and Models
 
-What it takes to give this mod its own visual identity, and why v0.2 doesn't have one yet.
+How this mod gets its own visual identity: what is built, what is pipeline, what still needs an artist.
 
 ---
 
 ## Current state
 
-Every item and block added by The Eighth Day currently borrows a vanilla icon via
+**All six workstations have their own 3D models, baked textures and icons** — see the
+models section below. Everything else — items, weapons, enemies — borrows a vanilla icon via
 `CustomIcon` and separates itself with `CustomIconTint`:
 
 ```xml
@@ -30,7 +31,8 @@ without writing a single line of C#.
 
 ## Decision record — how custom icons get made
 
-**Status: parked. Vanilla tinted icons ship until this is resolved.**
+**Status: solved for blocks (rendered from their models). Parked for the ~60 items, which
+keep vanilla tinted icons until their geometry exists.**
 
 Two approaches were evaluated.
 
@@ -110,7 +112,7 @@ draw roughly 60 icons. That is the entire blocker.
 
 ## Custom models — the pipeline is live
 
-**Status: two assets built. Unity bundle step pending (needs a desktop).**
+**Status: all six workstations built and export-ready. Unity bundle step pending (needs a desktop).**
 
 `tools/gen_models.py` builds each workstation as real geometry in Blender, bakes its
 procedural materials to textures, exports an FBX, and renders the item icon from the same
