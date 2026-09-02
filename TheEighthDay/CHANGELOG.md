@@ -3,6 +3,42 @@
 All notable changes to The Eighth Day.
 Format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
+## [0.4.0] — 2026-09-02
+
+An audit pass. Found three things the mod claimed to do and did not.
+
+### Fixed
+- **The Hollow's night-only identity did not exist.** `edNightPool` was defined and nothing
+  spawned it, so Cycle 5's curfew was a doc promise. Ambient spawning has no gamestage gate —
+  that lives only in `gamestages.xml` — so "only at night" and "enters at Cycle 5" cannot
+  both come from it. The gate is now **geography**: The Hollow haunts the wasteland and burnt
+  forest after dark from day one, and joins the horde pools at Cycle 5. A day-3 player who
+  walks into the wasteland at night meets something silent, which is what the wasteland is
+  for. Deliberately absent from the starter biomes — that would be a rug-pull, not a curfew.
+- **12 items were priced below their own input cost**, including every tier material:
+  carbide at 0.30x, composite plate 0.27x, hardened steel 0.39x, precision parts 0.48x.
+  Precision parts sat in trader stock at 120 while costing 250 to craft, so a player could
+  buy them cheaper than the machine shop could make them — quietly gutting the Long Craft.
+  All 26 prices are now derived from their recipes.
+- **`--fix` declined to fix the worst cases.** A tolerance gate meant to catch cosmetic drift
+  was also suppressing below-input-cost items, which are the actual exploit. Below cost is
+  now always corrected regardless of how close to target it happens to land.
+
+### Added
+- `tools/check-economy.py` — derives every craftable item's cost from its recipe recursively
+  and checks the declared price against it. Items whose play value exceeds their materials
+  (medicine, ordnance, stimulants) carry a documented `UTILITY` premium, hard-capped at 2.5x,
+  because past that buying inputs to sell output becomes a mint. Runs in CI.
+- Orphan detection in `check-refs.py` — definitions nothing references. The mirror image of
+  an unresolved reference and just as silent; it is what caught `edNightPool`.
+- Attrition durability: every repair returns 35% less, so gear drifts toward replacement.
+- Verification items 19 (biome names) and 20 (the assumed vanilla price table).
+
+### Changed
+- `DESIGN.md` reconciled with what ships. The Attrition pillar claimed repairs restore less
+  *each time* — per-item diminishing returns, which needs per-item state XML cannot keep.
+  A flat penalty ships instead, and the doc now says so rather than leaving it aspirational.
+
 ## [0.3.3] — 2026-09-02
 
 All six workstations modelled. Export-ready.

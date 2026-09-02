@@ -7,7 +7,7 @@ folder and ships as a self-contained modlet — drop the folder into `Mods/`, do
 
 | Mod | Type | Game build | Status |
 |---|---|---|---|
-| [The Eighth Day](TheEighthDay/) | Overhaul | V3.2 (Henpocalypse) | Pre-alpha (v0.3.3) |
+| [The Eighth Day](TheEighthDay/) | Overhaul | V3.2 (Henpocalypse) | Pre-alpha (v0.4.0) |
 
 ---
 

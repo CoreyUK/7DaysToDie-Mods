@@ -132,6 +132,21 @@ blocking for the Grinder specifically.
   ground at the right scale (1 m footprint, pivot at base centre), and the mesh collider
   blocks movement.
 
+### 19. Biome names and spawn attributes
+**Check:** `Data/Config/spawning.xml`
+`Config/spawning.xml` appends night spawns of The Hollow to `wasteland` and `burnt_forest`.
+Confirm both biome names and the `<spawn maxcount= respawndelay= time= entitygroup=>`
+attribute set. If a name is wrong that biome silently gets no Hollow — the mod still loads
+and the archetype still arrives via the horde pools at Cycle 5.
+
+### 20. Assumed vanilla item values
+**Check:** `Data/Config/items.xml`
+`tools/check-economy.py` derives every item's price from its recipe, and the leaves of that
+tree are vanilla materials whose `EconomicValue` this mod has **guessed** (`VANILLA_COST` in
+that file). Correct the table against the real values and re-run with `--fix`; every price in
+`items.xml` re-derives from one edit. Wrong assumptions here give prices that are internally
+consistent but collectively off — a far better failure than 49 unrelated guesses.
+
 ## Priority 2 — will load but behave wrong
 
 ### 5. `CustomIcon` names

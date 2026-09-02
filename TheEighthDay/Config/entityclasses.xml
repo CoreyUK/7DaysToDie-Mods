@@ -308,6 +308,10 @@
                               buff="edBuffCycleTracker" />
             <triggered_effect trigger="onSelfRespawn" action="AddBuff"
                               buff="edBuffCycleTracker" />
+            <triggered_effect trigger="onSelfFirstSpawn" action="AddBuff"
+                              buff="edBuffAttrition" />
+            <triggered_effect trigger="onSelfRespawn" action="AddBuff"
+                              buff="edBuffAttrition" />
         </effect_group>
     </append>
 
@@ -317,6 +321,10 @@
                               buff="edBuffCycleTracker" />
             <triggered_effect trigger="onSelfRespawn" action="AddBuff"
                               buff="edBuffCycleTracker" />
+            <triggered_effect trigger="onSelfFirstSpawn" action="AddBuff"
+                              buff="edBuffAttrition" />
+            <triggered_effect trigger="onSelfRespawn" action="AddBuff"
+                              buff="edBuffAttrition" />
         </effect_group>
     </append>
 

@@ -40,7 +40,7 @@
             <property name="CustomIcon" value="resourceCoal" />
             <property name="CustomIconTint" value="d8d0b8" />
             <property name="DescriptionKey" value="edResourceFluxDesc" />
-            <property name="EconomicValue" value="8" />
+            <property name="EconomicValue" value="4" />
             <property name="Stacknumber" value="500" />
         </item>
 
@@ -50,7 +50,7 @@
             <property name="CustomIcon" value="resourceForgedSteel" />
             <property name="CustomIconTint" value="8fa0b0" />
             <property name="DescriptionKey" value="edResourceHardenedSteelDesc" />
-            <property name="EconomicValue" value="70" />
+            <property name="EconomicValue" value="224" />
             <property name="Stacknumber" value="500" />
         </item>
 
@@ -60,7 +60,7 @@
             <property name="CustomIcon" value="resourceForgedSteel" />
             <property name="CustomIconTint" value="4c5a66" />
             <property name="DescriptionKey" value="edResourceCarbideDesc" />
-            <property name="EconomicValue" value="180" />
+            <property name="EconomicValue" value="748" />
             <property name="Stacknumber" value="250" />
         </item>
 
@@ -70,7 +70,7 @@
             <property name="CustomIcon" value="resourceMechanicalParts" />
             <property name="CustomIconTint" value="c8b070" />
             <property name="DescriptionKey" value="edResourcePrecisionPartsDesc" />
-            <property name="EconomicValue" value="120" />
+            <property name="EconomicValue" value="312" />
             <property name="Stacknumber" value="250" />
         </item>
 
@@ -80,7 +80,7 @@
             <property name="CustomIcon" value="resourceOil" />
             <property name="CustomIconTint" value="e0e0e0" />
             <property name="DescriptionKey" value="edResourcePolymerDesc" />
-            <property name="EconomicValue" value="45" />
+            <property name="EconomicValue" value="59" />
             <property name="Stacknumber" value="500" />
         </item>
 
@@ -90,7 +90,7 @@
             <property name="CustomIcon" value="resourceForgedSteel" />
             <property name="CustomIconTint" value="6e7a58" />
             <property name="DescriptionKey" value="edResourceCompositePlateDesc" />
-            <property name="EconomicValue" value="150" />
+            <property name="EconomicValue" value="685" />
             <property name="Stacknumber" value="250" />
         </item>
 
@@ -286,7 +286,7 @@
             <property name="CustomIcon" value="drugAntibiotics" />
             <property name="CustomIconTint" value="d8c070" />
             <property name="DescriptionKey" value="edMedTinctureDesc" />
-            <property name="EconomicValue" value="240" />
+            <property name="EconomicValue" value="468" />
             <property name="Stacknumber" value="10" />
                     <!-- Stage 1-2 only. Past that you are holding expensive brown water.
                  Sets edInfCured so the stage this removes cannot advance on the
@@ -305,7 +305,7 @@
             <property name="CustomIcon" value="drugAntibiotics" />
             <property name="CustomIconTint" value="70b0d8" />
             <property name="DescriptionKey" value="edMedAntibioticDesc" />
-            <property name="EconomicValue" value="900" />
+            <property name="EconomicValue" value="1645" />
             <property name="Stacknumber" value="10" />
                     <!-- Reverses stage 3. Apothecary, Antisepsis 4.
                  Sets edInfCured so the stage this removes cannot advance on the
@@ -325,7 +325,7 @@
             <property name="CustomIcon" value="drugAntibiotics" />
             <property name="CustomIconTint" value="c070d8" />
             <property name="DescriptionKey" value="edMedSerumDesc" />
-            <property name="EconomicValue" value="2600" />
+            <property name="EconomicValue" value="6112" />
             <property name="Stacknumber" value="5" />
                     <!-- The only thing that touches stage 4. Apothecary capstone.
                  Sets edInfCured so the stage this removes cannot advance on the
@@ -376,7 +376,7 @@
             <property name="CustomIcon" value="meleeToolPickT3SteelPickaxe" />
             <property name="CustomIconTint" value="4c5a66" />
             <property name="DescriptionKey" value="edToolCarbidePickaxeDesc" />
-            <property name="EconomicValue" value="4200" />
+            <property name="EconomicValue" value="5837" />
             <effect_group name="edToolCarbidePickaxeStats">
                 <passive_effect name="BlockDamage" operation="perc_add" value="0.45" />
                 <passive_effect name="DegradationMax" operation="perc_add" value="0.5" />
@@ -389,7 +389,7 @@
             <property name="CustomIcon" value="meleeToolAxeT3SteelAxe" />
             <property name="CustomIconTint" value="4c5a66" />
             <property name="DescriptionKey" value="edToolCarbideAxeDesc" />
-            <property name="EconomicValue" value="4200" />
+            <property name="EconomicValue" value="5837" />
             <effect_group name="edToolCarbideAxeStats">
                 <passive_effect name="BlockDamage" operation="perc_add" value="0.45" />
                 <passive_effect name="DegradationMax" operation="perc_add" value="0.5" />
@@ -404,7 +404,7 @@
             <property name="CustomIcon" value="meleeWpnSledgeT3SteelSledgehammer" />
             <property name="CustomIconTint" value="4c5a66" />
             <property name="DescriptionKey" value="edMeleeCarbideMaulDesc" />
-            <property name="EconomicValue" value="5600" />
+            <property name="EconomicValue" value="9080" />
             <effect_group name="edMeleeCarbideMaulStats">
                 <passive_effect name="EntityDamage" operation="perc_add" value="0.4" />
                 <passive_effect name="BlockDamage" operation="perc_add" value="0.6" />
@@ -430,7 +430,7 @@
             <property name="CustomIcon" value="armorMilitaryHelmet" />
             <property name="CustomIconTint" value="6e7a58" />
             <property name="DescriptionKey" value="edArmorCompositeHelmetDesc" />
-            <property name="EconomicValue" value="3800" />
+            <property name="EconomicValue" value="2701" />
             <effect_group name="edArmorCompositeHelmetStats">
                 <passive_effect name="PhysicalDamageResist" operation="base_add" value="3" />
             </effect_group>
@@ -531,7 +531,7 @@
             <property name="CustomIcon" value="explosiveTimedCharge" />
             <property name="CustomIconTint" value="c0a840" />
             <property name="DescriptionKey" value="edExpMiningChargeDesc" />
-            <property name="EconomicValue" value="900" />
+            <property name="EconomicValue" value="173" />
             <property name="Stacknumber" value="20" />
             <effect_group name="edExpMiningChargeStats">
                 <passive_effect name="BlockDamage" operation="perc_add" value="2.0"
@@ -555,7 +555,7 @@
             <property name="CustomIcon" value="foodCharredMeat" />
             <property name="CustomIconTint" value="a06040" />
             <property name="DescriptionKey" value="edFoodCuredMeatDesc" />
-            <property name="EconomicValue" value="120" />
+            <property name="EconomicValue" value="33" />
             <property name="Stacknumber" value="50" />
         </item>
 
@@ -565,7 +565,7 @@
             <property name="CustomIcon" value="foodCharredMeat" />
             <property name="CustomIconTint" value="6f5a3a" />
             <property name="DescriptionKey" value="edFoodPemmicanDesc" />
-            <property name="EconomicValue" value="320" />
+            <property name="EconomicValue" value="96" />
             <property name="Stacknumber" value="30" />
         </item>
 
@@ -575,7 +575,7 @@
             <property name="CustomIcon" value="ammoArrowSteel" />
             <property name="CustomIconTint" value="8fa0b0" />
             <property name="DescriptionKey" value="edAmmoBodkinArrowDesc" />
-            <property name="EconomicValue" value="45" />
+            <property name="EconomicValue" value="31" />
             <effect_group name="edAmmoBodkinArrowStats">
                 <passive_effect name="DamageModifier" operation="perc_add" value="0.6"
                                 tags="heavyArmor" />
@@ -589,7 +589,7 @@
             <property name="CustomIcon" value="ammoArrowSteel" />
             <property name="CustomIconTint" value="9fd8a0" />
             <property name="DescriptionKey" value="edAmmoToxinArrowDesc" />
-            <property name="EconomicValue" value="80" />
+            <property name="EconomicValue" value="54" />
             <effect_group name="edAmmoToxinArrowEffects">
                 <triggered_effect trigger="onSelfAttackedOther" action="AddBuff"
                                   buff="edBuffToxicCloud" target="other" />
@@ -610,7 +610,7 @@
             <property name="CustomIcon" value="drugSteroids" />
             <property name="CustomIconTint" value="d86060" />
             <property name="DescriptionKey" value="edDrugCombatStimDesc" />
-            <property name="EconomicValue" value="1100" />
+            <property name="EconomicValue" value="346" />
             <property name="Stacknumber" value="10" />
             <effect_group name="edDrugCombatStimUse">
                 <triggered_effect trigger="onSelfPrimaryActionEnd" action="AddBuff"
@@ -623,7 +623,7 @@
             <property name="CustomIcon" value="drugSteroids" />
             <property name="CustomIconTint" value="70b0d8" />
             <property name="DescriptionKey" value="edDrugSteadyHandDesc" />
-            <property name="EconomicValue" value="1100" />
+            <property name="EconomicValue" value="204" />
             <property name="Stacknumber" value="10" />
             <effect_group name="edDrugSteadyHandUse">
                 <triggered_effect trigger="onSelfPrimaryActionEnd" action="AddBuff"
@@ -638,7 +638,7 @@
             <property name="CustomIcon" value="grenadeContact" />
             <property name="CustomIconTint" value="9fd8a0" />
             <property name="DescriptionKey" value="edExpGasGrenadeDesc" />
-            <property name="EconomicValue" value="1400" />
+            <property name="EconomicValue" value="322" />
             <property name="Stacknumber" value="10" />
             <effect_group name="edExpGasGrenadeEffects">
                 <triggered_effect trigger="onSelfExplode" action="AddBuff"
@@ -651,7 +651,7 @@
             <property name="CustomIcon" value="resourceAcid" />
             <property name="CustomIconTint" value="70c080" />
             <property name="DescriptionKey" value="edToxinCoatingDesc" />
-            <property name="EconomicValue" value="260" />
+            <property name="EconomicValue" value="90" />
             <property name="Stacknumber" value="100" />
         </item>
 
@@ -670,7 +670,7 @@
             <property name="CustomIcon" value="resourceElectricParts" />
             <property name="CustomIconTint" value="70c080" />
             <property name="DescriptionKey" value="edResourceCircuitBoardDesc" />
-            <property name="EconomicValue" value="180" />
+            <property name="EconomicValue" value="359" />
             <property name="Stacknumber" value="250" />
         </item>
 
@@ -679,7 +679,7 @@
             <property name="CustomIcon" value="resourceElectricParts" />
             <property name="CustomIconTint" value="c070d8" />
             <property name="DescriptionKey" value="edResourceSensorModuleDesc" />
-            <property name="EconomicValue" value="420" />
+            <property name="EconomicValue" value="1391" />
             <property name="Stacknumber" value="100" />
         </item>
 
@@ -688,7 +688,7 @@
             <property name="CustomIcon" value="resourceMechanicalParts" />
             <property name="CustomIconTint" value="c0a840" />
             <property name="DescriptionKey" value="edVehiclePartsKitDesc" />
-            <property name="EconomicValue" value="1600" />
+            <property name="EconomicValue" value="4125" />
             <property name="Stacknumber" value="50" />
         </item>
 
@@ -697,7 +697,7 @@
             <property name="CustomIcon" value="resourceGasCan" />
             <property name="CustomIconTint" value="70b0d8" />
             <property name="DescriptionKey" value="edVehicleFuelCellDesc" />
-            <property name="EconomicValue" value="90" />
+            <property name="EconomicValue" value="34" />
             <property name="Stacknumber" value="500" />
         </item>
 

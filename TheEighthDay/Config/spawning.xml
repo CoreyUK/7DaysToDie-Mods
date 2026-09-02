@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+    THE EIGHTH DAY - spawning.xml
+    =============================
+    Ambient biome spawning. One job: make The Hollow's night-only identity real.
+
+    THE CONSTRAINT THAT SHAPED THIS FILE
+    ====================================
+    spawning.xml supports time="Night", but it has NO gamestage gating - that
+    lives only in gamestages.xml. So "only at night" and "enters at Cycle 5"
+    cannot both come from ambient spawning. One of them has to give.
+
+    Rather than drop either, the gate here is GEOGRAPHY instead of gamestage,
+    which is the same idea the Field Notes already use: the wasteland and the
+    burnt forest are late-game places, so putting The Hollow there at night
+    gates it by where the player is willing to go rather than by a number.
+
+    The result reads correctly at both ends of the game:
+
+      * A day-3 player who walks into the wasteland after dark meets something
+        silent that kills them. That is not unfair - the wasteland is supposed
+        to do that, and it is the one biome where the game already says so.
+      * From Cycle 5 The Hollow also enters the horde pools (entitygroups.xml),
+        so it stops being a place you avoid and starts coming to you. That is
+        the Turning doing its job.
+
+    Deliberately NOT in the starter biomes. A silent stalker in the pine forest
+    on night two is not a curfew, it is a rug-pull, and the mod's whole
+    difficulty philosophy is that you should be able to name what killed you.
+
+    Counts are low on purpose. The Hollow is an encounter, not a population.
+
+    VERIFY-19 (docs/VERIFICATION.md): confirm the biome names below and the
+    spawn attribute set against V3.2's Data/Config/spawning.xml.
+-->
+<configs>
+
+    <!-- ==========================================================================
+         WASTELAND - the harshest biome, and the one that already warns you
+         ========================================================================== -->
+
+    <append xpath="/spawning/biome[@name='wasteland']">
+        <spawn maxcount="2" respawndelay="2" time="Night" entitygroup="edNightPool" />
+    </append>
+
+
+    <!-- ==========================================================================
+         BURNT FOREST - late-game adjacent, and thematically right for something
+         that does not make a sound
+         ========================================================================== -->
+
+    <append xpath="/spawning/biome[@name='burnt_forest']">
+        <spawn maxcount="1" respawndelay="3" time="Night" entitygroup="edNightPool" />
+    </append>
+
+</configs>

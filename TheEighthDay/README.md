@@ -26,8 +26,8 @@ There is no build in which you have finished. There is only how long you lasted.
 ### The Turning
 The game's blood moon lands on day 7. **Day 8 is ours.** Every horde night you survive, the
 world Turns at dawn — permanently, one-way. A new enemy archetype enters the spawn pool and
-never leaves. Wandering hordes grow. Biome hostility spreads outward. By Cycle 5 night stops
-being an option, and no amount of gear changes that.
+never leaves. Wandering hordes grow. By Cycle 5 night stops being an option, and no amount
+of gear changes that.
 
 → [`docs/CYCLES.md`](docs/CYCLES.md)
 
@@ -47,7 +47,8 @@ Field Notes you have to go and find.
 
 ### Attrition
 Four-stage infection with tiered cures, where stage 4 needs an Apothecary and nothing else
-will do. Repairs that give back less each time. A stretched XP curve with no "done" state.
+will do. Repairs that give back meaningfully less, so gear drifts toward replacement. A
+stretched XP curve with no "done" state.
 
 ---
 
@@ -74,7 +75,7 @@ Running it on a server: [`docs/SERVER.md`](docs/SERVER.md).
 
 ## Status
 
-**v0.3.3 — pre-alpha.** Callings are now earned. What exists:
+**v0.4.0 — pre-alpha.** What exists:
 
 - ✅ Cycle system (gamestage-driven), Cycles 0–6 populated
 - ✅ All six Calling perk branches, Mark-gated, **every unlock backed by real content**
@@ -89,6 +90,7 @@ Running it on a server: [`docs/SERVER.md`](docs/SERVER.md).
   waiting only on the Unity bundle step ([`docs/ART.md`](docs/ART.md))
 - ⚠️ Other items borrow vanilla icons; weapons and enemies reuse vanilla meshes with size
   and glow tells. Enemy models still need an artist
+- ✅ Prices derived from recipes, so nothing is craftable below its own input cost
 - ❌ No play-test data behind any balance value
 
 Roadmap in [`docs/DESIGN.md`](DESIGN.md#5-roadmap), release history in

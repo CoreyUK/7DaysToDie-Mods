@@ -282,6 +282,43 @@
          below - it is the only place this mod depends on that name.
          ========================================================================== -->
 
+    <!-- ==========================================================================
+         6. ATTRITION - durability
+
+         The pillar says gear should be consumable on a long enough timeline, so
+         that the production chain still matters at Cycle 6 instead of being
+         something you finished at Cycle 2.
+
+         WHAT THIS IS NOT
+         ================
+         The design originally called for repairs that restore less EACH TIME -
+         diminishing returns per repair on a given item. That needs per-item
+         state (how many times has this particular axe been repaired), and XML
+         has nowhere to keep it. It is a C# module or it is nothing, so it is
+         not pretended at here.
+
+         What ships instead is a flat repair penalty: every repair returns less
+         than vanilla, so gear drifts toward replacement rather than living
+         forever on one repair kit. Same pressure, one dimension simpler, and
+         honest about which one it is.
+
+         Applied to players alongside the cycle tracker - see entityclasses.xml.
+         ========================================================================== -->
+
+    <append xpath="/buffs">
+
+        <buff name="edBuffAttrition" hidden="true" remove_on_death="false"
+              icon="ui_game_symbol_wrench">
+            <stack_type value="ignore" />
+            <duration value="0" />
+            <effect_group name="edAttritionDurability">
+                <passive_effect name="RepairAmount" operation="perc_add" value="-0.35" />
+            </effect_group>
+        </buff>
+
+    </append>
+
+
     <append xpath="/buffs/buff[@name='buffInfection']">
         <effect_group name="edInfectionHandoff">
             <triggered_effect trigger="onSelfBuffStart" action="AddBuff"

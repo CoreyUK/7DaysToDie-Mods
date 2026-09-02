@@ -131,6 +131,13 @@ if command -v python3 >/dev/null 2>&1; then
     if ! python3 "$REPO_ROOT/tools/check-refs.py" "${modlets[@]}" --quiet; then
         errors=$((errors + 1))
     fi
+
+    # --- 7. No item may be priced below its own input cost ------------------
+    # That is a trader exploit: buy the inputs, craft, sell the output, repeat.
+    echo
+    if ! python3 "$REPO_ROOT/tools/check-economy.py" >/dev/null; then
+        fail "items priced below their input cost - run ./tools/check-economy.py"
+    fi
 else
     warn "python3 not found - skipping perk unlock and reference checks"
 fi

@@ -3,8 +3,8 @@
 > *You survived seven days. The eighth is when it starts.*
 
 **Target build:** 7 Days to Die V3.2 "Henpocalypse"
-**Type:** Full overhaul, pure XML (no compiled assembly, no custom assets in v0.1)
-**Status:** v0.1.0 pre-alpha
+**Type:** Full overhaul, pure XML (no compiled assembly)
+**Status:** v0.4.0 pre-alpha
 
 ---
 
@@ -58,8 +58,9 @@ four-player server that co-ordinates its Callings meaningfully outperforms one t
 
 Callings are **earned, not bought.** Each is unlocked by a trader-issued *Proving* — a short
 quest chain that makes you actually do the work of that discipline before it opens up. The
-Ironmonger's Proving has you smelt and forge under a delivery deadline. The Trapper's has
-you take large game with a bow, without firearms, and bring the meat back unspoiled.
+Ironmonger's Proving has you smelt and forge before it opens up; the Trapper's has you take
+game and bring the meat back. Objective types cannot express every intent in the original
+design — [`CALLINGS.md`](CALLINGS.md) marks which parts are mechanics and which are flavour.
 
 | Calling | Owns | Fantasy |
 |---|---|---|
@@ -111,9 +112,14 @@ Damage should have a memory.
   Stage 1 is a cough and a stamina tax; stage 4 is not curable with honey and a nap. Only an
   Apothecary-tier antibiotic reverses stage 3+, which makes one player's Calling the group's
   actual lifeline.
-- **Durability that bites.** Repairs restore less each time. Gear is consumable on a long
-  enough timeline, which keeps the production chain relevant at Cycle 6 instead of being
-  something you finished at Cycle 2.
+- **Durability that bites.** Every repair returns meaningfully less than vanilla, so gear
+  drifts toward replacement rather than living forever on one repair kit. That keeps the
+  production chain relevant at Cycle 6 instead of being something you finished at Cycle 2.
+
+  *This was originally specified as repairs restoring less **each time** — diminishing
+  returns per repair on a given item. That needs per-item state, which XML has nowhere to
+  keep, so it is a C# module or nothing. A flat penalty ships instead: the same pressure,
+  one dimension simpler, and honest about which one it is.*
 - **Stretched progression.** Raised level cap, flatter XP curve, scarcer skill points. You
   are never "done" perking, so you are always choosing.
 
@@ -124,12 +130,14 @@ Damage should have a memory.
 - **No lasers, no sci-fi tier.** The top of the tech tree is industrial and military —
   carbide, composites, belt-fed weapons. The fantasy stays grounded, because a grounded
   fantasy makes the horror land.
-- **No compiled assembly in v0.1.** Pure XML survives game patches. A DLL breaks on every
-  point release and turns the mod into a maintenance treadmill. If a system genuinely cannot
-  be done in XML, it waits for v0.3 and gets its own opt-in module.
-- **No custom art in v0.1.** New items reuse vanilla icons via `CustomIcon`/`CustomIconTint`,
-  new enemies reuse vanilla meshes with new stats, buffs and loot. Content and balance first;
-  art when the design has proven itself.
+- **No compiled assembly.** Pure XML survives game patches. A DLL breaks on every point
+  release and turns the mod into a maintenance treadmill. Where a system genuinely cannot be
+  done in XML it is named as such and left out rather than faked — see the durability note
+  in Pillar 4.
+- **Art only where it earns its place.** All six workstations have their own models and
+  icons. Items still reuse vanilla icons via `CustomIcon`/`CustomIconTint`, and enemies reuse
+  vanilla meshes differentiated by size and glow. Content and balance first; art after the
+  design has proven itself.
 - **No third-party content.** No XML, assets, code or config from any other mod. See §6.
 
 ---

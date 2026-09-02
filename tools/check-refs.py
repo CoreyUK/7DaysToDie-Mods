@@ -227,6 +227,27 @@ class Modlet:
             else:
                 vanilla[kind].append((name, where))
 
+        # Definitions nothing points at. The mirror image of an unresolved
+        # reference and just as silent: an entity group with no spawner, a buff
+        # nothing applies, a loot group no entity drops. The mod loads and the
+        # feature simply is not in the game.
+        referenced_names = {n for _, n, _, _ in self.refs}
+        # things that are legitimately entry points rather than referenced
+        ENTRY_POINTS = {
+            "item": "craftable/lootable by the player",
+            "block": "placeable by the player",
+            "perk": "spendable in the skill tree",
+            "quest": "offered by a trader",
+            "tradergroup": "trader stock",
+        }
+        for kind, names in sorted(self.defined.items()):
+            if kind in ENTRY_POINTS:
+                continue
+            for name in sorted(names):
+                if name not in referenced_names:
+                    self.warnings.append(
+                        f"orphan: {kind} '{name}' is defined but nothing references it")
+
         # orphaned localisation strings
         referenced_loc = {n for k, n, _, _ in self.refs if k in ("loc", "loc?")}
         for key in sorted(self.loc_keys):
