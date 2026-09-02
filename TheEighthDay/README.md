@@ -77,9 +77,10 @@ Running it on a server: [`docs/SERVER.md`](docs/SERVER.md).
 
 ## Status
 
-**v0.8.0 — pre-alpha.** What exists:
+**v0.9.0 — pre-alpha.** What exists:
 
-- ✅ Cycle system (gamestage-driven), Cycles 0–6 populated
+- ✅ Cycle system (gamestage-driven), Cycles 0–7 populated and still escalating at
+  gamestage 3000 — the mod has no plateau
 - ✅ All six Calling perk branches, Mark-gated, **every unlock backed by real content**
 - ✅ Tier-1/2 production chain and eight workstations
 - ✅ Farming and cooking — four crops that feed the industry, not a side system

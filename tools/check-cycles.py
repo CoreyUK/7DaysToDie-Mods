@@ -2,7 +2,7 @@
 """
 Check that the Turning agrees with itself.
 
-The Turning is described in four places that have no way of noticing each other:
+The Turning is described in five places that have no way of noticing each other:
 
     entitygroups.xml   which archetype each Cycle pool actually introduces
     gamestages.xml     which pool each gamestage band actually spawns
@@ -12,13 +12,13 @@ The Turning is described in four places that have no way of noticing each other:
 
 Nothing in the game or in the other checkers relates those to each other. Retune the
 bands, reorder a pool, or rename an archetype and every one of them still loads, still
-resolves, still prices - and the dawn message calmly names the wrong monster.
+resolves, still prices - and the announcement calmly names the wrong monster.
 
 That is not a cosmetic failure in this mod. The stated difficulty principle is "hard in
 ways you can see coming", and an announcement that lies is worse than no announcement:
 it teaches the player to prepare for the wrong thing. So the agreement is checked.
 
-Six invariants:
+Seven invariants:
 
   1. CUMULATIVE POOLS   pool N contains everything in pool N-1. A Turning is permanent
                         and one-way; an archetype that can leave the world breaks the
@@ -26,10 +26,14 @@ Six invariants:
   2. ONE ARRIVAL        pool N introduces exactly one archetype. Two at once means one
                         of them has no Cycle of its own and can never be announced.
   3. BANDS ASCEND       gamestage bands rise, and map to the Cycle pools in order.
-  4. HOOKED             the archetype introduced at Cycle N is the one that announces
+  4. WANDERING FOLLOWS  a wandering horde picks up a Cycle pool strictly LATER than the
+                        blood moon does, so a new archetype is first met on the player's
+                        terms - and no Cycle is skipped, which would leave an archetype
+                        existing only on horde nights.
+  5. HOOKED             the archetype introduced at Cycle N is the one that announces
                         Cycle N, and nothing announces a Cycle it does not introduce.
-  5. TEXT AGREES        the announcement text for Cycle N names that archetype.
-  6. DOCS AGREE         the CYCLES.md table names it too.
+  6. TEXT AGREES        the announcement text for Cycle N names that archetype.
+  7. DOCS AGREE         the CYCLES.md table names it too.
 
 Usage:  ./tools/check-cycles.py [modlet ...]     (default: every modlet in the repo)
 """
@@ -59,9 +63,9 @@ def pools(text: str) -> dict[int, list[str]]:
     return out
 
 
-def bands(text: str) -> list[tuple[int, int]]:
-    """(stage, cycle) for the blood moon spawner, in file order."""
-    m = re.search(r'<append\s+xpath="[^"]*BloodMoonHordes[^"]*"\s*>(.*?)</append>',
+def bands(text: str, spawner: str = "BloodMoonHordes") -> list[tuple[int, int]]:
+    """(stage, cycle) for one spawner, in file order."""
+    m = re.search(r'<append\s+xpath="[^"]*%s[^"]*"\s*>(.*?)</append>' % re.escape(spawner),
                   text, re.S)
     if not m:
         return []
@@ -114,7 +118,9 @@ def check(modlet: Path) -> int:
         print(f"{YELLOW}skip{NC}  {modlet.name} (no edCycleNPool groups)")
         return 0
 
-    band = bands((cfg / "gamestages.xml").read_text())
+    gamestages = (cfg / "gamestages.xml").read_text()
+    band = bands(gamestages)
+    wander = bands(gamestages, "WanderingHorde")
     hooks = announcements((cfg / "entityclasses.xml").read_text())
     buffs_text = (cfg / "buffs.xml").read_text()
     defined_buffs = {int(n) for n, _ in BUFFDEF_RE.findall(buffs_text)}
@@ -166,7 +172,36 @@ def check(modlet: Path) -> int:
             f"{RED}NEVER SPAWNS{NC} Cycle pool(s) {', '.join(map(str, unbanded))} are "
             f"defined but no gamestage band spawns them")
 
-    # --- 4: the right archetype announces the right Cycle ------------------
+    # --- 4: wandering hordes follow the blood moon, never lead it ----------
+    # The file's own rule: a wandering horde picks up a Cycle pool one band
+    # LATER than the blood moon, so the first time you meet a new archetype it
+    # is on your terms, at night, behind a wall. Nothing enforced that, and the
+    # Grinder was arriving in wandering hordes a band early.
+    if wander:
+        first_bm = {}
+        for stage, cycle in band:
+            first_bm.setdefault(cycle, stage)
+        first_wh = {}
+        for stage, cycle in wander:
+            first_wh.setdefault(cycle, stage)
+        for cycle, stage in sorted(first_wh.items()):
+            bm = first_bm.get(cycle)
+            if bm is None:
+                problems.append(
+                    f"{RED}WANDER{NC}    wandering hordes spawn Cycle {cycle} at gamestage "
+                    f"{stage}, but no blood moon band ever uses that pool")
+            elif stage <= bm:
+                problems.append(
+                    f"{RED}WANDER{NC}    wandering hordes spawn Cycle {cycle} at gamestage "
+                    f"{stage}, at or before the blood moon does ({bm}) - a new archetype "
+                    f"should be met on the player's terms first")
+        for cycle in sorted(first_bm):
+            if cycle not in first_wh:
+                problems.append(
+                    f"{RED}SKIPPED{NC}   Cycle {cycle} never reaches a wandering horde, so "
+                    f"it exists only on horde nights")
+
+    # --- 5: the right archetype announces the right Cycle ------------------
     for cycle, arch in sorted(intro.items()):
         claimed = hooks.get(arch, set())
         if not claimed:
@@ -188,7 +223,7 @@ def check(modlet: Path) -> int:
                 problems.append(
                     f"{RED}NO BUFF{NC}   {arch} adds edBuffTurning{c}, which is not defined")
 
-    # --- 5 & 6: the words agree with the mechanism -------------------------
+    # --- 6 & 7: the words agree with the mechanism -------------------------
     for cycle, arch in sorted(intro.items()):
         shown = names.get(arch)
         if not shown:

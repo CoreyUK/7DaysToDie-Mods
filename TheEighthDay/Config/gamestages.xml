@@ -92,6 +92,48 @@
             <spawn group="edCycle7Pool" num="48" maxAlive="32" duration="2" />
         </gamestage>
 
+        <!-- PAST HERE IS THE WHOLE POINT OF THE MOD
+             =======================================
+             The table used to stop at 600. That quietly reinstated the exact
+             ceiling this mod exists to remove - it just put it higher up. A
+             player at gamestage 900 got the same horde as one at 600, forever,
+             and "you never finish the game, you only last longer" stopped being
+             true at the moment it was supposed to start mattering.
+
+             num keeps climbing. maxAlive climbs far more slowly and stops at 45,
+             because maxAlive is the number that decides whether a dedicated
+             server survives the night: it is concurrent entities, not total.
+             An operator trimming for performance should trim maxAlive here and
+             leave num alone - fewer at once for longer is the same fight at a
+             fraction of the cost.
+
+             The last band sits at a gamestage nobody reaches by accident. If
+             somebody gets past it, they have earned a plateau. -->
+
+        <gamestage stage="800">
+            <spawn group="edCycle7Pool" num="54" maxAlive="34" duration="2" />
+        </gamestage>
+
+        <gamestage stage="1000">
+            <spawn group="edCycle7Pool" num="60" maxAlive="36" duration="2" />
+        </gamestage>
+
+        <gamestage stage="1300">
+            <spawn group="edCycle7Pool" num="68" maxAlive="38" duration="2" />
+        </gamestage>
+
+        <gamestage stage="1700">
+            <spawn group="edCycle7Pool" num="76" maxAlive="40" duration="2" />
+        </gamestage>
+
+        <gamestage stage="2200">
+            <spawn group="edCycle7Pool" num="86" maxAlive="42" duration="2" />
+        </gamestage>
+
+        <gamestage stage="3000">
+            <spawn group="edCycle7Pool" num="100" maxAlive="45" duration="2" />
+        </gamestage>
+
     </append>
 
 
@@ -126,8 +168,40 @@
             <spawn group="edCycle5Pool" num="14" maxAlive="14" duration="1" />
         </gamestage>
 
+        <!-- Cycle 6 used to be missing here, and the band below it handed out
+             the Grinder at 341 - the same gamestage the blood moon introduces
+             it, breaking the "one band later" rule stated above this table.
+             So the Choir only ever existed on horde nights, and the Titan met
+             you in the open on the same day it met you behind your wall.
+             check-cycles.py now fails the build on both. -->
         <gamestage stage="341">
-            <spawn group="edCycle7Pool" num="16" maxAlive="16" duration="1" />
+            <spawn group="edCycle6Pool" num="16" maxAlive="16" duration="1" />
+        </gamestage>
+
+        <gamestage stage="450">
+            <spawn group="edCycle7Pool" num="18" maxAlive="18" duration="1" />
+        </gamestage>
+
+        <!-- Same reasoning as the blood moon table: the world between horde
+             nights has to keep escalating too, or the mod becomes a horde-night
+             mod again at high gamestage. Held deliberately smaller - a wandering
+             horde you cannot break contact with is not a wandering horde, it is
+             an unannounced blood moon. -->
+
+        <gamestage stage="600">
+            <spawn group="edCycle7Pool" num="20" maxAlive="20" duration="1" />
+        </gamestage>
+
+        <gamestage stage="1000">
+            <spawn group="edCycle7Pool" num="24" maxAlive="22" duration="1" />
+        </gamestage>
+
+        <gamestage stage="1700">
+            <spawn group="edCycle7Pool" num="28" maxAlive="24" duration="1" />
+        </gamestage>
+
+        <gamestage stage="3000">
+            <spawn group="edCycle7Pool" num="32" maxAlive="26" duration="1" />
         </gamestage>
 
     </append>

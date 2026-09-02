@@ -3,6 +3,39 @@
 All notable changes to The Eighth Day.
 Format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
+## [0.9.0] — 2026-09-02
+
+Three bugs in the escalation itself, all found by extending `check-cycles.py` rather than by
+reading the file again.
+
+### Fixed
+- **Escalation stopped dead at gamestage 600.** The blood moon table's last band was 600, so
+  a player at gamestage 900 got exactly the same horde as one at 600 — and one at 2000 did
+  too, forever. That is the ceiling this mod exists to remove, reinstated higher up, and it
+  landed precisely where *"you never finish the game, you only last longer"* was supposed to
+  start mattering.
+
+  Nine further bands now run out to gamestage 3000. `num` climbs throughout; `maxAlive` climbs
+  much more slowly and stops at 45, because `maxAlive` is concurrent entities and therefore
+  the number that decides whether a dedicated server survives the night. Operators trimming
+  for performance should trim `maxAlive` and leave `num` alone.
+
+- **The Choir existed only on horde nights.** The wandering horde table jumped from Cycle 5
+  straight to Cycle 7, so Cycle 6's archetype never appeared in it.
+
+- **The Grinder arrived in wandering hordes a band early.** The wandering table handed out
+  Cycle 7 at gamestage 341 — the same band the blood moon introduces it — breaking the rule
+  written in the comment directly above that table: *a wandering horde picks up a Cycle pool
+  one band later, so the first time you meet a new archetype it is on your terms, at night,
+  behind a wall.* Instead the Titan met you in the open on the same day it met you behind
+  your wall.
+
+### Added
+- **Invariant 4 in `check-cycles.py`: wandering follows, never leads.** A wandering horde must
+  pick up each Cycle pool strictly later than the blood moon does, and no Cycle may be missing
+  from the wandering table. Both of the bugs above were found by writing the check and running
+  it against the shipped file, which is the point of writing it.
+
 ## [0.8.0] — 2026-09-02
 
 Biome hostility. The map becomes the difficulty selector.

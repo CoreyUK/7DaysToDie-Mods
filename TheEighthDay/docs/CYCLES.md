@@ -19,8 +19,20 @@ Every horde night you survive, the world Turns at dawn. Turnings are permanent a
 | **6** | Day 48 | **Choirs** — buff nearby zombies, never attack directly | Hordes gain a shape. You have to prioritise targets. |
 | **7+** | Day 56+ | **Grinders** — Titan-class; the base-ender | Fortification becomes a losing game. Mobility wins. |
 
-Cycles do not stop at 7. Cycle 8+ continues scaling density, health and wandering-horde
-frequency indefinitely, with no new archetypes. The mod has no win state.
+Cycles do not stop at 7. Past it there are no new archetypes, only more of everything: nine
+further blood-moon bands run out to gamestage 3000, and the wandering hordes climb with them.
+The mod has no win state.
+
+That tail is not decoration. The table used to stop at gamestage 600, which quietly put back
+the exact ceiling this mod exists to remove — a player at 900 got the same horde as one at
+600, forever, and *"you never finish, you only last longer"* stopped being true precisely
+where it was meant to start mattering.
+
+`num` keeps climbing across those bands; `maxAlive` climbs far more slowly and stops at 45,
+because `maxAlive` is concurrent entities and therefore the number that decides whether a
+dedicated server survives the night. **Operators trimming for performance should trim
+`maxAlive` and leave `num` alone** — fewer at once for longer is the same fight at a fraction
+of the cost.
 
 ---
 
