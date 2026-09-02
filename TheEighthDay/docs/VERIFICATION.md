@@ -15,15 +15,38 @@ check against and what "correct" looks like.
 
 ## Priority 1 — will stop the mod loading if wrong
 
-### 1. Blood-moon / dawn detection for the Turning announcement
+### 1. The Turning announcement
 **Check:** `Data/Config/buffs.xml`
-The announcement layer in `Config/buffs.xml` needs a requirement that reads "it is dawn and
-last night was a horde night". Confirm the exact requirement name the game exposes (candidates
-to look for: an `IsBloodMoon`-style requirement, a `TimeOfDay` requirement, or a readable
-world-time CVar).
-**Until confirmed:** the announcement effect group is commented out and marked
-`EIGHTHDAY-VERIFY-1`. The gamestage driver in `gamestages.xml` carries the mechanic without
-it, so the mod is fully playable — you just don't get the dawn message.
+*No longer a Priority 1 blocker. It keeps this number so the `VERIFY-1` tags in the config
+files stay stable.*
+
+This item used to read "find the requirement name for dawn after a blood moon". That approach
+was **abandoned rather than deferred** — the reasoning is in `Config/buffs.xml` section 3. The
+short version: it needed a requirement name nobody could confirm, and it counted horde nights
+while the spawn table counted gamestage, so the two could disagree and the message could name
+the wrong archetype.
+
+The announcement now fires on first contact with each archetype, which cannot disagree with
+what spawned. What remains to confirm is ordinary and low-risk, because every mechanism it
+uses is already load-bearing elsewhere in this mod:
+
+- `CVarCompare` with `operation="LT"` — the mod already relies on `Equals` / `NotEquals`
+  (perk gates, `edInfCured`). Confirm `LT` is valid; if it is not, the one-way cycle read can
+  be rebuilt from `NotEquals` guards on the per-cycle `edSeenCycleN` CVars, which are already
+  written.
+- `ModifyCVar` with `operation="setvalue"` — already used by the infection chain.
+- `AddBuff` with `target="other"` and with `target="selfAOE" range="..."` — both already used
+  by the infect-on-hit groups and by the Bloater rupture.
+- `display_value` on an effect group — cosmetic; a wrong name means the cycle number does not
+  render, nothing more.
+
+**Worth checking while you are in there:** whether an AOE target filter restricted to players
+exists. The death half of the trigger also lands on nearby zombies, where it is inert — they
+run the CVar bookkeeping against their own CVars and have no UI to show it in — but a filter
+would be tidier.
+
+**If any of it is wrong:** you lose the journal entries. The escalation itself lives in
+`gamestages.xml` and depends on none of this.
 
 ### 2. `entitygroups.xml` element form
 **Check:** `Data/Config/entitygroups.xml`

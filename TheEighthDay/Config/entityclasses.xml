@@ -68,6 +68,22 @@
                 <triggered_effect trigger="onSelfAttackedOther" action="AddBuff"
                                   buff="edBuffInfection1" target="other" />
             </effect_group>
+            <!-- THE TURNING. Announces Cycle 1 the first time this archetype touches
+                 the player or dies beside them - see buffs.xml section 3. The buff
+                 self-cancels on every contact after the first, so this can fire as
+                 often as it likes.
+
+                 The selfAOE half will also land on nearby zombies, where it is inert:
+                 they run the same CVar bookkeeping against their own CVars and have no
+                 UI to show it in. If V3.2 exposes a player-only AOE filter, add it.
+                 -->
+            <effect_group name="edZombieHuskTurning">
+                <triggered_effect trigger="onSelfAttackedOther" action="AddBuff"
+                                  buff="edBuffTurning1" target="other" />
+                <triggered_effect trigger="onSelfDied" action="AddBuff"
+                                  buff="edBuffTurning1" target="selfAOE" range="15" />
+            </effect_group>
+
         </entity_class>
 
 
@@ -103,6 +119,22 @@
                 <triggered_effect trigger="onSelfAttackedOther" action="AddBuff"
                                   buff="edBuffInfection1" target="other" />
             </effect_group>
+            <!-- THE TURNING. Announces Cycle 2 the first time this archetype touches
+                 the player or dies beside them - see buffs.xml section 3. The buff
+                 self-cancels on every contact after the first, so this can fire as
+                 often as it likes.
+
+                 The selfAOE half will also land on nearby zombies, where it is inert:
+                 they run the same CVar bookkeeping against their own CVars and have no
+                 UI to show it in. If V3.2 exposes a player-only AOE filter, add it.
+                 -->
+            <effect_group name="edZombieBloaterTurning">
+                <triggered_effect trigger="onSelfAttackedOther" action="AddBuff"
+                                  buff="edBuffTurning2" target="other" />
+                <triggered_effect trigger="onSelfDied" action="AddBuff"
+                                  buff="edBuffTurning2" target="selfAOE" range="15" />
+            </effect_group>
+
         </entity_class>
 
 
@@ -131,6 +163,22 @@
                 <triggered_effect trigger="onSelfAttackedOther" action="AddBuff"
                                   buff="edBuffInfection1" target="other" />
             </effect_group>
+            <!-- THE TURNING. Announces Cycle 3 the first time this archetype touches
+                 the player or dies beside them - see buffs.xml section 3. The buff
+                 self-cancels on every contact after the first, so this can fire as
+                 often as it likes.
+
+                 The selfAOE half will also land on nearby zombies, where it is inert:
+                 they run the same CVar bookkeeping against their own CVars and have no
+                 UI to show it in. If V3.2 exposes a player-only AOE filter, add it.
+                 -->
+            <effect_group name="edZombieCarrionHoundTurning">
+                <triggered_effect trigger="onSelfAttackedOther" action="AddBuff"
+                                  buff="edBuffTurning3" target="other" />
+                <triggered_effect trigger="onSelfDied" action="AddBuff"
+                                  buff="edBuffTurning3" target="selfAOE" range="15" />
+            </effect_group>
+
         </entity_class>
 
 
@@ -168,6 +216,22 @@
                 <triggered_effect trigger="onSelfAttackedOther" action="AddBuff"
                                   buff="edBuffInfection1" target="other" />
             </effect_group>
+            <!-- THE TURNING. Announces Cycle 4 the first time this archetype touches
+                 the player or dies beside them - see buffs.xml section 3. The buff
+                 self-cancels on every contact after the first, so this can fire as
+                 often as it likes.
+
+                 The selfAOE half will also land on nearby zombies, where it is inert:
+                 they run the same CVar bookkeeping against their own CVars and have no
+                 UI to show it in. If V3.2 exposes a player-only AOE filter, add it.
+                 -->
+            <effect_group name="edZombieRotweaverTurning">
+                <triggered_effect trigger="onSelfAttackedOther" action="AddBuff"
+                                  buff="edBuffTurning4" target="other" />
+                <triggered_effect trigger="onSelfDied" action="AddBuff"
+                                  buff="edBuffTurning4" target="selfAOE" range="15" />
+            </effect_group>
+
         </entity_class>
 
 
@@ -206,6 +270,22 @@
                 <triggered_effect trigger="onSelfAttackedOther" action="AddBuff"
                                   buff="edBuffInfection1" target="other" />
             </effect_group>
+            <!-- THE TURNING. Announces Cycle 5 the first time this archetype touches
+                 the player or dies beside them - see buffs.xml section 3. The buff
+                 self-cancels on every contact after the first, so this can fire as
+                 often as it likes.
+
+                 The selfAOE half will also land on nearby zombies, where it is inert:
+                 they run the same CVar bookkeeping against their own CVars and have no
+                 UI to show it in. If V3.2 exposes a player-only AOE filter, add it.
+                 -->
+            <effect_group name="edZombieHollowTurning">
+                <triggered_effect trigger="onSelfAttackedOther" action="AddBuff"
+                                  buff="edBuffTurning5" target="other" />
+                <triggered_effect trigger="onSelfDied" action="AddBuff"
+                                  buff="edBuffTurning5" target="selfAOE" range="15" />
+            </effect_group>
+
         </entity_class>
 
 
@@ -235,6 +315,26 @@
                                   target="selfAOE" range="12" />
             </effect_group>
             <property name="LootListOnDeath" value="edLootChoir" />
+            <!-- THE TURNING. Announces Cycle 6 the first time this archetype touches
+                 the player or dies beside them - see buffs.xml section 3. The buff
+                 self-cancels on every contact after the first, so this can fire as
+                 often as it likes.
+
+                 The selfAOE half will also land on nearby zombies, where it is inert:
+                 they run the same CVar bookkeeping against their own CVars and have no
+                 UI to show it in. If V3.2 exposes a player-only AOE filter, add it.
+
+                 The Choir never attacks, so the death trigger is the only one that can
+                 fire for it. Killing one from forty metres and walking away means
+                 meeting the next one; that is an acceptable miss.
+                 -->
+            <effect_group name="edZombieChoirTurning">
+                <triggered_effect trigger="onSelfAttackedOther" action="AddBuff"
+                                  buff="edBuffTurning6" target="other" />
+                <triggered_effect trigger="onSelfDied" action="AddBuff"
+                                  buff="edBuffTurning6" target="selfAOE" range="15" />
+            </effect_group>
+
         </entity_class>
 
 
@@ -287,6 +387,25 @@
                 <triggered_effect trigger="onSelfAttackedOther" action="AddBuff"
                                   buff="edBuffInfection1" target="other" />
             </effect_group>
+            <!-- THE TURNING. Announces Cycle 7 the first time this archetype touches
+                 the player or dies beside them - see buffs.xml section 3. The buff
+                 self-cancels on every contact after the first, so this can fire as
+                 often as it likes.
+
+                 The selfAOE half will also land on nearby zombies, where it is inert:
+                 they run the same CVar bookkeeping against their own CVars and have no
+                 UI to show it in. If V3.2 exposes a player-only AOE filter, add it.
+
+                 A Grinder is meant to be seen a long way out. If a player drops one at
+                 range and never closes, the message waits for the next.
+                 -->
+            <effect_group name="edZombieGrinderTurning">
+                <triggered_effect trigger="onSelfAttackedOther" action="AddBuff"
+                                  buff="edBuffTurning7" target="other" />
+                <triggered_effect trigger="onSelfDied" action="AddBuff"
+                                  buff="edBuffTurning7" target="selfAOE" range="15" />
+            </effect_group>
+
         </entity_class>
 
     </append>

@@ -73,8 +73,6 @@ edBuffInfection3Name,buffs,Buff,,,Infection - Systemic
 edBuffInfection3Desc,buffs,Buff,,,You are a liability to whoever you are standing next to. Nothing short of a real antibiotic turns this around.
 edBuffInfection4Name,buffs,Buff,,,Infection - Terminal
 edBuffInfection4Desc,buffs,Buff,,,You are dying and you can feel the schedule. One thing in the world reverses this and an Apothecary has to make it.
-edBuffTurningName,buffs,Buff,,,The Turning
-edBuffTurningDesc,buffs,Buff,,,Something changed out there at dawn. It will not change back.
 edPerkBloomBilletName,progression,Perk,,,Bloom and Billet
 edPerkBloomBilletDesc,progression,Perk,,,Smelt faster and pull more metal out of the same ore. The foundation every other Ironmonger perk sits on.
 edPerkAlloyingName,progression,Perk,,,Alloying
@@ -338,6 +336,20 @@ edBuffWellFedName,buffs,Buff,,,Well Fed
 edBuffWellFedDesc,buffs,Buff,,,"A proper meal, for once. Stamina and recovery both up for a good while."
 edBuffHerbalReliefName,buffs,Buff,,,Herbal Relief
 edBuffHerbalReliefDesc,buffs,Buff,,,The shakes have stopped and you can work. You are still infected - this only bought you time.
+edBuffTurning1Name,buffs,Buff,,,The Turning: Cycle 1
+edBuffTurning1Desc,buffs,Buff,,,"Dawn, and the count is wrong. What came out of the treeline was dry as paper and twice as quick - no weight to it at all, just speed and appetite. The Husks are in the world now. Nothing that arrives leaves again."
+edBuffTurning2Name,buffs,Buff,,,The Turning: Cycle 2
+edBuffTurning2Desc,buffs,Buff,,,It came apart in the doorway and the air was still wrong an hour later. Sat down on the stairs and could not stop coughing. Fighting them in your own hallway is no longer free. Bloaters.
+edBuffTurning3Name,buffs,Buff,,,The Turning: Cycle 3
+edBuffTurning3Desc,buffs,Buff,,,"Tracks in the ash this morning. Four sets, spread wide, moving parallel. They have stopped coming at me and started coming around me. Open ground is no longer a way home. Carrion Hounds."
+edBuffTurning4Name,buffs,Buff,,,The Turning: Cycle 4
+edBuffTurning4Desc,buffs,Buff,,,"Put most of a magazine into it and it kept walking. Whatever is under that skin was not there last week. Shooting my way out is over as a plan - the next answer has to be built, not bought. Rotweavers."
+edBuffTurning5Name,buffs,Buff,,,The Turning: Cycle 5
+edBuffTurning5Desc,buffs,Buff,,,Nothing woke me. That is the part worth being afraid of. It was already inside and it made no sound doing it. Night is not time to work in any more; night is time to be somewhere with one door. The Hollow.
+edBuffTurning6Name,buffs,Buff,,,The Turning: Cycle 6
+edBuffTurning6Desc,buffs,Buff,,,"One of them hung back and never came forward, and everything around it hit harder for exactly as long as it lived. The horde has a shape now. Kill the thing at the back first. Choirs."
+edBuffTurning7Name,buffs,Buff,,,The Turning: Cycle 7
+edBuffTurning7Desc,buffs,Buff,,,"It came through the wall. Not over it. Not around it. Through. There is no box left to build that ends this, so stop building boxes - learn the ground, keep the fuel topped up, and know the hour you leave. Grinders."
 edBlockFootlocker,blocks,Block,,,Footlocker
 edBlockFootlockerDesc,blocks,Block,,,Iron-bound and heavy enough that nothing drags it off. Holds considerably more than the crate you nailed together on day one.
 edBlockSupplyLocker,blocks,Block,,,Supply Locker

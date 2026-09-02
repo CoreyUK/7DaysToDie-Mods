@@ -5,7 +5,8 @@
     Three systems live here:
       1. Enemy-applied effects (toxic cloud, Choir aura)
       2. The Attrition pillar - four-stage infection
-      3. The Turning announcement layer (SCAFFOLDED, INERT - see VERIFY-1)
+      3. The Turning announcement layer - fires on first contact with each
+         archetype, so it can never disagree with what actually spawned
 
     VERIFY-8 (docs/VERIFICATION.md): confirm every passive_effect / CVarName referenced
     below against V3.2's Data/Config/buffs.xml.
@@ -139,60 +140,279 @@
 
 
     <!-- ==========================================================================
-         3. THE TURNING - announcement layer
+         3. THE TURNING - the announcement layer
 
-         *** SCAFFOLDED AND INERT. THIS IS VERIFY-1. ***
-
-         The MECHANIC of the Turning is carried entirely by gamestages.xml and does
-         not depend on anything below. What is missing is the FELT moment: the dawn
+         The MECHANIC of the Turning lives in gamestages.xml: bands of gamestage
+         select which Cycle pool spawns. This section is the FELT moment - the
          message that makes escalation read as the world doing something to you
-         rather than a slider moving.
+         rather than a slider moving somewhere you cannot see.
 
-         To finish it, confirm against V3.2's Data/Config/buffs.xml how to express
-         "it is dawn AND last night was a horde night", then uncomment the trigger
-         block and wire it to the cycle read below.
+         WHY THIS IS TRIGGERED BY FIRST CONTACT AND NOT BY DAWN
+         =====================================================
+         The original design fired the message at dawn after a horde night, with
+         a counter incremented once per Turning. That was rewritten, for two
+         reasons - one practical and one that would have shipped a lie.
 
-         Deliberate design split: the part that must not break is on vanilla rails,
-         and the risk lives in the part that is cosmetic.
+         The practical one: "it is dawn AND last night was a blood moon" needs a
+         requirement name that cannot be confirmed without the game's own config.
+         The whole pillar sat commented out waiting on it.
+
+         The one that matters: the counter and the spawn table were two
+         independent clocks. Spawns are chosen by GAMESTAGE; a horde-night count
+         is chosen by the CALENDAR, and the two only agree for a player at
+         average pace. Someone who levels hard is fighting Cycle 3 pools on day
+         12 while a dawn counter still says Cycle 1. The announcement would have
+         confidently named the wrong thing - which, in a mod whose stated
+         principle is "hard in ways you can see coming", is worse than no
+         announcement at all.
+
+         So the trigger is the archetype itself. The message fires the first time
+         a Cycle's archetype touches you or dies beside you, because that is the
+         moment the Turning became true FOR YOU, and it cannot disagree with the
+         spawn table: the thing announcing its arrival IS the arrival.
+
+         Cycles can therefore arrive out of order, or be skipped and met later -
+         a wandering horde can hand you a Bloater before you ever meet a Husk.
+         That is correct. Each message announces what you just met, and edCycle
+         only ever rises.
+
+         Every mechanism used here is already load-bearing elsewhere in this
+         mod - CVarCompare gates, ModifyCVar, AddBuff with target="other" and
+         target="selfAOE". Nothing new is being guessed at.
          ========================================================================== -->
 
     <append xpath="/buffs">
 
-        <!-- Cycle bookkeeping. Holds the player's current Cycle for display and for
-             journal-entry selection. Written by the announcement trigger once
-             VERIFY-1 is resolved; harmless and inert until then. -->
+        <!-- Cycle bookkeeping. Holds the highest Cycle the player has actually met,
+             for display and for anything that later wants to read it.
+
+             Initialisation is guarded rather than unconditional: the tracker is
+             re-applied on every respawn, and an unguarded reset would wipe the
+             player's Turning history each time they died. An unset CVar reads as
+             zero, so the guard is true exactly once, on the first ever spawn. -->
         <buff name="edBuffCycleTracker" hidden="true" remove_on_death="false"
               icon="ui_game_symbol_campfire">
             <stack_type value="ignore" />
             <duration value="0" />
             <effect_group name="edCycleInit">
+                <requirement name="CVarCompare" cvar="edCycleInit" operation="NotEquals" value="1" />
                 <triggered_effect trigger="onSelfBuffStart" action="ModifyCVar"
                                   cvar="edCycle" operation="setvalue" value="0" />
+                <triggered_effect trigger="onSelfBuffStart" action="ModifyCVar"
+                                  cvar="edCycleInit" operation="setvalue" value="1" />
             </effect_group>
-
-            <!-- EIGHTHDAY VERIFY-1 - enable once the dawn/blood-moon requirement name
-                 is confirmed. Until then the mod is fully playable without it; you
-                 lose the drama, not the escalation.
-
-            <effect_group name="edTurningDetect">
-                <requirement name="REPLACE_WITH_VERIFIED_BLOODMOON_DAWN_REQUIREMENT" />
-                <triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar"
-                                  cvar="edCycle" operation="add" value="1" />
-                <triggered_effect trigger="onSelfBuffUpdate" action="AddBuff"
-                                  buff="edBuffTurningAnnounce" />
+            <effect_group name="edCycleDisplayGroup">
+                <display_value name="edCycleDisplay" value="edCycle" />
             </effect_group>
-            -->
         </buff>
 
-        <!-- The dawn message itself. Fires once per Turning, shows the journal entry
-             for the cycle just entered. -->
-        <buff name="edBuffTurningAnnounce" name_key="edBuffTurningName"
-              description_key="edBuffTurningDesc" icon="ui_game_symbol_campfire"
-              icon_color="220,140,80">
-            <stack_type value="replace" />
-            <duration value="12" />
-            <effect_group name="edTurningAnnounceEffects">
-                <display_value name="edCycleDisplay" value="edCycle" />
+        <!-- CYCLE 1 - Husks. Fast, fragile, many. The first 'oh'. -->
+        <buff name="edBuffTurning1" name_key="edBuffTurning1Name"
+              description_key="edBuffTurning1Desc" icon="ui_game_symbol_campfire"
+              icon_color="220,140,80" remove_on_death="true">
+            <stack_type value="ignore" />
+            <duration value="20" />
+
+            <!-- Second contact is not a second Turning. Drop on sight if this Cycle
+                 has already been announced, so the message keeps its weight. -->
+            <effect_group name="edTurning1Repeat">
+                <requirement name="CVarCompare" cvar="edSeenCycle1" operation="Equals" value="1" />
+                <triggered_effect trigger="onSelfBuffStart" action="RemoveBuff"
+                                  buff="edBuffTurning1" />
+            </effect_group>
+
+            <effect_group name="edTurning1First">
+                <requirement name="CVarCompare" cvar="edSeenCycle1" operation="NotEquals" value="1" />
+                <triggered_effect trigger="onSelfBuffStart" action="ModifyCVar"
+                                  cvar="edSeenCycle1" operation="setvalue" value="1" />
+            </effect_group>
+
+            <!-- A Turning is one-way, so the cycle read only ever climbs. Meeting a
+                 Husk after a Bloater does not walk the world back to Cycle 1. -->
+            <effect_group name="edTurning1Raise">
+                <requirement name="CVarCompare" cvar="edCycle" operation="LT" value="1" />
+                <triggered_effect trigger="onSelfBuffStart" action="ModifyCVar"
+                                  cvar="edCycle" operation="setvalue" value="1" />
+            </effect_group>
+        </buff>
+
+        <!-- CYCLE 2 - Bloaters. Melee stops being free. -->
+        <buff name="edBuffTurning2" name_key="edBuffTurning2Name"
+              description_key="edBuffTurning2Desc" icon="ui_game_symbol_campfire"
+              icon_color="220,140,80" remove_on_death="true">
+            <stack_type value="ignore" />
+            <duration value="20" />
+
+            <!-- Second contact is not a second Turning. Drop on sight if this Cycle
+                 has already been announced, so the message keeps its weight. -->
+            <effect_group name="edTurning2Repeat">
+                <requirement name="CVarCompare" cvar="edSeenCycle2" operation="Equals" value="1" />
+                <triggered_effect trigger="onSelfBuffStart" action="RemoveBuff"
+                                  buff="edBuffTurning2" />
+            </effect_group>
+
+            <effect_group name="edTurning2First">
+                <requirement name="CVarCompare" cvar="edSeenCycle2" operation="NotEquals" value="1" />
+                <triggered_effect trigger="onSelfBuffStart" action="ModifyCVar"
+                                  cvar="edSeenCycle2" operation="setvalue" value="1" />
+            </effect_group>
+
+            <!-- A Turning is one-way, so the cycle read only ever climbs. Meeting a
+                 Husk after a Bloater does not walk the world back to Cycle 1. -->
+            <effect_group name="edTurning2Raise">
+                <requirement name="CVarCompare" cvar="edCycle" operation="LT" value="2" />
+                <triggered_effect trigger="onSelfBuffStart" action="ModifyCVar"
+                                  cvar="edCycle" operation="setvalue" value="2" />
+            </effect_group>
+        </buff>
+
+        <!-- CYCLE 3 - Carrion Hounds. Open ground stops being safe. -->
+        <buff name="edBuffTurning3" name_key="edBuffTurning3Name"
+              description_key="edBuffTurning3Desc" icon="ui_game_symbol_campfire"
+              icon_color="220,140,80" remove_on_death="true">
+            <stack_type value="ignore" />
+            <duration value="20" />
+
+            <!-- Second contact is not a second Turning. Drop on sight if this Cycle
+                 has already been announced, so the message keeps its weight. -->
+            <effect_group name="edTurning3Repeat">
+                <requirement name="CVarCompare" cvar="edSeenCycle3" operation="Equals" value="1" />
+                <triggered_effect trigger="onSelfBuffStart" action="RemoveBuff"
+                                  buff="edBuffTurning3" />
+            </effect_group>
+
+            <effect_group name="edTurning3First">
+                <requirement name="CVarCompare" cvar="edSeenCycle3" operation="NotEquals" value="1" />
+                <triggered_effect trigger="onSelfBuffStart" action="ModifyCVar"
+                                  cvar="edSeenCycle3" operation="setvalue" value="1" />
+            </effect_group>
+
+            <!-- A Turning is one-way, so the cycle read only ever climbs. Meeting a
+                 Husk after a Bloater does not walk the world back to Cycle 1. -->
+            <effect_group name="edTurning3Raise">
+                <requirement name="CVarCompare" cvar="edCycle" operation="LT" value="3" />
+                <triggered_effect trigger="onSelfBuffStart" action="ModifyCVar"
+                                  cvar="edCycle" operation="setvalue" value="3" />
+            </effect_group>
+        </buff>
+
+        <!-- CYCLE 4 - Rotweavers. The ammunition economy breaks. -->
+        <buff name="edBuffTurning4" name_key="edBuffTurning4Name"
+              description_key="edBuffTurning4Desc" icon="ui_game_symbol_campfire"
+              icon_color="220,140,80" remove_on_death="true">
+            <stack_type value="ignore" />
+            <duration value="20" />
+
+            <!-- Second contact is not a second Turning. Drop on sight if this Cycle
+                 has already been announced, so the message keeps its weight. -->
+            <effect_group name="edTurning4Repeat">
+                <requirement name="CVarCompare" cvar="edSeenCycle4" operation="Equals" value="1" />
+                <triggered_effect trigger="onSelfBuffStart" action="RemoveBuff"
+                                  buff="edBuffTurning4" />
+            </effect_group>
+
+            <effect_group name="edTurning4First">
+                <requirement name="CVarCompare" cvar="edSeenCycle4" operation="NotEquals" value="1" />
+                <triggered_effect trigger="onSelfBuffStart" action="ModifyCVar"
+                                  cvar="edSeenCycle4" operation="setvalue" value="1" />
+            </effect_group>
+
+            <!-- A Turning is one-way, so the cycle read only ever climbs. Meeting a
+                 Husk after a Bloater does not walk the world back to Cycle 1. -->
+            <effect_group name="edTurning4Raise">
+                <requirement name="CVarCompare" cvar="edCycle" operation="LT" value="4" />
+                <triggered_effect trigger="onSelfBuffStart" action="ModifyCVar"
+                                  cvar="edCycle" operation="setvalue" value="4" />
+            </effect_group>
+        </buff>
+
+        <!-- CYCLE 5 - The Hollow. Night stops being an option. -->
+        <buff name="edBuffTurning5" name_key="edBuffTurning5Name"
+              description_key="edBuffTurning5Desc" icon="ui_game_symbol_campfire"
+              icon_color="220,140,80" remove_on_death="true">
+            <stack_type value="ignore" />
+            <duration value="20" />
+
+            <!-- Second contact is not a second Turning. Drop on sight if this Cycle
+                 has already been announced, so the message keeps its weight. -->
+            <effect_group name="edTurning5Repeat">
+                <requirement name="CVarCompare" cvar="edSeenCycle5" operation="Equals" value="1" />
+                <triggered_effect trigger="onSelfBuffStart" action="RemoveBuff"
+                                  buff="edBuffTurning5" />
+            </effect_group>
+
+            <effect_group name="edTurning5First">
+                <requirement name="CVarCompare" cvar="edSeenCycle5" operation="NotEquals" value="1" />
+                <triggered_effect trigger="onSelfBuffStart" action="ModifyCVar"
+                                  cvar="edSeenCycle5" operation="setvalue" value="1" />
+            </effect_group>
+
+            <!-- A Turning is one-way, so the cycle read only ever climbs. Meeting a
+                 Husk after a Bloater does not walk the world back to Cycle 1. -->
+            <effect_group name="edTurning5Raise">
+                <requirement name="CVarCompare" cvar="edCycle" operation="LT" value="5" />
+                <triggered_effect trigger="onSelfBuffStart" action="ModifyCVar"
+                                  cvar="edCycle" operation="setvalue" value="5" />
+            </effect_group>
+        </buff>
+
+        <!-- CYCLE 6 - Choirs. The horde gains a shape. -->
+        <buff name="edBuffTurning6" name_key="edBuffTurning6Name"
+              description_key="edBuffTurning6Desc" icon="ui_game_symbol_campfire"
+              icon_color="220,140,80" remove_on_death="true">
+            <stack_type value="ignore" />
+            <duration value="20" />
+
+            <!-- Second contact is not a second Turning. Drop on sight if this Cycle
+                 has already been announced, so the message keeps its weight. -->
+            <effect_group name="edTurning6Repeat">
+                <requirement name="CVarCompare" cvar="edSeenCycle6" operation="Equals" value="1" />
+                <triggered_effect trigger="onSelfBuffStart" action="RemoveBuff"
+                                  buff="edBuffTurning6" />
+            </effect_group>
+
+            <effect_group name="edTurning6First">
+                <requirement name="CVarCompare" cvar="edSeenCycle6" operation="NotEquals" value="1" />
+                <triggered_effect trigger="onSelfBuffStart" action="ModifyCVar"
+                                  cvar="edSeenCycle6" operation="setvalue" value="1" />
+            </effect_group>
+
+            <!-- A Turning is one-way, so the cycle read only ever climbs. Meeting a
+                 Husk after a Bloater does not walk the world back to Cycle 1. -->
+            <effect_group name="edTurning6Raise">
+                <requirement name="CVarCompare" cvar="edCycle" operation="LT" value="6" />
+                <triggered_effect trigger="onSelfBuffStart" action="ModifyCVar"
+                                  cvar="edCycle" operation="setvalue" value="6" />
+            </effect_group>
+        </buff>
+
+        <!-- CYCLE 7 - Grinders. Fortification stops being an answer. -->
+        <buff name="edBuffTurning7" name_key="edBuffTurning7Name"
+              description_key="edBuffTurning7Desc" icon="ui_game_symbol_campfire"
+              icon_color="220,140,80" remove_on_death="true">
+            <stack_type value="ignore" />
+            <duration value="20" />
+
+            <!-- Second contact is not a second Turning. Drop on sight if this Cycle
+                 has already been announced, so the message keeps its weight. -->
+            <effect_group name="edTurning7Repeat">
+                <requirement name="CVarCompare" cvar="edSeenCycle7" operation="Equals" value="1" />
+                <triggered_effect trigger="onSelfBuffStart" action="RemoveBuff"
+                                  buff="edBuffTurning7" />
+            </effect_group>
+
+            <effect_group name="edTurning7First">
+                <requirement name="CVarCompare" cvar="edSeenCycle7" operation="NotEquals" value="1" />
+                <triggered_effect trigger="onSelfBuffStart" action="ModifyCVar"
+                                  cvar="edSeenCycle7" operation="setvalue" value="1" />
+            </effect_group>
+
+            <!-- A Turning is one-way, so the cycle read only ever climbs. Meeting a
+                 Husk after a Bloater does not walk the world back to Cycle 1. -->
+            <effect_group name="edTurning7Raise">
+                <requirement name="CVarCompare" cvar="edCycle" operation="LT" value="7" />
+                <triggered_effect trigger="onSelfBuffStart" action="ModifyCVar"
+                                  cvar="edCycle" operation="setvalue" value="7" />
             </effect_group>
         </buff>
 

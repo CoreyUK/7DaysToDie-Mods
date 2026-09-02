@@ -10,6 +10,11 @@
 #   2. ModInfo.xml exists and carries the required v2 fields
 #   3. Every Config/*.xml uses <configs> as its root (modlets are XPath patches)
 #   4. Localization.csv has a consistent column count on every row
+#   5. Perk unlocks are backed by real recipes, and no gated item is for sale
+#   6. Every internal cross-reference resolves
+#   7. Everything is obtainable from a cold start
+#   8. The Turning's pools, bands, announcements, text and docs all agree
+#   9. Nothing is priced below its own input cost
 #
 # This does NOT check that vanilla identifiers exist - only the game can do that.
 # See TheEighthDay/docs/VERIFICATION.md.
@@ -140,7 +145,15 @@ if command -v python3 >/dev/null 2>&1; then
         fail "unreachable content - run ./tools/check-progression.py"
     fi
 
-    # --- 8. No item may be priced below its own input cost ------------------
+    # --- 8. The Turning must agree with itself ------------------------------
+    # Pools, gamestage bands, announcements, journal text and the docs table are
+    # five descriptions of one mechanic with no way to notice each other.
+    echo
+    if ! python3 "$REPO_ROOT/tools/check-cycles.py" "${modlets[@]}"; then
+        fail "the Turning contradicts itself - run ./tools/check-cycles.py"
+    fi
+
+    # --- 9. No item may be priced below its own input cost ------------------
     # That is a trader exploit: buy the inputs, craft, sell the output, repeat.
     echo
     if ! python3 "$REPO_ROOT/tools/check-economy.py" >/dev/null; then

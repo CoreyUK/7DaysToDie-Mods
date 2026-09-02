@@ -3,6 +3,71 @@
 All notable changes to The Eighth Day.
 Format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
+## [0.7.0] — 2026-09-02
+
+The mod's namesake finally does something the player can see.
+
+### Added
+- **The Turning announces itself.** Seven journal entries, one per Cycle, fired the first
+  time that Cycle's archetype touches you or dies beside you. Once ever, permanent, written
+  as a page out of somebody's notebook rather than a stat readout — the Rotweaver entry is
+  someone realising most of a magazine did nothing; the Hollow entry is someone realising
+  nothing woke them.
+
+  This was the last core pillar that was scaffolded and inert. It has been the `⚠️` line in
+  the README since v0.1.
+
+- **`tools/check-cycles.py`.** The Turning is described in five places that have no way of
+  noticing each other: the pools in `entitygroups.xml`, the bands in `gamestages.xml`, the
+  announcement hooks in `entityclasses.xml`, the text in `Localization.csv`, and the table in
+  `docs/CYCLES.md`. Retune the bands or reorder a pool and every one of them still loads,
+  still resolves, still prices — and the message calmly names the wrong monster.
+
+  Six invariants now hold on every push: pools stay cumulative (a Turning is one-way, so an
+  archetype that can *leave* the world breaks the mechanic outright), each Cycle introduces
+  exactly one archetype, bands ascend and map to pools in order, the archetype that arrives
+  at Cycle N is the one that announces Cycle N, the text for Cycle N names it, and the docs
+  table agrees.
+
+### Changed
+- **The announcement fires on first contact, not at dawn.** The old design was abandoned
+  rather than deferred, for one practical reason and one that would have shipped a lie.
+
+  Practically, *"it is dawn and last night was a blood moon"* needs a requirement name that
+  cannot be confirmed without the game's own config, which is why the pillar sat commented
+  out for six releases waiting on a fact nobody had.
+
+  The reason that matters: the dawn counter and the spawn table were **two independent
+  clocks.** Spawns are chosen by gamestage; a horde-night count is chosen by the calendar.
+  Those agree only for a player at average pace — someone who levels hard is fighting Cycle 3
+  pools on day 12 while the counter still reads Cycle 1. The announcement would have
+  confidently named the wrong archetype, and in a mod whose stated principle is *hard in ways
+  you can see coming*, an announcement that lies is worse than none: it teaches you to
+  prepare for the wrong thing.
+
+  Triggering off the archetype removes the disagreement rather than managing it. The thing
+  announcing its arrival **is** the arrival — there is only one event, so there is nothing to
+  keep in step. It also means Cycles can arrive out of order, which is correct: a wandering
+  horde can hand you a Bloater before you ever meet a Husk, and you get the Bloater entry.
+  The cycle read only ever climbs.
+
+  Nothing new is guessed at. Every mechanism used — `CVarCompare` gates, `ModifyCVar`,
+  `AddBuff` with `target="other"` and with `target="selfAOE"` — is already load-bearing
+  elsewhere in this mod. Verification item 1 shrank from "design and author this layer" to
+  four ordinary name confirmations, and if any of them is wrong you lose journal entries,
+  not escalation.
+
+- **Cycle tracker initialisation is now guarded.** It reset `edCycle` to zero unconditionally
+  on buff start, and the tracker is re-applied on every respawn — so a player's Turning
+  history would have been wiped every time they died.
+
+### Fixed
+- Verified the new checker by breaking things on purpose rather than trusting it: swapping
+  two Cycles' journal text (`LIES`, both cycles named), dropping the Husk out of the Cycle 3
+  pool (`LEAVES`, plus the cascade into Cycle 4 owning two arrivals), pointing the Bloater's
+  hook at the Carrion Hound's Cycle (`MISMATCH` and `IMPOSTOR`), and retuning a band below
+  its predecessor (`BAND ORDER`). All four exit 1.
+
 ## [0.6.1] — 2026-09-02
 
 ### Added

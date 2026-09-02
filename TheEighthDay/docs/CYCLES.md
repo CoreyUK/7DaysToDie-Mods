@@ -56,21 +56,44 @@ Cycle 7+ gamestage 341+
 Bands are defined once in `Config/gamestages.xml` and referenced everywhere else, so
 retuning the pace is a single-file change.
 
-### The narrative layer: the dawn announcement
+### The narrative layer: the announcement
 
-The *felt* moment — "the world just Turned" — is a buff-driven announcement that fires at
-dawn following a horde night, reading the player's current cycle from the `edCycle` CVar and
-showing the matching journal entry.
+The *felt* moment — "the world just Turned" — is a journal entry that fires **the first time
+a Cycle's archetype touches you or dies beside you.** One per Cycle, once ever.
 
-**Verification required.** The exact trigger and requirement names for "dawn after a blood
-moon night" must be confirmed against V3.2's `Data/Config/buffs.xml` before this layer can be
-called done — see [`VERIFICATION.md`](VERIFICATION.md), item 1. Until it is confirmed, the
-announcement layer is scaffolded but inert, and **the gamestage driver carries the mechanic
-on its own.** The mod is fully playable with the announcement layer switched off; you just
-lose the drama, not the escalation.
+It reads as a page torn out of somebody's notebook, not a stat readout, and never the words
+"Cycle 3 unlocked". The Rotweaver entry is someone realising most of a magazine did nothing.
+The Hollow entry is someone realising nothing woke them.
 
-This split is deliberate. The part that must not break is on vanilla rails. The part that is
-cosmetic is where the risk lives.
+#### Why first contact and not dawn
+
+This originally fired at dawn after a horde night, off a counter incremented once per
+Turning. It was rewritten, for one practical reason and one that would have shipped a lie.
+
+The practical reason: *"it is dawn and last night was a blood moon"* needs a requirement name
+that cannot be confirmed without the game's own config, so the whole pillar sat commented out
+waiting on a fact nobody had.
+
+The reason that matters: **the counter and the spawn table were two independent clocks.**
+Spawns are chosen by gamestage. A horde-night count is chosen by the calendar. Those agree
+only for a player at average pace — someone who levels hard is fighting Cycle 3 pools on day
+12 while a dawn counter still reads Cycle 1, and the announcement would have confidently
+named the wrong monster.
+
+In a mod whose stated principle is *hard in ways you can see coming*, an announcement that
+lies is worse than none: it teaches you to prepare for the wrong thing.
+
+So the trigger is the archetype itself. The thing announcing its arrival **is** the arrival,
+so the message cannot disagree with the spawn table — not because the two are carefully kept
+in step, but because there is only one event.
+
+One consequence worth stating: Cycles can arrive out of order. A wandering horde can hand you
+a Bloater before you ever meet a Husk, and you get the Bloater entry. That is correct — each
+entry announces what you just met — and the cycle read only ever climbs, so meeting a Husk
+afterwards does not walk the world back to Cycle 1.
+
+`tools/check-cycles.py` enforces the agreement between the pools, the bands, the
+announcements, the text and the table above, on every push.
 
 ---
 
