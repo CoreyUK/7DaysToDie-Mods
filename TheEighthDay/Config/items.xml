@@ -720,4 +720,226 @@
 
     </append>
 
+
+    <!-- ==========================================================================
+         THE FARM
+
+         Farming here is not a separate minigame - it is an INPUT to the
+         industry. Every crop feeds a chain that already exists:
+
+           Flax     -> fibre for the Trapper, linseed oil for the polymer chain
+           Rye      -> flour for travel food, mash for the Apothecary's alcohol
+           Comfrey  -> the medicinal crop, feeds reagent base
+           Rapeseed -> pressed oil, feeds fuel cells and polymer
+
+         That is the test any future crop has to pass: if it only makes food,
+         it does not belong. The point is that a player who farms is supplying
+         the workshop, not opting out of it.
+
+         VERIFY-21 (docs/VERIFICATION.md): the vanilla crop and seed bases below
+         are the least certain names in this file. A wrong base is a crop that
+         will not plant.
+         ========================================================================== -->
+
+    <append xpath="/items">
+
+        <!-- Flax - Trapper / Scavenger - fibre and oil -->
+        <item name="edSeedFlax">
+            <property name="Extends" value="masterSeed" />
+            <property name="CustomIcon" value="plantedHops1" />
+            <property name="DescriptionKey" value="edSeedFlaxDesc" />
+            <property name="EconomicValue" value="21" />
+            <property name="Stacknumber" value="500" />
+            <property class="Action1">
+                <property name="Create_item" value="edPlantFlax1" />
+            </property>
+        </item>
+
+        <item name="edCropFlax">
+            <property name="Extends" value="foodCropCornRaw" />
+            <property name="CustomIcon" value="foodCropCornRaw" />
+            <property name="CustomIconTint" value="c8c0a0" />
+            <property name="DescriptionKey" value="edCropFlaxDesc" />
+            <property name="EconomicValue" value="12" />
+            <property name="Stacknumber" value="500" />
+        </item>
+
+        <!-- Rye - everyone - flour, and mash for the Apothecary -->
+        <item name="edSeedRye">
+            <property name="Extends" value="masterSeed" />
+            <property name="CustomIcon" value="plantedCorn1" />
+            <property name="DescriptionKey" value="edSeedRyeDesc" />
+            <property name="EconomicValue" value="21" />
+            <property name="Stacknumber" value="500" />
+            <property class="Action1">
+                <property name="Create_item" value="edPlantRye1" />
+            </property>
+        </item>
+
+        <item name="edCropRye">
+            <property name="Extends" value="foodCropCornRaw" />
+            <property name="CustomIcon" value="foodCropCornRaw" />
+            <property name="CustomIconTint" value="c0a850" />
+            <property name="DescriptionKey" value="edCropRyeDesc" />
+            <property name="EconomicValue" value="12" />
+            <property name="Stacknumber" value="500" />
+        </item>
+
+        <!-- Comfrey - Apothecary - the medicinal crop -->
+        <item name="edSeedComfrey">
+            <property name="Extends" value="masterSeed" />
+            <property name="CustomIcon" value="plantedGoldenrod1" />
+            <property name="DescriptionKey" value="edSeedComfreyDesc" />
+            <property name="EconomicValue" value="30" />
+            <property name="Stacknumber" value="500" />
+            <property class="Action1">
+                <property name="Create_item" value="edPlantComfrey1" />
+            </property>
+        </item>
+
+        <item name="edCropComfrey">
+            <property name="Extends" value="foodCropCornRaw" />
+            <property name="CustomIcon" value="foodCropCornRaw" />
+            <property name="CustomIconTint" value="7fa060" />
+            <property name="DescriptionKey" value="edCropComfreyDesc" />
+            <property name="EconomicValue" value="18" />
+            <property name="Stacknumber" value="500" />
+        </item>
+
+        <!-- Rapeseed - Scavenger - pressed for fuel and polymer -->
+        <item name="edSeedRapeseed">
+            <property name="Extends" value="masterSeed" />
+            <property name="CustomIcon" value="plantedChrysanthemum1" />
+            <property name="DescriptionKey" value="edSeedRapeseedDesc" />
+            <property name="EconomicValue" value="30" />
+            <property name="Stacknumber" value="500" />
+            <property class="Action1">
+                <property name="Create_item" value="edPlantRapeseed1" />
+            </property>
+        </item>
+
+        <item name="edCropRapeseed">
+            <property name="Extends" value="foodCropCornRaw" />
+            <property name="CustomIcon" value="foodCropCornRaw" />
+            <property name="CustomIconTint" value="d8c040" />
+            <property name="DescriptionKey" value="edCropRapeseedDesc" />
+            <property name="EconomicValue" value="18" />
+            <property name="Stacknumber" value="500" />
+        </item>
+
+    </append>
+
+
+    <!-- ==========================================================================
+         PROCESSED FARM GOODS
+
+         Each of these is the bridge between the farm and a chain that already
+         existed. Linseed and rapeseed oil feed polymer, so a Scavenger can farm
+         their way to plastics instead of scavenging every drop. Crude alcohol
+         feeds reagent base, so an Apothecary is not permanently hostage to
+         looted acid. Flour feeds travel food.
+         ========================================================================== -->
+
+    <append xpath="/items">
+
+        <item name="edResourceLinseedOil">
+            <property name="Extends" value="resourceOil" />
+            <property name="CustomIcon" value="resourceOil" />
+            <property name="CustomIconTint" value="c8b060" />
+            <property name="DescriptionKey" value="edResourceLinseedOilDesc" />
+            <property name="EconomicValue" value="30" />
+            <property name="Stacknumber" value="500" />
+        </item>
+
+        <item name="edResourceRyeFlour">
+            <property name="Extends" value="resourcePaper" />
+            <property name="CustomIcon" value="resourceCrushedSand" />
+            <property name="CustomIconTint" value="e0d8b8" />
+            <property name="DescriptionKey" value="edResourceRyeFlourDesc" />
+            <property name="EconomicValue" value="22" />
+            <property name="Stacknumber" value="500" />
+        </item>
+
+        <!-- The Apothecary's independence from looted acid. -->
+        <item name="edResourceCrudeAlcohol">
+            <property name="Extends" value="resourceWaterBottle" />
+            <property name="CustomIcon" value="resourceWaterBottle" />
+            <property name="CustomIconTint" value="d8c8a0" />
+            <property name="DescriptionKey" value="edResourceCrudeAlcoholDesc" />
+            <property name="EconomicValue" value="60" />
+            <property name="Stacknumber" value="250" />
+        </item>
+
+        <!-- Finally a use for rotting flesh, which until now dropped off Husks
+             and did nothing. -->
+        <item name="edResourceFertiliser">
+            <property name="Extends" value="resourceClayLump" />
+            <property name="CustomIcon" value="resourceClayLump" />
+            <property name="CustomIconTint" value="6a5438" />
+            <property name="DescriptionKey" value="edResourceFertiliserDesc" />
+            <property name="EconomicValue" value="5" />
+            <property name="Stacknumber" value="500" />
+        </item>
+
+    </append>
+
+
+    <!-- ==========================================================================
+         COOKING
+
+         Food that does something. Hardtack is the travel ration, bone broth is
+         the day-two meal that stops you eating rotten meat, and herbal broth
+         takes the EDGE off an infection without curing it - deliberately, because
+         curing infection is the Apothecary's pillar and food must not undercut it.
+         ========================================================================== -->
+
+    <append xpath="/items">
+
+        <item name="edFoodHardtack">
+            <property name="Extends" value="foodCharredMeat" />
+            <property name="CustomIcon" value="foodCharredMeat" />
+            <property name="CustomIconTint" value="c8b888" />
+            <property name="DescriptionKey" value="edFoodHardtackDesc" />
+            <property name="EconomicValue" value="20" />
+            <property name="Stacknumber" value="50" />
+        </item>
+
+        <item name="edFoodBoneBroth">
+            <property name="Extends" value="foodCharredMeat" />
+            <property name="CustomIcon" value="foodCharredMeat" />
+            <property name="CustomIconTint" value="a89060" />
+            <property name="DescriptionKey" value="edFoodBoneBrothDesc" />
+            <property name="EconomicValue" value="10" />
+            <property name="Stacknumber" value="30" />
+        </item>
+
+        <!-- Takes the edge off. Does NOT cure - see the Apothecary pillar. -->
+        <item name="edFoodHerbalBroth">
+            <property name="Extends" value="foodCharredMeat" />
+            <property name="CustomIcon" value="foodCharredMeat" />
+            <property name="CustomIconTint" value="8fb070" />
+            <property name="DescriptionKey" value="edFoodHerbalBrothDesc" />
+            <property name="EconomicValue" value="34" />
+            <property name="Stacknumber" value="20" />
+            <effect_group name="edFoodHerbalBrothUse">
+                <triggered_effect trigger="onSelfPrimaryActionEnd" action="AddBuff"
+                                  buff="edBuffHerbalRelief" />
+            </effect_group>
+        </item>
+
+        <item name="edFoodRationPack">
+            <property name="Extends" value="foodCharredMeat" />
+            <property name="CustomIcon" value="foodCharredMeat" />
+            <property name="CustomIconTint" value="8a9a6a" />
+            <property name="DescriptionKey" value="edFoodRationPackDesc" />
+            <property name="EconomicValue" value="146" />
+            <property name="Stacknumber" value="20" />
+            <effect_group name="edFoodRationPackUse">
+                <triggered_effect trigger="onSelfPrimaryActionEnd" action="AddBuff"
+                                  buff="edBuffWellFed" />
+            </effect_group>
+        </item>
+
+    </append>
+
 </configs>

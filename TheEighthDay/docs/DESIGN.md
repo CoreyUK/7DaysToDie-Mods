@@ -104,6 +104,14 @@ go to the places the notes are.
 Each is cheap to make and annoying to source, which keeps mid-game players going outside
 rather than sitting in a base perking up.
 
+**The farm is a second supply line, not a food minigame.** Four crops, and every one of them
+feeds a chain that already existed: flax and rapeseed press to oil that feeds polymer, rye
+mashes to alcohol that feeds reagent base, comfrey is the medicinal input. A player who farms
+is supplying the workshop, not opting out of it — and the numbers bear it out, because the
+scavenged route is still *cheaper*. Farming buys you renewability and independence from
+looting, not a discount. Any future crop has to pass that test: if it only makes food, it
+does not belong.
+
 ### Pillar 4 — Attrition
 
 Damage should have a memory.

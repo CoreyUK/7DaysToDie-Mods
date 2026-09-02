@@ -107,4 +107,24 @@
 
     </append>
 
+
+    <!-- ==========================================================================
+         SEEDS IN THE WORLD
+
+         Found where somebody was already growing something.
+         ========================================================================== -->
+
+    <append xpath="/lootcontainers/lootgroup[@name='groupToolsHardware']">
+        <item name="edSeedFlax" count="1,2" prob="0.05" />
+        <item name="edSeedRapeseed" count="1,2" prob="0.04" />
+    </append>
+
+    <append xpath="/lootcontainers/lootgroup[@name='groupMedical']">
+        <item name="edSeedComfrey" count="1,2" prob="0.05" />
+    </append>
+
+    <append xpath="/lootcontainers/lootgroup[@name='groupBooks']">
+        <item name="edSeedRye" count="1,2" prob="0.04" />
+    </append>
+
 </configs>

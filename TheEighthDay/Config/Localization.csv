@@ -282,3 +282,59 @@ edQuestScavenger3Name,quests,Quest,,,Proving of the Scavenger: Records
 edQuestScavenger3Subtitle,quests,Quest,,,Recover sixty paper
 edQuestScavenger3Desc,quests,Quest,,,"Sixty paper. Laugh if you want. Everything anybody knew is written down somewhere, and the person who brings it back decides who learns it. The ruins are yours. Everything out there is worth more in your hands."
 edQuestScavenger3Offer,quests,Quest,,,Sixty paper. You will understand why later.
+edSeedFlax,items,Item,,,Flax Seed
+edSeedFlaxDesc,items,Item,,,"Plant it, water it, wait. Fibre and oil in one plant. The Trapper gets cloth out of it and the chemist gets something to crack, which is why it is the first thing worth putting in the ground."
+edCropFlax,items,Item,,,Flax
+edCropFlaxDesc,items,Item,,,"Fibre and oil in one plant. The Trapper gets cloth out of it and the chemist gets something to crack, which is why it is the first thing worth putting in the ground."
+edPlantFlaxDesc,blocks,Block,,,"Flax, growing. Leave it alone until it is ready."
+edPlantFlax1,blocks,Block,,,Flax (growing)
+edPlantFlax2,blocks,Block,,,Flax (growing)
+edPlantFlax3,blocks,Block,,,Flax
+edSeedRye,items,Item,,,Rye Seed
+edSeedRyeDesc,items,Item,,,"Plant it, water it, wait. Hardy, ugly, and it grows where nothing else will. Flour for the road and mash for the still."
+edCropRye,items,Item,,,Rye
+edCropRyeDesc,items,Item,,,"Hardy, ugly, and it grows where nothing else will. Flour for the road and mash for the still."
+edPlantRyeDesc,blocks,Block,,,"Rye, growing. Leave it alone until it is ready."
+edPlantRye1,blocks,Block,,,Rye (growing)
+edPlantRye2,blocks,Block,,,Rye (growing)
+edPlantRye3,blocks,Block,,,Rye
+edSeedComfrey,items,Item,,,Comfrey Seed
+edSeedComfreyDesc,items,Item,,,"Plant it, water it, wait. The medicinal one. Bitter enough that nobody eats it by accident and useful enough that the Apothecary will ask where you got it."
+edCropComfrey,items,Item,,,Comfrey
+edCropComfreyDesc,items,Item,,,The medicinal one. Bitter enough that nobody eats it by accident and useful enough that the Apothecary will ask where you got it.
+edPlantComfreyDesc,blocks,Block,,,"Comfrey, growing. Leave it alone until it is ready."
+edPlantComfrey1,blocks,Block,,,Comfrey (growing)
+edPlantComfrey2,blocks,Block,,,Comfrey (growing)
+edPlantComfrey3,blocks,Block,,,Comfrey
+edSeedRapeseed,items,Item,,,Rapeseed Seed
+edSeedRapeseedDesc,items,Item,,,"Plant it, water it, wait. Grown for the press, not the plate. What comes out of it runs an engine or becomes plastic."
+edCropRapeseed,items,Item,,,Rapeseed
+edCropRapeseedDesc,items,Item,,,"Grown for the press, not the plate. What comes out of it runs an engine or becomes plastic."
+edPlantRapeseedDesc,blocks,Block,,,"Rapeseed, growing. Leave it alone until it is ready."
+edPlantRapeseed1,blocks,Block,,,Rapeseed (growing)
+edPlantRapeseed2,blocks,Block,,,Rapeseed (growing)
+edPlantRapeseed3,blocks,Block,,,Rapeseed
+edResourceLinseedOil,items,Item,,,Pressed Oil
+edResourceLinseedOilDesc,items,Item,,,"Pressed out of flax or rapeseed. Feeds the polymer chain and burns clean enough to run a motor, which makes a field into a fuel supply."
+edResourceRyeFlour,items,Item,,,Rye Flour
+edResourceRyeFlourDesc,items,Item,,,Coarse and grey and it keeps. The first half of every meal you will eat away from home.
+edResourceCrudeAlcohol,items,Item,,,Crude Alcohol
+edResourceCrudeAlcoholDesc,items,Item,,,"Rye mash run through a still. Undrinkable on purpose - it is a solvent, and it is the reason the Apothecary no longer has to find acid to work."
+edResourceFertiliser,items,Item,,,Compost
+edResourceFertiliserDesc,items,Item,,,Rot and plant matter turned into something that grows things. The Husk finally contributes.
+edFoodHardtack,items,Item,,,Hardtack
+edFoodHardtackDesc,items,Item,,,"Flour and water and nothing else. It will not spoil, it will not excite you, and it will still be edible when everything in your pack is not."
+edFoodBoneBroth,items,Item,,,Bone Broth
+edFoodBoneBrothDesc,items,Item,,,"Boiled out of what the butchering left behind. Thin, but it is hot and it is not rotten, and on day two that is the whole review."
+edFoodHerbalBroth,items,Item,,,Herbal Broth
+edFoodHerbalBrothDesc,items,Item,,,"Comfrey and bone. Takes the edge off an infection for a while - the shakes stop and you can work. It does not cure anything. Only the Apothecary does that, and you should still go and see them."
+edFoodRationPack,items,Item,,,Ration Pack
+edFoodRationPackDesc,items,Item,,,"Everything the drying rack made, boxed for somebody who is not coming back tonight."
+edBlockCompostBin,blocks,Block,,,Compost Bin
+edBlockCompostBinDesc,blocks,Block,,,"Rot goes in and soil comes out. Slow and it smells, which is roughly the deal with everything that works."
+edBlockDryingRack,blocks,Block,,,Drying Rack
+edBlockDryingRackDesc,blocks,Block,,,Air and time and salt. The Trapper's station - preserving stops being a recipe you happen to know and becomes a thing you built.
+edBuffWellFedName,buffs,Buff,,,Well Fed
+edBuffWellFedDesc,buffs,Buff,,,"A proper meal, for once. Stamina and recovery both up for a good while."
+edBuffHerbalReliefName,buffs,Buff,,,Herbal Relief
+edBuffHerbalReliefDesc,buffs,Buff,,,The shakes have stopped and you can work. You are still infected - this only bought you time.

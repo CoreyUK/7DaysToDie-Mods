@@ -80,8 +80,13 @@ UTILITY = {
 GREEN, RED, YELLOW, DIM, NC = (
     "\033[0;32m", "\033[0;31m", "\033[0;33m", "\033[2m", "\033[0m")
 
-# Assumed vanilla EconomicValue. See the note above - one place, one edit.
+# Cost basis for everything that is NOT crafted: vanilla materials, and this
+# mod's crops. A crop has no recipe - it comes out of the ground - so like ore
+# it is a leaf of the cost tree, priced for the plot, seed and days it took
+# rather than for materials consumed.
 VANILLA_COST = {
+    # farm primary production
+    "edCropFlax": 10, "edCropRye": 10, "edCropComfrey": 14, "edCropRapeseed": 12,
     "resourceIronFragment": 1, "resourceCoal": 2, "resourceCrushedSand": 1,
     "resourceBone": 2, "resourceForgedIron": 12, "resourceForgedSteel": 40,
     "resourceMechanicalParts": 60, "resourceElectricParts": 60,
@@ -122,10 +127,13 @@ def parse():
             # route - costing an item by them makes nonsense of the ladder
             if "edResearch" in (rc.get("tags") or ""):
                 continue
-            prev = recipes.get(name)
-            # keep the cheapest route: that is the one a player will exploit
-            if prev is None or len(ings) < len(prev[1]):
-                recipes[name] = (out, ings)
+            # Keep EVERY route. Picking one up front by a proxy like "fewest
+            # ingredients" is how the farm broke this: the alternative polymer
+            # recipe went through a crop that had no cost basis, so polymer -
+            # and composite plate, and every medicine downstream of it - all
+            # silently became uncostable. Cost them all, take the cheapest that
+            # actually prices, because that is the one a player will exploit.
+            recipes.setdefault(name, []).append((out, ings))
     return items, recipes
 
 
@@ -137,20 +145,25 @@ def cost_of(name, items, recipes, memo, stack=()):
         return memo[name]
     if name in stack:                      # recipe cycle - break it
         return None
-    r = recipes.get(name)
-    if r is None:
+    routes = recipes.get(name)
+    if not routes:
         memo[name] = None
         return None
-    out, ings = r
-    total = 0.0
-    for ing, cnt in ings:
-        c = cost_of(ing, items, recipes, memo, stack + (name,))
-        if c is None:
-            memo[name] = None
-            return None
-        total += c * cnt
-    memo[name] = total / max(out, 1)
-    return memo[name]
+    best = None
+    for out, ings in routes:
+        total = 0.0
+        ok = True
+        for ing, cnt in ings:
+            c = cost_of(ing, items, recipes, memo, stack + (name,))
+            if c is None:
+                ok = False
+                break
+            total += c * cnt
+        if ok:
+            unit = total / max(out, 1)
+            best = unit if best is None else min(best, unit)
+    memo[name] = best
+    return best
 
 
 def main() -> int:

@@ -75,11 +75,12 @@ Running it on a server: [`docs/SERVER.md`](docs/SERVER.md).
 
 ## Status
 
-**v0.4.0 — pre-alpha.** What exists:
+**v0.5.0 — pre-alpha.** What exists:
 
 - ✅ Cycle system (gamestage-driven), Cycles 0–6 populated
 - ✅ All six Calling perk branches, Mark-gated, **every unlock backed by real content**
-- ✅ Tier-1/2 production chain and six workstations
+- ✅ Tier-1/2 production chain and eight workstations
+- ✅ Farming and cooking — four crops that feed the industry, not a side system
 - ✅ Weapons, tools, armour, fortification, traps, stimulants and salvage gear
 - ✅ Seven enemy archetypes, including the Cycle 7+ Grinder
 - ✅ Four-stage infection

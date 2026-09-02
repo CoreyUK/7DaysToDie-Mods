@@ -3,6 +3,40 @@
 All notable changes to The Eighth Day.
 Format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
+## [0.5.0] — 2026-09-02
+
+Farming and cooking. The largest content addition since the Callings.
+
+### Added
+- **Four crops**, each feeding a chain that already existed rather than starting a new one:
+  flax (fibre + oil), rye (flour + mash), comfrey (medicinal), rapeseed (pressed oil).
+  Twelve growth-stage blocks, four seeds, harvest drops with seed return.
+- **The farm route into industry.** Pressed oil gives polymer a second recipe; crude alcohol
+  gives reagent base one. A Scavenger can grow their way to plastics and an Apothecary is no
+  longer hostage to looted acid. Crucially the scavenged route is still cheaper — farming
+  buys renewability and independence, not a discount.
+- **Compost Bin** — rotting flesh finally does something. Rot plus plant matter becomes the
+  compost that seeds cost, so the Husk stops being purely a tax.
+- **Drying Rack** — the Trapper's preservation station. Cured meat and pemmican move here
+  off the campfire, so preserving is a thing you *built* rather than a recipe you know.
+- **Cooking**: hardtack, bone broth, ration pack, and herbal broth — which takes the edge off
+  an infection without curing it, deliberately, because curing is the Apothecary's pillar and
+  a pot of soup must not undercut it.
+- Two food buffs, seeds in trader stock and loot, 56 localisation strings.
+
+### Fixed
+- **`check-economy.py` had a latent bug the farm exposed.** Crops have no recipe — they come
+  out of the ground — so they had no cost basis, and the route-selection heuristic ("fewest
+  ingredients") then picked routes *through* them. Polymer, composite plate and every
+  medicine downstream silently became uncostable: the uncosted list jumped from 7 to 41.
+  Crops are now priced as primary production like ore, and the checker costs **every** route
+  and takes the cheapest that actually prices, rather than guessing one up front.
+
+### Changed
+- Verification item 21 covers the crop bases and, specifically, whether a redefined harvest
+  drop replaces the inherited one or stacks with it — the one farming failure that would be
+  loud rather than silent.
+
 ## [0.4.0] — 2026-09-02
 
 An audit pass. Found three things the mod claimed to do and did not.

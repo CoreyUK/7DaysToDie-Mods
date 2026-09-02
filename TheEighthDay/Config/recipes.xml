@@ -354,13 +354,13 @@
              TRAPPER - preservation, snares, arrows
              ============================================================== -->
 
-        <recipe name="edFoodCuredMeat" count="4" craft_area="campfire" craft_time="60"
+        <recipe name="edFoodCuredMeat" count="4" craft_area="edDrying" craft_time="60"
                 tags="edRecipePreservation" unlocked_by_recipe="false">
             <ingredient name="foodRawMeat" count="6" />
             <ingredient name="resourceCrushedSand" count="2" />
         </recipe>
 
-        <recipe name="edFoodPemmican" count="2" craft_area="campfire" craft_time="90"
+        <recipe name="edFoodPemmican" count="2" craft_area="edDrying" craft_time="90"
                 tags="edRecipePreservation" unlocked_by_recipe="false">
             <ingredient name="edFoodCuredMeat" count="3" />
             <ingredient name="foodAnimalFat" count="4" />
@@ -497,6 +497,143 @@
                 tags="edResearch">
             <ingredient name="edNoteWilderness" count="5" />
             <ingredient name="resourcePaper" count="20" />
+        </recipe>
+
+    </append>
+
+
+    <!-- ==========================================================================
+         THE FARM
+
+         Note what these recipes do to the EXISTING chains. Polymer gains a farm
+         route, so a Scavenger can grow their way to plastics instead of looting
+         every drop of oil. Reagent base gains one, so the Apothecary stops being
+         hostage to found acid. That is the whole justification for farming being
+         in this mod: it is a second supply line into industry, not a food minigame.
+         ========================================================================== -->
+
+    <append xpath="/recipes">
+
+        <recipe name="edBlockCompostBin" count="1" craft_area="workbench" craft_time="30">
+            <ingredient name="resourceWood" count="50" />
+            <ingredient name="resourceForgedIron" count="8" />
+        </recipe>
+
+        <recipe name="edBlockDryingRack" count="1" craft_area="workbench" craft_time="45">
+            <ingredient name="resourceWood" count="60" />
+            <ingredient name="resourceCloth" count="20" />
+        </recipe>
+
+        <!-- Rotting flesh finally does something. -->
+        <recipe name="edResourceFertiliser" count="4" craft_area="edCompost" craft_time="90">
+            <ingredient name="resourceRottingFlesh" count="5" />
+            <ingredient name="resourceWood" count="10" />
+        </recipe>
+
+        <recipe name="edSeedFlax" count="2" craft_area="edCompost" craft_time="20">
+            <ingredient name="edCropFlax" count="3" />
+            <ingredient name="edResourceFertiliser" count="1" />
+        </recipe>
+
+        <recipe name="edSeedRye" count="2" craft_area="edCompost" craft_time="20">
+            <ingredient name="edCropRye" count="3" />
+            <ingredient name="edResourceFertiliser" count="1" />
+        </recipe>
+
+        <recipe name="edSeedComfrey" count="2" craft_area="edCompost" craft_time="20">
+            <ingredient name="edCropComfrey" count="3" />
+            <ingredient name="edResourceFertiliser" count="1" />
+        </recipe>
+
+        <recipe name="edSeedRapeseed" count="2" craft_area="edCompost" craft_time="20">
+            <ingredient name="edCropRapeseed" count="3" />
+            <ingredient name="edResourceFertiliser" count="1" />
+        </recipe>
+
+    </append>
+
+
+    <!-- ==========================================================================
+         PRESSING, MILLING AND BREWING
+         ========================================================================== -->
+
+    <append xpath="/recipes">
+
+        <!-- Both oilseeds press to the same stock. -->
+        <recipe name="edResourceLinseedOil" count="2" craft_area="edDrying" craft_time="40">
+            <ingredient name="edCropFlax" count="6" />
+        </recipe>
+
+        <recipe name="edResourceLinseedOil" count="3" craft_area="edDrying" craft_time="40">
+            <ingredient name="edCropRapeseed" count="6" />
+        </recipe>
+
+        <!-- Flax fibre. Gives the Trapper a cloth supply that is not a curtain. -->
+        <recipe name="resourceCloth" count="4" craft_area="edDrying" craft_time="15">
+            <ingredient name="edCropFlax" count="3" />
+        </recipe>
+
+        <recipe name="edResourceRyeFlour" count="2" craft_area="edDrying" craft_time="25">
+            <ingredient name="edCropRye" count="4" />
+        </recipe>
+
+        <recipe name="edResourceCrudeAlcohol" count="2" craft_area="edReagentBench" craft_time="120">
+            <ingredient name="edCropRye" count="8" />
+            <ingredient name="resourceWaterBottle" count="1" />
+        </recipe>
+
+        <!-- THE FARM ROUTE INTO INDUSTRY. Both of these are alternative recipes
+             for things that already existed, which is what makes the farm a
+             supply line rather than a side system. -->
+        <recipe name="edResourcePolymer" count="2" craft_area="edReagentBench" craft_time="45"
+                tags="edChemistry">
+            <ingredient name="edResourceLinseedOil" count="3" />
+            <ingredient name="edResourceReagentBase" count="1" />
+        </recipe>
+
+        <recipe name="edResourceReagentBase" count="2" craft_area="edReagentBench" craft_time="35"
+                tags="edChemistry">
+            <ingredient name="edResourceCrudeAlcohol" count="2" />
+            <ingredient name="edCropComfrey" count="4" />
+        </recipe>
+
+        <recipe name="edVehicleFuelCell" count="8" craft_area="edReagentBench" craft_time="30"
+                tags="edRecipeVehicles" unlocked_by_recipe="false">
+            <ingredient name="edResourceLinseedOil" count="4" />
+            <ingredient name="edResourceCrudeAlcohol" count="1" />
+        </recipe>
+
+    </append>
+
+
+    <!-- ==========================================================================
+         COOKING
+         ========================================================================== -->
+
+    <append xpath="/recipes">
+
+        <recipe name="edFoodBoneBroth" count="2" craft_area="campfire" craft_time="40">
+            <ingredient name="resourceBone" count="4" />
+            <ingredient name="resourceWaterBottle" count="1" />
+        </recipe>
+
+        <recipe name="edFoodHardtack" count="3" craft_area="campfire" craft_time="50">
+            <ingredient name="edResourceRyeFlour" count="2" />
+            <ingredient name="resourceWaterBottle" count="1" />
+        </recipe>
+
+        <recipe name="edFoodHerbalBroth" count="2" craft_area="edDrying" craft_time="70">
+            <ingredient name="edCropComfrey" count="3" />
+            <ingredient name="resourceBone" count="2" />
+            <ingredient name="resourceWaterBottle" count="1" />
+        </recipe>
+
+        <!-- The travel ration. Everything the Trapper preserves, in one box. -->
+        <recipe name="edFoodRationPack" count="1" craft_area="edDrying" craft_time="90"
+                tags="edRecipePreservation" unlocked_by_recipe="false">
+            <ingredient name="edFoodHardtack" count="2" />
+            <ingredient name="edFoodCuredMeat" count="2" />
+            <ingredient name="edFoodPemmican" count="1" />
         </recipe>
 
     </append>

@@ -328,4 +328,41 @@
         </effect_group>
     </append>
 
+
+    <!-- ==========================================================================
+         7. FOOD EFFECTS
+
+         edBuffHerbalRelief deliberately does NOT cure infection. It masks the
+         stamina drain for a while so an infected player can still work, and then
+         it wears off and they are still infected. Curing is the Apothecary's
+         pillar and a pot of soup must not undercut it.
+         ========================================================================== -->
+
+    <append xpath="/buffs">
+
+        <buff name="edBuffWellFed" name_key="edBuffWellFedName"
+              description_key="edBuffWellFedDesc" icon="ui_game_symbol_meat"
+              icon_color="200,180,110">
+            <stack_type value="replace" />
+            <duration value="1800" />
+            <effect_group name="edWellFedEffects">
+                <passive_effect name="MaxStamina" operation="perc_add" value="0.15" />
+                <passive_effect name="StaminaChangeOT" operation="base_add" value="0.6" />
+                <passive_effect name="HealthChangeOT" operation="base_add" value="0.4" />
+            </effect_group>
+        </buff>
+
+        <buff name="edBuffHerbalRelief" name_key="edBuffHerbalReliefName"
+              description_key="edBuffHerbalReliefDesc" icon="ui_game_symbol_medical"
+              icon_color="140,190,120">
+            <stack_type value="replace" />
+            <duration value="600" />
+            <effect_group name="edHerbalReliefEffects">
+                <passive_effect name="StaminaChangeOT" operation="base_add" value="1.2" />
+                <passive_effect name="StaminaLoss" operation="perc_add" value="-0.2" />
+            </effect_group>
+        </buff>
+
+    </append>
+
 </configs>

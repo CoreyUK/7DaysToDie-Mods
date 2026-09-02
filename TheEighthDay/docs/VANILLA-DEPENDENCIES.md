@@ -39,7 +39,7 @@ which of these are load-breaking and which merely misbehave.
 | `resourceNitratePowder` | recipes.xml |
 | `resourceOil` | recipes.xml |
 | `resourcePaper` | recipes.xml |
-| `resourceRottingFlesh` | loot.xml |
+| `resourceRottingFlesh` | loot.xml, recipes.xml |
 | `resourceStone` | recipes.xml |
 | `resourceWaterBottle` | recipes.xml |
 | `resourceWood` | recipes.xml |
@@ -56,6 +56,7 @@ which of these are load-breaking and which merely misbehave.
 |---|---|
 | `foodRawMeat` | quests.xml |
 | `resourceCement` | quests.xml |
+| `resourceCloth` | recipes.xml |
 | `resourceElectricParts` | quests.xml |
 | `resourceGunPowder` | quests.xml |
 | `resourceMechanicalParts` | quests.xml |
@@ -70,24 +71,41 @@ which of these are load-breaking and which merely misbehave.
 | `armorMilitaryLegArmor` | items.xml |
 | `armorMilitaryVest` | items.xml |
 | `bladeTrap` | blocks.xml |
+| `campfire` | blocks.xml |
 | `casinoCoin` | items.xml |
 | `chemistryStation` | blocks.xml |
+| `cntGarbage` | blocks.xml |
 | `concreteBlock` | blocks.xml |
 | `dartTrap` | blocks.xml |
 | `drugAntibiotics` | items.xml |
 | `drugSteroids` | items.xml |
 | `explosiveTimedCharge` | items.xml |
 | `foodCharredMeat` | items.xml |
+| `foodCropCornRaw` | items.xml |
 | `forge` | blocks.xml |
 | `grenadeContact` | items.xml |
 | `gunMGT2TacticalAR` | items.xml |
 | `gunMGT3M60` | items.xml |
 | `gunRifleT3SniperRifle` | items.xml |
+| `masterSeed` | items.xml |
 | `meleeToolAxeT3SteelAxe` | items.xml |
 | `meleeToolPickT3SteelPickaxe` | items.xml |
 | `meleeToolRatchet` | items.xml |
 | `meleeWpnSledgeT3SteelSledgehammer` | items.xml |
+| `plantedChrysanthemum1` | blocks.xml |
+| `plantedChrysanthemum2` | blocks.xml |
+| `plantedChrysanthemum3` | blocks.xml |
+| `plantedCorn1` | blocks.xml |
+| `plantedCorn2` | blocks.xml |
+| `plantedCorn3` | blocks.xml |
+| `plantedGoldenrod1` | blocks.xml |
+| `plantedGoldenrod2` | blocks.xml |
+| `plantedGoldenrod3` | blocks.xml |
+| `plantedHops1` | blocks.xml |
+| `plantedHops2` | blocks.xml |
+| `plantedHops3` | blocks.xml |
 | `resourceAcid` | items.xml |
+| `resourceClayLump` | items.xml |
 | `resourceCoal` | items.xml |
 | `resourceElectricParts` | items.xml |
 | `resourceForgedIron` | items.xml |
@@ -96,6 +114,7 @@ which of these are load-breaking and which merely misbehave.
 | `resourceMechanicalParts` | items.xml |
 | `resourceOil` | items.xml |
 | `resourcePaper` | items.xml |
+| `resourceWaterBottle` | items.xml |
 | `spikesWoodBlock` | blocks.xml |
 | `steelBlock` | blocks.xml |
 | `workbench` | blocks.xml |
@@ -109,12 +128,15 @@ which of these are load-breaking and which merely misbehave.
 | `armorMilitaryLegArmor` | items.xml |
 | `armorMilitaryVest` | items.xml |
 | `bladeTrap` | blocks.xml |
+| `campfire` | blocks.xml |
+| `cntGarbage` | blocks.xml |
 | `concreteBlock` | blocks.xml |
 | `dartTrap` | blocks.xml |
 | `drugAntibiotics` | items.xml |
 | `drugSteroids` | items.xml |
 | `explosiveTimedCharge` | items.xml |
 | `foodCharredMeat` | items.xml |
+| `foodCropCornRaw` | items.xml |
 | `grenadeContact` | items.xml |
 | `gunMGT2TacticalAR` | items.xml |
 | `gunMGT3M60` | items.xml |
@@ -123,8 +145,14 @@ which of these are load-breaking and which merely misbehave.
 | `meleeToolPickT3SteelPickaxe` | items.xml |
 | `meleeToolRatchet` | items.xml |
 | `meleeWpnSledgeT3SteelSledgehammer` | items.xml |
+| `plantedChrysanthemum1` | items.xml |
+| `plantedCorn1` | items.xml |
+| `plantedGoldenrod1` | items.xml |
+| `plantedHops1` | items.xml |
 | `resourceAcid` | items.xml |
+| `resourceClayLump` | items.xml |
 | `resourceCoal` | items.xml |
+| `resourceCrushedSand` | items.xml |
 | `resourceElectricParts` | items.xml |
 | `resourceForgedIron` | items.xml |
 | `resourceForgedSteel` | items.xml |
@@ -132,9 +160,10 @@ which of these are load-breaking and which merely misbehave.
 | `resourceMechanicalParts` | items.xml |
 | `resourceOil` | items.xml |
 | `resourcePaper` | items.xml |
+| `resourceWaterBottle` | items.xml |
 | `spikesWoodBlock` | blocks.xml |
 | `steelBlock` | blocks.xml |
 
 ---
 
-**99 unique vanilla identifiers.**
+**128 unique vanilla identifiers.**

@@ -344,4 +344,156 @@
 
     </append>
 
+
+    <!-- ==========================================================================
+         CROPS
+
+         Three growth stages each, extending the vanilla crop they most resemble
+         so they inherit growth timing, models and planting behaviour.
+
+         *** THE HIGHEST-RISK PATCH IN THE FARM. VERIFY-21. ***
+         Extending a concrete vanilla crop also inherits its HARVEST DROP, so a
+         flax plant may drop hops as well as flax. Confirm against V3.2 whether a
+         redefined <drop event="Harvest"> replaces the inherited one or stacks
+         with it.
+
+         If it stacks, the fix is to extend the growing/grown MASTER templates
+         (cropsGrowingMaster / cropsGrownMaster) instead and set Model explicitly
+         - which needs the vanilla model paths, and is why it was not done that
+         way first.
+         ========================================================================== -->
+
+    <append xpath="/blocks">
+
+        <block name="edPlantFlax1">
+            <property name="Extends" value="plantedHops1" />
+            <property name="PlantGrowing.Next" value="edPlantFlax2" />
+            <property name="DescriptionKey" value="edPlantFlaxDesc" />
+        </block>
+
+        <block name="edPlantFlax2">
+            <property name="Extends" value="plantedHops2" />
+            <property name="PlantGrowing.Next" value="edPlantFlax3" />
+            <property name="DescriptionKey" value="edPlantFlaxDesc" />
+        </block>
+
+        <block name="edPlantFlax3">
+            <property name="Extends" value="plantedHops3" />
+            <property name="DescriptionKey" value="edPlantFlaxDesc" />
+            <drop event="Harvest" name="edCropFlax" count="2,4" tag="cropHarvest" />
+            <drop event="Harvest" name="edSeedFlax" count="0,1" prob="0.35" tag="cropHarvest" />
+            <drop event="Destroy" count="0" />
+        </block>
+
+        <block name="edPlantRye1">
+            <property name="Extends" value="plantedCorn1" />
+            <property name="PlantGrowing.Next" value="edPlantRye2" />
+            <property name="DescriptionKey" value="edPlantRyeDesc" />
+        </block>
+
+        <block name="edPlantRye2">
+            <property name="Extends" value="plantedCorn2" />
+            <property name="PlantGrowing.Next" value="edPlantRye3" />
+            <property name="DescriptionKey" value="edPlantRyeDesc" />
+        </block>
+
+        <block name="edPlantRye3">
+            <property name="Extends" value="plantedCorn3" />
+            <property name="DescriptionKey" value="edPlantRyeDesc" />
+            <drop event="Harvest" name="edCropRye" count="2,4" tag="cropHarvest" />
+            <drop event="Harvest" name="edSeedRye" count="0,1" prob="0.35" tag="cropHarvest" />
+            <drop event="Destroy" count="0" />
+        </block>
+
+        <block name="edPlantComfrey1">
+            <property name="Extends" value="plantedGoldenrod1" />
+            <property name="PlantGrowing.Next" value="edPlantComfrey2" />
+            <property name="DescriptionKey" value="edPlantComfreyDesc" />
+        </block>
+
+        <block name="edPlantComfrey2">
+            <property name="Extends" value="plantedGoldenrod2" />
+            <property name="PlantGrowing.Next" value="edPlantComfrey3" />
+            <property name="DescriptionKey" value="edPlantComfreyDesc" />
+        </block>
+
+        <block name="edPlantComfrey3">
+            <property name="Extends" value="plantedGoldenrod3" />
+            <property name="DescriptionKey" value="edPlantComfreyDesc" />
+            <drop event="Harvest" name="edCropComfrey" count="2,4" tag="cropHarvest" />
+            <drop event="Harvest" name="edSeedComfrey" count="0,1" prob="0.35" tag="cropHarvest" />
+            <drop event="Destroy" count="0" />
+        </block>
+
+        <block name="edPlantRapeseed1">
+            <property name="Extends" value="plantedChrysanthemum1" />
+            <property name="PlantGrowing.Next" value="edPlantRapeseed2" />
+            <property name="DescriptionKey" value="edPlantRapeseedDesc" />
+        </block>
+
+        <block name="edPlantRapeseed2">
+            <property name="Extends" value="plantedChrysanthemum2" />
+            <property name="PlantGrowing.Next" value="edPlantRapeseed3" />
+            <property name="DescriptionKey" value="edPlantRapeseedDesc" />
+        </block>
+
+        <block name="edPlantRapeseed3">
+            <property name="Extends" value="plantedChrysanthemum3" />
+            <property name="DescriptionKey" value="edPlantRapeseedDesc" />
+            <drop event="Harvest" name="edCropRapeseed" count="2,4" tag="cropHarvest" />
+            <drop event="Harvest" name="edSeedRapeseed" count="0,1" prob="0.35" tag="cropHarvest" />
+            <drop event="Destroy" count="0" />
+        </block>
+
+    </append>
+
+
+    <!-- ==========================================================================
+         FARM WORKSTATIONS
+
+         Two, and each exists to close a loop rather than to add a bench:
+
+           Compost Bin  - finally does something with rotting flesh, which until
+                          now dropped off Husks and went straight in the bin.
+                          Rot plus plant matter becomes fertiliser, which is what
+                          seeds cost. The Husk stops being purely a tax.
+
+           Drying Rack  - the Trapper's preservation station. Takes the food
+                          chain off the campfire so preserving is a thing you
+                          BUILT rather than a recipe you happen to know.
+
+         ART NOTE: these two reuse vanilla meshes. Every other workstation in the
+         mod has its own model (Resources/src/) - these are next in that queue,
+         and the pipeline that made the other six takes them without changes.
+         ========================================================================== -->
+
+    <append xpath="/blocks">
+
+        <block name="edBlockCompostBin">
+            <property name="Extends" value="cntGarbage" />
+            <property name="CreativeMode" value="Player" />
+            <property name="CustomIcon" value="cntGarbage" />
+            <property name="DescriptionKey" value="edBlockCompostBinDesc" />
+            <property name="CraftingAreaRecipes" value="edCompost" />
+            <property name="EconomicValue" value="180" />
+            <property class="RepairItems">
+                <property name="resourceWood" value="25" />
+            </property>
+        </block>
+
+        <block name="edBlockDryingRack">
+            <property name="Extends" value="campfire" />
+            <property name="CreativeMode" value="Player" />
+            <property name="CustomIcon" value="campfire" />
+            <property name="DescriptionKey" value="edBlockDryingRackDesc" />
+            <property name="CraftingAreaRecipes" value="edDrying" />
+            <property name="EconomicValue" value="240" />
+            <property class="RepairItems">
+                <property name="resourceWood" value="30" />
+                <property name="resourceCloth" value="10" />
+            </property>
+        </block>
+
+    </append>
+
 </configs>

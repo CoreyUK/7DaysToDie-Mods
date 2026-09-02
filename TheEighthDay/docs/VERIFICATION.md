@@ -147,6 +147,21 @@ that file). Correct the table against the real values and re-run with `--fix`; e
 `items.xml` re-derives from one edit. Wrong assumptions here give prices that are internally
 consistent but collectively off — a far better failure than 49 unrelated guesses.
 
+### 21. Crop bases, seed template, and inherited harvest drops
+**Check:** `Data/Config/blocks.xml` and `items.xml`
+The highest-risk patch in the farm. `Config/blocks.xml` builds each crop's three growth
+stages by extending a vanilla crop (`plantedHops`, `plantedCorn`, `plantedGoldenrod`,
+`plantedChrysanthemum`), and seeds extend `masterSeed`. Confirm:
+- all four vanilla crop names and their `1`/`2`/`3` stage suffixes
+- `masterSeed` exists and `Create_item` is how a seed names the block it plants
+- **whether a redefined `<drop event="Harvest">` REPLACES the inherited one or stacks.**
+  If it stacks, flax plants will drop hops as well as flax. The fix is to extend
+  `cropsGrowingMaster` / `cropsGrownMaster` and set `Model` explicitly — which needs the
+  vanilla model paths, and is why it was not done that way first.
+
+A wrong crop base is a crop that will not plant. This is the one farming failure that is
+loud rather than silent.
+
 ## Priority 2 — will load but behave wrong
 
 ### 5. `CustomIcon` names
