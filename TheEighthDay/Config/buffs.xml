@@ -69,11 +69,17 @@
               icon_color="220,220,120" remove_on_death="true">
             <stack_type value="ignore" />
             <duration value="1800" />
+            <!-- Arm the cure guard. See the note on edInfCured below. -->
+            <effect_group name="edInfection1Init">
+                <triggered_effect trigger="onSelfBuffStart" action="ModifyCVar"
+                                  cvar="edInfCured" operation="set" value="0" />
+            </effect_group>
             <effect_group name="edInfection1Effects">
                 <passive_effect name="StaminaChangeOT" operation="base_add" value="-0.4" />
                 <passive_effect name="StaminaLoss" operation="perc_add" value="0.1" />
             </effect_group>
             <effect_group name="edInfection1Advance">
+                <requirement name="CVarCompare" cvar="edInfCured" operation="Equals" value="0" />
                 <triggered_effect trigger="onSelfBuffFinish" action="AddBuff" buff="edBuffInfection2" />
             </effect_group>
         </buff>
@@ -90,6 +96,7 @@
                 <passive_effect name="MaxStamina" operation="perc_add" value="-0.15" />
             </effect_group>
             <effect_group name="edInfection2Advance">
+                <requirement name="CVarCompare" cvar="edInfCured" operation="Equals" value="0" />
                 <triggered_effect trigger="onSelfBuffFinish" action="AddBuff" buff="edBuffInfection3" />
             </effect_group>
         </buff>
@@ -107,6 +114,7 @@
                 <passive_effect name="RunSpeed" operation="perc_add" value="-0.12" />
             </effect_group>
             <effect_group name="edInfection3Advance">
+                <requirement name="CVarCompare" cvar="edInfCured" operation="Equals" value="0" />
                 <triggered_effect trigger="onSelfBuffFinish" action="AddBuff" buff="edBuffInfection4" />
             </effect_group>
         </buff>
@@ -247,6 +255,40 @@
             </effect_group>
         </buff>
 
+    </append>
+
+
+    <!-- ==========================================================================
+         5. INFECTION ENTRY POINT
+
+         Without this the whole Attrition pillar is inert: the four stages exist
+         but nothing ever starts them.
+
+         Vanilla runs its own single-stage infection buff. Rather than fight it,
+         this hands off: when vanilla infection lands, stage 1 of ours starts and
+         vanilla's is cleared, so there is exactly one infection system in play
+         and every existing source of infection in the game feeds it.
+
+         THE CURE GUARD (edInfCured)
+         ===========================
+         Each stage advances on onSelfBuffFinish. A cure removes the buff, and if
+         removal also counts as "finishing" it, curing stage 3 would immediately
+         apply stage 4 - the exact opposite of what the player paid for. So every
+         advance is gated on edInfCured, medicines set it to 1, and a fresh stage 1
+         resets it to 0. Correct whichever way the engine treats RemoveBuff.
+
+         VERIFY-13 (docs/VERIFICATION.md): confirm the vanilla infection buff is
+         still named "buffInfection" in V3.2. If it was renamed, retarget the patch
+         below - it is the only place this mod depends on that name.
+         ========================================================================== -->
+
+    <append xpath="/buffs/buff[@name='buffInfection']">
+        <effect_group name="edInfectionHandoff">
+            <triggered_effect trigger="onSelfBuffStart" action="AddBuff"
+                              buff="edBuffInfection1" />
+            <triggered_effect trigger="onSelfBuffStart" action="RemoveBuff"
+                              buff="buffInfection" />
+        </effect_group>
     </append>
 
 </configs>

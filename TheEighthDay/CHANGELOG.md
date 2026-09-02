@@ -28,9 +28,30 @@ did not exist; they all point at real content now.
 - [`docs/ART.md`](docs/ART.md) and the `UIAtlases/ItemIconAtlas/` folder: the icon and
   model pipelines documented and scaffolded so art drops in without restructuring.
 
+### Fixed
+Four systems were defined but never actually driven — each looked complete in its own file
+and did nothing in play. Found by auditing every identifier for an inbound reference.
+
+- **Infection could never start.** All four stages existed with no entry point. Vanilla's
+  own infection buff now hands off into stage 1 and clears itself, so every existing
+  infection source in the game feeds the chain and there is only one system in play.
+- **No medicine cured the staged infection.** The three cures extended a vanilla item that
+  clears vanilla's buff, not this mod's. Each now removes the stages it should, guarded by
+  a new `edInfCured` CVar so that curing a stage cannot trip its own advance-on-finish
+  effect and immediately apply the next one.
+- **Archetype loot tables were orphaned.** Five loot groups were defined and referenced by
+  nothing; the enemies dropped vanilla loot. Now wired via `LootListOnDeath`.
+- **The cycle tracker was never applied to anyone.** Now attached to players on first spawn
+  and respawn, which is a prerequisite for the Turning announcement layer.
+- Three new verification items (13, 14, 15) covering the vanilla names these fixes depend on.
+
 ### Changed
 - Marshal's "Emplaced Guns" is built on fixed trap emplacements rather than robotic
   turrets, because V3.2 removed the vanilla auto-turret. Better fit for the Calling anyway.
+- Enemy archetypes apply infection on hit at their own rates — the Hollow at 30%, the Husk
+  at 5% — so which enemy hurt you now decides how much it costs later.
+- Icons: the 2D generation pipeline was tried and removed. See `docs/ART.md`; the 3D render
+  route is scaffolded in `tools/gen_icons_blender.py` and items keep vanilla icons for now.
 - Two new verification items (11, 12) covering the vanilla weapon, armour and block bases
   the new gear extends.
 

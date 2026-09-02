@@ -285,6 +285,15 @@
             <property name="DescriptionKey" value="edMedTinctureDesc" />
             <property name="EconomicValue" value="240" />
             <property name="Stacknumber" value="10" />
+                    <!-- Stage 1-2 only. Past that you are holding expensive brown water.
+                 Sets edInfCured so the stage this removes cannot advance on the
+                 way out - see the cure guard note in buffs.xml. -->
+            <effect_group name="edMedTinctureCure">
+                <triggered_effect trigger="onSelfPrimaryActionEnd" action="ModifyCVar"
+                                  cvar="edInfCured" operation="set" value="1" />
+                <triggered_effect trigger="onSelfPrimaryActionEnd" action="RemoveBuff" buff="edBuffInfection1" />
+                <triggered_effect trigger="onSelfPrimaryActionEnd" action="RemoveBuff" buff="edBuffInfection2" />
+            </effect_group>
         </item>
 
         <!-- Stage 3. Apothecary "Antisepsis" perk required to craft. -->
@@ -295,6 +304,16 @@
             <property name="DescriptionKey" value="edMedAntibioticDesc" />
             <property name="EconomicValue" value="900" />
             <property name="Stacknumber" value="10" />
+                    <!-- Reverses stage 3. Apothecary, Antisepsis 4.
+                 Sets edInfCured so the stage this removes cannot advance on the
+                 way out - see the cure guard note in buffs.xml. -->
+            <effect_group name="edMedAntibioticCure">
+                <triggered_effect trigger="onSelfPrimaryActionEnd" action="ModifyCVar"
+                                  cvar="edInfCured" operation="set" value="1" />
+                <triggered_effect trigger="onSelfPrimaryActionEnd" action="RemoveBuff" buff="edBuffInfection1" />
+                <triggered_effect trigger="onSelfPrimaryActionEnd" action="RemoveBuff" buff="edBuffInfection2" />
+                <triggered_effect trigger="onSelfPrimaryActionEnd" action="RemoveBuff" buff="edBuffInfection3" />
+            </effect_group>
         </item>
 
         <!-- Stage 4. Apothecary capstone only. The reason the Calling exists. -->
@@ -305,6 +324,17 @@
             <property name="DescriptionKey" value="edMedSerumDesc" />
             <property name="EconomicValue" value="2600" />
             <property name="Stacknumber" value="5" />
+                    <!-- The only thing that touches stage 4. Apothecary capstone.
+                 Sets edInfCured so the stage this removes cannot advance on the
+                 way out - see the cure guard note in buffs.xml. -->
+            <effect_group name="edMedSerumCure">
+                <triggered_effect trigger="onSelfPrimaryActionEnd" action="ModifyCVar"
+                                  cvar="edInfCured" operation="set" value="1" />
+                <triggered_effect trigger="onSelfPrimaryActionEnd" action="RemoveBuff" buff="edBuffInfection1" />
+                <triggered_effect trigger="onSelfPrimaryActionEnd" action="RemoveBuff" buff="edBuffInfection2" />
+                <triggered_effect trigger="onSelfPrimaryActionEnd" action="RemoveBuff" buff="edBuffInfection3" />
+                <triggered_effect trigger="onSelfPrimaryActionEnd" action="RemoveBuff" buff="edBuffInfection4" />
+            </effect_group>
         </item>
 
     </append>

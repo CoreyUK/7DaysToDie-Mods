@@ -66,6 +66,26 @@ when shape variants landed, so confirm each.
 unlock is built on fixed trap emplacements rather than robotic turrets. Do not reintroduce
 a turret base.
 
+### 13. Vanilla infection buff name
+**Check:** `Data/Config/buffs.xml`
+`Config/buffs.xml` patches `buffInfection` to hand off into this mod's four-stage chain.
+That patch is the **only entry point for the entire Attrition pillar** — if the vanilla buff
+was renamed in V3.2, infection silently never starts and nothing else reports an error.
+Confirm the name, and confirm `RemoveBuff` inside a buff's own effect group is legal.
+
+### 14. Player entity class names and spawn triggers
+**Check:** `Data/Config/entityclasses.xml`
+`Config/entityclasses.xml` attaches the cycle tracker to `playerMale` and `playerFemale`
+via `onSelfFirstSpawn` / `onSelfRespawn`. Confirm both class names still exist and both
+triggers fire for players. Without this, `edCycle` is never readable — harmless today
+because the announcement layer is inert, but it is a prerequisite for item 1.
+
+### 15. `RandomRoll` requirement
+**Check:** `Data/Config/buffs.xml` or `entityclasses.xml`
+The archetype infection chances use a `RandomRoll` requirement. Confirm the element name
+and its `min`/`max`/`value` attribute shape. If it does not exist under that name, the
+effect groups either never fire or always fire — check both.
+
 ## Priority 2 — will load but behave wrong
 
 ### 5. `CustomIcon` names

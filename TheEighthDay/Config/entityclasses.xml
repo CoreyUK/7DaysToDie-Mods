@@ -36,6 +36,14 @@
                 <passive_effect name="HealthChangeOT" operation="base_set" value="0" />
                 <passive_effect name="EntityDamage" operation="base_set" value="14" />
             </effect_group>
+            <property name="LootListOnDeath" value="edLootHusk" />
+            <!-- Feeds the Attrition pillar. Without an entry point the
+                 four infection stages never start. -->
+            <effect_group name="edZombieHuskInfect">
+                <requirement name="RandomRoll" min="0" max="1" value="0.05" />
+                <triggered_effect trigger="onSelfAttackedOther" action="AddBuff"
+                                  buff="edBuffInfection1" target="other" />
+            </effect_group>
         </entity_class>
 
 
@@ -60,6 +68,14 @@
                 <triggered_effect trigger="onSelfDied" action="AddBuff" buff="edBuffToxicCloud"
                                   target="selfAOE" range="4.5" />
             </effect_group>
+            <property name="LootListOnDeath" value="edLootBloater" />
+            <!-- Feeds the Attrition pillar. Without an entry point the
+                 four infection stages never start. -->
+            <effect_group name="edZombieBloaterInfect">
+                <requirement name="RandomRoll" min="0" max="1" value="0.22" />
+                <triggered_effect trigger="onSelfAttackedOther" action="AddBuff"
+                                  buff="edBuffInfection1" target="other" />
+            </effect_group>
         </entity_class>
 
 
@@ -77,6 +93,13 @@
             <effect_group name="edZombieCarrionHoundStats">
                 <passive_effect name="MaxHealth" operation="base_set" value="145" />
                 <passive_effect name="EntityDamage" operation="base_set" value="26" />
+            </effect_group>
+            <!-- Feeds the Attrition pillar. Without an entry point the
+                 four infection stages never start. -->
+            <effect_group name="edZombieCarrionHoundInfect">
+                <requirement name="RandomRoll" min="0" max="1" value="0.12" />
+                <triggered_effect trigger="onSelfAttackedOther" action="AddBuff"
+                                  buff="edBuffInfection1" target="other" />
             </effect_group>
         </entity_class>
 
@@ -102,6 +125,14 @@
                                 tags="bullet" />
                 <passive_effect name="DamageModifier" operation="perc_set" value="1.35"
                                 tags="explosive" />
+            </effect_group>
+            <property name="LootListOnDeath" value="edLootRotweaver" />
+            <!-- Feeds the Attrition pillar. Without an entry point the
+                 four infection stages never start. -->
+            <effect_group name="edZombieRotweaverInfect">
+                <requirement name="RandomRoll" min="0" max="1" value="0.18" />
+                <triggered_effect trigger="onSelfAttackedOther" action="AddBuff"
+                                  buff="edBuffInfection1" target="other" />
             </effect_group>
         </entity_class>
 
@@ -129,6 +160,14 @@
                 <passive_effect name="MaxHealth" operation="base_set" value="260" />
                 <passive_effect name="EntityDamage" operation="base_set" value="95" />
             </effect_group>
+            <property name="LootListOnDeath" value="edLootHollow" />
+            <!-- Feeds the Attrition pillar. Without an entry point the
+                 four infection stages never start. -->
+            <effect_group name="edZombieHollowInfect">
+                <requirement name="RandomRoll" min="0" max="1" value="0.3" />
+                <triggered_effect trigger="onSelfAttackedOther" action="AddBuff"
+                                  buff="edBuffInfection1" target="other" />
+            </effect_group>
         </entity_class>
 
 
@@ -153,8 +192,38 @@
                 <triggered_effect trigger="onSelfBuffUpdate" action="AddBuff" buff="edBuffChoirSong"
                                   target="selfAOE" range="12" />
             </effect_group>
+            <property name="LootListOnDeath" value="edLootChoir" />
         </entity_class>
 
+    </append>
+
+    <!-- ==================================================================
+         CYCLE TRACKER
+
+         The tracker buff has to actually be ON somebody. Without this it is
+         defined and never applied, and edCycle is never readable.
+
+         VERIFY-14 (docs/VERIFICATION.md): confirm the player entity class
+         names and that this spawn trigger exists in V3.2. If the player class
+         was renamed or split, retarget these two patches.
+         ================================================================== -->
+
+    <append xpath="/entity_classes/entity_class[@name='playerMale']">
+        <effect_group name="edPlayerCycleTracker">
+            <triggered_effect trigger="onSelfFirstSpawn" action="AddBuff"
+                              buff="edBuffCycleTracker" />
+            <triggered_effect trigger="onSelfRespawn" action="AddBuff"
+                              buff="edBuffCycleTracker" />
+        </effect_group>
+    </append>
+
+    <append xpath="/entity_classes/entity_class[@name='playerFemale']">
+        <effect_group name="edPlayerCycleTracker">
+            <triggered_effect trigger="onSelfFirstSpawn" action="AddBuff"
+                              buff="edBuffCycleTracker" />
+            <triggered_effect trigger="onSelfRespawn" action="AddBuff"
+                              buff="edBuffCycleTracker" />
+        </effect_group>
     </append>
 
 </configs>

@@ -28,10 +28,49 @@ without writing a single line of C#.
 
 ---
 
-## Custom icons — achievable, needs an artist
+## Decision record — how custom icons get made
 
-Icons are the cheap win. A modlet can ship its own atlas folder and the game builds it at
-load; there is no code, no assembly and no SDK involved.
+**Status: parked. Vanilla tinted icons ship until this is resolved.**
+
+Two approaches were evaluated.
+
+### Rejected — 2D generation
+
+A generator was built that produced icons procedurally in 2D: silhouette masks lit by a
+distance-field normal solver, with Lambert and specular response, procedural surface grain,
+per-material roughness, contact occlusion and no outlines.
+
+It produced 37 clean, consistent, readable icons. It was still **rejected**, because 7 Days
+to Die's icons are photographs of objects in all but name, and a shaded drawing does not
+read as one no matter how carefully it is shaded. The ceiling was the method, not the
+tuning, so the code was removed rather than kept around to tempt anyone.
+
+### Chosen — 3D render, same as vanilla
+
+Build real geometry, give it physically based materials, light it, and path-trace it. This
+is how the vanilla icons were made, so it is the only route that lands in the same visual
+language.
+
+Feasibility is **confirmed in this repo's toolchain**, not assumed:
+
+- `pip install bpy` gives Blender 5.0.1 as a Python module (~370 MB, CPython 3.11)
+- Cycles renders a 160px icon in ~1.3 s on CPU at 48 samples with denoising
+- 37 icons at 480px and 128 samples is a few minutes, once per change
+
+`tools/gen_icons_blender.py` holds the finished half: scene setup, camera, three-point
+studio lighting, the material factory (procedural roughness break-up, bump, transmission)
+and geometry helpers including lathe, polygon extrude and boolean. What remains is the
+per-item geometry and a `main()`.
+
+**Nothing in the mod depends on this.** Items keep their `CustomIcon` and tint until real
+icons land, so the mod is complete and consistent without it.
+
+---
+
+## How custom icons plug in
+
+A modlet can ship its own atlas folder and the game builds it at load; there is no code,
+no assembly and no SDK involved.
 
 ### How
 
