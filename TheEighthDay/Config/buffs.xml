@@ -134,6 +134,23 @@
                 <passive_effect name="MaxHealth" operation="perc_add" value="-0.4" />
                 <passive_effect name="RunSpeed" operation="perc_add" value="-0.25" />
             </effect_group>
+
+            <!-- STAGE 4 DOES NOT EXPIRE.
+                 It used to. The buff ran for twenty minutes and then simply ended,
+                 which made the terminal stage a thing you could WAIT OUT - bandage
+                 through it, eat, sit down, and walk away cured for free. That is
+                 the exact opposite of the pillar: stage 4 is the reason the
+                 Apothecary Calling exists, and an infection that cures itself on
+                 a timer means nobody ever needs one.
+
+                 It now re-applies itself when its duration ends, guarded by the
+                 same cure flag every other stage uses, so the only two ways out
+                 are the serum and dying. The duration is still meaningful - it is
+                 how often the effect re-rolls, not how long until you are fine. -->
+            <effect_group name="edInfection4Persist">
+                <requirement name="CVarCompare" cvar="edInfCured" operation="Equals" value="0" />
+                <triggered_effect trigger="onSelfBuffFinish" action="AddBuff" buff="edBuffInfection4" />
+            </effect_group>
         </buff>
 
     </append>
@@ -197,9 +214,9 @@
             <effect_group name="edCycleInit">
                 <requirement name="CVarCompare" cvar="edCycleInit" operation="NotEquals" value="1" />
                 <triggered_effect trigger="onSelfBuffStart" action="ModifyCVar"
-                                  cvar="edCycle" operation="setvalue" value="0" />
+                                  cvar="edCycle" operation="set" value="0" />
                 <triggered_effect trigger="onSelfBuffStart" action="ModifyCVar"
-                                  cvar="edCycleInit" operation="setvalue" value="1" />
+                                  cvar="edCycleInit" operation="set" value="1" />
             </effect_group>
             <effect_group name="edCycleDisplayGroup">
                 <display_value name="edCycleDisplay" value="edCycle" />
@@ -224,7 +241,7 @@
             <effect_group name="edTurning1First">
                 <requirement name="CVarCompare" cvar="edSeenCycle1" operation="NotEquals" value="1" />
                 <triggered_effect trigger="onSelfBuffStart" action="ModifyCVar"
-                                  cvar="edSeenCycle1" operation="setvalue" value="1" />
+                                  cvar="edSeenCycle1" operation="set" value="1" />
             </effect_group>
 
             <!-- A Turning is one-way, so the cycle read only ever climbs. Meeting a
@@ -232,7 +249,7 @@
             <effect_group name="edTurning1Raise">
                 <requirement name="CVarCompare" cvar="edCycle" operation="LT" value="1" />
                 <triggered_effect trigger="onSelfBuffStart" action="ModifyCVar"
-                                  cvar="edCycle" operation="setvalue" value="1" />
+                                  cvar="edCycle" operation="set" value="1" />
             </effect_group>
         </buff>
 
@@ -254,7 +271,7 @@
             <effect_group name="edTurning2First">
                 <requirement name="CVarCompare" cvar="edSeenCycle2" operation="NotEquals" value="1" />
                 <triggered_effect trigger="onSelfBuffStart" action="ModifyCVar"
-                                  cvar="edSeenCycle2" operation="setvalue" value="1" />
+                                  cvar="edSeenCycle2" operation="set" value="1" />
             </effect_group>
 
             <!-- A Turning is one-way, so the cycle read only ever climbs. Meeting a
@@ -262,7 +279,7 @@
             <effect_group name="edTurning2Raise">
                 <requirement name="CVarCompare" cvar="edCycle" operation="LT" value="2" />
                 <triggered_effect trigger="onSelfBuffStart" action="ModifyCVar"
-                                  cvar="edCycle" operation="setvalue" value="2" />
+                                  cvar="edCycle" operation="set" value="2" />
             </effect_group>
         </buff>
 
@@ -284,7 +301,7 @@
             <effect_group name="edTurning3First">
                 <requirement name="CVarCompare" cvar="edSeenCycle3" operation="NotEquals" value="1" />
                 <triggered_effect trigger="onSelfBuffStart" action="ModifyCVar"
-                                  cvar="edSeenCycle3" operation="setvalue" value="1" />
+                                  cvar="edSeenCycle3" operation="set" value="1" />
             </effect_group>
 
             <!-- A Turning is one-way, so the cycle read only ever climbs. Meeting a
@@ -292,7 +309,7 @@
             <effect_group name="edTurning3Raise">
                 <requirement name="CVarCompare" cvar="edCycle" operation="LT" value="3" />
                 <triggered_effect trigger="onSelfBuffStart" action="ModifyCVar"
-                                  cvar="edCycle" operation="setvalue" value="3" />
+                                  cvar="edCycle" operation="set" value="3" />
             </effect_group>
         </buff>
 
@@ -314,7 +331,7 @@
             <effect_group name="edTurning4First">
                 <requirement name="CVarCompare" cvar="edSeenCycle4" operation="NotEquals" value="1" />
                 <triggered_effect trigger="onSelfBuffStart" action="ModifyCVar"
-                                  cvar="edSeenCycle4" operation="setvalue" value="1" />
+                                  cvar="edSeenCycle4" operation="set" value="1" />
             </effect_group>
 
             <!-- A Turning is one-way, so the cycle read only ever climbs. Meeting a
@@ -322,7 +339,7 @@
             <effect_group name="edTurning4Raise">
                 <requirement name="CVarCompare" cvar="edCycle" operation="LT" value="4" />
                 <triggered_effect trigger="onSelfBuffStart" action="ModifyCVar"
-                                  cvar="edCycle" operation="setvalue" value="4" />
+                                  cvar="edCycle" operation="set" value="4" />
             </effect_group>
         </buff>
 
@@ -344,7 +361,7 @@
             <effect_group name="edTurning5First">
                 <requirement name="CVarCompare" cvar="edSeenCycle5" operation="NotEquals" value="1" />
                 <triggered_effect trigger="onSelfBuffStart" action="ModifyCVar"
-                                  cvar="edSeenCycle5" operation="setvalue" value="1" />
+                                  cvar="edSeenCycle5" operation="set" value="1" />
             </effect_group>
 
             <!-- A Turning is one-way, so the cycle read only ever climbs. Meeting a
@@ -352,7 +369,7 @@
             <effect_group name="edTurning5Raise">
                 <requirement name="CVarCompare" cvar="edCycle" operation="LT" value="5" />
                 <triggered_effect trigger="onSelfBuffStart" action="ModifyCVar"
-                                  cvar="edCycle" operation="setvalue" value="5" />
+                                  cvar="edCycle" operation="set" value="5" />
             </effect_group>
         </buff>
 
@@ -374,7 +391,7 @@
             <effect_group name="edTurning6First">
                 <requirement name="CVarCompare" cvar="edSeenCycle6" operation="NotEquals" value="1" />
                 <triggered_effect trigger="onSelfBuffStart" action="ModifyCVar"
-                                  cvar="edSeenCycle6" operation="setvalue" value="1" />
+                                  cvar="edSeenCycle6" operation="set" value="1" />
             </effect_group>
 
             <!-- A Turning is one-way, so the cycle read only ever climbs. Meeting a
@@ -382,7 +399,7 @@
             <effect_group name="edTurning6Raise">
                 <requirement name="CVarCompare" cvar="edCycle" operation="LT" value="6" />
                 <triggered_effect trigger="onSelfBuffStart" action="ModifyCVar"
-                                  cvar="edCycle" operation="setvalue" value="6" />
+                                  cvar="edCycle" operation="set" value="6" />
             </effect_group>
         </buff>
 
@@ -404,7 +421,7 @@
             <effect_group name="edTurning7First">
                 <requirement name="CVarCompare" cvar="edSeenCycle7" operation="NotEquals" value="1" />
                 <triggered_effect trigger="onSelfBuffStart" action="ModifyCVar"
-                                  cvar="edSeenCycle7" operation="setvalue" value="1" />
+                                  cvar="edSeenCycle7" operation="set" value="1" />
             </effect_group>
 
             <!-- A Turning is one-way, so the cycle read only ever climbs. Meeting a
@@ -412,7 +429,7 @@
             <effect_group name="edTurning7Raise">
                 <requirement name="CVarCompare" cvar="edCycle" operation="LT" value="7" />
                 <triggered_effect trigger="onSelfBuffStart" action="ModifyCVar"
-                                  cvar="edCycle" operation="setvalue" value="7" />
+                                  cvar="edCycle" operation="set" value="7" />
             </effect_group>
         </buff>
 

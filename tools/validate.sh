@@ -14,7 +14,8 @@
 #   6. Every internal cross-reference resolves
 #   7. Everything is obtainable from a cold start
 #   8. The Turning's pools, bands, announcements, text and docs all agree
-#   9. Nothing is priced below its own input cost
+#   9. Every CVar gate has a writer, and one operation vocabulary throughout
+#  10. Nothing is priced below its own input cost
 #
 # This does NOT check that vanilla identifiers exist - only the game can do that.
 # See TheEighthDay/docs/VERIFICATION.md.
@@ -153,7 +154,15 @@ if command -v python3 >/dev/null 2>&1; then
         fail "the Turning contradicts itself - run ./tools/check-cycles.py"
     fi
 
-    # --- 9. No item may be priced below its own input cost ------------------
+    # --- 9. Every CVar gate must have something that writes it --------------
+    # An unset CVar reads as zero, so a gate nothing writes is not an error - it
+    # is a door that never opens. That is how a whole Calling goes dark.
+    echo
+    if ! python3 "$REPO_ROOT/tools/check-cvars.py" "${modlets[@]}"; then
+        fail "CVar gates with no writer, or two operation spellings - run ./tools/check-cvars.py"
+    fi
+
+    # --- 10. No item may be priced below its own input cost -----------------
     # That is a trader exploit: buy the inputs, craft, sell the output, repeat.
     echo
     if ! python3 "$REPO_ROOT/tools/check-economy.py" >/dev/null; then

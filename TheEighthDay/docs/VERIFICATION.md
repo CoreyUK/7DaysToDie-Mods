@@ -217,6 +217,24 @@ loud rather than silent.
 Note the previous failure this replaced: the groups existed and nothing stocked them, so
 every one was unbuyable. `check-refs.py` now treats an unstocked trader group as an orphan.
 
+### 24. The `ModifyCVar` operation name — check this one first
+**Check:** `Data/Config/buffs.xml`, any `action="ModifyCVar"` triggered effect
+
+Every CVar this mod writes uses `operation="set"`. **If the engine spells that differently,
+the Calling system does not work at all** — a Writ would set no Mark, every perk branch would
+stay shut, and nothing would report an error, because an unset CVar reads as zero and a
+CVar gate that never opens is indistinguishable from a gate you have not earned yet.
+
+This is the cheapest item on the list to check and the most expensive to get wrong, so do it
+before anything else. Look at any vanilla buff that writes a CVar and copy its spelling.
+
+The fix, if it is wrong, is one `sed` across `Config/`: the mod deliberately uses a single
+spelling everywhere, and `check-cvars.py` fails the build if a second one appears. It had
+two — `set` and `setvalue` — until that check was written.
+
+Vanilla's other operations (`add`, `subtract`, `multiply`, `divide`) are worth noting while
+you are there; nothing here uses them yet.
+
 ## Priority 2 — will load but behave wrong
 
 ### 5. `CustomIcon` names

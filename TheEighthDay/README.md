@@ -77,7 +77,7 @@ Running it on a server: [`docs/SERVER.md`](docs/SERVER.md).
 
 ## Status
 
-**v0.9.0 — pre-alpha.** What exists:
+**v0.10.0 — pre-alpha.** What exists:
 
 - ✅ Cycle system (gamestage-driven), Cycles 0–7 populated and still escalating at
   gamestage 3000 — the mod has no plateau
@@ -88,7 +88,8 @@ Running it on a server: [`docs/SERVER.md`](docs/SERVER.md).
 - ✅ Seven enemy archetypes, including the Cycle 7+ Grinder
 - ✅ Biome hostility — each harsh biome permanently carries one archetype, so the map
   is the difficulty selector; the starter biomes stay clean
-- ✅ Four-stage infection
+- ✅ Four-stage infection, and stage 4 no longer expires on its own — the serum or
+  nothing, which is what the Apothecary is for
 - ✅ Research loop complete — all six Field Note disciplines reconstruct into something
 - ✅ Six Proving quest chains — Callings are earned, and Writs are no longer sold
 - ✅ The Turning announces itself — a journal entry the first time each archetype reaches

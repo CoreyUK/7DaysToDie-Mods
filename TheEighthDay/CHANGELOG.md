@@ -3,6 +3,36 @@
 All notable changes to The Eighth Day.
 Format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
+## [0.10.0] — 2026-09-02
+
+### Fixed
+- **The mod wrote CVars two different ways, and at most one of them works.** `operation="set"`
+  in `items.xml` (all six Calling Marks) and in the infection cure guard; `operation="setvalue"`
+  in the Turning code added two releases ago. Only one of those is the engine's spelling, and
+  the other does nothing — silently, because an unset CVar reads as zero.
+
+  If `set` is the wrong one, **no Writ ever grants its Mark and every Calling branch stays
+  shut for the whole game**, with no error printed anywhere. That is the single most expensive
+  failure still latent in this mod, and it was sitting in plain sight in two files. Everything
+  now uses `set`, so there is one thing to confirm and one thing to change — new verification
+  item 24, flagged to be checked before anything else on the list.
+
+- **Stage 4 infection could be waited out.** The terminal stage ran for twenty minutes and
+  then simply ended. Bandage through it, eat, sit down, and you were cured for free — so the
+  stage that exists to make the Apothecary the group's lifeline was, in practice, a timer.
+  It now re-applies itself while the cure guard is clear: the serum or dying, nothing else.
+
+### Added
+- **`tools/check-cvars.py`.** CVars are this mod's only persistent per-player state, and every
+  one of them is a gate. Nothing validated the pairing between the thing that writes a CVar
+  and the thing that reads it, and an unset CVar reads as zero — so a gate nobody writes is
+  not an error, it is a door that never opens.
+
+  Three checks: a CVar read by a gate and written by nothing (`UNWRITTEN`), a CVar written and
+  read by nothing (`UNREAD`), and more than one spelling of the assignment operation
+  (`VOCABULARY`). Proven by renaming the Ironmonger's Mark at its write site: it reports the
+  gate in `progression.xml` that can now never open *and* the orphaned write, and exits 1.
+
 ## [0.9.0] — 2026-09-02
 
 Three bugs in the escalation itself, all found by extending `check-cycles.py` rather than by
