@@ -3,6 +3,28 @@
 All notable changes to The Eighth Day.
 Format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
+## [0.3.2] — 2026-09-02
+
+First custom 3D assets.
+
+### Added
+- **Bloomery and blast furnace models** — real geometry built in Blender, procedurally
+  textured, baked to BaseColor / Normal / Roughness / Metallic at 1024², exported as FBX at
+  a 9k-triangle budget with a 1 m footprint and base-centre pivot. Their item icons are
+  rendered from the same models, so hand and world match. These two were first because they
+  both extended `forge` and were indistinguishable in-world and in inventory.
+- `tools/gen_models.py` — the asset pipeline. Build → normalise → preview → icon → join →
+  decimate → unwrap → bake → FBX, per asset, in one command.
+- `tools/unity/EighthDayBundleBuilder.cs` — the desktop half. Two menu items in Unity turn
+  the FBX and maps into `eighthday.unity3d`, handling colour spaces, metallic-smoothness
+  packing, materials and colliders.
+- Verification item 18 for the bundle and atlas pickup.
+
+### Changed
+- `blocks.xml`: the two blocks drop `CustomIcon` in favour of their atlas icons, and carry
+  their `Meshfile` line commented out until the bundle exists. Nothing depends on the Unity
+  step having happened.
+
 ## [0.3.1] — 2026-09-02
 
 ### Fixed

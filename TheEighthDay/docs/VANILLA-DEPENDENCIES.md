@@ -116,7 +116,6 @@ which of these are load-breaking and which merely misbehave.
 | `drugSteroids` | items.xml |
 | `explosiveTimedCharge` | items.xml |
 | `foodCharredMeat` | items.xml |
-| `forge` | blocks.xml |
 | `grenadeContact` | items.xml |
 | `gunMGT2TacticalAR` | items.xml |
 | `gunMGT3M60` | items.xml |
@@ -140,4 +139,4 @@ which of these are load-breaking and which merely misbehave.
 
 ---
 
-**102 unique vanilla identifiers.**
+**101 unique vanilla identifiers.**

@@ -108,7 +108,71 @@ draw roughly 60 icons. That is the entire blocker.
 
 ---
 
-## Custom models — achievable, needs Unity and a 3D artist
+## Custom models — the pipeline is live
+
+**Status: two assets built. Unity bundle step pending (needs a desktop).**
+
+`tools/gen_models.py` builds each workstation as real geometry in Blender, bakes its
+procedural materials to textures, exports an FBX, and renders the item icon from the same
+model — so the thing in your hand matches the thing on the ground.
+
+```
+python3 tools/gen_models.py                    # every asset, ~3 min each
+python3 tools/gen_models.py --only edBlockBloomery
+python3 tools/gen_models.py --no-bake          # previews + icons only, fast
+```
+
+Per asset it writes:
+
+| Output | Where |
+|---|---|
+| `<name>.fbx` — Y-up, metres, single mesh, ≤9k tris | `Resources/src/<name>/` |
+| `_BaseColor` `_Normal` `_Roughness` `_Metallic` — 1024² | `Resources/src/<name>/` |
+| 160px icon | `UIAtlases/ItemIconAtlas/` |
+| 480px review render | `dist/previews/` (not committed) |
+
+Every asset is normalised to a 1 m footprint with its origin at the base centre, which is
+where the game expects a block pivot.
+
+### Built so far
+
+| Asset | Tris | Why it was first |
+|---|---|---|
+| `edBlockBloomery` | 9,000 | Both it and the blast furnace extended `forge` — identical in-world *and* in inventory |
+| `edBlockBlastFurnace` | 8,999 | Same. Deliberately nothing like the bloomery: square, brick, steel-framed |
+
+Remaining workstations — machine shop, reagent bench, drafting table, synthesis lab — are
+the same problem (two pairs sharing `workbench` and `chemistryStation`) and the same fix.
+
+### The desktop step
+
+Blender can't build a Unity AssetBundle; only Unity can, on the game's exact Unity version.
+`tools/unity/EighthDayBundleBuilder.cs` makes that two menu clicks:
+
+1. Find the game's Unity version — `Player.log` prints `Initialize engine version: …` at the
+   top. Install exactly that via Unity Hub. **Any other version silently fails to load.**
+2. New 3D project. Copy the `.cs` to `Assets/Editor/`. Copy `Resources/src/*` to
+   `Assets/EighthDay/Models/`.
+3. **Eighth Day → 1. Create Prefabs From Models** — imports textures with the right colour
+   spaces, packs roughness into Unity's metallic-smoothness alpha, builds materials, adds
+   mesh colliders, tags the bundle.
+4. **Eighth Day → 2. Build AssetBundle** → `Bundles/eighthday.unity3d`.
+5. Copy that into `TheEighthDay/Resources/` and uncomment each block's `Meshfile` line in
+   `blocks.xml`. That's verification item 18.
+
+Until step 5, blocks keep their vanilla mesh and nothing is broken — the icons already ship.
+
+### Two gotchas the pipeline learned the hard way
+
+- **Never touch `colorspace_settings` on a generated image after baking.** It regenerates
+  the buffer and every map saves as solid black with no error. Decide colour space at
+  creation via `is_data`.
+- **Catmull-Clark subdivision on a 4-sided cone makes an egg.** Use `SIMPLE` subdivision
+  when you want displacement detail on something that must stay square.
+
+---
+
+## Custom models — what still needs an artist
 
 Bespoke weapon and block models are how the larger overhauls get their own identity. It is
 more involved than icons but still requires **no C# and no Harmony patching** — it is an

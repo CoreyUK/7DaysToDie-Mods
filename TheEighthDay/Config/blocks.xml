@@ -19,8 +19,10 @@
              v
         Drafting Table ===> consumes Field Notes ===> recipes the perk tree cannot give
 
-    ART NOTE: v0.1 ships no custom models. Every workstation extends a vanilla block and
-    reuses its mesh and crafting window.
+    ART NOTE: every workstation extends a vanilla block and reuses its crafting window.
+    The bloomery and blast furnace have their own models (Resources/src/, built by
+    tools/gen_models.py) waiting on the Unity bundle step - their Meshfile lines are
+    commented out below until then. The other four still reuse vanilla meshes.
 
     VERIFY-4 (docs/VERIFICATION.md): confirm the workstation window names below still
     exist. V3.0 split XUi into XUi_Common / XUi_InGame / XUi_Menu and renamed
@@ -40,7 +42,14 @@
         <block name="edBlockBloomery">
             <property name="Extends" value="forge" />
             <property name="CreativeMode" value="Player" />
-            <property name="CustomIcon" value="forge" />
+            <!-- Icon comes from UIAtlases/ItemIconAtlas/edBlockBloomery.png, rendered from
+                 this block's own model by tools/gen_models.py - no CustomIcon needed.
+
+                 MESH: the custom model exists (Resources/src/edBlockBloomery/) but has not
+                 yet been through Unity. Once eighthday.unity3d is built and copied
+                 into Resources/, uncomment the line below - VERIFY-18.
+            <property name="Meshfile" value="#@modfolder:Resources/eighthday.unity3d?edBlockBloomery" />
+            -->
             <property name="DescriptionKey" value="edBlockBloomeryDesc" />
             <property name="CraftingAreaRecipes" value="edBloomery" />
             <property name="EconomicValue" value="300" />
@@ -60,7 +69,14 @@
         <block name="edBlockBlastFurnace">
             <property name="Extends" value="forge" />
             <property name="CreativeMode" value="Player" />
-            <property name="CustomIcon" value="forge" />
+            <!-- Icon comes from UIAtlases/ItemIconAtlas/edBlockBlastFurnace.png, rendered from
+                 this block's own model by tools/gen_models.py - no CustomIcon needed.
+
+                 MESH: the custom model exists (Resources/src/edBlockBlastFurnace/) but has not
+                 yet been through Unity. Once eighthday.unity3d is built and copied
+                 into Resources/, uncomment the line below - VERIFY-18.
+            <property name="Meshfile" value="#@modfolder:Resources/eighthday.unity3d?edBlockBlastFurnace" />
+            -->
             <property name="DescriptionKey" value="edBlockBlastFurnaceDesc" />
             <property name="CraftingAreaRecipes" value="edBlastFurnace" />
             <property name="EconomicValue" value="4500" />
