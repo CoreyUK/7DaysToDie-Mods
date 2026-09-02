@@ -75,7 +75,7 @@ Running it on a server: [`docs/SERVER.md`](docs/SERVER.md).
 
 ## Status
 
-**v0.6.0 — pre-alpha.** What exists:
+**v0.6.1 — pre-alpha.** What exists:
 
 - ✅ Cycle system (gamestage-driven), Cycles 0–6 populated
 - ✅ All six Calling perk branches, Mark-gated, **every unlock backed by real content**
@@ -96,6 +96,7 @@ Running it on a server: [`docs/SERVER.md`](docs/SERVER.md).
 - ✅ Prices derived from recipes, so nothing is craftable below its own input cost
 - ✅ Two storage tiers; **bigger backpack deferred** — XUi changed in V3.0 and guessing at
   it risks an unusable UI (verification item 22)
+- ✅ Every item verified obtainable from a cold start; all six Callings earnable
 - ❌ No play-test data behind any balance value
 
 Roadmap in [`docs/DESIGN.md`](DESIGN.md#5-roadmap), release history in

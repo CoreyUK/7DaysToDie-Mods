@@ -3,6 +3,30 @@
 All notable changes to The Eighth Day.
 Format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
+## [0.6.1] — 2026-09-02
+
+### Added
+- **`tools/check-progression.py` — cold-start reachability analysis.** Every other check
+  asks "is this reference valid". This one asks the question that matters to a player:
+  *starting with nothing, can you get there at all?*
+
+  A deadlock resolves cleanly, prices consistently and validates perfectly. Nothing reports
+  it; the player simply cannot progress. This repo already shipped one — seeds came only
+  from crops, crops only from seeds, and the trader stock that broke the circle was wired to
+  nothing. It was found by accident. This is so the next one is not.
+
+  It computes a fixpoint closure over loot, trader stock, recipes, craft areas, planting and
+  harvest, perk gates, Marks and the full Proving chains. Currently: **82/82 items obtainable,
+  6/6 Callings earnable.** Runs in CI.
+
+### Fixed
+- **Two modelling bugs in that checker, both found by testing it rather than trusting it.**
+  First, it treated crop harvests as a free source — which made it blind to the exact
+  circular dependency it exists to find. Harvesting is downstream of planting, which is
+  downstream of the seed. Second, it checked quest stages in isolation; because the Writ
+  hangs off the last stage, an impossible stage 1 went unnoticed while stage 3 looked fine.
+  Chains are now walked end to end and the report names the blocking stage.
+
 ## [0.6.0] — 2026-09-02
 
 Trader overhaul.

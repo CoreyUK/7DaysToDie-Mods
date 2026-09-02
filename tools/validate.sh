@@ -132,7 +132,15 @@ if command -v python3 >/dev/null 2>&1; then
         errors=$((errors + 1))
     fi
 
-    # --- 7. No item may be priced below its own input cost ------------------
+    # --- 7. Everything must be obtainable from a cold start -----------------
+    # A deadlock resolves, prices, and validates perfectly. The player just
+    # cannot get there, and finds out forty hours in.
+    echo
+    if ! python3 "$REPO_ROOT/tools/check-progression.py" "${modlets[@]}"; then
+        fail "unreachable content - run ./tools/check-progression.py"
+    fi
+
+    # --- 8. No item may be priced below its own input cost ------------------
     # That is a trader exploit: buy the inputs, craft, sell the output, repeat.
     echo
     if ! python3 "$REPO_ROOT/tools/check-economy.py" >/dev/null; then
