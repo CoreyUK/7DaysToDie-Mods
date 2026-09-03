@@ -77,7 +77,7 @@ Running it on a server: [`docs/SERVER.md`](docs/SERVER.md).
 
 ## Status
 
-**v0.12.0 — pre-alpha.** What exists:
+**v0.13.0 — pre-alpha.** What exists:
 
 - ✅ Cycle system (gamestage-driven), Cycles 0–7 populated and still escalating at
   gamestage 3000 — the mod has no plateau
@@ -87,6 +87,8 @@ Running it on a server: [`docs/SERVER.md`](docs/SERVER.md).
   route into a bottleneck, laddered by biome so the map prices them in risk
 - ✅ Farming and cooking — four crops that feed the industry, not a side system
 - ✅ Weapons, tools, armour, fortification, traps, stimulants and salvage gear
+- ✅ The Scavenger's motor pool — four vehicles assembled at the Machine Shop from a
+  parts kit you built, rather than found; the gyrocopter needs an Ironmonger too
 - ✅ Seven enemy archetypes, including the Cycle 7+ Grinder
 - ✅ Biome hostility — each harsh biome permanently carries one archetype, so the map
   is the difficulty selector; the starter biomes stay clean

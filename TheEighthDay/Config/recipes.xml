@@ -724,4 +724,84 @@
 
     </append>
 
+
+    <!-- ==========================================================================
+         THE MOTOR POOL - the Scavenger builds what everyone else finds
+
+         THE DEAD END THIS CLOSES
+         edVehiclePartsKit has been craftable since v0.1, costs about 3500 in
+         materials, and was consumed by NOTHING. A sink with no purpose at the end
+         of the Scavenger's most expensive production line. The Calling table has
+         said "Scavenger: salvage, VEHICLES, electronics, loot yield" the whole
+         time, and the vehicle half of that was a parts kit and a fuel cell that
+         between them led nowhere.
+
+         WHY BUILT RATHER THAN BESPOKE
+         A new vehicle needs a model, and this mod has no vehicle artist. What it
+         has is a pillar about industry you build rather than unlock - so the
+         Scavenger's vehicle identity is MANUFACTURING one, not owning a special
+         one. You assemble a vanilla chassis out of your own machine shop instead
+         of hoping a garage POI coughs up the parts.
+
+         That is also why these sit ALONGSIDE vanilla assembly rather than
+         replacing it. Same rule as the deposits: if a vanilla name below is wrong,
+         a Scavenger loses a shortcut, and nobody loses vehicles.
+
+         THE LADDER, AND WHY THE TRUCK IS THE POINT
+         The deposits added a logistics problem - the good materials are now a
+         long way from the base, and scheelite is in the wasteland. The Hauler is
+         the answer to the problem the deposits created, which is why it costs
+         two parts kits and sits at the top of this list.
+
+         VERIFY-27: the four vanilla vehicle item names below. If one is wrong that
+         recipe is dead and the others are unaffected. Fallbacks to try:
+         vehicleMinibikePlaceable / vehicle4x4TruckPlaceable, or whatever the
+         assemble recipes in vanilla recipes.xml actually output.
+         ========================================================================== -->
+
+    <append xpath="/recipes">
+
+        <!-- First wheels. Cheap enough to be an early Scavenger payoff and slow
+             enough that it is still a decision. -->
+        <recipe name="vehicleMinibike" count="1" craft_area="edMachineShop"
+                craft_time="240" tags="edRecipeVehicles" unlocked_by_recipe="false">
+            <ingredient name="edVehiclePartsKit" count="1" />
+            <ingredient name="resourceForgedSteel" count="30" />
+            <ingredient name="edResourcePolymer" count="4" />
+        </recipe>
+
+        <recipe name="vehicleMotorcycle" count="1" craft_area="edMachineShop"
+                craft_time="360" tags="edRecipeVehicles" unlocked_by_recipe="false">
+            <ingredient name="edVehiclePartsKit" count="1" />
+            <ingredient name="edResourceHardenedSteel" count="10" />
+            <ingredient name="edResourcePolymer" count="8" />
+            <ingredient name="edResourceCircuitBoard" count="2" />
+        </recipe>
+
+        <!-- The Hauler. This is the one the deposits made necessary: scheelite is
+             in the wasteland and limestone comes by the hundredweight. -->
+        <recipe name="vehicle4x4Truck" count="1" craft_area="edMachineShop"
+                craft_time="600" tags="edRecipeVehicles" unlocked_by_recipe="false">
+            <ingredient name="edVehiclePartsKit" count="2" />
+            <ingredient name="edResourceHardenedSteel" count="25" />
+            <ingredient name="edResourcePrecisionParts" count="8" />
+            <ingredient name="edResourcePolymer" count="15" />
+            <ingredient name="edResourceSensorModule" count="1" />
+        </recipe>
+
+        <!-- Deliberately last and deliberately expensive. A gyrocopter trivialises
+             the wasteland, and the wasteland is where the mod keeps its teeth. It
+             wants the Ironmonger's carbide as well as the Scavenger's kit, so the
+             thing that skips the map is the one build no single Calling can make
+             alone. -->
+        <recipe name="vehicleGyrocopter" count="1" craft_area="edMachineShop"
+                craft_time="900" tags="edRecipeVehicles" unlocked_by_recipe="false">
+            <ingredient name="edVehiclePartsKit" count="3" />
+            <ingredient name="edResourceCarbide" count="6" />
+            <ingredient name="edResourcePrecisionParts" count="16" />
+            <ingredient name="edResourceSensorModule" count="2" />
+        </recipe>
+
+    </append>
+
 </configs>

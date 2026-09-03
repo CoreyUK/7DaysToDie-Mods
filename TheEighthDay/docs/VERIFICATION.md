@@ -34,7 +34,7 @@ uses is already load-bearing elsewhere in this mod:
   (perk gates, `edInfCured`). Confirm `LT` is valid; if it is not, the one-way cycle read can
   be rebuilt from `NotEquals` guards on the per-cycle `edSeenCycleN` CVars, which are already
   written.
-- `ModifyCVar` with `operation="setvalue"` — already used by the infection chain.
+- `ModifyCVar` with `operation="set"` — see item 24; the mod uses one spelling everywhere.
 - `AddBuff` with `target="other"` and with `target="selfAOE" range="..."` — both already used
   by the infect-on-hit groups and by the Bloater rupture.
 - `display_value` on an effect group — cosmetic; a wrong name means the cycle number does not
@@ -268,6 +268,17 @@ Fallbacks to try in order: `terrOreCoal`, `terrOreLead`, `oreIron`.
 Worth checking at the same time: whether `<drop event="Harvest" tool_category="Mining">` is
 still the right shape, and whether `MaxDamage` is what gates a stone tool out of the scheelite
 vein (2400 there against 600 for limestone, which is the intended tool-tier gate).
+
+### 27. Vanilla vehicle item names
+**Check:** `Data/Config/items.xml`, and the assemble recipes in `Data/Config/recipes.xml`
+
+`Config/recipes.xml` adds four Scavenger assembly recipes whose *outputs* are vanilla:
+`vehicleMinibike`, `vehicleMotorcycle`, `vehicle4x4Truck`, `vehicleGyrocopter`. These are the
+mod's only recipes that produce something it does not define, so confirm the names match what
+vanilla's own assemble recipes output — fallbacks are the `...Placeable` variants.
+
+**If one is wrong:** that recipe is dead and the other three are unaffected. Vanilla assembly
+is untouched either way, so nobody loses vehicles — a Scavenger loses a shortcut.
 
 ## Priority 2 — will load but behave wrong
 

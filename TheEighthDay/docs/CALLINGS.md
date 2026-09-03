@@ -176,6 +176,16 @@ a particular POI type, so the quantities do the work instead.*
 | Motor Pool | 4 | Vehicle crafting, fuel efficiency, unlocks vehicle tiers |
 | Rag & Bone | 1 | Capstone: Field Note find rate, exclusive salvage-only recipes |
 
+**Motor Pool, specifically.** The Scavenger's vehicle identity is *manufacturing* one, not
+owning a special one — minibike, motorcycle, 4x4 and gyrocopter assembled at the Machine Shop
+from a parts kit you built, instead of hoping a garage coughs up a chassis. Vanilla assembly
+still works; this is the shortcut, not the gate.
+
+The 4x4 is the one that matters, because the deposits made it necessary: the good materials
+are a long way from the base now and scheelite is in the wasteland. The gyrocopter is
+deliberately last, deliberately expensive, and deliberately needs the Ironmonger's carbide —
+the build that skips the map is the one no single Calling can make alone.
+
 ---
 
 ## Balance intent

@@ -3,6 +3,46 @@
 All notable changes to The Eighth Day.
 Format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
+## [0.13.0] — 2026-09-02
+
+The Scavenger's motor pool.
+
+### Fixed
+- **`edVehiclePartsKit` led nowhere.** Craftable since v0.1, roughly 3,500 in materials, and
+  consumed by *nothing* — a sink at the end of the Scavenger's most expensive production line.
+  The Calling table has read "Scavenger: salvage, **vehicles**, electronics, loot yield" the
+  whole time, and the vehicle half of it was a parts kit and a fuel cell that between them
+  went nowhere. The `Motor Pool` perk has promised "vehicle crafting, unlocks vehicle tiers"
+  for just as long.
+
+### Added
+- **Four vehicle assembly recipes at the Machine Shop**, Scavenger-gated: minibike,
+  motorcycle, 4x4 and gyrocopter, each built from a parts kit you made rather than a chassis
+  you hoped a garage would cough up.
+
+  A new vehicle needs a model and this mod has no vehicle artist — but it does have a pillar
+  about industry you build rather than unlock, so the Scavenger's vehicle identity is
+  *manufacturing* one, not owning a bespoke one. Same treatment the enemy archetypes get:
+  vanilla assets, original design around them.
+
+  The 4x4 is the one that matters, and it is the deposits' fault: the good materials are a
+  long way from the base now and scheelite is wasteland-only, so shipping ore became a real
+  problem one release before its answer existed.
+
+  The gyrocopter is deliberately last, deliberately expensive, and deliberately needs the
+  Ironmonger's carbide alongside the Scavenger's parts and electronics. A gyrocopter
+  trivialises the wasteland, and the wasteland is where this mod keeps its teeth — so the one
+  build that skips the map is the one no single Calling can make alone.
+
+- These sit **alongside vanilla assembly rather than replacing it** — the same rule the
+  deposits follow. Verification item 27 covers the four vanilla vehicle names, and if one is
+  wrong that recipe is dead, the other three are unaffected, and nobody loses vehicles: a
+  Scavenger loses a shortcut.
+
+### Changed
+- Verification item 1 still told you to confirm `operation="setvalue"`, which stopped being
+  true in 0.10.0 when everything standardised on `set`.
+
 ## [0.12.0] — 2026-09-02
 
 Four reasons to leave the base.
