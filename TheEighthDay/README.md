@@ -77,12 +77,14 @@ Running it on a server: [`docs/SERVER.md`](docs/SERVER.md).
 
 ## Status
 
-**v0.11.1 — pre-alpha.** What exists:
+**v0.12.0 — pre-alpha.** What exists:
 
 - ✅ Cycle system (gamestage-driven), Cycles 0–7 populated and still escalating at
   gamestage 3000 — the mod has no plateau
 - ✅ All six Calling perk branches, Mark-gated, **every unlock backed by real content**
 - ✅ Tier-1/2 production chain and eight workstations
+- ✅ Four world deposits — limestone, bitumen, sulphur, scheelite — each an alternative
+  route into a bottleneck, laddered by biome so the map prices them in risk
 - ✅ Farming and cooking — four crops that feed the industry, not a side system
 - ✅ Weapons, tools, armour, fortification, traps, stimulants and salvage gear
 - ✅ Seven enemy archetypes, including the Cycle 7+ Grinder

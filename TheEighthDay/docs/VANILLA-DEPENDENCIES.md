@@ -108,16 +108,20 @@ which of these are load-breaking and which merely misbehave.
 | `resourceAcid` | items.xml |
 | `resourceClayLump` | items.xml |
 | `resourceCoal` | items.xml |
+| `resourceCrushedSand` | items.xml |
 | `resourceElectricParts` | items.xml |
 | `resourceForgedIron` | items.xml |
 | `resourceForgedSteel` | items.xml |
 | `resourceGasCan` | items.xml |
+| `resourceIronFragment` | items.xml |
 | `resourceMechanicalParts` | items.xml |
+| `resourceNitratePowder` | items.xml |
 | `resourceOil` | items.xml |
 | `resourcePaper` | items.xml |
 | `resourceWaterBottle` | items.xml |
 | `spikesWoodBlock` | blocks.xml |
 | `steelBlock` | blocks.xml |
+| `terrOreIron` | blocks.xml |
 | `workbench` | blocks.xml |
 
 ## Icon names
@@ -159,13 +163,16 @@ which of these are load-breaking and which merely misbehave.
 | `resourceForgedIron` | items.xml |
 | `resourceForgedSteel` | items.xml |
 | `resourceGasCan` | items.xml |
+| `resourceIronFragment` | items.xml |
 | `resourceMechanicalParts` | items.xml |
+| `resourceNitratePowder` | items.xml |
 | `resourceOil` | items.xml |
 | `resourcePaper` | items.xml |
 | `resourceWaterBottle` | items.xml |
 | `spikesWoodBlock` | blocks.xml |
 | `steelBlock` | blocks.xml |
+| `terrOreIron` | blocks.xml |
 
 ---
 
-**130 unique vanilla identifiers.**
+**137 unique vanilla identifiers.**

@@ -4,7 +4,7 @@
 
 **Target build:** 7 Days to Die V3.2 "Henpocalypse"
 **Type:** Full overhaul, pure XML (no compiled assembly)
-**Status:** v0.11.1 pre-alpha
+**Status:** v0.12.0 pre-alpha
 
 ---
 
@@ -110,6 +110,18 @@ go to the places the notes are.
 **Intermediates that bottleneck.** Flux, precision parts and polymer are the choke points.
 Each is cheap to make and annoying to source, which keeps mid-game players going outside
 rather than sitting in a base perking up.
+
+**Deposits, laddered by biome.** Four materials come out of the ground rather than a bench,
+and each is a second route into a bottleneck that already had one: limestone into flux,
+bitumen into polymer, sulphur into reagent base, scheelite into carbide. Limestone is
+everywhere, including the starter biomes — flux is a tier-1 need and must not require a trip
+that can kill you. Scheelite is in the wasteland and nowhere else, which makes the top of the
+metal chain a place you decide to go rather than a number you reach.
+
+They buy **renewability and independence, not a discount** — the same rule the farm follows.
+Bitumen frees polymer from looted oil; sulphur frees the Apothecary from looted acid. And
+because nothing *requires* them, the world-generation patch that places them is allowed to be
+the one genuinely unverifiable thing in the mod.
 
 **The farm is a second supply line, not a food minigame.** Four crops, and every one of them
 feeds a chain that already existed: flax and rapeseed press to oil that feeds polymer, rye

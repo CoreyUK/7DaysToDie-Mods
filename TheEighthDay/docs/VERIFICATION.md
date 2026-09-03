@@ -235,6 +235,40 @@ two — `set` and `setvalue` — until that check was written.
 Vanilla's other operations (`add`, `subtract`, `multiply`, `divide`) are worth noting while
 you are there; nothing here uses them yet.
 
+### 25. Where world decorations are declared — the deposits' one risk
+**Check:** `Data/Config/biomes.xml`, and `rwgmixer.xml` if it is not there
+
+`Config/biomes.xml` appends `<decoration type="block" blockname="..."/>` to a
+`<decorations>` container inside each biome. **This is the least certain patch in the mod.**
+Decoration placement has moved between `biomes.xml` and `rwgmixer.xml` across versions, and
+the container element name cannot be confirmed from outside the game.
+
+`check-vanilla.py` reports each of the five xpaths by name if they match nothing. Two possible
+fixes, both one line each:
+
+- the container is named differently → change the five xpaths
+- decorations are not in `biomes.xml` at all → move the five appends into a new
+  `Config/rwgmixer.xml` with whatever target that file uses
+
+**If it is wrong:** no deposit ever spawns and the four ores are unobtainable. **Nothing else
+breaks**, because no recipe requires them — every bottleneck they feed keeps its original
+route and the deposit route is added alongside. The cost is an efficiency and an errand.
+That arrangement is deliberate and exists precisely because of this item.
+
+### 26. `terrOreIron` — the deposits' `Extends` base
+**Check:** `Data/Config/blocks.xml`
+
+All four deposit blocks extend one vanilla ore block, deliberately: if the name is wrong they
+are all wrong the same way and it is one find-and-replace. This is the only genuinely *new*
+vanilla dependency the mod has taken on in months — everything else extends names it already
+depended on.
+
+Fallbacks to try in order: `terrOreCoal`, `terrOreLead`, `oreIron`.
+
+Worth checking at the same time: whether `<drop event="Harvest" tool_category="Mining">` is
+still the right shape, and whether `MaxDamage` is what gates a stone tool out of the scheelite
+vein (2400 there against 600 for limestone, which is the intended tool-tier gate).
+
 ## Priority 2 — will load but behave wrong
 
 ### 5. `CustomIcon` names

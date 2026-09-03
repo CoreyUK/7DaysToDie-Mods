@@ -3,6 +3,67 @@
 All notable changes to The Eighth Day.
 Format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
+## [0.12.0] — 2026-09-02
+
+Four reasons to leave the base.
+
+### Added
+- **World deposits.** Every material in this mod came from a vanilla ore, a loot container,
+  the trader or the farm — nothing gave the player a reason to go to a *place*. And
+  `recipes.xml` had claimed since v0.1 that the intermediates are "cheap to make and annoying
+  to source", which for flux was simply untrue: sand and bone are everywhere.
+
+  Four deposits, each feeding one bottleneck, each priced in risk by the biome it sits in —
+  the same ladder the archetypes use, so by the time a wasteland-only material matters the
+  player already knows what the wasteland costs:
+
+  | deposit | where | feeds | tier |
+  |---|---|---|---|
+  | Limestone Outcrop | everywhere, forest included | flux | 1 |
+  | Bitumen Seep | desert, burnt forest | polymer | 2 |
+  | Sulphur Crust | burnt forest, wasteland | reagent base | 2 |
+  | Scheelite Vein | **wasteland only** | carbide | 3 |
+
+  Limestone being in the starter biomes does not break the "starter biomes stay clean" rule —
+  that rule is about what can kill you, and flux is a day-ten need that must not require a
+  trip somewhere that will. Scheelite is the opposite on purpose: the top of the metal chain
+  becomes a place you decide to go rather than a number you reach.
+
+  They buy **renewability and independence, not a discount**, which is the rule the farm
+  already follows. Bitumen frees polymer from looted oil; sulphur frees the Apothecary from
+  looted acid.
+
+- **Nothing requires them, and that is the design.** World generation is the one thing in this
+  mod that cannot be verified from outside the game, so every bottleneck the deposits feed
+  keeps its original route and the deposit route is added *alongside*. If the placement patch
+  matches nothing, no deposit spawns, the four ores are unobtainable, and nothing else changes.
+  The cost of being wrong is an efficiency and an errand — never a supply line, never a
+  deadlock. Verification items 25 (where decorations are declared) and 26 (the `Extends` base)
+  cover it, and both are a one-line fix that `check-vanilla.py` will point straight at.
+
+### Fixed
+- **`check-refs.py` had been reporting every ambient biome pool as an orphan since v0.8.0.**
+  `gamestages.xml` writes `<spawn group=...>` and `spawning.xml` writes
+  `<spawn entitygroup=...>`; only the first was handled. So all five ambient pools looked
+  dead — including `edNightPool`, whose orphaning is what found the Hollow bug in the first
+  place. A warning that is always wrong is worse than no warning: it is what a real orphan
+  would have hidden behind. Verified by removing the wasteland spawn and confirming that pool
+  is still reported.
+
+- The deposits' first cut was **too cheap** and would have collapsed the price of every
+  medicine downstream — twelve items landed 2× to 6× off their input cost, including the
+  Apothecary serum at 3.83×. The routes were retuned to match what their own comments claim,
+  and six prices re-derived. `check-economy.py` found it; the four ores had to be added to its
+  primary-production table first, or every route through them would have been silently
+  discarded — exactly how the crops broke route selection when farming shipped.
+
+### Changed
+- `check-progression.py` now treats a block a biome places as a legitimate free source, and
+  **only** if something actually places it — the same rule the trader groups earned the hard
+  way. A deposit is primary production, already in the ground; a crop is not, because it is
+  downstream of a seed. Verified by breaking the wasteland placement: 88/90 obtainable, with
+  the failure cascading from block to ore by name.
+
 ## [0.11.1] — 2026-09-02
 
 Documentation, but the kind that was describing mechanics that do not exist.

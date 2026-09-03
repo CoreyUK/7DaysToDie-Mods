@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+    THE EIGHTH DAY - biomes.xml
+    ===========================
+    Where the four deposits actually appear in the world.
+
+    THIS IS THE LEAST CERTAIN FILE IN THE MOD, AND IT IS BUILT TO BE
+    ==============================================================
+    Every other patch here targets a vanilla element whose shape is well
+    established and widely modded. World generation is not that: decoration
+    placement has moved between biomes.xml and rwgmixer.xml across versions, and
+    the element name below cannot be confirmed without the game.
+
+    So the design does not lean on it. Every recipe the deposits feed keeps the
+    route it already had, and the deposit route is added ALONGSIDE. If this file
+    matches nothing:
+
+      * the patches no-op silently, as XPath patches do
+      * no deposit ever spawns
+      * the four ores become unobtainable
+      * and nothing else changes, because nothing requires them
+
+    The cost of being wrong here is an efficiency and an errand. That is the whole
+    reason the recipes were written as alternatives rather than replacements.
+
+    HOW TO FIX IT IN ONE LINE (VERIFY-25)
+    Run ./tools/check-vanilla.py against a real Data/Config. It reports each
+    xpath that matches nothing, by name. Then either:
+
+      * the container element is named differently - change the four xpaths below
+      * decorations moved out of biomes.xml entirely - move these four appends
+        into a new Config/rwgmixer.xml with the target that file uses
+
+    Either way it is four lines in one file, which is why they all live here and
+    nowhere else.
+
+    THE PROBABILITIES
+    Deliberately low. A deposit the player trips over is scenery; one they have to
+    look for is a destination. Limestone is roughly three times commoner than the
+    rest because flux is a tier-1 need and the whole metal chain waits on it.
+
+    Scheelite is in the wasteland and nowhere else, at the lowest probability in
+    the file. That is the point of it: the top of the metal chain is somewhere you
+    have to decide to go.
+-->
+<configs>
+
+    <!-- PINE FOREST and PLAINS - limestone only.
+
+         This does not break the "starter biomes stay clean" rule in
+         entitygroups.xml. That rule is about what can kill you. A limestone
+         outcrop is a reason to walk up the hill, not a reason to die on it. -->
+
+    <append xpath="/biomes/biome[@name='pine_forest']/decorations">
+        <decoration type="block" blockname="edOreLimestone" prob="0.0012" />
+    </append>
+
+    <append xpath="/biomes/biome[@name='plains']/decorations">
+        <decoration type="block" blockname="edOreLimestone" prob="0.0012" />
+    </append>
+
+
+    <!-- DESERT - bitumen, and limestone in the exposed rock.
+         The desert already teaches Carrion Hounds; now it also pays. -->
+
+    <append xpath="/biomes/biome[@name='desert']/decorations">
+        <decoration type="block" blockname="edOreLimestone" prob="0.0014" />
+        <decoration type="block" blockname="edOreBitumen" prob="0.0008" />
+    </append>
+
+
+    <!-- BURNT FOREST - bitumen and sulphur. Both fit the ground: this is where
+         things burned, and it is where the chemistry inputs are. -->
+
+    <append xpath="/biomes/biome[@name='burnt_forest']/decorations">
+        <decoration type="block" blockname="edOreBitumen" prob="0.0007" />
+        <decoration type="block" blockname="edOreSulphur" prob="0.0007" />
+    </append>
+
+
+    <!-- WASTELAND - sulphur, and the only scheelite in the world.
+
+         By the time a player wants carbide they have met what the wasteland
+         holds. Putting the top of the metal chain here is the mod being
+         consistent with itself: the difficulty selector is the map. -->
+
+    <append xpath="/biomes/biome[@name='wasteland']/decorations">
+        <decoration type="block" blockname="edOreSulphur" prob="0.0010" />
+        <decoration type="block" blockname="edOreScheelite" prob="0.0005" />
+    </append>
+
+</configs>

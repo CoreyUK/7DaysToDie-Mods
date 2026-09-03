@@ -328,6 +328,22 @@ edFoodHerbalBroth,items,Item,,,Herbal Broth
 edFoodHerbalBrothDesc,items,Item,,,"Comfrey and bone. Takes the edge off an infection for a while - the shakes stop and you can work. It does not cure anything. Only the Apothecary does that, and you should still go and see them."
 edFoodRationPack,items,Item,,,Ration Pack
 edFoodRationPackDesc,items,Item,,,"Everything the drying rack made, boxed for somebody who is not coming back tonight."
+edResourceLimestone,items,Item,,,Limestone
+edResourceLimestoneDesc,items,Item,,,"Pale, chalky, and soft enough to work with a bad pickaxe. Burns down to the flux that makes a furnace behave. There is a reason old towns were built where this is."
+edResourceBitumen,items,Item,,,Bitumen
+edResourceBitumenDesc,items,Item,,,"Black, sticky, and it smells like a road in August. Cracks down into most of the useful plastics if you have the bench and the patience."
+edResourceSulphur,items,Item,,,Sulphur
+edResourceSulphurDesc,items,Item,,,Bright yellow crust off the edge of a burnt seam. Everything about it says do not breathe this. It is also the difference between an Apothecary who is working and one who is waiting on a looted bottle of acid.
+edResourceScheelite,items,Item,,,Scheelite
+edResourceScheeliteDesc,items,Item,,,"Heavy, dull, and worth the walk. Tungsten ore, and the only honest road to carbide. It is in the wasteland and nowhere else, which is not an accident."
+edOreLimestone,blocks,Block,,,Limestone Outcrop
+edOreLimestoneDesc,blocks,Block,,,"A pale shelf of rock breaking the surface. Chalky, soft, and worth stopping for."
+edOreBitumen,blocks,Block,,,Bitumen Seep
+edOreBitumenDesc,blocks,Block,,,"Tar pushing up through cracked ground, still slow-moving in the heat. The smell carries further than the stain does."
+edOreSulphur,blocks,Block,,,Sulphur Crust
+edOreSulphurDesc,blocks,Block,,,Yellow rime over a burnt seam. Stand upwind and take what you need.
+edOreScheelite,blocks,Block,,,Scheelite Vein
+edOreScheeliteDesc,blocks,Block,,,"A dull grey seam threading through the rock. Hard going, a long way from anywhere, and the top of the metal chain starts here."
 edBlockCompostBin,blocks,Block,,,Compost Bin
 edBlockCompostBinDesc,blocks,Block,,,"Rot goes in and soil comes out. Slow and it smells, which is roughly the deal with everything that works."
 edBlockDryingRack,blocks,Block,,,Drying Rack

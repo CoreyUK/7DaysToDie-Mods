@@ -555,4 +555,96 @@
 
     </append>
 
+
+    <!-- ==========================================================================
+         THE DEPOSITS - four reasons to leave the base
+
+         WHAT WAS MISSING
+         Every material in this mod came from a vanilla ore, a loot container, the
+         trader or the farm. Nothing anywhere gave the player a reason to go to a
+         PLACE. recipes.xml has claimed since v0.1 that the intermediates are
+         "cheap to make and annoying to source"; for flux that was simply not true,
+         because sand and bone are everywhere.
+
+         THE LADDER
+         Each deposit feeds one bottleneck, and its biome sets its price in risk.
+         It is the same ladder the archetypes use, deliberately - by Cycle 3 a
+         player already knows what the wasteland costs, so a wasteland-only
+         material is a decision rather than a surprise.
+
+           Limestone   everywhere, forest included   flux          tier 1
+           Bitumen     desert, burnt forest          polymer       tier 2
+           Sulphur     burnt forest, wasteland       reagent base  tier 2
+           Scheelite   wasteland only                carbide       tier 3
+
+         Limestone being in the starter biomes is not a break of the "starter
+         biomes stay clean" rule from entitygroups.xml. That rule is about what
+         can kill you. Flux is a day-ten need and must not require a trip to
+         somewhere that will.
+
+         NOTHING REQUIRES THESE
+         Every recipe they feed keeps its original route, and the deposit route is
+         added alongside. World placement is the one genuinely unverifiable part of
+         this mod (VERIFY-25), so it is arranged such that a placement patch that
+         matches nothing costs an efficiency and an errand - never a supply line,
+         and never a deadlock.
+
+         VERIFY-26: the Extends base below is a vanilla ore block, and it is a NEW
+         vanilla dependency - everything else in this mod extends names it already
+         depended on. If "terrOreIron" is wrong, all four deposits are wrong the
+         same way, which is why they all use one base. Fallbacks to try in order:
+         terrOreCoal, terrOreLead, oreIron.
+         ========================================================================== -->
+
+    <append xpath="/blocks">
+
+        <block name="edOreLimestone">
+            <property name="Extends" value="terrOreIron" />
+            <property name="CustomIcon" value="terrOreIron" />
+            <property name="DescriptionKey" value="edOreLimestoneDesc" />
+            <property name="MaxDamage" value="600" />
+            <property name="EconomicValue" value="6" />
+            <drop event="Harvest" name="edResourceLimestone" count="3,6"
+                  tool_category="Mining" />
+            <drop event="Destroy" count="0" />
+        </block>
+
+        <block name="edOreBitumen">
+            <property name="Extends" value="terrOreIron" />
+            <property name="CustomIcon" value="terrOreIron" />
+            <property name="DescriptionKey" value="edOreBitumenDesc" />
+            <property name="MaxDamage" value="900" />
+            <property name="EconomicValue" value="18" />
+            <drop event="Harvest" name="edResourceBitumen" count="2,4"
+                  tool_category="Mining" />
+            <drop event="Destroy" count="0" />
+        </block>
+
+        <block name="edOreSulphur">
+            <property name="Extends" value="terrOreIron" />
+            <property name="CustomIcon" value="terrOreIron" />
+            <property name="DescriptionKey" value="edOreSulphurDesc" />
+            <property name="MaxDamage" value="900" />
+            <property name="EconomicValue" value="24" />
+            <drop event="Harvest" name="edResourceSulphur" count="2,5"
+                  tool_category="Mining" />
+            <drop event="Destroy" count="0" />
+        </block>
+
+        <!-- Hard on purpose. A stone axe should get nowhere with this - by the
+             time a player is in the wasteland wanting carbide, a steel pickaxe
+             is a reasonable thing to expect them to own. -->
+        <block name="edOreScheelite">
+            <property name="Extends" value="terrOreIron" />
+            <property name="CustomIcon" value="terrOreIron" />
+            <property name="DescriptionKey" value="edOreScheeliteDesc" />
+            <property name="MaxDamage" value="2400" />
+            <property name="EconomicValue" value="70" />
+            <drop event="Harvest" name="edResourceScheelite" count="1,3"
+                  tool_category="Mining" />
+            <drop event="Destroy" count="0" />
+        </block>
+
+    </append>
+
 </configs>

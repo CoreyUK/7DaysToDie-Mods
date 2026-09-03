@@ -87,6 +87,13 @@ GREEN, RED, YELLOW, DIM, NC = (
 VANILLA_COST = {
     # farm primary production
     "edCropFlax": 10, "edCropRye": 10, "edCropComfrey": 14, "edCropRapeseed": 12,
+    # mined primary production - the four deposits. Same reasoning as the crops:
+    # no recipe, so no derived cost, so they are leaves priced for the trip. Left
+    # out of this table they would be UNCOSTABLE, and every route through them
+    # would be silently discarded - which is precisely how the crops broke route
+    # selection when farming shipped.
+    "edResourceLimestone": 3, "edResourceBitumen": 9,
+    "edResourceSulphur": 12, "edResourceScheelite": 35,
     "resourceIronFragment": 1, "resourceCoal": 2, "resourceCrushedSand": 1,
     "resourceBone": 2, "resourceForgedIron": 12, "resourceForgedSteel": 40,
     "resourceMechanicalParts": 60, "resourceElectricParts": 60,

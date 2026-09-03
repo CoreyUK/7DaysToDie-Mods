@@ -108,6 +108,12 @@ class Modlet:
             self.defined["quest"].add(attr["id"])
 
         # ---- references ----
+        # A deposit only exists if something places it in the world. Same rule
+        # the trader groups earned the hard way: defining a thing is not the
+        # same as putting it somewhere a player can reach.
+        if tag == "decoration" and "blockname" in attr:
+            self.refs.append(("block", attr["blockname"], where, "biome decoration"))
+
         if tag == "ingredient" and "name" in attr:
             self.refs.append(("item", attr["name"], where, "recipe ingredient"))
 
@@ -142,8 +148,16 @@ class Modlet:
         if tag == "entity" and "name" in attr:
             self.refs.append(("entity", attr["name"], where, "entitygroup member"))
 
-        if tag == "spawn" and "group" in attr:
-            self.refs.append(("entitygroup", attr["group"], where, "gamestage spawn"))
+        if tag == "spawn":
+            # gamestages.xml says group=, spawning.xml says entitygroup=. Only the
+            # first was handled, so every ambient biome pool - edNightPool included -
+            # was reported as an orphan. A warning that is always wrong is worse
+            # than no warning: it is what a real orphan would have hidden behind.
+            if "group" in attr:
+                self.refs.append(("entitygroup", attr["group"], where, "gamestage spawn"))
+            if "entitygroup" in attr:
+                self.refs.append(("entitygroup", attr["entitygroup"], where,
+                                  "biome ambient spawn"))
 
         if tag == "item" and "name" in attr and "count" in attr:
             # an <item> carrying a count is loot/trader stock, not a definition

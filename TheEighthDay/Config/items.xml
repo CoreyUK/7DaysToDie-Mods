@@ -60,7 +60,63 @@
             <property name="CustomIcon" value="resourceForgedSteel" />
             <property name="CustomIconTint" value="4c5a66" />
             <property name="DescriptionKey" value="edResourceCarbideDesc" />
-            <property name="EconomicValue" value="748" />
+            <property name="EconomicValue" value="432" />
+            <property name="Stacknumber" value="250" />
+        </item>
+
+        <!-- ==============================================================
+             MINED PRIMARY PRODUCTION
+
+             The four deposits, dug out of the world rather than crafted. Each
+             is an ALTERNATIVE input to a bottleneck that already has a route,
+             never a new requirement - so if the world placement in biomes.xml
+             turns out to target the wrong element, the mod loses an efficiency
+             and an errand, not a supply line. See blocks.xml.
+
+             Prices are primary production, like ore and like the crops: they
+             are a leaf of the cost tree, priced for the trip rather than for
+             materials consumed.
+             ============================================================== -->
+
+        <!-- Common, and deliberately so. Flux is a tier-1 need and must not
+             require a trip to somewhere that can kill you. -->
+        <item name="edResourceLimestone">
+            <property name="Extends" value="resourceCrushedSand" />
+            <property name="CustomIcon" value="resourceCrushedSand" />
+            <property name="CustomIconTint" value="ddd6c2" />
+            <property name="DescriptionKey" value="edResourceLimestoneDesc" />
+            <property name="EconomicValue" value="3" />
+            <property name="Stacknumber" value="500" />
+        </item>
+
+        <!-- Desert and burnt forest. Frees the polymer chain from looted oil. -->
+        <item name="edResourceBitumen">
+            <property name="Extends" value="resourceOil" />
+            <property name="CustomIcon" value="resourceOil" />
+            <property name="CustomIconTint" value="3a3630" />
+            <property name="DescriptionKey" value="edResourceBitumenDesc" />
+            <property name="EconomicValue" value="9" />
+            <property name="Stacknumber" value="250" />
+        </item>
+
+        <!-- Burnt forest and wasteland. The Apothecary's way off looted acid. -->
+        <item name="edResourceSulphur">
+            <property name="Extends" value="resourceNitratePowder" />
+            <property name="CustomIcon" value="resourceNitratePowder" />
+            <property name="CustomIconTint" value="e0c848" />
+            <property name="DescriptionKey" value="edResourceSulphurDesc" />
+            <property name="EconomicValue" value="12" />
+            <property name="Stacknumber" value="500" />
+        </item>
+
+        <!-- Wasteland only. The one deposit that is a destination rather than
+             a thing you notice on the way past. -->
+        <item name="edResourceScheelite">
+            <property name="Extends" value="resourceIronFragment" />
+            <property name="CustomIcon" value="resourceIronFragment" />
+            <property name="CustomIconTint" value="b9b2a0" />
+            <property name="DescriptionKey" value="edResourceScheeliteDesc" />
+            <property name="EconomicValue" value="35" />
             <property name="Stacknumber" value="250" />
         </item>
 
@@ -80,7 +136,7 @@
             <property name="CustomIcon" value="resourceOil" />
             <property name="CustomIconTint" value="e0e0e0" />
             <property name="DescriptionKey" value="edResourcePolymerDesc" />
-            <property name="EconomicValue" value="59" />
+            <property name="EconomicValue" value="40" />
             <property name="Stacknumber" value="500" />
         </item>
 
@@ -100,7 +156,7 @@
             <property name="CustomIcon" value="resourceAcid" />
             <property name="CustomIconTint" value="9fd8a0" />
             <property name="DescriptionKey" value="edResourceReagentBaseDesc" />
-            <property name="EconomicValue" value="55" />
+            <property name="EconomicValue" value="35" />
             <property name="Stacknumber" value="250" />
         </item>
 
@@ -452,7 +508,7 @@
             <property name="CustomIcon" value="armorMilitaryLegArmor" />
             <property name="CustomIconTint" value="6e7a58" />
             <property name="DescriptionKey" value="edArmorCompositeLegsDesc" />
-            <property name="EconomicValue" value="4200" />
+            <property name="EconomicValue" value="3073" />
             <effect_group name="edArmorCompositeLegsStats">
                 <passive_effect name="PhysicalDamageResist" operation="base_add" value="4" />
             </effect_group>
@@ -623,7 +679,7 @@
             <property name="CustomIcon" value="drugSteroids" />
             <property name="CustomIconTint" value="70b0d8" />
             <property name="DescriptionKey" value="edDrugSteadyHandDesc" />
-            <property name="EconomicValue" value="204" />
+            <property name="EconomicValue" value="114" />
             <property name="Stacknumber" value="10" />
             <effect_group name="edDrugSteadyHandUse">
                 <triggered_effect trigger="onSelfPrimaryActionEnd" action="AddBuff"
@@ -651,7 +707,7 @@
             <property name="CustomIcon" value="resourceAcid" />
             <property name="CustomIconTint" value="70c080" />
             <property name="DescriptionKey" value="edToxinCoatingDesc" />
-            <property name="EconomicValue" value="90" />
+            <property name="EconomicValue" value="66" />
             <property name="Stacknumber" value="100" />
         </item>
 

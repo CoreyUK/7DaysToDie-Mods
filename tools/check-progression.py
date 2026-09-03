@@ -24,6 +24,10 @@ HOW IT WORKS
         - every vanilla item          (assumed present in the world)
         - anything in a loot table
         - anything in trader stock
+        - blocks a biome places in the world. A deposit is already in the
+          ground, so it is primary production and a legitimate free source -
+          but only if something actually places it, which is the same rule
+          the trader groups earned the hard way.
         - NOT crop harvests. Harvesting is downstream of planting, which is
           downstream of the seed. Treating a harvest as free was the first
           version's bug: it made the checker blind to the exact circular
@@ -80,6 +84,7 @@ class World:
         self.area_of_block: dict[str, list[str]] = {}
         self.from_loot: set[str] = set()
         self.from_trader: set[str] = set()
+        self.placed_blocks: set[str] = set()            # placed by biomes.xml
         self.plants_from_seed: dict[str, str] = {}      # seed item -> stage-1 block
         self.next_stage: dict[str, str] = {}            # stage block -> next stage
         self.harvest_of: dict[str, list[str]] = {}      # stage block -> drops
@@ -129,6 +134,17 @@ class World:
                          if d.get("event") == "Harvest" and d.get("name")]
                 if drops:
                     self.harvest_of[n] = drops
+
+        # World placement. A deposit block is primary production - it is already
+        # in the ground, so it is a legitimate free source, UNLIKE a crop, which
+        # is downstream of a seed. The distinction is the whole reason this
+        # checker exists, so it is worth stating: a block is free only if
+        # something actually puts it in the world.
+        r = root("biomes.xml")
+        if r is not None:
+            for d in r.iter("decoration"):
+                if d.get("blockname"):
+                    self.placed_blocks.add(d.get("blockname"))
 
         r = root("recipes.xml")
         if r is not None:
@@ -218,6 +234,8 @@ class World:
             add(n, "found in loot")
         for n in self.from_trader:
             add(n, "bought from a trader")
+        for n in self.placed_blocks:
+            add(n, "placed in the world by biomes.xml")
         # every vanilla identifier referenced anywhere is assumed obtainable
         for rc in self.recipes:
             for i in rc["ings"]:

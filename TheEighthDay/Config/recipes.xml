@@ -659,4 +659,69 @@
 
     </append>
 
+
+    <!-- ==========================================================================
+         THE DEPOSIT ROUTES
+
+         One alternative recipe per deposit, into a bottleneck that already has a
+         route. THE ORIGINAL ROUTE IS UNTOUCHED IN EVERY CASE. That is deliberate
+         and load-bearing: world placement is the one thing in this mod that cannot
+         be verified from outside the game (VERIFY-25), so nothing is allowed to
+         depend on it.
+
+         WHAT THESE BUY, AND WHAT THEY DELIBERATELY DO NOT
+         The farm established the rule and the deposits follow it: mining buys
+         RENEWABILITY AND INDEPENDENCE, not a discount. Bitumen frees polymer from
+         looted oil. Sulphur frees the Apothecary from looted acid - the same thing
+         the comfrey route does, by a second road, because being hostage to one
+         input is the failure mode that pillar keeps hitting.
+
+         Sulphur IS a real cost saving, because looted acid is genuinely expensive
+         and that is the point of it rather than an accident.
+
+         Scheelite is the exception that proves the rule: it does not make carbide
+         cheaper so much as make it POSSIBLE at a sane rate, because the coal cost
+         of the original route is punishing on purpose. The wasteland is where that
+         stops being the only way.
+         ========================================================================== -->
+
+    <append xpath="/recipes">
+
+        <!-- Flux, properly. The original sand-and-bone route stays for anyone who
+             has not found an outcrop yet; this is what limestone is for, and what
+             the flux description has claimed since v0.1. -->
+        <recipe name="edResourceFlux" count="5" craft_area="edBloomery" craft_time="10"
+                tags="edSmelting">
+            <ingredient name="edResourceLimestone" count="4" />
+            <ingredient name="resourceCoal" count="2" />
+        </recipe>
+
+        <!-- Polymer without looted oil. -->
+        <recipe name="edResourcePolymer" count="2" craft_area="edReagentBench"
+                craft_time="45" tags="edChemistry">
+            <ingredient name="edResourceBitumen" count="4" />
+            <ingredient name="edResourceReagentBase" count="1" />
+        </recipe>
+
+        <!-- Reagent base without looted acid. -->
+        <recipe name="edResourceReagentBase" count="2" craft_area="edReagentBench"
+                craft_time="35" tags="edChemistry">
+            <ingredient name="edResourceSulphur" count="3" />
+            <ingredient name="resourceNitratePowder" count="4" />
+            <ingredient name="resourceWaterBottle" count="1" />
+        </recipe>
+
+        <!-- Carbide at a rate that does not eat a coal seam. Still Ironmonger
+             only - the deposit changes where the material comes from, never who
+             is allowed to smelt it. -->
+        <recipe name="edResourceCarbide" count="2" craft_area="edBlastFurnace"
+                craft_time="120" tags="edSmelting,edRecipeCarbide"
+                unlocked_by_recipe="false">
+            <ingredient name="edResourceHardenedSteel" count="3" />
+            <ingredient name="edResourceScheelite" count="4" />
+            <ingredient name="resourceCoal" count="8" />
+        </recipe>
+
+    </append>
+
 </configs>
