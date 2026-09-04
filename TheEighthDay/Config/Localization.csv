@@ -80,7 +80,7 @@ edPerkAlloyingDesc,progression,Perk,,,Hardened steel at rank 2. Carbide at rank 
 edPerkTemperingName,progression,Perk,,,Tempering
 edPerkTemperingDesc,progression,Perk,,,Everything you forge comes off the anvil at a higher quality than it had any right to.
 edPerkCasingsName,progression,Perk,,,Casings
-edPerkCasingsDesc,progression,Perk,,,More rounds per batch and bulk casing recipes. The perk that keeps the Marshal in the fight.
+edPerkCasingsDesc,progression,Perk,,,More rounds out of every batch. The perk that keeps the Marshal in the fight.
 edPerkMasterForgeName,progression,Perk,,,Master of the Forge
 edPerkMasterForgeDesc,progression,Perk,,,Capstone. Blast furnace efficiency and the carbide recipes nobody else will ever see.
 edPerkEarthworksName,progression,Perk,,,Earthworks
@@ -98,27 +98,27 @@ edPerkQuietFootDesc,progression,Perk,,,Make less noise and less light. Everythin
 edPerkFieldDressingName,progression,Perk,,,Field Dressing
 edPerkFieldDressingDesc,progression,Perk,,,More meat and hide off every animal and the preservation recipes to stop it spoiling.
 edPerkSnaresName,progression,Perk,,,Snares and Deadfalls
-edPerkSnaresDesc,progression,Perk,,,Trap blocks that hit harder and reset faster. The wilderness starts working for you.
+edPerkSnaresDesc,progression,Perk,,,"Trap blocks, and everything you swing hits structures harder. The wilderness starts working for you."
 edPerkBowyerName,progression,Perk,,,Bowyer
-edPerkBowyerDesc,progression,Perk,,,Bow damage and draw speed and the advanced arrow tiers. Kills without telling the street.
+edPerkBowyerDesc,progression,Perk,,,Bow damage and the advanced arrow tiers. Kills without telling the street.
 edPerkGhostName,progression,Perk,,,Ghost
 edPerkGhostDesc,progression,Perk,,,Capstone. Crouched you are very nearly not there at all.
 edPerkMarksmanshipName,progression,Perk,,,Marksmanship
-edPerkMarksmanshipDesc,progression,Perk,,,Firearm damage and handling and reload speed. The direct answer to most problems.
+edPerkMarksmanshipDesc,progression,Perk,,,Firearm damage and reload speed. The direct answer to most problems.
 edPerkPlateWeaveName,progression,Perk,,,Plate and Weave
 edPerkPlateWeaveDesc,progression,Perk,,,Composite armour tiers and better protection out of everything you wear.
 edPerkOrdnanceName,progression,Perk,,,Ordnance
 edPerkOrdnanceDesc,progression,Perk,,,Heavy weapon tiers and belt-fed conversions. Expensive to feed. Worth it.
 edPerkEmplacedGunsName,progression,Perk,,,Emplaced Guns
-edPerkEmplacedGunsDesc,progression,Perk,,,Turret tiers and turrets that actually hit what they are aiming at.
+edPerkEmplacedGunsDesc,progression,Perk,,,"Emplacement tiers, and everything you emplace hits harder. Nothing here is robotic - the turret went with V3.2."
 edPerkCommandName,progression,Perk,,,Marshal's Command
-edPerkCommandDesc,progression,Perk,,,Capstone. Everyone fighting near you fights better and you unlock what nobody else carries.
+edPerkCommandDesc,progression,Perk,,,Capstone. You carry the weapon tier nobody else can build.
 edPerkReagentsName,progression,Perk,,,Reagents
 edPerkReagentsDesc,progression,Perk,,,More output from every batch and the second reagent bench tier.
 edPerkAntisepsisName,progression,Perk,,,Antisepsis
 edPerkAntisepsisDesc,progression,Perk,,,Tinctures at rank 1 and real antibiotics at rank 4. This is the perk that keeps people alive.
 edPerkFieldMedicName,progression,Perk,,,Field Medic
-edPerkFieldMedicDesc,progression,Perk,,,Everything medical heals more and applies faster including on other people.
+edPerkFieldMedicDesc,progression,Perk,,,Everything medical heals more and applies faster.
 edPerkCompoundsName,progression,Perk,,,Compounds
 edPerkCompoundsDesc,progression,Perk,,,Stimulants and gas ordnance and toxin coatings. Chemistry pointed outward for once.
 edPerkPhysicianName,progression,Perk,,,Physician
@@ -132,7 +132,7 @@ edPerkCircuitsDesc,progression,Perk,,,Electronics tiers and faster crafting of a
 edPerkMotorPoolName,progression,Perk,,,Motor Pool
 edPerkMotorPoolDesc,progression,Perk,,,Vehicle tiers and fuel that lasts. Mobility is a survival stat from Cycle 3 onward.
 edPerkRagAndBoneName,progression,Perk,,,Rag and Bone
-edPerkRagAndBoneDesc,progression,Perk,,,Capstone. Field Notes turn up far more often and the salvage-only recipes open up.
+edPerkRagAndBoneDesc,progression,Perk,,,"Capstone. Everything you open gives up more than it should, and the salvage-only recipes open up."
 edToolCarbidePickaxe,items,Item,,,Carbide Pickaxe
 edToolCarbidePickaxeDesc,items,Item,,,A carbide head on a hardened steel haft. Goes through stone at a rate that makes the steel one feel like a joke. Only an Ironmonger will ever make you one.
 edToolCarbideAxe,items,Item,,,Carbide Axe

@@ -4,7 +4,7 @@
 
 **Target build:** 7 Days to Die V3.2 "Henpocalypse"
 **Type:** Full overhaul, pure XML (no compiled assembly)
-**Status:** v0.13.0 pre-alpha
+**Status:** v0.13.1 pre-alpha
 
 ---
 
@@ -75,7 +75,7 @@ design — [`CALLINGS.md`](CALLINGS.md) marks which parts are mechanics and whic
 | **Trapper** | Hunting, animals, traps, stealth, bows, preserved food | Feeds the group, works alone, hates noise |
 | **Apothecary** | Chemistry, medicine, infection, gas, stimulants | The reason anyone survives an infection |
 | **Sapper** | Explosives, fortification, excavation, concrete | Shapes the ground the fight happens on |
-| **Marshal** | Firearms, armour, turrets, squad logistics | Wins the fight the Sapper set up |
+| **Marshal** | Firearms, armour, emplacements, squad logistics | Wins the fight the Sapper set up |
 | **Scavenger** | Salvage, vehicles, electronics, loot yield | Turns other people's ruins into your industry |
 
 Full trees, perks and Proving chains: [`CALLINGS.md`](CALLINGS.md).

@@ -202,7 +202,9 @@
             <effect_group name="edZombieRotweaverStats">
                 <passive_effect name="MaxHealth" operation="base_set" value="1100" />
                 <passive_effect name="EntityDamage" operation="base_set" value="42" />
-                <!-- Small-arms resistance. Explosives and AP rounds bypass this. -->
+                <!-- Small-arms resistance. Explosives are the answer; there is no AP
+                     exemption, because that would need an armour-piercing damage tag
+                     and none is implemented. The docs used to claim one. -->
                 <passive_effect name="DamageModifier" operation="perc_set" value="0.35"
                                 tags="bullet" />
                 <passive_effect name="DamageModifier" operation="perc_set" value="1.35"

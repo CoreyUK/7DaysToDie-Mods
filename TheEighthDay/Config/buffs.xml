@@ -40,7 +40,21 @@
               icon_color="200,120,220" hidden="false">
             <stack_type value="replace" />
             <duration value="4" />
+            <!-- THE FILTER IS NOT OPTIONAL.
+                 The Choir applies this with target="selfAOE", which puts it on
+                 everything in range - and nothing in this file established that
+                 selfAOE filters by faction. If it does not, the Choir was buffing
+                 the PLAYER fighting it: +35% damage, +20% speed and health
+                 regeneration, granted by the enemy you are trying to kill. That
+                 inverts the mechanic completely. Kill the Choir and you would get
+                 weaker.
+
+                 Gating the effects on the carrier being a zombie makes the buff
+                 inert on anything else. If EntityTagCompare turns out not to exist
+                 under that name the requirement is simply never met, so the aura
+                 does nothing - which is the safe direction to fail in. VERIFY-28. -->
             <effect_group name="edChoirSongEffects">
+                <requirement name="EntityTagCompare" tags="zombie" />
                 <passive_effect name="EntityDamage" operation="perc_add" value="0.35" />
                 <passive_effect name="RunSpeed" operation="perc_add" value="0.2" />
                 <passive_effect name="HealthChangeOT" operation="base_add" value="3" />

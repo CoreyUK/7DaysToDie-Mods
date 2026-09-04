@@ -40,10 +40,9 @@ uses is already load-bearing elsewhere in this mod:
 - `display_value` on an effect group — cosmetic; a wrong name means the cycle number does not
   render, nothing more.
 
-**Worth checking while you are in there:** whether an AOE target filter restricted to players
-exists. The death half of the trigger also lands on nearby zombies, where it is inert — they
-run the CVar bookkeeping against their own CVars and have no UI to show it in — but a filter
-would be tidier.
+**Worth checking while you are in there:** what `selfAOE` actually targets — item 28, which
+matters much more for the Choir than it does here. The death half of this trigger also lands
+on nearby zombies, where it is inert.
 
 **If any of it is wrong:** you lose the journal entries. The escalation itself lives in
 `gamestages.xml` and depends on none of this.
@@ -100,8 +99,9 @@ Confirm the name, and confirm `RemoveBuff` inside a buff's own effect group is l
 **Check:** `Data/Config/entityclasses.xml`
 `Config/entityclasses.xml` attaches the cycle tracker to `playerMale` and `playerFemale`
 via `onSelfFirstSpawn` / `onSelfRespawn`. Confirm both class names still exist and both
-triggers fire for players. Without this, `edCycle` is never readable — harmless today
-because the announcement layer is inert, but it is a prerequisite for item 1.
+triggers fire for players. Without this the cycle CVars are never initialised and the
+attrition repair penalty is never applied — the Turning announcements still fire, because
+they come from the archetype rather than from the tracker.
 
 ### 15. `RandomRoll` requirement
 **Check:** `Data/Config/buffs.xml` or `entityclasses.xml`
@@ -279,6 +279,33 @@ vanilla's own assemble recipes output — fallbacks are the `...Placeable` varia
 
 **If one is wrong:** that recipe is dead and the other three are unaffected. Vanilla assembly
 is untouched either way, so nobody loses vehicles — a Scavenger loses a shortcut.
+
+### 28. What `target="selfAOE"` actually hits
+**Check:** `Data/Config/buffs.xml` and `entityclasses.xml` — any vanilla effect using it
+
+Three things in this mod apply a buff with `target="selfAOE"`: the Bloater's rupture, the
+Choir's aura, and the death half of the Turning announcement. **Nothing establishes whether
+that filters by faction.**
+
+For the Bloater it does not matter — the toxic cloud is meant to hit whatever is close. For
+the announcement it does not matter — it lands inertly on zombies. **For the Choir it matters
+a great deal.** An unfiltered aura buffs the player fighting it: +35% damage, +20% movement
+speed and health regeneration, granted by the enemy you are trying to kill. Kill the Choir and
+you get *weaker*, which inverts the entire mechanic.
+
+The Choir's effect group is now gated on `EntityTagCompare` with `tags="zombie"`, so the buff
+is inert on anything that is not one. Confirm:
+
+- that `EntityTagCompare` exists under that name and takes a `tags` attribute
+- what `selfAOE` targets — if it is allies-only, the gate is harmless belt-and-braces
+- whether a cleaner per-effect target filter exists, which would also tidy the announcement
+
+**If `EntityTagCompare` is wrong:** the requirement is never met and the Choir's aura does
+nothing. That is the safe direction — a Cycle 6 archetype that is merely unremarkable, rather
+than one that makes the horde stronger *and* you stronger with it.
+
+This also blocks the Marshal's Command aura, which is why that capstone currently unlocks a
+weapon tier and nothing else — see `CALLINGS.md`.
 
 ## Priority 2 — will load but behave wrong
 

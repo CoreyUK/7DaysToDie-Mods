@@ -2,7 +2,8 @@
 
 The mod's namesake mechanic. Day 7 is the game's blood moon; **day 8 is ours.**
 
-Every horde night you survive, the world Turns at dawn. Turnings are permanent and one-way.
+As your gamestage climbs, the world Turns. Turnings are permanent and one-way, and you learn
+about each one by meeting it.
 
 ---
 
@@ -16,7 +17,7 @@ Every horde night you survive, the world Turns at dawn. Turnings are permanent a
 | **3** | Day 24 | **Carrion Hounds** — pack animals, flank, run down stragglers | Open ground stops being safe. Travel gets expensive. |
 | **4** | Day 32 | **Rotweavers** — armoured heavies, resist small-arms fire | Your ammo economy breaks. Time to industrialise. |
 | **5** | Day 40 | **The Hollow** — silent, night-only stalkers, no audio tell | Night ends as an option. Not a difficulty spike — a curfew. |
-| **6** | Day 48 | **Choirs** — buff nearby zombies, never attack directly | Hordes gain a shape. You have to prioritise targets. |
+| **6** | Day 48 | **Choirs** — buff nearby zombies, barely fight themselves | Hordes gain a shape. You have to prioritise targets. |
 | **7+** | Day 56+ | **Grinders** — Titan-class; the base-ender | Fortification becomes a losing game. Mobility wins. |
 
 Cycles do not stop at 7. Past it there are no new archetypes, only more of everything: nine
@@ -133,14 +134,17 @@ to everything. Rewards ranged, spacing and *not* fighting in your own base hallw
 **Recognise it by:** 20% larger than the fat zombie beside it. Swollen is the concept and size is the cue that survives a dark room.
 
 ### Carrion Hound — Cycle 3
-Pack of 3–6, fast, flanks, targets the isolated player. The anti-travel enemy. Makes
-vehicles a survival tool rather than a convenience.
+Fast, and it arrives with others because the spawn pools weight it heavily rather than
+because anything sets a pack size. Flanking and target selection are the vanilla dog AI it
+inherits, not something this mod implements. The anti-travel enemy: it makes vehicles a
+survival tool rather than a convenience.
 
 **Recognise it by:** noticeably bigger than a normal dog, and never alone.
 
 ### Rotweaver — Cycle 4
-Armoured. Heavy small-arms damage resistance, weak to explosives
-and armour-piercing. The enemy that forces the ammo economy to industrialise — a Cycle 4
+Armoured: 65% resistance to bullets, and takes 35% extra from explosives. There is no
+armour-piercing exemption — that would need an AP damage tag and none is implemented, so
+explosives are the answer. The enemy that forces the ammo economy to industrialise; a Cycle 4
 player still on scrap 9mm is a dead player.
 
 **Recognise it by:** feral glow on an armoured body. This tell matters most — without it, 65% bullet resistance reads as *my gun broke* rather than *wrong tool*.
@@ -153,8 +157,14 @@ rather than combat.
 **Recognise it by:** nothing. That is the tell — no idle audio, no footsteps, no scream. You notice the absence, and it needs no art at all.
 
 ### Choir — Cycle 6
-Never attacks. Applies an aura buff to nearby zombies (damage, speed, health regeneration).
-Fragile. Introduces target prioritisation to horde nights, which vanilla never asks for.
+Barely attacks — 4 damage, which is a rounding error next to the Hollow's 95 — and it does
+not close. What it does is apply an aura to nearby zombies: damage, speed, health
+regeneration. Fragile at 200 health. Introduces target prioritisation to horde nights, which
+vanilla never asks for.
+
+The aura is filtered to zombies. Without that filter it lands on everything in range
+including you, and an enemy that makes *you* stronger while it lives inverts the whole
+mechanic — see verification item 28.
 
 **Recognise it by:** feral glow, small, hanging back from the fight. The horde has to be readable enough to prioritise or the mechanic is invisible.
 

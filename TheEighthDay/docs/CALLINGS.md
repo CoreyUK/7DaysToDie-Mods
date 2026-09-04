@@ -69,7 +69,7 @@ Tests that you've built the early chain rather than looted it.
 | Bloom & Billet | 5 | Smelting speed and ore yield |
 | Alloying | 5 | Unlocks steel → hardened steel → carbide tiers |
 | Tempering | 4 | Tools and weapons you craft start at higher quality |
-| Casings | 4 | Ammo crafting yield and unlocks bulk casing recipes |
+| Casings | 4 | Ammo crafting yield |
 | Master of the Forge | 1 | Capstone: blast furnace efficiency, exclusive carbide recipes |
 
 ---
@@ -87,11 +87,11 @@ have no weapon filter. The flavour text carries the intent; the mechanics do not
 
 | Perk | Levels | Effect |
 |---|---|---|
-| Quiet Foot | 5 | Stealth, noise reduction, animal detection range |
+| Quiet Foot | 5 | Noise and light footprint |
 | Field Dressing | 5 | Meat and hide yield, unlocks preservation recipes |
-| Snares & Deadfalls | 4 | Unlocks trap blocks, trap damage and reset speed |
-| Bowyer | 4 | Bow damage, draw speed, unlocks advanced arrow tiers |
-| Ghost | 1 | Capstone: near-total noise suppression while crouched |
+| Snares & Deadfalls | 4 | Unlocks trap blocks; your own damage to structures |
+| Bowyer | 4 | Bow damage, unlocks advanced arrow tiers |
+| Ghost | 1 | Capstone: near-total noise suppression |
 
 ---
 
@@ -109,10 +109,10 @@ another player. Not available, so the chain tests the chemistry chain instead.*
 | Perk | Levels | Effect |
 |---|---|---|
 | Reagents | 5 | Chemistry yield, unlocks reagent bench tiers |
-| Antisepsis | 5 | Unlocks tiered infection cures, treatment potency |
-| Field Medic | 4 | Healing item potency and application speed, revive speed |
+| Antisepsis | 5 | Unlocks tiered infection cures |
+| Field Medic | 4 | Healing item potency and application speed |
 | Compounds | 4 | Unlocks stimulants, gas grenades, toxin coatings |
-| Physician | 1 | Capstone: cure stage 4 infection, craft the group-wide prophylactic |
+| Physician | 1 | Capstone: the serum, and nothing else cures stage 4 |
 
 ---
 
@@ -127,8 +127,8 @@ Slow, heavy and deliberately boring, which is exactly what the Calling feels lik
 
 | Perk | Levels | Effect |
 |---|---|---|
-| Earthworks | 5 | Dig speed, unlocks powered excavation tools |
-| Formwork | 5 | Unlocks reinforced concrete tiers, build speed and cost |
+| Earthworks | 5 | Dig speed, and digging costs less stamina |
+| Formwork | 5 | Unlocks reinforced concrete tiers, build speed |
 | Demolitions | 4 | Explosive damage, unlocks shaped charges and mining explosives |
 | Emplacements | 4 | Unlocks spike, barricade and killbox blocks with real HP |
 | Siege Engineer | 1 | Capstone: structural repairs mid-combat, exclusive fortification tier |
@@ -138,7 +138,7 @@ Slow, heavy and deliberately boring, which is exactly what the Calling feels lik
 ### Marshal
 *Wins the fight the Sapper set up.*
 
-Firearms, armour, turrets, squad logistics. The most direct Calling, and deliberately the one
+Firearms, armour, emplacements, squad logistics. The most direct Calling, and deliberately the one
 that is weakest alone — a Marshal without an Ironmonger runs out of ammunition, and a Marshal
 without a Sapper fights in the open.
 
@@ -149,11 +149,22 @@ empty gun.*
 
 | Perk | Levels | Effect |
 |---|---|---|
-| Marksmanship | 5 | Firearm handling, reload speed, recoil |
+| Marksmanship | 5 | Firearm damage, reload speed |
 | Plate & Weave | 5 | Unlocks composite armour tiers, armour effectiveness |
 | Ordnance | 4 | Unlocks heavy weapon tiers and belt-fed conversions |
-| Emplaced Guns | 4 | Turret damage, targeting, unlocks turret tiers |
-| Marshal's Command | 1 | Capstone: group-wide combat aura, exclusive weapon tier |
+| Emplaced Guns | 4 | Unlocks emplacement tiers, emplacement damage |
+| Marshal's Command | 1 | Capstone: exclusive weapon tier |
+
+**The Command aura is not implemented, and this table used to say it was.** The design is a
+group-wide combat buff — everyone fighting near the Marshal fights better — and delivering it
+needs a player-side area buff that can tell allies from zombies. The Choir already showed why
+that is not a detail: an unfiltered `selfAOE` aura lands on *everything* in range, so the same
+mechanism that would buff your squad would buff the horde standing in it (verification item
+28). Until that targeting question is answered against the real game, a Marshal capstone that
+strengthens whatever is nearest is worse than one that does not exist.
+
+It is the weakest of the six capstones as a result, and that is recorded here rather than
+papered over.
 
 ---
 
@@ -174,7 +185,7 @@ a particular POI type, so the quantities do the work instead.*
 | Sorting | 5 | Loot quality and quantity, better container outcomes |
 | Circuits | 4 | Unlocks electronics tiers, powered equipment recipes |
 | Motor Pool | 4 | Vehicle crafting, fuel efficiency, unlocks vehicle tiers |
-| Rag & Bone | 1 | Capstone: Field Note find rate, exclusive salvage-only recipes |
+| Rag & Bone | 1 | Capstone: loot stage bonus, exclusive salvage-only recipes |
 
 **Motor Pool, specifically.** The Scavenger's vehicle identity is *manufacturing* one, not
 owning a special one — minibike, motorcycle, 4x4 and gyrocopter assembled at the Machine Shop

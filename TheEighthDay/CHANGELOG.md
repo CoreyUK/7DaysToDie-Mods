@@ -3,6 +3,50 @@
 All notable changes to The Eighth Day.
 Format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
+## [0.13.1] — 2026-09-02
+
+A full audit of every documented claim against the config that is supposed to implement it.
+Thirteen claims described something that does not exist, and one of them was a live bug.
+
+### Fixed
+- **The Choir's aura had no faction filter, and may have been buffing the player fighting
+  it.** It is applied with `target="selfAOE"`, and nothing in this mod establishes that
+  `selfAOE` filters by faction. If it does not, the Choir was granting +35% damage, +20%
+  movement speed and health regeneration to *everything* in range — including you. Kill the
+  Choir and you would get weaker, which inverts the entire Cycle 6 mechanic.
+
+  The effects are now gated on the carrier being a zombie. If `EntityTagCompare` turns out
+  not to exist under that name the requirement is simply never met and the aura does nothing,
+  which is the safe direction to fail in. New verification item 28, which also covers the
+  Bloater rupture and the Turning announcement's death trigger.
+
+- **Eight player-facing perk descriptions promised effects the perk does not have.** This is
+  the version of the problem that costs real money: someone spends five skill points on
+  *"Capstone. Everyone fighting near you fights better"* and receives a recipe unlock. Also
+  gone: bulk casing recipes, trap reset speed, bow draw speed, firearm handling, turret
+  targeting, healing that works "on other people", and a Field-Note-specific find rate that
+  was really a generic loot stage bonus.
+
+- **Eleven rows of the `CALLINGS.md` perk table** overstated the same way. The pattern was
+  consistent: the table listed three effects, the perk implements two.
+
+- **`CYCLES.md` described three archetypes inaccurately.** The Choir "never attacks" (it has
+  4 damage — feeble, but not nothing); the Carrion Hound arrives in a "pack of 3–6" (nothing
+  sets a pack size — the spawn pools weight it heavily and the flanking is inherited dog AI);
+  and the Rotweaver is "weak to explosives and armour-piercing" (there is no AP damage tag,
+  only the explosive one). The same AP claim was in an `entityclasses.xml` comment.
+
+- **The Marshal's Command aura is now recorded as not implemented**, rather than listed as a
+  feature. It needs a player-side area buff that can tell allies from zombies, which is
+  exactly the question item 28 asks — so it is blocked behind the same unknown that nearly
+  made the Choir buff its victim. `CALLINGS.md` says so, and says that it makes Command the
+  weakest of the six capstones.
+
+- Two stale docs: the Marshal "owns turrets" in two tables (V3.2 removed the auto-turret and
+  the perk was rebuilt on emplacements), and `CYCLES.md` still opened with "every horde night
+  you survive, the world Turns at dawn", which stopped being how any of it works in 0.7.0.
+  Verification item 14 still said the announcement layer was inert.
+
 ## [0.13.0] — 2026-09-02
 
 The Scavenger's motor pool.
